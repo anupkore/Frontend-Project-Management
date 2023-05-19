@@ -29,7 +29,7 @@ function Registration()
     
     return(
         <>
-            <h1 className="text-center"> Hello </h1>
+            <h1 className="text-center"> Hello From YJB</h1>
 
             <div>
                 <Form className='ml-5'>
