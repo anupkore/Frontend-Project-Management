@@ -1,8 +1,12 @@
-import logo from './logo.svg';
+
 import './App.css';
+import React from 'react';
+import { BrowserRouter, Router, Route, Routes } from 'react-router-dom';
+import Registration from './Components/Registration.js';
 
 function App() {
   return (
+<<<<<<< HEAD
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -20,6 +24,15 @@ function App() {
         </a>
       </header>
     </div>
+=======
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Registration></Registration>} />
+        </Routes>
+        </BrowserRouter>
+    </>
+>>>>>>> f7329caf850a423aa970ae3ab20add2511b1a60a
   );
 }
 
