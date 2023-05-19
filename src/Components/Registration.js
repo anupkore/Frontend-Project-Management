@@ -34,7 +34,7 @@ function Registration()
             <div>
                 <Form className='ml-5'>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Full Name 1</Form.Label>
+                        <Form.Label>Yogesh Baiskar</Form.Label>
                         <Form.Control className='w-50'  type="text" placeholder="Enter your full name" ref={name} />
                     </Form.Group>
 
