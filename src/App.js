@@ -14,8 +14,8 @@ function App() {
       <BrowserRouter>
       <Navbar></Navbar>
         <Routes>
-          <Route path='/' element={<LoginForm></LoginForm>} />
-          <Route path='/about' element={<About/>} />
+          <Route path='/loginform' element={<LoginForm></LoginForm>} />
+          <Route path='/' element={<About/>} />
           <Route path='/error' element={<ErrorPage/>} />
           
         </Routes>
