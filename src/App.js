@@ -1,20 +1,23 @@
 
 import './App.css';
 import React from 'react';
-import { BrowserRouter, Router, Route, Routes } from 'react-router-dom';
-import Registration from './Components/Registration.js';
-import LoginPage from './Components/LoginPage';
-import ContactUsPage from './Components/ContactUsPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import LoginForm  from './Components/LoginForm.js';
+import About from './Components/About';
+import Navbar from './Components/Navbar';
+import ErrorPage from './Components/ErrorPage';
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <Navbar></Navbar>
         <Routes>
-          <Route path='/' element={<Registration></Registration>} />
-          <Route path='/loginpage' element={<LoginPage/>} />
-          <Route path='/contactus' element={<ContactUsPage/>} />
+          <Route path='/' element={<LoginForm></LoginForm>} />
+          <Route path='/about' element={<About/>} />
+          <Route path='/error' element={<ErrorPage/>} />
+          
         </Routes>
         </BrowserRouter>
     </>
