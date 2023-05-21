@@ -17,6 +17,7 @@ function App() {
           <Route path='/' element={<LoginForm></LoginForm>} />
           <Route path='/about' element={<About/>} />
           <Route path='/error' element={<ErrorPage/>} />
+          
         </Routes>
         </BrowserRouter>
     </>
