@@ -10,41 +10,36 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const features = [
   {
-    name: "Push to deploy",
+    name: "Increase productivity with team coordination",
     description:
-      "Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.",
+      "Achieve increased productivity within your team and organization by bringing all your work into a single platform. Focus priorities and adapt workflows with Wrike as your single source of truth.",
     icon: CloudArrowUpIcon,
   },
   {
-    name: "SSL certificates",
+    name: "Exceed goals through collaboration and automation",
     description:
-      "Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.",
+      "Clearly outline targets for your team, and exceed your goals with real-time collaboration, like @mentions and comments, and our powerful automation engine.",
     icon: LockClosedIcon,
   },
   {
-    name: "Simple queues",
+    name: "See the whole picture at a glance",
     description:
-      "Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.",
+      "Break down barriers and increase visibility across teams and departments with our fully customizable dashboards. Run projects with full transparency so you can spot bottlenecks before they set you back.",
     icon: ArrowPathIcon,
   },
   {
-    name: "Advanced security",
+    name: "Transform the way your teams work",
     description:
-      "Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.",
+      "Empower your teams to do the best work of their lives with 360° visibility, true cross-departmental collaboration, and powerful automation.",
     icon: FingerPrintIcon,
   },
 ];
-const links = [
-  { name: "Open roles", href: "#" },
-  { name: "Internship program", href: "#" },
-  { name: "Our values", href: "#" },
-  { name: "Meet our leadership", href: "#" },
-];
+
 const stats = [
-  { name: "Offices worldwide", value: "12" },
-  { name: "Full-time colleagues", value: "300+" },
-  { name: "Hours per week", value: "40" },
-  { name: "Paid time off", value: "Unlimited" },
+  { name: "Automate your workflows", },
+  { name: "Streamline your reports" },
+  { name: "Manage your intakes" },
+  { name: "Connect work to purpose" },
 ];
 const navigation = [
   { name: "Product", href: "#" },
@@ -82,12 +77,11 @@ export default function Example() {
             </div>
             <div className="text-center">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                Data to enrich your online business
+              One platform to
+streamline all workflows
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                fugiat aliqua.
+              Your all-in-one platform to manage projects, organize work, enhance collaboration and accelerate execution across all departments.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a
@@ -126,12 +120,10 @@ export default function Example() {
               Deploy faster
             </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Everything you need to deploy your app
+            Boost Productivity and Focus On Work That Drives ROI
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Quis tellus eget adipiscing convallis sit sit eget aliquet quis.
-              Suspendisse eget egestas a elementum pulvinar et feugiat blandit
-              at. In mi viverra elit nunc.
+            Wrike streamlines work processes for maximum efficiency, empowering teams across all departments to collaborate, manage projects, drive strategic initiatives, and achieve goals.
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -189,21 +181,19 @@ export default function Example() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Work with us
+            Try the #1 software in project and product management
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-300">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat aliqua.
+            Whether you want to start with a pre-built template for marketing, operations, product, learn more from a demo, or talk to our support team, Project-Management-App can help with that.
             </p>
           </div>
           <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-              {links.map((link) => (
+              {/* {links.map((link) => (
                 <a key={link.name} href={link.href}>
                   {link.name} <span aria-hidden="true">&rarr;</span>
                 </a>
-              ))}
+              ))} */}
             </div>
             <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
               {stats.map((stat) => (
