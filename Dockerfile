@@ -22,6 +22,8 @@ ENV NODE_OPTIONS="--max-old-space-size=8192"
 # Change user to root before changing ownership of .eslintcache
 USER root
 
+RUN mkdir /app/node_modules/.cache/.eslintcache
+
 RUN chown 1001:0 /app/node_modules/.cache/.eslintcache
 
 RUN chmod 777 /app/node_modules/.cache/.eslintcache
