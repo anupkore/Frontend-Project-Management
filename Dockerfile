@@ -9,6 +9,8 @@ COPY --chown=1001:0 package*.json ./
 
 USER 1001
 
+ENV key=value
+
 RUN npm install
 
 RUN npm install -g npm
