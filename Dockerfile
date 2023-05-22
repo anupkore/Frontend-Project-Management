@@ -1,0 +1,38 @@
+# FROM node:12-alpine
+FROM registry.access.redhat.com/ubi8/nodejs-16:1
+
+WORKDIR /app
+
+USER root
+
+COPY --chown=1001:0 package*.json ./
+
+USER 1001
+
+RUN npm install
+
+RUN npm install -g npm
+
+COPY . .
+
+# Change user to root before changing ownership of .eslintcache
+USER root
+
+RUN chown 1001:0 /app/node_modules/.cache/.eslintcache
+
+RUN chmod 777 /app/node_modules/.cache/.eslintcache
+
+# Change user back to node
+USER 1001
+
+# RUN mkdir /app/.config
+
+# USER root
+
+# RUN chown -R $USER:$(id -gn $USER) .config
+
+# USER 1001
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]
