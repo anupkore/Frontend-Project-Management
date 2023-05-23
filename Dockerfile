@@ -17,7 +17,7 @@ RUN npm install -g npm
 
 COPY . .
 
-ENV NODE_OPTIONS="--max-old-space-size=8192"
+ENV NODE_OPTIONS="--max-old-space-size=12288"
 
 # Change user to root before changing ownership of .eslintcache
 USER root
