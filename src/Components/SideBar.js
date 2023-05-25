@@ -37,7 +37,7 @@ export default function   SideBar(params) {
                 !open && "scale-0"
               }`}
             >
-              Designer
+              World Class 
             </h1>
           </div>
           <ul className="pt-6">
