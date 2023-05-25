@@ -47,7 +47,10 @@ const navigation = [
   { name: "Marketplace", href: "#" },
   { name: "Company", href: "#" },
 ];
-export default function Example() {
+
+
+export default function Example() 
+{
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <>
