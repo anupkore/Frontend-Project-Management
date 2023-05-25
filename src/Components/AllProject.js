@@ -8,7 +8,7 @@ const projects1 = [
     startDate: "2023-05-01",
     endDate: "2023-06-01",
     status: "In Progress",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit amet consectetur.",
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ const projects1 = [
     startDate: "2023-05-01",
     endDate: "2023-06-01",
     status: "In Progress",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit consectetur .",
   },
   {
     id: 5,
@@ -61,32 +61,32 @@ export const AllProjectList = () => {
   return (
     <>
       <section
-        className="projectList"
+        className="projectList  bg-gradient-to-tr from-[#ff80b5] to-[#9089fc]"
         style={{
           backgroundColor: "",
           margin: "5%",
           borderRadius: "10px",
           padding: "1rem",
-          borderTop: "2px solid black",
+          //borderTop: "2px solid black",
         }}
       >
         <div className="d-flex justify-content-between align-items-center py-4 px-5">
           <h1
-            className="text-center mb-0 flex-grow-1"
+            className="text-center mb-0 flex-grow-1 mb-5"
             style={{ fontFamily: "Arial", fontSize: "24px" }}
           >
-            <span className="bg-white px-4 py-2 rounded-md shadow-md text-navy-blue">
+            <span className="bg-white px-4 py-2 rounded-md shadow-md text-navy-blue align-items-center">
               My Projects
             </span>
           </h1>
-          <div className="text-end">
+          <div className="text-end mb-5">
             <Link to="/addproject" className="btn btn-primary">
               Add Project
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
        
         {projects1.map((project) =>(
             <ProjectCard
@@ -116,9 +116,9 @@ const ProjectCard = ({
     <div
       className="max-w-md mx-auto overflow-hidden mb-4 shadow-xl transition duration-300 ease-in-out transform hover:shadow-2xl hover:scale-105"
       style={{
-        borderLeft: "2px solid grey",
-        borderRight: "2px solid black",
-        borderBottom: "2px solid black",
+        //borderLeft: "2px solid grey",
+        //borderRight: "2px solid black",
+        //borderBottom: "2px solid black",
         borderRadius: "15px",
       }}
     >
@@ -144,7 +144,7 @@ const ProjectCard = ({
         <div className="flex justify-center mt-4">
           <Link
             to={`/projectexplore/${id}`}
-            className="flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500"
+            className="flex items-center px-4 py-2 text-sm font-medium text-white btn btn-primary rounded-md hover:bg-indigo-500"
           >
             Explore -&gt;
           </Link>
