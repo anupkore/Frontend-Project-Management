@@ -1,7 +1,19 @@
 import React from "react";
 import * as Components from "./Components";
+import { useRef } from 'react';
+import { Email } from "@mui/icons-material";
 
-function LoginForm() {
+function LoginForm() 
+{
+  const email = useRef("");
+  const password = useRef("");
+
+  function handleSignIn()
+  {
+    localStorage.setItem("USERNAME",email.current.value);
+    window.location.href= "/allprojects" ;
+  }
+  
   const [signIn, toggle] = React.useState(true);
   return (
     <>
@@ -19,12 +31,12 @@ function LoginForm() {
         <Components.SignInContainer signinIn={signIn}>
           <Components.Form>
             <Components.Title>Sign in</Components.Title>
-            <Components.Input type="email" placeholder="Email" />
-            <Components.Input type="password" placeholder="Password" />
+            <Components.Input type="email" placeholder="Email" ref={email} />
+            <Components.Input type="password" placeholder="Password" ref={password} />
             <Components.Anchor href="#">
               Forgot your password?
             </Components.Anchor>
-            <Components.Button>Sigin In</Components.Button>
+            <Components.Button onClick={handleSignIn}>Sigin In</Components.Button>
           </Components.Form>
         </Components.SignInContainer>
 

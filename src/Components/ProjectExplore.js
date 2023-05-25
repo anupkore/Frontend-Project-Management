@@ -164,10 +164,10 @@ export const ProjectExplore = () => {
         
           <div className=" border-gray-100">
             <div className={`sm:px-0 `}>
-              <h3 className="text-base font-bold text-center leading-7 text-gray-900">
-              ProjectData Details
+              <h3 className="text-base font-bold text-center leading-7 text-gray-900 mb-3">
+              Project Details
               </h3>
-              <p className="mt-1 text-base font-bold text-center leading-7 text-gray-500">
+              <p className="mt-1 text-base font-bold text-center leading-7 text-gray-500 mb-2">
                 {ProjectData.title}
               </p>
             </div>
@@ -176,7 +176,7 @@ export const ProjectExplore = () => {
                 <dl className="divide-y divide-gray-100">
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Issue Name
+                      Planned Start Date
                     </dt>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                       {ProjectData.name}
@@ -184,7 +184,7 @@ export const ProjectExplore = () => {
                   </div>
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Type
+                      Planned End Date
                     </dt>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                       {ProjectData.type}
@@ -192,7 +192,7 @@ export const ProjectExplore = () => {
                   </div>
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Status
+                      Actual Start Date
                     </dt>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                       {ProjectData.status}
@@ -200,7 +200,7 @@ export const ProjectExplore = () => {
                   </div>
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Assigned To
+                      Actual End Date
                     </dt>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                       {ProjectData.assignedTo}
@@ -208,7 +208,7 @@ export const ProjectExplore = () => {
                   </div>
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Start Date
+                      Lead Name
                     </dt>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                       {ProjectData.startDate}
@@ -216,7 +216,7 @@ export const ProjectExplore = () => {
                   </div>
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
-                      End Date
+                      Client Name
                     </dt>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                       {ProjectData.endDate}
@@ -234,15 +234,43 @@ export const ProjectExplore = () => {
                       {ProjectData.description}
                     </dd>
                   </div>
+
+                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt className="text-sm font-medium leading-6 text-gray-900">
+                      Status
+                    </dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                      {ProjectData.description}
+                    </dd>
+                  </div>
+
+                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt className="text-sm font-medium leading-6 text-gray-900">
+                      Risks
+                    </dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                      {ProjectData.description}
+                    </dd>
+                  </div>
+
+                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt className="text-sm font-medium leading-6 text-gray-900">
+                      Mitigations
+                    </dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                      {ProjectData.description}
+                    </dd>
+                  </div>
+
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Comments
                     </dt>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                       {ProjectData.comments.map((comment) => (
-                        <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+                        <li className="flex items-center justify-between py-2 pl-4 pr-5 text-sm">
                           {" "}
-                          <div className="ml-4 flex min-w-0 flex-1 gap-2">
+                          <div className="ml-2 flex min-w-0 flex-1 ">
                             <span className="truncate font-medium">
                               {comment.author} :
                             </span>
@@ -296,8 +324,16 @@ export const ProjectExplore = () => {
               </div>
             </div>
           </div>
+
+            <div className="mt-3 align-self-center mb-5 d-flex justify-content-center">
+              <button className="btn btn-primary mr-3">Update</button>
+              <button className="btn btn-danger ml-3">Delete</button>
+            </div>
+
         </div>
-      </div>
+    </div>
+
+      
     </>
   );
 };
