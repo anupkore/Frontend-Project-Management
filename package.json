@@ -17,6 +17,7 @@
     "@fullcalendar/timegrid": "^6.1.7",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
+    "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.1",
     "@syncfusion/ej2-react-schedule": "^21.2.5",
 
@@ -30,7 +31,7 @@
     "react-dom": "^18.2.0",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-router-dom": "^6.11.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },
