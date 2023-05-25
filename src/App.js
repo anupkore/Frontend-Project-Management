@@ -9,6 +9,8 @@ import Navbar from './Components/Navbar';
 import ErrorPage from './Components/ErrorPage';
 import Dashboard from './Components/Dashboard';
 import Calender from './Components/Calender';
+import IssueDashboard from './Components/IssueDashboard';
+import IssueDes from './Components/IssueDes';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path='/error' element={<ErrorPage/>} />
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/cal' element={<Calender/>} />
+          <Route path='/issues' element={<IssueDashboard></IssueDashboard>} />
+          <Route path='/issue/:issueId' element={<IssueDes/>} />
         </Routes>
         </BrowserRouter>
     </>
