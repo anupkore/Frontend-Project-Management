@@ -5,7 +5,7 @@ function LoginForm() {
   const [signIn, toggle] = React.useState(true);
   return (
     <>
-      <Components.Container >
+      <Components.Container style={{margin:"50px"}}>
         <Components.SignUpContainer signinIn={signIn}>
           <Components.Form>
             <Components.Title>Create Account</Components.Title>
@@ -31,7 +31,7 @@ function LoginForm() {
         <Components.OverlayContainer signinIn={signIn}>
           <Components.Overlay signinIn={signIn}>
             <Components.LeftOverlayPanel signinIn={signIn}>
-              <Components.Title>Welcome Back Varun!</Components.Title>
+              <Components.Title>Welcome Back </Components.Title>
               <Components.Paragraph>
                 To keep connected with us please login with your personal info
               </Components.Paragraph>
