@@ -13,7 +13,8 @@ import { ProjectExplore } from './Components/ProjectExplore';
 
 import Dashboard from './Components/Dashboard';
 import Calender from './Components/Calender';
-
+import IssueDashboard from './Components/IssueDashboard';
+import IssueDes from './Components/IssueDes';
 
 
 
@@ -37,6 +38,8 @@ function App() {
           <Route path='/cal' element={<Calender/>} />
 
 
+          <Route path='/issues' element={<IssueDashboard></IssueDashboard>} />
+          <Route path='/issue/:issueId' element={<IssueDes/>} />
         </Routes>
         </BrowserRouter>
     </>
