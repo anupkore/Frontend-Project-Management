@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import FormDialog from "./Dialog";
 
 const projects1 = [
   {
@@ -80,9 +81,7 @@ export const AllProjectList = () => {
             </span>
           </h1>
           <div className="text-end mb-5">
-            <Link to="/addproject" className="btn btn-primary">
-              Add Project
-            </Link>
+          <FormDialog></FormDialog>
           </div>
         </div>
 
