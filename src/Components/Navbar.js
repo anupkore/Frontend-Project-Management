@@ -28,11 +28,12 @@ export default function Navbar()
           Welcome {userName}
         </div>
        
-        <div className="text-lg font-semibold leading-6 text-gray-900   ">
-          <Profilepage></Profilepage>
+        <div className="flex text-lg font-semibold leading-6 text-gray-900   ">
+          <div><Profilepage></Profilepage></div>
+          
 
           
-          <legend style={linkStyle} className="text-lg font-semibold leading-6 text-gray-900 lg:justify-end pointer-cursor" onClick={handleLogout}>
+          <legend style={linkStyle } className="flex text-lg font-semibold leading-6 text-gray-900 lg:justify-end pointer-cursor" onClick={handleLogout}>
             Logout <span aria-hidden="true">&rarr;</span> 
           </legend>
           
