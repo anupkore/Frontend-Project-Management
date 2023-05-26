@@ -12,6 +12,7 @@ import Dashboard from './Components/Dashboard';
 import Calender from './Components/Calender';
 import IssueDashboard from './Components/IssueDashboard';
 import IssueDes from './Components/IssueDes';
+import {SignupForm} from './Components/SignupForm';
 
 
 
