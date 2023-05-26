@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cursor } from 'react-bootstrap';
+import Profilepage from './Profilepage';
 
 export default function Navbar() 
 {
@@ -23,14 +24,12 @@ export default function Navbar()
           <Link to={"/"}>POC Project</Link>
         </div>
 
-        <div className="flex lg:flex-1 text-lg font-semibold lg:justify-center">
+        <div className="flex lg:flex-1 text-lg font-semibold lg:justify-center ">
           Welcome {userName}
         </div>
        
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
-          <Link to={"/profile"} className="text-lg font-semibold leading-6 text-gray-900 mx-3 lg:justify-end">
-            Profile 
-          </Link>
+        <div className="text-lg font-semibold leading-6 text-gray-900   ">
+          <Profilepage></Profilepage>
 
           
           <legend style={linkStyle} className="text-lg font-semibold leading-6 text-gray-900 lg:justify-end pointer-cursor" onClick={handleLogout}>
