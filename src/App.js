@@ -12,10 +12,9 @@ import Dashboard from './Components/Dashboard';
 import Calender from './Components/Calender';
 import IssueDashboard from './Components/IssueDashboard';
 import IssueDes from './Components/IssueDes';
-
 import Profilepage from './Components/Profilepage';
-
 import AddNewProject from './Components/AddNewProject';
+import AddNewMember from './Components/AddNewMember';
 import {SignupForm} from './Components/SignupForm';
 
 
@@ -41,7 +40,7 @@ function App() {
               <Route path='/issue/:issueId' element={<IssueDes/>} />
 
               <Route path='/profile' element={<Profilepage/>} />
-
+              <Route path='/newMember' element={<AddNewMember />} />
               <Route path='/addNewProject'  element={<AddNewProject/>} />
 
             </Routes>
