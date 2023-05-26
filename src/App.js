@@ -13,6 +13,7 @@ import Calender from './Components/Calender';
 import IssueDashboard from './Components/IssueDashboard';
 import IssueDes from './Components/IssueDes';
 import AddNewProject from './Components/AddNewProject';
+import {SignupForm} from './Components/SignupForm';
 
 
 

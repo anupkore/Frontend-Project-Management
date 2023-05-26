@@ -1,9 +1,10 @@
 import React from 'react';
-import {ArrowPathIcon,CloudArrowUpIcon,FingerPrintIcon,LockClosedIcon} from "@heroicons/react/24/outline";
+import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import LoginForm from "./LoginForm";
+import {LoginForm} from "./LoginForm";
+import {SignupForm} from "./SignupForm";
 
 const features = [
   {
@@ -33,7 +34,7 @@ const features = [
 ];
 
 const stats = [
-  { name: "Automate your workflows", },
+  { name: "Automate your workflows" },
   { name: "Streamline your reports" },
   { name: "Manage your intakes" },
   { name: "Connect work to purpose" },
@@ -46,9 +47,19 @@ const navigation = [
 ];
 
 
-export default function Example() 
-{
+export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+
+  const toggleSignup = () => {
+    setShowSignup(!showSignup);
+  };
+
+  const [showLogin, setShowLogin] = useState(true);
+
+  const toggleForm = () => {
+    setShowLogin(!showLogin);
+  };
   return (
     <>
       <div className="bg-white">
@@ -65,20 +76,27 @@ export default function Example()
               }}
             />
           </div>
-          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-0">
-            <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-             
-            </div>
-            <div className="text-center">
-        <h1 className= "text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          One platform to streamline all workflows
-        </h1>
-        <p className="mt-2 text-lg leading-8 text-gray-600">
-          Your all-in-one platform to manage projects, organize work, enhance collaboration, and accelerate execution across all departments.
-        </p>
+
+
+            <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-0">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            One platform to streamline all workflows
+          </h1>
+          <p className="mt-2 text-lg leading-8 text-gray-600">
+            Your all-in-one platform to manage projects, organize work, enhance collaboration, and accelerate execution across all departments.
+          </p>
+        </div>
+        {showLogin ? (
+        <LoginForm toggleSignup={toggleForm} />
+      ) : (
+        <SignupForm toggleLogin={toggleForm} />
+      )}
       </div>
-      <LoginForm ></LoginForm>
-          </div>
+
+
+
+
           <div
             className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
             aria-hidden="true"
