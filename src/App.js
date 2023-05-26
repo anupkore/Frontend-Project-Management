@@ -12,7 +12,12 @@ import Dashboard from './Components/Dashboard';
 import Calender from './Components/Calender';
 import IssueDashboard from './Components/IssueDashboard';
 import IssueDes from './Components/IssueDes';
+
 import Profilepage from './Components/Profilepage';
+
+import AddNewProject from './Components/AddNewProject';
+import {SignupForm} from './Components/SignupForm';
+
 
 
 
@@ -34,7 +39,11 @@ function App() {
               <Route path='/cal' element={<Calender/>} />
               <Route path='/issues' element={<IssueDashboard></IssueDashboard>} />
               <Route path='/issue/:issueId' element={<IssueDes/>} />
+
               <Route path='/profile' element={<Profilepage/>} />
+
+              <Route path='/addNewProject'  element={<AddNewProject/>} />
+
             </Routes>
         </BrowserRouter>
     </>
