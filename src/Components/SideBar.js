@@ -20,7 +20,7 @@ export default function   SideBar(params) {
         >
           <img
             src="/Images/arrow-right-circle-fill.svg"
-            alt=""
+	    alt=""
             className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
              border-2 rounded-full  ${ open && "rotate-180"}`}
             onClick={() => setOpen(!open)}
@@ -37,7 +37,7 @@ export default function   SideBar(params) {
               className={`text-white origin-left font-medium text-xl duration-200 ${
                 !open && "scale-0"
               }`}
-            >
+		 >
               World Class 
             </h1>
             
@@ -64,7 +64,8 @@ export default function   SideBar(params) {
             ))}
             
           </ul>
-          
         </div>
+        </>
     );
 }
+
