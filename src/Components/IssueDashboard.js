@@ -15,7 +15,7 @@ const colors = [
   "bg-violet-100",
   "bg-fuchsia-100",
   "bg-pink-100",
-  "bg-purple-100"
+  "bg-purple-100",
 ];
 
 export default function IssueDashboard(props) {
@@ -29,12 +29,9 @@ export default function IssueDashboard(props) {
 
   useEffect(() => {
     // Determine unique status values from the data
-    const uniqueStatusValues = [...new Set(issues.map(item => item.status))];
+    const uniqueStatusValues = [...new Set(issues.map((item) => item.status))];
     setStatusValues(uniqueStatusValues);
   }, [issues]);
-
-
-
 
   console.log(JSON.stringify(statusValues));
   return (
@@ -43,34 +40,43 @@ export default function IssueDashboard(props) {
         <div className="w-1/5">
           <SideBar></SideBar>
         </div>
-        <div className="w-4/5">
-
+        <div className="w-3/5 mx-auto">
           <div className="relative">
-            <div className="text-center py-4 text-xl font-bold">Issue Workflow</div>
-            <div className="absolute top-5 ">
-              <button
-                onClick={scrollLeft}
-                className="p-2 m-2 rounded-full bg-white"
-              >
-                <FiChevronLeft />
-              </button>
-              <button
-                onClick={scrollRight}
-                className="p-2 m-2 rounded-full bg-white"
-              >
-                <FiChevronRight />
-              </button>
+            <div className="flex items-center">
+              <div className="">
+                <button
+                  onClick={scrollLeft}
+                  className="p-2 m-2 rounded-full bg-white"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className=" fill-blue-500 bi bi-caret-left-square-fill" viewBox="0 0 16 16">
+  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm10.5 10V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4A.5.5 0 0 0 10.5 12z"/>
+</svg>
+                </button>
+              </div>
+              <div className="mx-auto py-4 text-xl font-bold">
+                Issue Workflow
+              </div>
+              <div className="">
+                <button 
+                  onClick={scrollRight}
+                  className="p-2 m-2 rounded-full bg-white"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="fill-blue-500 bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"/>
+</svg>
+                </button>
+              </div>
             </div>
             <div>
               <div
                 id="content"
                 className="carousel p-4 flex space-x-10 overflow-x-auto scroll-smooth scrollbar-hide"
               >
-                {statusValues.map((status) => 
+                {statusValues.map((status) => (
                   <div className="">
-                    <IssueCardHolder iss={status}/>
+                    <IssueCardHolder iss={status} />
                   </div>
-                )}
+                ))}
               </div>
             </div>
           </div>
