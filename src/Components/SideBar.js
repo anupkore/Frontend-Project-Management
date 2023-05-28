@@ -12,7 +12,7 @@ export default function   SideBar(params) {
     ];
     return(
 
-       
+       <>
         <div
           className={` ${
             open ? "w-60 h-screen" : "w-8"
