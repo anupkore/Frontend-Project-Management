@@ -6,6 +6,7 @@ import bgProject from "../images/cool-background.png";
 import FormDialog from "./Dialog";
 import { Link } from "react-router-dom";
 import AddNewMember from "./AddNewMember";
+import SideBar from "./SideBar";
 
 export const Teams = () => {
   const { p_id } = useParams();
@@ -15,12 +16,16 @@ export const Teams = () => {
     <>
       {/* <h1>Work in progress: {p_id}</h1>
       <div>{Project_Id.assignedTo}</div> */}
+      <div className="flex">
+         <div>
+          <SideBar p_id={p_id}></SideBar>
+        </div>
 
       <section
         className="bg-blur-3xl bg-opacity-30"
         style={{
           backgroundColor: "",
-          margin: "5%",
+          margin: "0% 5%",
           borderRadius: "10px",
           padding: "1rem",
           backgroundImage: `url(${bgProject})`,
@@ -119,6 +124,7 @@ export const Teams = () => {
 
         {/* <TeamTable name={Project_Id.assignedTo} ></TeamTable> */}
       </section>
+      </div>
     </>
   );
 };
