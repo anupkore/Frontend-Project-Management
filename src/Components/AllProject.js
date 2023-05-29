@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import FormDialog from "./Dialog";
+import AddNewProject from "./AddNewProject";
+import AddNewMember from "./AddNewMember";
 
 const projects1 = [
   {
@@ -58,7 +60,11 @@ const projects1 = [
   // Add more project objects...
 ];
 
+
+
 export const AllProjectList = () => {
+  const maxWidth='md';
+
   return (
     <>
       <section
@@ -77,10 +83,7 @@ export const AllProjectList = () => {
                 My Projects
               </span>
             </h1>
-        </div>
-
-        <div className="mb-5 text-center">
-          <FormDialog></FormDialog>
+            <FormDialog prop={<AddNewProject></AddNewProject>} style={maxWidth}></FormDialog>
         </div>
         
         <div className=" grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
