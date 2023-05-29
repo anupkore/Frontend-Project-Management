@@ -93,7 +93,7 @@ export const AllProjectList = () => {
                 My Projects
               </span>
             </h1>
-            <FormDialog prop={<AddNewProject></AddNewProject>} style={maxWidth}></FormDialog>
+            <FormDialog prop={<AddNewProject></AddNewProject>} style={maxWidth} buttonTitle={"Create Project"}></FormDialog>
         </div>
         
         <div className=" grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">

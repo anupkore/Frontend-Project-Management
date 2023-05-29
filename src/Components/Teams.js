@@ -5,11 +5,12 @@ import { useParams } from "react-router";
 import bgProject from "../images/cool-background.png";
 import FormDialog from "./Dialog";
 import { Link } from "react-router-dom";
+import AddNewMember from "./AddNewMember";
 
 export const Teams = () => {
   const { p_id } = useParams();
   const Project_Id = issues.find((proj) => proj.id === Number(p_id));
-
+    const maxWidth='sm';
   return (
     <>
       {/* <h1>Work in progress: {p_id}</h1>
@@ -49,7 +50,7 @@ export const Teams = () => {
     </button>
   </Link> */}
   <div>
-    <FormDialog></FormDialog>
+    <FormDialog prop={<AddNewMember></AddNewMember>} style={maxWidth} buttonTitle={"Add Member"}></FormDialog>
   </div>
 </span>
 
