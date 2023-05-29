@@ -12,13 +12,19 @@ import Dashboard from './Components/Dashboard';
 import Calender from './Components/Calender';
 import IssueDashboard from './Components/IssueDashboard';
 import IssueDes from './Components/IssueDes';
-
 import Profilepage from './Components/Profilepage';
-
 import AddNewProject from './Components/AddNewProject';
+import AddNewMember from './Components/AddNewMember';
 import {SignupForm} from './Components/SignupForm';
 import ParticularIssueDashboard from './Components/ParticularIssueDashboard';
+
 import { Teams } from './Components/Teams';
+
+import UpdateProjectForm from './Components/UpdateProjectForm';
+import ForgotPassword from './Components/ForgotPassword';
+import ChangePassword from './Components/ChangePassword';
+
+
 
 
 
@@ -45,7 +51,15 @@ function App() {
               <Route path='/issue/:status' element={<ParticularIssueDashboard></ParticularIssueDashboard>}/>
               <Route path='/profile' element={<Profilepage/>} />
               <Route path='/addNewProject'  element={<AddNewProject/>} />
+
               <Route path='*'  element={<ErrorPage/>} />
+
+              <Route path='/updateprojectform'  element={<UpdateProjectForm></UpdateProjectForm>} />
+              <Route path='/addNewMember'   element={<AddNewMember/>} />
+              <Route path='/forgotPassword' element={<ForgotPassword/>} />
+              <Route path='/changePassword' element={<ChangePassword/>} />
+              
+
             </Routes>
         </BrowserRouter>
     </>

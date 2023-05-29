@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import SideBar from "./SideBar";
+import Modal from "./Modal";
+import { useState } from "react";
 
 
 const projects = [
@@ -152,6 +154,14 @@ const projects = [
 export const ProjectExplore = () => {
   const { id1 } = useParams();
   const ProjectData = projects.find((proj) => proj.id === Number(id1));
+  const [showModal, setShowModal] = useState(false);
+
+  // const handleDelete = () => {
+  //   // Perform delete operation or call the onDelete prop
+  //   // to handle the deletion in parent component
+  //   // onDelete();
+  //   setShowModal(false);
+  // };
 
   return (
 
@@ -334,10 +344,11 @@ export const ProjectExplore = () => {
 
             <div className="mt-3 align-self-center mb-5 d-flex justify-content-center">
               <button className="btn btn-primary mr-3">Update</button>
-              <button className="btn btn-danger ml-3">Delete</button>
+              <button className="btn btn-danger ml-3" onClick={()=>setShowModal(true)}>Delete</button>
             </div>
-
+          
         </div>
+       
     </div>
 
       

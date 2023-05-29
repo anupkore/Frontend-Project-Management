@@ -1,4 +1,4 @@
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+
 import SideBar from "./SideBar";
 
 import { issues } from "./TEST/Issues";

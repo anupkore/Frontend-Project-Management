@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import FormDialog from "./Dialog";
+
 // import bgProject from "../images/bg-allproject.jpg";
 import bgProject from "../images/cool-background.png";
+
+import AddNewProject from "./AddNewProject";
+import AddNewMember from "./AddNewMember";
+
 
 const projects1 = [
   {
@@ -60,7 +65,11 @@ const projects1 = [
   // Add more project objects...
 ];
 
+
+
 export const AllProjectList = () => {
+  const maxWidth='md';
+
   return (
     <>
       <section
@@ -79,12 +88,12 @@ export const AllProjectList = () => {
         }}
       >
         <div className="flex py-4 px-5 justify-content-end">
-            <h1 className="text-center mb-0 flex-grow-1 mb-5" style={{ fontFamily: "Arial", fontSize: "24px" }}>
+            <h1 className="text-center mb-0 flex-grow-1 mb-2" style={{ fontFamily: "Arial", fontSize: "24px" }}>
               <span className="bg-white px-4 py-2 rounded-md shadow-md text-navy-blue align-items-center mx-auto text-center">
                 My Projects
               </span>
             </h1>
-            <FormDialog></FormDialog>
+            <FormDialog prop={<AddNewProject></AddNewProject>} style={maxWidth}></FormDialog>
         </div>
         
         <div className=" grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">

@@ -4,10 +4,8 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import AddNewProject from './AddNewProject';
 
-export default function FormDialog() {
+export default function FormDialog({prop,style}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -21,12 +19,11 @@ export default function FormDialog() {
   return (
     <div>
       <Button variant="contained" onClick={handleClickOpen}>
-        Create new 
+        Create New 
       </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Create new Project</DialogTitle>
+      <Dialog open={open} onClose={handleClose} maxWidth={style} fullWidth>
         <DialogContent>
-          <AddNewProject></AddNewProject>
+          {prop}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
