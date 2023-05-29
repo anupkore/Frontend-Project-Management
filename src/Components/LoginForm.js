@@ -1,9 +1,7 @@
- import React from "react";
- import * as Components from "./Components";
- import { useRef } from 'react';
- import { Email } from "@mui/icons-material";
- import { Input } from "@mui/material";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useRef } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 
@@ -11,44 +9,42 @@ export const  LoginForm = ({ toggleSignup }) =>
 {
 
      //const email = useRef("");
-     const [errorMessageFull , setErrorMessageFull] = useState('');
      const [errorMessageEmail , setErrorMessageEmail] = useState('');
      const [errorMessagePassword , setErrorMessagePassword] = useState('');
-     const [email, setEmail] = useState('');
-     const [password, setPassword] = useState('');
+     const email = useRef("");
+     const password = useRef("");
+     const navigate = useNavigate();
 
-
-     function handleInputChange(event) 
-     {
-      setEmail(event.target.value);
-      setErrorMessageEmail('');
-     }
-
-     function handleInputChangePassword(event) 
-     {
-      setPassword(event.target.value);
-      setErrorMessagePassword('');
-     }
      
-     function handleSignIn(event)
+     const handleSignIn = async(event) =>
      {
       event.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      if(email !== 'anup')
+
+      var payload = 
+        {
+            email: email.current.value,
+            password: password.current.value
+        }
+      try 
       {
-        setErrorMessageEmail('Invalid Email');
-        return;
-      }
-      else if(password !== 'anup')
+        const response = await axios.post('/api/login', payload);
+
+        console.log('Logged in successfully:', response.data);
+        localStorage.setItem("USERNAME",email);
+        navigate('/allprojects')
+
+      } 
+      catch (error) 
       {
-        setErrorMessagePassword('Invalid Password');
-        return;
-      }
-      else 
-      {
-        localStorage.setItem("USERNAME",document.getElementById('email').value);
-        window.location.href= "/allprojects" ;
+        // Handle login error
+        if (error.response==="Invalid Email")
+        {
+          setErrorMessageEmail('Invalid Email');
+        } 
+        else if(error.response==="Invalid Password") 
+        {
+          setErrorMessagePassword('Invalid Password');
+        }
       }
      }
   return (
@@ -77,12 +73,10 @@ export const  LoginForm = ({ toggleSignup }) =>
               </label>
               <div className="mt-2">
                 <input
+                  ref={email}
                   id="email"
                   name="email"
                   type="email"
-                  value={email}
-                  onChange={handleInputChange}
-                  autoComplete="email"
                   required
                   className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -104,11 +98,10 @@ export const  LoginForm = ({ toggleSignup }) =>
               <div className="mt-2">
                 <input
                   id="password"
+                  ref={password}
                   name="password"
                   type="password"
-                  value={password}
-                  onChange={handleInputChangePassword}
-                  autoComplete="current-password"
+                  
                   required
                   className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
