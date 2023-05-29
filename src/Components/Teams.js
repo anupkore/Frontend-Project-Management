@@ -240,7 +240,7 @@ export const Teams = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           width: "90vw", // Adjust the width to fit the screen horizontally
-          height: "100vh", // Adjust the height to fit the screen vertically
+          height: "75vh", // Adjust the height to fit the screen vertically
         }}
       >
         <div className="flex pt-4 pb-1 px-5 justify-end">
@@ -280,7 +280,6 @@ export const Teams = () => {
               <th className="px-4 py-2">Name</th>
               <th className="px-4 py-2">Email</th>
               <th className="px-4 py-2">Role</th>
-              <th className="px-4 py-2">Type</th>
               <th className="px-4 py-2">Satrt Date</th>
               <th className="px-4 py-2">End Date</th>
               <th className="px-4 py-2">Issues</th>
@@ -313,7 +312,6 @@ export const Teams = () => {
               <td className="px-4 py-2">{issue.assignedTo[0].name}</td>
               <td className="px-4 py-2">{issue.assignedTo[0].email}</td>
               <td className="px-4 py-2">{issue.assignedTo[0].role}</td>
-              <td className="px-4 py-2">{issue.type}</td>
               <td className="px-4 py-2">{issue.startDate}</td>
               <td className="px-4 py-2">{issue.endDate}</td>
               <td className="px-4 py-2 underline text-blue-900">

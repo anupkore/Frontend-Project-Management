@@ -219,7 +219,7 @@ export const ProjectExplore = () => {
               Project Details
               </h3>
               <p className="mt-1 text-base font-bold text-center leading-7 text-gray-500 mb-2">
-                {ProjectData.title}
+                {ProjectData.projectTitle}
               </p>
             </div>
             <div className="flex flex-row divide-x">
