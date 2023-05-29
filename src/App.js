@@ -17,6 +17,8 @@ import AddNewProject from './Components/AddNewProject';
 import AddNewMember from './Components/AddNewMember';
 import {SignupForm} from './Components/SignupForm';
 import ParticularIssueDashboard from './Components/ParticularIssueDashboard';
+import ForgotPassword from './Components/ForgotPassword';
+import ChangePassword from './Components/ChangePassword';
 
 
 
@@ -42,6 +44,10 @@ function App() {
               <Route path='/issue/:status' element={<ParticularIssueDashboard></ParticularIssueDashboard>}/>
               <Route path='/profile' element={<Profilepage/>} />
               <Route path='/addNewProject'  element={<AddNewProject/>} />
+              <Route path='/addNewMember'   element={<AddNewMember/>} />
+              <Route path='/forgotPassword' element={<ForgotPassword/>} />
+              <Route path='/changePassword' element={<ChangePassword/>} />
+              
             </Routes>
         </BrowserRouter>
     </>
