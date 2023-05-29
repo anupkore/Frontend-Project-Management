@@ -20,6 +20,7 @@ import ParticularIssueDashboard from './Components/ParticularIssueDashboard';
 import UpdateProjectForm from './Components/UpdateProjectForm';
 import ForgotPassword from './Components/ForgotPassword';
 import ChangePassword from './Components/ChangePassword';
+import UpdateIssueForm from './Components/UpdateIssueForm';
 
 
 
@@ -50,6 +51,7 @@ function App() {
               <Route path='/addNewMember'   element={<AddNewMember/>} />
               <Route path='/forgotPassword' element={<ForgotPassword/>} />
               <Route path='/changePassword' element={<ChangePassword/>} />
+              <Route path='/updateissueform' element={<UpdateIssueForm/>} />
               
             </Routes>
         </BrowserRouter>
