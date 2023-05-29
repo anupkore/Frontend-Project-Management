@@ -1,18 +1,16 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
+
 import Typography from '@mui/material/Typography';
-import { issues } from './TEST/Issues';
-import { Link, useNavigate } from 'react-router-dom';
-import IssueDes from './IssueDes';
+
+import { Link } from 'react-router-dom';
 
 export default function IssueCard(props) {
   return (
     <>
-    <Card sx={{ maxWidth: 345 }}>
-    <Link to={"/issue/"+props.pro.id}>
+    <Card sx={{ minWidth: 200 ,maxHeight: 130 }}>
+    <Link to={"/issuedes/"+props.pro.id}>
       <CardContent>
         <Typography gutterBottom  component="div">
           {props.pro.title}
