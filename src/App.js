@@ -13,6 +13,10 @@ import Calender from './Components/Calender';
 import IssueDashboard from './Components/IssueDashboard';
 import IssueDes from './Components/IssueDes';
 import Profilepage from './Components/Profilepage';
+import AddNewProject from './Components/AddNewProject';
+import {SignupForm} from './Components/SignupForm';
+import UpdateProjectForm from './Components/UpdateProjectForm';
+
 
 
 
@@ -34,7 +38,12 @@ function App() {
               <Route path='/cal' element={<Calender/>} />
               <Route path='/issues' element={<IssueDashboard></IssueDashboard>} />
               <Route path='/issue/:issueId' element={<IssueDes/>} />
+
               <Route path='/profile' element={<Profilepage/>} />
+
+              <Route path='/addNewProject'  element={<AddNewProject/>} />
+              <Route path='/updateprojectform'  element={<UpdateProjectForm/>} />
+
             </Routes>
         </BrowserRouter>
     </>

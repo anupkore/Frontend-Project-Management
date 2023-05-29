@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import FormDialog from "./Dialog";
 
 const projects1 = [
   {
@@ -61,7 +62,7 @@ export const AllProjectList = () => {
   return (
     <>
       <section
-        className="projectList  bg-gradient-to-tr from-[#ff80b5] to-[#9089fc]"
+        className=" bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 bg-blur-3xl bg-opacity-30 "
         style={{
           backgroundColor: "",
           margin: "5%",
@@ -70,23 +71,16 @@ export const AllProjectList = () => {
           //borderTop: "2px solid black",
         }}
       >
-        <div className="d-flex justify-content-between align-items-center py-4 px-5">
-          <h1
-            className="text-center mb-0 flex-grow-1 mb-5"
-            style={{ fontFamily: "Arial", fontSize: "24px" }}
-          >
-            <span className="bg-white px-4 py-2 rounded-md shadow-md text-navy-blue align-items-center">
-              My Projects
-            </span>
-          </h1>
-          <div className="text-end mb-5">
-            <Link to="/addproject" className="btn btn-primary">
-              Add Project
-            </Link>
-          </div>
+        <div className="flex py-4 px-5 justify-content-end">
+            <h1 className="text-center mb-0 flex-grow-1 mb-5" style={{ fontFamily: "Arial", fontSize: "24px" }}>
+              <span className="bg-white px-4 py-2 rounded-md shadow-md text-navy-blue align-items-center mx-auto text-center">
+                My Projects
+              </span>
+            </h1>
+            <FormDialog></FormDialog>
         </div>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
+        
+        <div className=" grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
        
         {projects1.map((project) =>(
             <ProjectCard

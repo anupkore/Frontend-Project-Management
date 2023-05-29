@@ -15,11 +15,24 @@ const callsToAction = [
   { name: 'Logout', href: '#'},
 ]
 
-export default function Profilepage() {
+export default function Profilepage()
+ {
+  function handleLogout()
+  {
+    localStorage.removeItem("USERNAME");
+    window.location.href = "/" ;
+  }
+
   return (
     <Popover className="relative">
+      {/* <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+      <legend style={{cursor:"pointer"}} className="text-lg font-semibold leading-6 text-gray-900 lg:justify-end pointer-cursor" >
+            Profile  
+          </legend>
+        <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
+      </Popover.Button> */}
       <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-        <span className="font-bold font-weight: 700" >Profile</span>
+        <p>Profile</p>
         <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
       </Popover.Button>
 
@@ -49,6 +62,7 @@ export default function Profilepage() {
                 <a
                   key={item.name}
                   href={item.href}
+                  onClick={handleLogout}
                   className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-blue-200"
                 >
                  

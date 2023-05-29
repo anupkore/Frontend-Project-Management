@@ -24,19 +24,20 @@ export default function Navbar()
           <Link to={"/"}>POC Project</Link>
         </div>
 
-        <div className="flex lg:flex-1 text-lg font-semibold lg:justify-center ">
+        <div className="mx-auto lg:flex-1 text-lg font-semibold lg:justify-center ">
           Welcome {userName}
         </div>
        
-        <div className="flex text-lg font-semibold leading-6 text-gray-900   ">
-          <div><Profilepage></Profilepage></div>
-          
+        <div className="text-lg font-semibold leading-6 text-gray-900   ">
+          <div>
+            <Profilepage></Profilepage>
+          </div>
 
           
-          <legend style={linkStyle } className="flex text-lg font-semibold leading-6 text-gray-900 lg:justify-end pointer-cursor" onClick={handleLogout}>
+          {/* <legend style={linkStyle} className="text-lg font-semibold leading-6 text-gray-900 lg:justify-end pointer-cursor" onClick={handleLogout}>
             Logout <span aria-hidden="true">&rarr;</span> 
           </legend>
-          
+           */}
         </div>
 
       </nav>
