@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import FormDialog from "./Dialog";
+
+// import bgProject from "../images/bg-allproject.jpg";
+import bgProject from "../images/cool-background.png";
+
 import AddNewProject from "./AddNewProject";
 import AddNewMember from "./AddNewMember";
+
 
 const projects1 = [
   {
@@ -68,13 +73,18 @@ export const AllProjectList = () => {
   return (
     <>
       <section
-        className=" bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 bg-blur-3xl bg-opacity-30 "
+        className="  bg-blur-3xl bg-opacity-30 "
         style={{
           backgroundColor: "",
           margin: "5%",
           borderRadius: "10px",
           padding: "1rem",
-          //borderTop: "2px solid black",
+          backgroundImage: `url(${bgProject})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    width: "90vw", // Adjust the width to fit the screen horizontally
+    height: "100vh", // Adjust the height to fit the screen vertically
         }}
       >
         <div className="flex py-4 px-5 justify-content-end">

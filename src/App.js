@@ -17,9 +17,13 @@ import AddNewProject from './Components/AddNewProject';
 import AddNewMember from './Components/AddNewMember';
 import {SignupForm} from './Components/SignupForm';
 import ParticularIssueDashboard from './Components/ParticularIssueDashboard';
+
+import { Teams } from './Components/Teams';
+
 import UpdateProjectForm from './Components/UpdateProjectForm';
 import ForgotPassword from './Components/ForgotPassword';
 import ChangePassword from './Components/ChangePassword';
+
 
 
 
@@ -39,6 +43,7 @@ function App() {
             <Routes>
               <Route path='/allprojects' element={<AllProjectList/>} />
               <Route path='/projectexplore/:id1' element={<ProjectExplore/>} />
+              <Route path='/projectexplore/teams/:p_id' element={<Teams></Teams>} />
               <Route path='/dashboard' element={<Dashboard/>} />
               <Route path='/cal' element={<Calender/>} />
               <Route path='/issues' element={<IssueDashboard></IssueDashboard>} />
@@ -46,11 +51,15 @@ function App() {
               <Route path='/issue/:status' element={<ParticularIssueDashboard></ParticularIssueDashboard>}/>
               <Route path='/profile' element={<Profilepage/>} />
               <Route path='/addNewProject'  element={<AddNewProject/>} />
+
+              <Route path='*'  element={<ErrorPage/>} />
+
               <Route path='/updateprojectform'  element={<UpdateProjectForm></UpdateProjectForm>} />
               <Route path='/addNewMember'   element={<AddNewMember/>} />
               <Route path='/forgotPassword' element={<ForgotPassword/>} />
               <Route path='/changePassword' element={<ChangePassword/>} />
               
+
             </Routes>
         </BrowserRouter>
     </>
