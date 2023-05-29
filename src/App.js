@@ -12,10 +12,9 @@ import Dashboard from './Components/Dashboard';
 import Calender from './Components/Calender';
 import IssueDashboard from './Components/IssueDashboard';
 import IssueDes from './Components/IssueDes';
-
 import Profilepage from './Components/Profilepage';
-
 import AddNewProject from './Components/AddNewProject';
+import AddNewMember from './Components/AddNewMember';
 import {SignupForm} from './Components/SignupForm';
 import ParticularIssueDashboard from './Components/ParticularIssueDashboard';
 
