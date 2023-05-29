@@ -658,5 +658,21 @@ export const issues = [
       { author: "Addison", text: "We should provide clear instructions and tooltips." }
     ],
     attachments: ["onboarding_flow_diagram.png"]
+  },
+  {
+    id: 41,
+    title: "User Onboarding Flow Enhancement",
+    name: "Enhance user onboarding flow",
+    type: "Task",
+    priority: "Medium",
+    status: "REJECTED",
+    startDate: "2023-05-22",
+    endDate: "2023-06-04",
+    assignedTo: "Christopher Turner",
+    description: "Improve the user onboarding process to increase user engagement.",
+    comments: [
+      { author: "Addison", text: "We should provide clear instructions and tooltips." }
+    ],
+    attachments: ["onboarding_flow_diagram.png"]
   }
 ];
