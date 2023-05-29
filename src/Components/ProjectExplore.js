@@ -215,7 +215,7 @@ export const ProjectExplore = () => {
         <div className="">
           <SideBar p_id={id1}></SideBar>
         </div>
-        <div className="border-solid rounded-md border-2 mx-20">
+        <div className="border-solid rounded-md border-2 mx-auto">
         
           <div className=" border-gray-100">
             <div className={`sm:px-0 mt-4`}>

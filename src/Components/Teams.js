@@ -64,7 +64,7 @@ export const Teams = () => {
           </div>
 
           <section>
-            <div className="flex-wrap flex-col items-center mt-4">
+            <div className="flex flex-col items-center mt-4">
               <table className="table-auto w-full mx-auto bg-white rounded-md shadow-md">
                 <thead>
                   <tr>

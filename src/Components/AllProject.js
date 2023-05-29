@@ -86,18 +86,18 @@ export const AllProjectList = () => {
 
   return (
     <section
-      className="bg-blur-3xl bg-opacity-30"
+      className="bg-blur-3xl bg-opacity-30 border-solid rounded-lg border-2 w-fit mx-auto p-5"
       style={{
-        backgroundColor: "",
-        margin: "5%",
-        borderRadius: "10px",
-        padding: "1rem",
+        // backgroundColor: "",
+        // margin: "5%",
+        // borderRadius: "10px",
+        // padding: "1rem",
         backgroundImage: `url(${bgProject})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        width: "90vw", // Adjust the width to fit the screen horizontally
-        // height: "100vh", // Adjust the height to fit the screen vertically
+        // width: "90vw", // Adjust the width to fit the screen horizontally
+        // // height: "100vh", // Adjust the height to fit the screen vertically
       }}
     >
       <div className="py-4 px-5 flex ">
