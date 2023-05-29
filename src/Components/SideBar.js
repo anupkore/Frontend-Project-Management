@@ -18,8 +18,8 @@ export default function SideBar(props) {
         <div
           className={` ${
             open ? "w-60 h-screen" : "w-8"
-          } bg-dark-purple h-screen p-5  pt-8 relative duration-300`}
-        >
+          } bg-dark-purple h-screen p-5  pt-8 relative duration-300 rounded-md`}
+        style={{height: "75vh"}} >
           <img
             src="/Images/arrow-right-circle-fill.svg"
 	    alt=""

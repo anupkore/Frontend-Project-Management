@@ -87,14 +87,18 @@ export const AllProjectList = () => {
     height: "100vh", // Adjust the height to fit the screen vertically
         }}
       >
-        <div className="flex py-4 px-5 justify-content-end">
-            <h1 className="text-center mb-0 flex-grow-1 mb-2" style={{ fontFamily: "Arial", fontSize: "24px" }}>
-              <span className="bg-white px-4 py-2 rounded-md shadow-md text-navy-blue align-items-center mx-auto text-center">
-                My Projects
-              </span>
-            </h1>
-            <FormDialog prop={<AddNewProject></AddNewProject>} style={maxWidth} buttonTitle={"Create Project"}></FormDialog>
-        </div>
+     <div className="flex py-4 px-5 justify-between items-center">
+  <h1 className="text-center mb-0 flex-grow-1 mb-2" style={{ fontFamily: "Arial", fontSize: "24px" }}>
+    <span className="bg-white px-4 py-2 rounded-md shadow-md text-navy-blue align-items-center mx-auto text-center">
+      My Projects
+    </span>
+  </h1>
+  <div className="ml-auto">
+    <FormDialog prop={<AddNewProject></AddNewProject>} style={maxWidth} buttonTitle="Create Project" />
+  </div>
+</div>
+
+
         
         <div className=" grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
        

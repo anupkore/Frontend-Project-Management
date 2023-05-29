@@ -240,7 +240,7 @@ export const Teams = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           width: "90vw", // Adjust the width to fit the screen horizontally
-          height: "100vh", // Adjust the height to fit the screen vertically
+          height: "75vh", // Adjust the height to fit the screen vertically
         }}
       >
         <div className="flex pt-4 pb-1 px-5 justify-end">
