@@ -5,7 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 
-export default function FormDialog({prop,style}) {
+export default function FormDialog({prop,style,buttonTitle}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -19,7 +19,7 @@ export default function FormDialog({prop,style}) {
   return (
     <div>
       <Button variant="contained" onClick={handleClickOpen}>
-        Create New 
+        {buttonTitle} 
       </Button>
       <Dialog open={open} onClose={handleClose} maxWidth={style} fullWidth>
         <DialogContent>
