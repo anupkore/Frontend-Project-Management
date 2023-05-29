@@ -49,7 +49,7 @@ export default function IssueDes() {
         <div>
           <SideBar></SideBar>
         </div>
-        <div className="border-solid rounded-md border-2 mx-auto">
+        <div className="border-solid rounded-md border-2 mx-auto my-2">
           <p
             className={`text-center ${
               issue.priority === "High"
@@ -201,7 +201,7 @@ export default function IssueDes() {
               </div>
               
             </div>
-            <div className="flex justify-center mt-20 mx-auto"><FormDialog prop={<UpdateIssueForm></UpdateIssueForm>} style={maxWidth} buttonTitle={"Update"}></FormDialog></div>
+            <div className="flex justify-center my-8 mx-auto"><FormDialog prop={<UpdateIssueForm></UpdateIssueForm>} style={maxWidth} buttonTitle={"Update"}></FormDialog></div>
           </div>
         </div>
         

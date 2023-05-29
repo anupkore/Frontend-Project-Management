@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import SideBar from "./SideBar";
+import { PaperClipIcon } from "@heroicons/react/20/solid";
 import Modal from "./Modal";
 import { useState } from "react";
 import UpdateProjectForm from "./UpdateProjectForm";
@@ -211,13 +212,13 @@ export const ProjectExplore = () => {
 
     <>
       <div className="flex">
-        <div>
+        <div className="">
           <SideBar p_id={id1}></SideBar>
         </div>
-        <div className="border-solid rounded-md border-2 mx-auto">
+        <div className="border-solid rounded-md border-2 mx-20">
         
           <div className=" border-gray-100">
-            <div className={`sm:px-0 `}>
+            <div className={`sm:px-0 mt-4`}>
               <h3 className="text-base font-bold text-center leading-7 text-gray-900 mb-3">
               Project Details
               </h3>
@@ -226,9 +227,9 @@ export const ProjectExplore = () => {
               </p>
             </div>
             <div className="flex flex-row divide-x">
-              <div className="basis-2/5">
+              <div className="basis-3/6">
                 <dl className="divide-y divide-gray-100">
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Planned Start Date 
                     </dt>
@@ -239,7 +240,7 @@ export const ProjectExplore = () => {
                       {ProjectData.name}
                     </dd>
                   </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Planned End Date 
                     </dt>
@@ -250,7 +251,7 @@ export const ProjectExplore = () => {
                       {ProjectData.type}
                     </dd>
                   </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Actual Start Date
                     </dt>
@@ -258,7 +259,7 @@ export const ProjectExplore = () => {
                     {ProjectData.actualStartDate}
                     </dd>
                   </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Actual End Date
                     </dt>
@@ -266,7 +267,7 @@ export const ProjectExplore = () => {
                       {ProjectData.actualEndDate}
                     </dd>
                   </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Lead Name
                     </dt>
@@ -274,7 +275,7 @@ export const ProjectExplore = () => {
                       {ProjectData.leadName}
                     </dd>
                   </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Client Name
                     </dt>
@@ -286,7 +287,7 @@ export const ProjectExplore = () => {
               </div>
               <div className="basis-3/5">
                 <dl className="divide-gray-100">
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Description
                     </dt>
@@ -295,7 +296,7 @@ export const ProjectExplore = () => {
                     </dd>
                   </div>
 
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Status
                     </dt>
@@ -304,7 +305,7 @@ export const ProjectExplore = () => {
                     </dd>
                   </div>
 
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Risks
                     </dt>
@@ -313,7 +314,7 @@ export const ProjectExplore = () => {
                     </dd>
                   </div>
 
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Mitigations
                     </dt>
@@ -322,13 +323,13 @@ export const ProjectExplore = () => {
                     </dd>
                   </div>
 
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Comments
                     </dt>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                       {ProjectData.comments.map((comment) => (
-                        <li className="flex items-center justify-between py-2 pl-4 pr-5 text-sm">
+                        <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm">
                           {" "}
                           <div className="ml-2 flex min-w-0 flex-1 ">
                             <span className="truncate font-medium">
@@ -342,7 +343,7 @@ export const ProjectExplore = () => {
                       ))}
                     </dd>
                   </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Attachments
                     </dt>
@@ -354,10 +355,10 @@ export const ProjectExplore = () => {
                         {ProjectData.attachments.map((attachments) => (
                           <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
                             <div className="flex w-0 flex-1 items-center">
-                              {/* <PaperClipIcon
+                              <PaperClipIcon
                                 className="h-5 w-5 flex-shrink-0 text-gray-400"
                                 aria-hidden="true"
-                              /> */}
+                              />
                               <div className="ml-4 flex min-w-0 flex-1 gap-2">
                                 <span className="truncate font-medium">
                                   {attachments}
