@@ -12,11 +12,11 @@ export default function   SideBar(params) {
     ];
     return(
 
-       
+       <>
         <div
           className={` ${
-            open ? "w-60 h-full" : "w-8"
-          } bg-dark-purple h-full p-5  pt-8 relative duration-300`}
+            open ? "w-60 h-screen" : "w-8"
+          } bg-dark-purple h-screen p-5  pt-8 relative duration-300`}
         >
           <img
             src="/Images/arrow-right-circle-fill.svg"
@@ -64,7 +64,8 @@ export default function   SideBar(params) {
             ))}
             
           </ul>
-</div>
-    );
+        </div>
+        </>
+    );
 }
 
