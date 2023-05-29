@@ -18,9 +18,9 @@ export default function ParticularIssueDashboard() {
         </div>
         <div className="w-4/5 mx-auto">
           <h1 className="text-center font-bold mb-5">{status}</h1>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-4 ">
         {AllIssues.map((proj) => (
-          <div>
+          <div className="overflow-hidden mb-4 shadow-xl transition duration-300 ease-in-out transform hover:shadow-2xl hover:scale-105">
           <Card sx={{ minWidth: 300 ,minHeight: 200 }}>
           <Link to={"/issuedes/"+proj.id}>
             <CardContent>
