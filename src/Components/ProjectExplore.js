@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import SideBar from "./SideBar";
 import Modal from "./Modal";
 import { useState } from "react";
+import UpdateProjectForm from "./UpdateProjectForm";
+import FormDialog from "./Dialog";
 
 
 const projects = [
@@ -192,6 +194,7 @@ const projects = [
   
 
 export const ProjectExplore = () => {
+  const maxWidth = 'md';
   const { id1 } = useParams();
   const ProjectData = projects.find((proj) => proj.id === Number(id1));
   const [showModal, setShowModal] = useState(false);
@@ -365,12 +368,7 @@ export const ProjectExplore = () => {
                               </div>
                             </div>
                             <div className="ml-4 flex-shrink-0">
-                              <a
-                                href="#x"
-                                className="font-medium text-indigo-600 hover:text-indigo-500"
-                              >
-                                Download
-                              </a>
+
                             </div>
                           </li>
                         ))}
@@ -383,7 +381,7 @@ export const ProjectExplore = () => {
           </div>
 
             <div className="mt-3 align-self-center mb-5 d-flex justify-content-center">
-              <button className="btn btn-primary mr-3">Update</button>
+            <FormDialog prop={<UpdateProjectForm></UpdateProjectForm>} style={maxWidth} buttonTitle={"Update"}></FormDialog>
               <button className="btn btn-danger ml-3" onClick={()=>setShowModal(true)}>Delete</button>
             </div>
           
