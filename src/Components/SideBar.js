@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-export default function   SideBar(params) {
-    const [open, setOpen] = useState(true);
+export default function SideBar(props) {
+
+  
+  const [open, setOpen] = useState(true);
     const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
-      { title: "Teams", src: "Chat" },
+      { title: "Teams", src: "Chat",li:`/projectexplore/teams/${props.p_id}`},
       { title: "Issues Workflow", src: "User" ,li:"/issues"},
       { title: "Reports", src: "Chart" },
      

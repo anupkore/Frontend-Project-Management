@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import SideBar from "./SideBar";
 
+
 const projects = [
     {
       id: 1,
@@ -158,7 +159,7 @@ export const ProjectExplore = () => {
     <>
       <div className="flex">
         <div>
-          <SideBar></SideBar>
+          <SideBar p_id={id1}></SideBar>
         </div>
         <div className="border-solid rounded-md border-2 mx-auto">
         
@@ -176,16 +177,22 @@ export const ProjectExplore = () => {
                 <dl className="divide-y divide-gray-100">
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Planned Start Date
+                      Planned Start Date 
                     </dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                    {ProjectData.startDate}
+                    </dd>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                       {ProjectData.name}
                     </dd>
                   </div>
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Planned End Date
+                      Planned End Date 
                     </dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                    {ProjectData.startDate}
+                    </dd>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                       {ProjectData.type}
                     </dd>
