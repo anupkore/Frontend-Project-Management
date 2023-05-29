@@ -4,6 +4,8 @@ import SideBar from "./SideBar";
 import { issues } from "./TEST/Issues";
 import IssueCardHolder from "./IssueCardHolder";
 import { useEffect, useState } from "react";
+import CreateIssueForm from "./CreateIssueForm";
+import FormDialog from "./Dialog";
 
 const colors = [
   "bg-lime-100",
@@ -32,7 +34,7 @@ export default function IssueDashboard(props) {
     const uniqueStatusValues = [...new Set(issues.map((item) => item.status))];
     setStatusValues(uniqueStatusValues);
   }, [issues]);
-
+  const maxWidth = 'md';
   console.log(JSON.stringify(statusValues));
   return (
     <>
@@ -41,6 +43,7 @@ export default function IssueDashboard(props) {
           <SideBar></SideBar>
         </div>
         <div className="w-3/5 mx-auto">
+        <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} buttonTitle={"Create Issue"}></FormDialog>
           <div className="relative">
             <div className="flex items-center">
               <div className="">
