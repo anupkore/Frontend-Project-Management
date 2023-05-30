@@ -7,6 +7,7 @@ import bgProject from "../images/cool-background.png";
 
 import AddNewProject from "./AddNewProject";
 import { projects, projects1 } from "./TEST/Projects";
+import Workflow_1 from "./Workflow_1";
 
 export const AllProjectList = () => {
   const maxWidth = "md";
@@ -54,6 +55,13 @@ export const AllProjectList = () => {
             prop={<AddNewProject />}
             style={maxWidth}
             buttonTitle="Create Project"
+          />
+        </div>
+        <div className="ml-auto justify-right">
+          <FormDialog
+            prop={<Workflow_1 />}
+            style={maxWidth}
+            buttonTitle="Preview"
           />
         </div>
       </div>
