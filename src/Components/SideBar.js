@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 
 export default function SideBar(props) {
   const [open, setOpen] = useState(true);
+  const [isResponsive, setIsResponsive] = useState(false);
+
 
     const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
@@ -11,10 +13,9 @@ export default function SideBar(props) {
       { title: "Reports", src: "Chart" },
      
     ];
-    return(
+    
 
-  const [isResponsive, setIsResponsive] = useState(false);
-
+  
   
 
   const handleResize = () => {
