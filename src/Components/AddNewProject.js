@@ -17,8 +17,20 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "@mui/material/Button";
 import FormDialog from "./Dialog";
 import Workflow_1 from "./Workflow_1";
+import { useState } from "react";
 
 export default function AddNewProject() {
+ 
+  const [taskWorkflow, setTaskWorkflow] = useState("");
+  const [defectWorkflow, setDefectWorkflow] = useState("");
+
+
+  const taskWorkflowChange = (event) => {
+    setTaskWorkflow(event.target.value);
+  };
+  const defectWorkflowChange = (event) => {
+    setDefectWorkflow(event.target.value);
+  };
   return (
     <>
       <Container>
@@ -199,19 +211,27 @@ export default function AddNewProject() {
                     </label>
                     <div className="mt-2.5 flex">
                     <select
-                      className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                      className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+
+                      value={taskWorkflow}
+          onChange={taskWorkflowChange}
                     >
-                      <option value={'workflow-1'}>Workflow-1</option>
-                      <option value={'workflow-2'}>Workflow-2</option>
-                      <option value={'workflow-3'}>Workflow-3</option>
+                      <option value="">Select Task WorkFlow</option>
+                      <option value="workflow-1">Workflow-1</option>
+                      <option value="workflow-2">Workflow-2</option>
+                      <option value="workflow-3">Workflow-3</option>
+                      <option value="workflow-4">Workflow-4</option>
                     </select>
                     <div className=" ml-3 ">
                       <FormDialog
-                        prop={<Workflow_1 />}
+                        prop={<Workflow_1 path={taskWorkflow} />}
                         style={'md'}
                         buttonTitle="Preview"
                       />
                     </div>
+
+
+
                     </div>
                   </div>
 
@@ -225,14 +245,19 @@ export default function AddNewProject() {
                     <div className="mt-2.5 flex">
                     <select
                       className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+
+                      value={defectWorkflow}
+          onChange={defectWorkflowChange}
                     >
-                      <option value={'workflow-1'}>Workflow-1</option>
-                      <option value={'workflow-2'}>Workflow-2</option>
-                      <option value={'workflow-3'}>Workflow-3</option>
+                      <option value="">Select defect WorkFlow</option>
+                      <option value="workflow-1">Workflow-1</option>
+                      <option value="workflow-2">Workflow-2</option>
+                      <option value="workflow-3">Workflow-3</option>
+                      <option value="workflow-4">Workflow-4</option>
                     </select>
                     <div className=" ml-3 ">
                       <FormDialog
-                        prop={<Workflow_1 />}
+                        prop={<Workflow_1 path={defectWorkflow} />}
                         style={'md'}
                         buttonTitle="Preview"
                       />
