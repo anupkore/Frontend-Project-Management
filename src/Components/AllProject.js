@@ -10,7 +10,7 @@ import { projects, projects1 } from "./TEST/Projects";
 import Workflow_1 from "./Workflow_1";
 
 export const AllProjectList = () => {
-  const maxWidth = "md";
+  const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
 
   const filteredProjects = projects.filter((project) => {
