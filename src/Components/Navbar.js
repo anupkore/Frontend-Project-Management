@@ -21,7 +21,7 @@ export default function Navbar()
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between py-4 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1 text-lg font-semibold">
-          <Link to={"/"}><img src='/Images/jira-low-resolution-logo-color-on-transparent-background.png' alt='PMT LOGO' height="100px" width="100px"></img></Link>
+          <Link to={"/"}><img src='/Images/jira-low-resolution-logo-color-on-transparent-background.png' alt='PMT LOGO' height="30px" width="30px"></img></Link>
         </div>
 
         <div className="mx-auto lg:flex-1 text-lg font-semibold lg:justify-center ">
