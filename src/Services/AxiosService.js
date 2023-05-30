@@ -1,9 +1,9 @@
-import { Axios } from "axios";
+import axios from "axios";
 
-export default function AxiosService(params) 
+export default class AxiosService 
 {
-    post(url, data) 
+    static Post(url, data) 
     {
-        return Axios.post(url, data);
+        return axios.post(url,data);
     }    
 }
