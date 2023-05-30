@@ -14,12 +14,12 @@ const projects = [
     id: 1,
     leadName: "John Doe",
     clientName: "Client 1",
-    projectTitle: "Project 1",
+    projectTitle: "Project-Management-Tool",
     startDate: "2023-05-01",
     endDate: "2023-06-01",
     actualStartDate: "2023-05-01",
     actualEndDate: "2023-06-01",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    description: "Lorem ipsum dolor sit amet consectetur consectetur adipiscing elit .",
     projectStatus: "In Progress",
     assignedTo: [
       {
@@ -44,7 +44,7 @@ const projects = [
     id: 2,
     leadName: "Jane Smith",
     clientName: "Client 2",
-    projectTitle: "Project 2",
+    projectTitle: "E-Commerce",
     startDate: "2023-07-01",
     endDate: "2023-08-01",
     actualStartDate: "2023-07-01",
@@ -74,7 +74,7 @@ const projects = [
     id: 3,
     leadName: "Mark Johnson",
     clientName: "Client 3",
-    projectTitle: "Project 3",
+    projectTitle: "Creative Catalysts",
     startDate: "2023-06-15",
     endDate: "2023-07-31",
     actualStartDate: "2023-06-15",
@@ -104,7 +104,7 @@ const projects = [
     id: 4,
     leadName: "Sarah Brown",
     clientName: "Client 4",
-    projectTitle: "Project 4",
+    projectTitle: "Eureka Endeavors",
     startDate: "2023-09-01",
     endDate: "2023-10-15",
     actualStartDate: "2023-09-01",
@@ -134,7 +134,7 @@ const projects = [
     id: 5,
     leadName: "Michael Davis",
     clientName: "Client 5",
-    projectTitle: "Project 5",
+    projectTitle: "Quantum Quest",
     startDate: "2023-08-01",
     endDate: "2023-09-30",
     actualStartDate: "2023-08-01",
@@ -164,7 +164,7 @@ const projects = [
     id: 6,
     leadName: "Robert Wilson",
     clientName: "Client 6",
-    projectTitle: "Project 6",
+    projectTitle: "ImagineIT",
     startDate: "2023-08-15",
     endDate: "2023-10-31",
     actualStartDate: "2023-08-15",
@@ -193,7 +193,7 @@ const projects = [
   // Additional project objects...
 ];
 
-  
+
 
 export const ProjectExplore = () => {
   const maxWidth = 'md';
@@ -216,184 +216,181 @@ export const ProjectExplore = () => {
         <div className="">
           <SideBar p_id={id1}></SideBar>
         </div>
-        <div className="border-solid rounded-md border-2 mx-auto">
-        
-          <div className=" border-gray-100">
-            <div className={`sm:px-0 mt-4`}>
-              <h3 className="text-base font-bold text-center leading-7 text-gray-900 mb-3">
+
+
+        <div>
+          <div className={`sm:px-0 mt-2`}>
+            <h3 className="text-base mx-auto font-bold text-center leading-7 text-gray-900 mb-3">
               Project Details
-              </h3>
-              <p className="mt-1 text-base font-bold text-center leading-7 text-gray-500 mb-2">
-                {ProjectData.projectTitle}
-              </p>
-            </div>
-            <div className="flex flex-row divide-x">
-              <div className="basis-3/6">
-                <dl className="divide-y divide-gray-100">
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Planned Start Date 
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                    {ProjectData.startDate}
-                    </dd>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {ProjectData.name}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Planned End Date 
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                    {ProjectData.startDate}
-                    </dd>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {ProjectData.type}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Actual Start Date
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                    {ProjectData.actualStartDate}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Actual End Date
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {ProjectData.actualEndDate}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Lead Name
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {ProjectData.leadName}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Client Name
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {ProjectData.clientName}
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-              <div className="basis-3/5">
-                <dl className="divide-gray-100">
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Description
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {ProjectData.description}
-                    </dd>
-                  </div>
-
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Status
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {ProjectData.projectStatus}
-                    </dd>
-                  </div>
-
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Risks
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {ProjectData.description}
-                    </dd>
-                  </div>
-
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Mitigations
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {ProjectData.description}
-                    </dd>
-                  </div>
-
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Comments
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {ProjectData.comments.map((comment) => (
-                        <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm">
-                          {" "}
-                          <div className="ml-2 flex min-w-0 flex-1 ">
-                            <span className="truncate font-medium">
-                              {comment.author} :
-                            </span>
-                            <span className="flex-shrink-0 text-gray-400">
-                              {comment.text}
-                            </span>
-                          </div>
-                        </li>
-                      ))}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Attachments
-                    </dt>
-                    <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                      <ul
-                        role="list"
-                        className="divide-y divide-gray-100 rounded-md border border-gray-200"
-                      >
-                        {ProjectData.attachments.map((attachments) => (
-                          <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                            <div className="flex w-0 flex-1 items-center">
-                              <PaperClipIcon
-                                className="h-5 w-5 flex-shrink-0 text-gray-400"
-                                aria-hidden="true"
-                              />
-                              <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                                <span className="truncate font-medium">
-                                  {attachments}
-                                </span>
-                                {/* <span className="flex-shrink-0 text-gray-400">
-                            2.4mb
-                          </span> */}
-                              </div>
-                            </div>
-                            <div className="ml-4 flex-shrink-0">
-
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
+            </h3>
+            <p className="mt-1 text-base font-bold text-center leading-7 text-blue-800 mb-4">
+              {ProjectData.projectTitle}
+            </p>
           </div>
+          <div>
+          </div>
+          <div className="mx-10">
+            <div className="grid grid-rows-4 grid-cols-3 gap-4 ">
 
-            <div className="mt-3 align-self-center mb-5 d-flex justify-content-center">
-            <FormDialog prop={<UpdateProjectForm></UpdateProjectForm>} style={maxWidth} buttonTitle={"Update"}></FormDialog>
-              <button className="btn btn-danger ml-3" onClick={()=>setShowModal(true)}>Delete</button>
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Planned Start Date
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.startDate}
+                </dd>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.name}
+                </dd>
+              </div>
+
+              <div>
+
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Planned End Date
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.startDate}
+                </dd>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.type}
+                </dd>
+
+
+              </div>
+
+
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Actual Start Date
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.actualStartDate}
+                </dd>
+
+
+              </div>
+
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Actual End Date
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.actualEndDate}
+                </dd>
+
+
+
+              </div>
+
+              <div>
+
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Lead Name
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.leadName}
+                </dd>
+
+              </div>
+
+
+              <div>
+
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Client Name
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.clientName}
+                </dd>
+              </div>
+
+
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Mitigations
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.description}
+                </dd>
+              </div>
+
+              <div>
+
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Status
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.projectStatus}
+                </dd>
+              </div>
+
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Risks
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.description}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Description
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {ProjectData.description}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Attachments
+                </dt>
+                <dd className=" text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <ul
+                    role="list"
+                    className=" divide-gray-100 rounded-md border border-gray-200"
+                  >
+                    {ProjectData.attachments.map((attachments) => (
+                      <li className="flex items-center justify-between text-sm leading-6">
+                      <div className="flex h-10 items-center">
+                        <PaperClipIcon
+                          className="h-5 w-5 flex-shrink-0 text-gray-400"
+                          aria-hidden="true"
+                        />
+                        <div className="ml-4 flex min-w-0 flex-1 gap-2">
+                          <span className="truncate font-medium">
+                            {attachments}
+                          </span>
+
+                        </div>
+                      </div>
+
+                    </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+
+
+
+
+
+
             </div>
+
+          </div>
+          <div className="mt-5 mb-5 flex justify-center align-items-center">
+            <FormDialog prop={<UpdateProjectForm></UpdateProjectForm>} style={maxWidth} buttonTitle={"Update"}></FormDialog>
+            <button className="btn btn-danger ml-3" onClick={() => setShowModal(true)}>Delete</button>
+          </div>
           <div>
             <Comments></Comments>
           </div>
         </div>
-          
-    </div>
 
-      
+      </div>
+
+
     </>
   );
 };
