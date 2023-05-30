@@ -15,8 +15,22 @@
 
 import { Col, Container, Row } from "react-bootstrap";
 import Button from "@mui/material/Button";
+import FormDialog from "./Dialog";
+import Workflow_1 from "./Workflow_1";
+import { useState } from "react";
 
 export default function AddNewProject() {
+ 
+  const [taskWorkflow, setTaskWorkflow] = useState("");
+  const [defectWorkflow, setDefectWorkflow] = useState("");
+
+
+  const taskWorkflowChange = (event) => {
+    setTaskWorkflow(event.target.value);
+  };
+  const defectWorkflowChange = (event) => {
+    setDefectWorkflow(event.target.value);
+  };
   return (
     <>
       <Container>
@@ -28,8 +42,8 @@ export default function AddNewProject() {
         </Col> */}
           <Col lg>
             <div>
-              <div className="sm:mx-auto sm:w-full sm:max-w-sm my-4">
-                <h2 className="mt-10 text-center my-auto text-2xl font-bold leading-9 tracking-tight text-gray-900">
+              <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
+                <h2 className="mt-1 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                   Create New Project
                 </h2>
               </div>
@@ -63,11 +77,11 @@ export default function AddNewProject() {
                       htmlFor="last-name"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
-                      Lead Name
+                      Description
                     </label>
                     <div className="mt-2.5">
                       <input
-                        type="text"
+                        type="textarea"
                         name="last-name"
                         id="last-name"
                         autoComplete="family-name"
@@ -83,7 +97,7 @@ export default function AddNewProject() {
                       htmlFor="first-name"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
-                      Risks
+                      Client Name
                     </label>
                     <div className="mt-2.5">
                       <input
@@ -100,7 +114,7 @@ export default function AddNewProject() {
                       htmlFor="last-name"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
-                      Mitigations
+                      Lead Name
                     </label>
                     <div className="mt-2.5">
                       <input
@@ -150,27 +164,112 @@ export default function AddNewProject() {
                     />
                   </div>
                   </div>
+                  
                   </div>
-
-                  <div className="sm:col-span-2">
+                  <div>
                     <label
-                      htmlFor="company"
+                      htmlFor="first-name"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
-                      Description
+                      Risks
                     </label>
                     <div className="mt-2.5">
                       <input
                         type="text"
-                        name="company"
-                        id="company"
-                        autoComplete="organization"
+                        name="first-name"
+                        id="first-name"
+                        autoComplete="given-name"
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
+
+                  <div>
+                    <label
+                      htmlFor="first-name"
+                      className="block text-sm font-semibold leading-6 text-gray-900"
+                    >
+                      Mitigations
+                    </label>
+                    <div className="mt-2.5">
+                      <input
+                        type="text"
+                        name="first-name"
+                        id="first-name"
+                        autoComplete="given-name"
+                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="first-name"
+                      className="block text-sm font-semibold leading-6 text-gray-900"
+                    >
+                      Choose Workflow For Task
+                    </label>
+                    <div className="mt-2.5 flex">
+                    <select
+                      className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+
+                      value={taskWorkflow}
+          onChange={taskWorkflowChange}
+                    >
+                      <option value="">Select Task WorkFlow</option>
+                      <option value="workflow-1">Workflow-1</option>
+                      <option value="workflow-2">Workflow-2</option>
+                      <option value="workflow-3">Workflow-3</option>
+                      <option value="workflow-4">Workflow-4</option>
+                    </select>
+                    <div className=" ml-3 ">
+                      <FormDialog
+                        prop={<Workflow_1 path={taskWorkflow} />}
+                        style={'md'}
+                        buttonTitle="Preview"
+                      />
+                    </div>
+
+
+
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="first-name"
+                      className="block text-sm font-semibold leading-6 text-gray-900"
+                    >
+                      Choose Workflow For Defects
+                    </label>
+                    <div className="mt-2.5 flex">
+                    <select
+                      className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+
+                      value={defectWorkflow}
+          onChange={defectWorkflowChange}
+                    >
+                      <option value="">Select defect WorkFlow</option>
+                      <option value="workflow-1">Workflow-1</option>
+                      <option value="workflow-2">Workflow-2</option>
+                      <option value="workflow-3">Workflow-3</option>
+                      <option value="workflow-4">Workflow-4</option>
+                    </select>
+                    <div className=" ml-3 ">
+                      <FormDialog
+                        prop={<Workflow_1 path={defectWorkflow} />}
+                        style={'md'}
+                        buttonTitle="Preview"
+                      />
+                    </div>
+                    </div>
+                  </div>
+
+                  
+
+                  
                 </div>
-                <div className="flex mt-4 justify-end ">
+                <div className="flex mt-5 justify-center ">
                   <Button variant="contained" className="">
                     Create
                   </Button>

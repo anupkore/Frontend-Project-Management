@@ -7,6 +7,7 @@ import bgProject from "../images/cool-background.png";
 
 import AddNewProject from "./AddNewProject";
 import { projects, projects1 } from "./TEST/Projects";
+import Workflow_1 from "./Workflow_1";
 
 export const AllProjectList = () => {
   const maxWidth = "md";
@@ -56,6 +57,7 @@ export const AllProjectList = () => {
             buttonTitle="Create Project"
           />
         </div>
+        
       </div>
 
       <div className="flex justify-left mt-1">
@@ -87,6 +89,7 @@ export const AllProjectList = () => {
                 <th className="px-4 py-2">Start Date</th>
                 <th className="px-4 py-2">End Date</th>
                 <th className="px-4 py-2">Description</th>
+                <th className="px-4 py-2">WorkFlow</th>
                 <th className="px-4 py-2">Details</th>
                 {/* <th className="px-4 py-2">Issues</th> */}
               </tr>
@@ -100,6 +103,13 @@ export const AllProjectList = () => {
                   <td className="px-4 py-2">{project.startDate}</td>
                   <td className="px-4 py-2">{project.endDate}</td>
                   <td className="px-4 py-2">{project.description}</td>
+                  <td className="px-4 py-2"><div className="ml-auto justify-right">
+          <FormDialog
+            prop={<Workflow_1 path={"workflow-1"} />}
+            style={maxWidth}
+            buttonTitle="Show"
+          />
+        </div></td>
                   <td className="px-4 py-2 underline text-blue-900">
                     <Link to={`/projectexplore/${project.id}`}> Explore</Link>
                   </td>
