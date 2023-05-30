@@ -39,10 +39,10 @@ export default function IssueDashboard(props) {
   return (
     <>
       <div className="flex">
-        <div className="w-1/5">
+        <div className="">
           <SideBar></SideBar>
         </div>
-        <div className="w-3/5 mx-auto">
+        <div className="w-8/12 mx-auto">
         <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} buttonTitle={"Create Issue"}></FormDialog>
           <div className="relative">
             <div className="flex items-center">
