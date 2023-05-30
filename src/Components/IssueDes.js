@@ -3,11 +3,14 @@ import SideBar from "./SideBar";
 import { useParams } from "react-router-dom";
 import { issues } from "./TEST/Issues";
 import { useEffect, useState } from "react";
+import FormDialog from "./Dialog";
+import UpdateIssueForm from "./UpdateIssueForm";
 
 export default function IssueDes() {
   const { issueId } = useParams();
   console.log(Number(issueId));
   const issue = issues.find((issue) => issue.id === Number(issueId));
+  const maxWidth ='md';
 
   // useEffect(() => {
   //   // Simulating an asynchronous API call to fetch the issue details
@@ -46,7 +49,7 @@ export default function IssueDes() {
         <div>
           <SideBar></SideBar>
         </div>
-        <div className="border-solid rounded-md border-2 mx-auto">
+        <div className="border-solid rounded-md border-2 mx-auto my-2">
           <p
             className={`text-center ${
               issue.priority === "High"
@@ -183,16 +186,25 @@ export default function IssueDes() {
                                 Download
                               </a>
                             </div>
+                            
+                           
+                          
                           </li>
+                          
                         ))}
+                        
                       </ul>
                     </dd>
+                    
                   </div>
                 </dl>
               </div>
+              
             </div>
+            <div className="flex justify-center my-8 mx-auto"><FormDialog prop={<UpdateIssueForm></UpdateIssueForm>} style={maxWidth} buttonTitle={"Update"}></FormDialog></div>
           </div>
         </div>
+        
       </div>
     </>
   );

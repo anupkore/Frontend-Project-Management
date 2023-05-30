@@ -24,6 +24,7 @@ import UpdateProjectForm from './Components/UpdateProjectForm';
 import ForgotPassword from './Components/ForgotPassword';
 import ChangePassword from './Components/ChangePassword';
 import UpdateIssueForm from './Components/UpdateIssueForm';
+import CreateIssueForm from './Components/CreateIssueForm';
 
 
 
@@ -47,7 +48,7 @@ function App() {
               <Route path='/projectexplore/teams/:p_id' element={<Teams></Teams>} />
               <Route path='/dashboard' element={<Dashboard/>} />
               <Route path='/cal' element={<Calender/>} />
-              <Route path='/projectexplore/issues/:p_id' element={<IssueDashboard></IssueDashboard>} />
+              <Route path='/issues' element={<IssueDashboard></IssueDashboard>} />
               <Route path='/issuedes/:issueId' element={<IssueDes/>} />
               <Route path='/issue/:status' element={<ParticularIssueDashboard></ParticularIssueDashboard>}/>
               <Route path='/profile' element={<Profilepage/>} />
@@ -60,6 +61,7 @@ function App() {
               <Route path='/forgotPassword' element={<ForgotPassword/>} />
               <Route path='/changePassword' element={<ChangePassword/>} />
               <Route path='/updateissueform' element={<UpdateIssueForm/>} />
+              <Route path='/createissueform' element={<CreateIssueForm/>} />
               
 
             </Routes>

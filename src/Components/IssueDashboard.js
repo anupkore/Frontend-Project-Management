@@ -4,7 +4,12 @@ import SideBar from "./SideBar";
 import { issues } from "./TEST/Issues";
 import IssueCardHolder from "./IssueCardHolder";
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
+import CreateIssueForm from "./CreateIssueForm";
+import FormDialog from "./Dialog";
 import { useParams } from "react-router";
+=======
+>>>>>>> parent of 4dad6e4 (Page rendering from IssuesPage To Teams Page with data)
 
 const colors = [
   "bg-lime-100",
@@ -20,7 +25,6 @@ const colors = [
 ];
 
 export default function IssueDashboard(props) {
-  const {p_id}=useParams();
   const scrollLeft = () => {
     document.getElementById("content").scrollLeft -= 400;
   };
@@ -34,15 +38,16 @@ export default function IssueDashboard(props) {
     const uniqueStatusValues = [...new Set(issues.map((item) => item.status))];
     setStatusValues(uniqueStatusValues);
   }, [issues]);
-
+  const maxWidth = 'md';
   console.log(JSON.stringify(statusValues));
   return (
     <>
       <div className="flex">
         <div className="w-1/5">
-          <SideBar p_id={p_id}></SideBar>
+          <SideBar></SideBar>
         </div>
-        <div className="w-3/5 mx-auto">
+        <div className="w-8/12 mx-auto">
+        <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} buttonTitle={"Create Issue"}></FormDialog>
           <div className="relative">
             <div className="flex items-center">
               <div className="">
@@ -56,7 +61,7 @@ export default function IssueDashboard(props) {
                 </button>
               </div>
               <div className="mx-auto py-4 text-xl font-bold">
-                Issue Workflow 
+                Issue Workflow
               </div>
               <div className="">
                 <button 
@@ -72,10 +77,10 @@ export default function IssueDashboard(props) {
             <div>
               <div
                 id="content"
-                className="carousel p-4 flex space-x-10 overflow-x-auto scroll-smooth scrollbar-hide"
+                className="carousel p-4 flex overflow-x-auto scroll-smooth scrollbar-hide"
               >
                 {statusValues.map((status) => (
-                  <div className="">
+                  <div className="mx-3">
                     <IssueCardHolder iss={status} />
                   </div>
                 ))}
