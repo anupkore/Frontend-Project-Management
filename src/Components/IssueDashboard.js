@@ -4,6 +4,7 @@ import SideBar from "./SideBar";
 import { issues } from "./TEST/Issues";
 import IssueCardHolder from "./IssueCardHolder";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 const colors = [
   "bg-lime-100",
@@ -19,6 +20,7 @@ const colors = [
 ];
 
 export default function IssueDashboard(props) {
+  const {p_id}=useParams();
   const scrollLeft = () => {
     document.getElementById("content").scrollLeft -= 400;
   };
@@ -38,7 +40,7 @@ export default function IssueDashboard(props) {
     <>
       <div className="flex">
         <div className="w-1/5">
-          <SideBar></SideBar>
+          <SideBar p_id={p_id}></SideBar>
         </div>
         <div className="w-3/5 mx-auto">
           <div className="relative">
@@ -54,7 +56,7 @@ export default function IssueDashboard(props) {
                 </button>
               </div>
               <div className="mx-auto py-4 text-xl font-bold">
-                Issue Workflow
+                Issue Workflow 
               </div>
               <div className="">
                 <button 
