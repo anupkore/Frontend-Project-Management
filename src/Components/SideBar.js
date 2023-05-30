@@ -5,12 +5,18 @@ export default function SideBar(props) {
   const [open, setOpen] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
 
-  const Menus = [
-    { title: "Projects", src: "Chart_fill", li: "/allprojects" },
-    { title: "Teams", src: "Chat", li: `/projectexplore/teams/${props.p_id}` },
-    { title: "Issues Workflow", src: "User", li: "/issues" },
-    { title: "Reports", src: "Chart" },
-  ];
+
+    const Menus = [
+      { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
+      { title: "Teams", src: "Chat",li:`/projectexplore/teams/${props.p_id}`},
+      { title: "Issues Workflow", src: "User" ,li:`/projectexplore/issues/${props.p_id}`},
+      { title: "Reports", src: "Chart" },
+     
+    ];
+    
+
+  
+  
 
   const handleResize = () => {
     const isMobile = window.innerWidth <= 768; // Set your desired responsive breakpoint here
@@ -30,6 +36,7 @@ export default function SideBar(props) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
 
   const toggleSidebar = () => {
     if (!isResponsive) {

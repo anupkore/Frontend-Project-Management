@@ -11,6 +11,7 @@ export default function CreateIssueForm() {
           <img src="/Images/header.png" />
         </div>
         </Col> */}
+
           <Col sm>
             <div className="mx-auto">
               <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-0">
@@ -18,6 +19,7 @@ export default function CreateIssueForm() {
                   <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
                     Create New Issue
                   </h1>
+
                 </div>
               </div>
 
@@ -99,38 +101,42 @@ export default function CreateIssueForm() {
                     </div>
                   </div>
                   <div className="mt-0">
+
                     <label
                       htmlFor="first-name"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       Issue Type
                     </label>
-                    <div className="mt-0">
-                      <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                      />
-                    </div>
+                   
+
+                  <select
+                      className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:shadow-outline"
+                    >
+                      <option value={''}>Task</option>
+                      <option value={''}>Defects</option>
+                      
+                    </select>
+
                   </div>
                   <div className="mt-0">
+
                     <label
                       htmlFor="last-name"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       Priority
                     </label>
-                    <div className="mt-0">
-                      <input
-                        type="text"
-                        name="last-name"
-                        id="last-name"
-                        autoComplete="family-name"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                      />
-                    </div>
+                   
+
+                  <select
+                      className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:shadow-outline"
+                    >
+                      <option value={''}>High</option>
+                      <option value={''}>Medium</option>
+                      <option value={''}>Low</option>
+                    </select>
+
                   </div>
                   <div className="mt-0">
                     <label

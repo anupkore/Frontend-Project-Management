@@ -5,6 +5,7 @@ import { issues } from "./TEST/Issues";
 import { useEffect, useState } from "react";
 import FormDialog from "./Dialog";
 import UpdateIssueForm from "./UpdateIssueForm";
+import Comments from "./Comments";
 
 export default function IssueDes() {
   const { issueId } = useParams();
@@ -49,159 +50,140 @@ export default function IssueDes() {
         <div>
           <SideBar></SideBar>
         </div>
-        <div className="border-solid rounded-md border-2 mx-auto my-2">
-          <p
-            className={`text-center ${
-              issue.priority === "High"
-                ? "bg-red-600"
-                : issue.priority === "Medium"
-                ? "bg-red-400"
-                : "bg-red-200"
-            }`}
-          >
-            Priority :{issue.priority}
-          </p>
-          <div className=" border-gray-100">
-            <div className={`sm:px-0 `}>
-              <h3 className="text-base font-bold text-center leading-7 text-gray-900">
-                Issue Details
-              </h3>
-              <p className="mt-1 text-base font-bold text-center leading-7 text-gray-500">
-                {issue.title}
-              </p>
-            </div>
-            <div className="flex flex-row divide-x">
-              <div className="basis-2/5">
-                <dl className="divide-y divide-gray-100">
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Issue Name
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {issue.name}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Type
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {issue.type}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Status
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {issue.status}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Assigned To
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {issue.assignedTo}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Start Date
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {issue.startDate}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      End Date
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {issue.endDate}
-                    </dd>
-                  </div>
-                </dl>
+        <div className="mx-auto">
+          <div className={`sm:px-0 mt-2`}>
+            <h3 className="text-base mx-auto font-bold text-center leading-7 text-gray-900 mb-2">
+            Issue Details
+            </h3>
+            <p className="mt-1 text-base font-bold text-center leading-7 text-blue-800 mt-4">
+              {issue.title}
+            </p>
+          </div>
+          <div className="mx-auto">
+            <div className="grid grid-rows-4 grid-cols-2 grid-flow-col gap-4 mt-3 mx-auto ">
+
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                Issue Name
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {issue.name}
+                </dd>
+              
               </div>
-              <div className="basis-3/5">
-                <dl className="divide-gray-100">
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Description
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {issue.description}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Comments
-                    </dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {issue.comments.map((comment) => (
-                        <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                          {" "}
+
+              <div>
+
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                Type
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {issue.type}
+                </dd>
+              
+
+
+              </div>
+
+
+            
+
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                Status
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {issue.status}
+                </dd>
+
+
+
+              </div>
+
+              <div>
+
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                Assigned To
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {issue.assignedTo}
+                </dd>
+
+              </div>
+
+
+              <div>
+
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                Start Date
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {issue.startDate}
+                </dd>
+              </div>
+
+
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                End Date
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {issue.endDate}
+                </dd>
+              </div>
+
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Description
+                </dt>
+                <dd className="mt-3 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {issue.description}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-medium leading-6 text-gray-900">
+                  Attachments
+                </dt>
+                <dd className=" text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <ul
+                    role="list"
+                    className=" divide-gray-100 rounded-md border border-gray-200"
+                  >
+                    {issue.attachments.map((attachments) => (
+                      <li className="flex items-center justify-between text-sm leading-6">
+                        <div className="flex h-10 items-center">
+                          <PaperClipIcon
+                            className="h-5 w-5 flex-shrink-0 text-gray-400"
+                            aria-hidden="true"
+                          />
                           <div className="ml-4 flex min-w-0 flex-1 gap-2">
                             <span className="truncate font-medium">
-                              {comment.author} :
+                              {attachments}
                             </span>
-                            <span className="flex-shrink-0 text-gray-400">
-                              {comment.text}
-                            </span>
+
                           </div>
-                        </li>
-                      ))}
-                    </dd>
-                  </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-medium leading-6 text-gray-900">
-                      Attachments
-                    </dt>
-                    <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                      <ul
-                        role="list"
-                        className="divide-y divide-gray-100 rounded-md border border-gray-200"
-                      >
-                        {issue.attachments.map((attachments) => (
-                          <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                            <div className="flex w-0 flex-1 items-center">
-                              <PaperClipIcon
-                                className="h-5 w-5 flex-shrink-0 text-gray-400"
-                                aria-hidden="true"
-                              />
-                              <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                                <span className="truncate font-medium">
-                                  {attachments}
-                                </span>
-                                {/* <span className="flex-shrink-0 text-gray-400">
-                            2.4mb
-                          </span> */}
-                              </div>
-                            </div>
-                            <div className="ml-4 flex-shrink-0">
-                              <a
-                                href="#"
-                                className="font-medium text-indigo-600 hover:text-indigo-500"
-                              >
-                                Download
-                              </a>
-                            </div>
-                            
-                           
-                          
-                          </li>
-                          
-                        ))}
-                        
-                      </ul>
-                    </dd>
-                    
-                  </div>
-                </dl>
+                        </div>
+
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
               </div>
-              
+
+
+
+
+
+
             </div>
-            <div className="flex justify-center my-8 mx-auto"><FormDialog prop={<UpdateIssueForm></UpdateIssueForm>} style={maxWidth} buttonTitle={"Update"}></FormDialog></div>
+
+          </div>
+          <div className="my-4 flex justify-center align-items-center">
+            <FormDialog prop={<UpdateIssueForm></UpdateIssueForm>} style={maxWidth} buttonTitle={"Update"}></FormDialog>
+            <button className="btn btn-danger ml-3" >Delete</button>
+          </div>
+          <div>
+            <Comments></Comments>
           </div>
         </div>
         

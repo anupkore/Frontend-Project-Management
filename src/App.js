@@ -48,7 +48,7 @@ function App() {
               <Route path='/projectexplore/teams/:p_id' element={<Teams></Teams>} />
               <Route path='/dashboard' element={<Dashboard/>} />
               <Route path='/cal' element={<Calender/>} />
-              <Route path='/issues' element={<IssueDashboard></IssueDashboard>} />
+              <Route path='/projectexplore/issues/:p_id' element={<IssueDashboard></IssueDashboard>} />
               <Route path='/issuedes/:issueId' element={<IssueDes/>} />
               <Route path='/issue/:status' element={<ParticularIssueDashboard></ParticularIssueDashboard>}/>
               <Route path='/profile' element={<Profilepage/>} />
