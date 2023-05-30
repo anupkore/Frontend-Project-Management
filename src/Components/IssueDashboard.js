@@ -73,10 +73,10 @@ export default function IssueDashboard(props) {
             <div>
               <div
                 id="content"
-                className="carousel p-4 flex space-x-10 overflow-x-auto scroll-smooth scrollbar-hide"
+                className="carousel p-4 flex overflow-x-auto scroll-smooth scrollbar-hide"
               >
                 {statusValues.map((status) => (
-                  <div className="">
+                  <div className="mx-3">
                     <IssueCardHolder iss={status} />
                   </div>
                 ))}
