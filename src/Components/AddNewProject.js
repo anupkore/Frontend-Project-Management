@@ -18,6 +18,8 @@ export default function AddNewProject()
   const plannedEndDate = useState('');
   const risks = useState('');
   const mitigations = useState('');
+  const workflowTask = useState('');
+  const workflowDefects = useState('');
 
   const taskWorkflowChange = (event) => {
     setTaskWorkflow(event.target.value);
@@ -67,6 +69,7 @@ export default function AddNewProject()
                             type="text"
                             name="first-name"
                             id="first-name"
+                            ref={projectName}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -85,6 +88,7 @@ export default function AddNewProject()
                             type="textarea"
                             name="last-name"
                             id="last-name"
+                            ref={description}
                             autoComplete="family-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -105,6 +109,7 @@ export default function AddNewProject()
                             type="text"
                             name="first-name"
                             id="first-name"
+                            ref={clientName}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -122,6 +127,7 @@ export default function AddNewProject()
                             type="text"
                             name="last-name"
                             id="last-name"
+                            ref={leadName}
                             autoComplete="family-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -141,6 +147,7 @@ export default function AddNewProject()
                               type="date"
                               name="company"
                               id="company"
+                              ref={plannedStartDate}
                               autoComplete="organization"
                               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                             />
@@ -160,6 +167,7 @@ export default function AddNewProject()
                               type="date"
                               name="company"
                               id="company"
+                              ref={plannedEndDate}
                               autoComplete="organization"
                               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                             />
@@ -179,6 +187,7 @@ export default function AddNewProject()
                             type="text"
                             name="first-name"
                             id="first-name"
+                            ref={risks}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -197,6 +206,7 @@ export default function AddNewProject()
                             type="text"
                             name="first-name"
                             id="first-name"
+                            ref={mitigations}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -218,10 +228,10 @@ export default function AddNewProject()
                             onChange={taskWorkflowChange}
                           >
                             <option value="">Select Task WorkFlow</option>
-                            <option value="workflow-1">Workflow-1</option>
-                            <option value="workflow-2">Workflow-2</option>
-                            <option value="workflow-3">Workflow-3</option>
-                            <option value="workflow-4">Workflow-4</option>
+                            <option ref={workflowTask} value="workflow-1">Workflow-1</option>
+                            <option ref={workflowTask} value="workflow-2">Workflow-2</option>
+                            <option ref={workflowTask} value="workflow-3">Workflow-3</option>
+                            <option ref={workflowTask} value="workflow-4">Workflow-4</option>
                           </select>
                           <div className=" ml-3 ">
                             <FormDialog
@@ -251,10 +261,10 @@ export default function AddNewProject()
                             onChange={defectWorkflowChange}
                           >
                             <option value="">Select defect WorkFlow</option>
-                            <option value="workflow-1">Workflow-1</option>
-                            <option value="workflow-2">Workflow-2</option>
-                            <option value="workflow-3">Workflow-3</option>
-                            <option value="workflow-4">Workflow-4</option>
+                            <option ref={workflowDefects} value="workflow-1">Workflow-1</option>
+                            <option ref={workflowDefects} value="workflow-2">Workflow-2</option>
+                            <option ref={workflowDefects} value="workflow-3">Workflow-3</option>
+                            <option ref={workflowDefects} value="workflow-4">Workflow-4</option>
                           </select>
                           <div className=" ml-3 ">
                             <FormDialog
