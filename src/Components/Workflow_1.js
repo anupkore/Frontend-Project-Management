@@ -1,4 +1,4 @@
-function Workflow_1()
+function Workflow_1(prop1)
 {
     const WorkflowImages=[{
         W_ID:1,
@@ -22,7 +22,9 @@ function Workflow_1()
     return(
         <>
             <div className="d-flex align-items-center justify-content-center" >
-                <img src={WorkflowImages[1].W_Path} ></img>
+            {/* {prop1.path} */}
+                {/* <img src={WorkflowImages[1].W_Path} ></img> */}
+                <img src={`/Images/${prop1.path}.png`} ></img>
             </div>
         </>
     );
