@@ -1,19 +1,3 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-
-
 import {  Col, Container, Row } from "react-bootstrap";
 import Button from '@mui/material/Button';
 

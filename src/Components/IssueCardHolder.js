@@ -19,7 +19,7 @@ function IssueCardHolder(props) {
 
   return (
     <>
-      <div id="content" className="scroll-pl-6 snap-x mx-auto space-x-10">
+      <div id="content" className="scroll-pl-6 snap-x mx-auto">
         <div className="w-64 rounded-4 bg-lime-100 h-max space-y-3 px-2 pb-2">
           <div className="flex space-x-10 pt-3">
             <div class="flex mx-auto space-x-2">
