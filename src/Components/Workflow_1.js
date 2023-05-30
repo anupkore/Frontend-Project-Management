@@ -1,4 +1,4 @@
-function Workflow_1()
+function Workflow_1(props)
 {
     const WorkflowImages=[{
         W_ID:1,
