@@ -4,12 +4,12 @@ import SideBar from "./SideBar";
 import { issues } from "./TEST/Issues";
 import IssueCardHolder from "./IssueCardHolder";
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
+
+import { useParams } from "react-router";
+
 import CreateIssueForm from "./CreateIssueForm";
 import FormDialog from "./Dialog";
-import { useParams } from "react-router";
-=======
->>>>>>> parent of 4dad6e4 (Page rendering from IssuesPage To Teams Page with data)
+
 
 const colors = [
   "bg-lime-100",
@@ -40,11 +40,14 @@ export default function IssueDashboard(props) {
   }, [issues]);
   const maxWidth = 'md';
   console.log(JSON.stringify(statusValues));
+  const {p_id}=useParams();
   return (
     <>
       <div className="flex">
+
         <div className="w-1/5">
-          <SideBar></SideBar>
+          <SideBar p_id={p_id}></SideBar>
+
         </div>
         <div className="w-8/12 mx-auto">
         <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} buttonTitle={"Create Issue"}></FormDialog>
