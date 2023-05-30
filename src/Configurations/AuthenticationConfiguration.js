@@ -11,7 +11,7 @@ export default class AuthenticationConfiguration
 
     static SignUp()
     {
-        const url = ParentConfiguration.parentURL()+"login";
+        const url = ParentConfiguration.parentURL()+"add_user";
         return url;
     }
 }
