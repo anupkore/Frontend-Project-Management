@@ -46,7 +46,7 @@ export default function UpdateProjectForm() {
                     Project Name
                   </label>
 
-                  <div className="mt-2.5  w-full col-10">
+                  <div className="mt-1  w-full col-10">
                     <input
                       type="text"
                       name="first-name"
@@ -62,9 +62,9 @@ export default function UpdateProjectForm() {
                     htmlFor="last-name"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
-                    Status*
+                    Status
                   </label>
-                  <div className="mt-2.5">
+                  <div className="mt-1">
                     <input
                       type="text"
                       name="last-name"
@@ -86,7 +86,7 @@ export default function UpdateProjectForm() {
                   >
                     Start Date
                   </label>
-                  <div className="mt-2.5">
+                  <div className="mt-1">
                     <input
                       type="date"
                       name="first-name"
@@ -103,7 +103,7 @@ export default function UpdateProjectForm() {
                   >
                     End Date
                   </label>
-                  <div className="mt-2.5">
+                  <div className="mt-1">
                     <input
                       type="date"
                       name="last-name"
@@ -120,7 +120,7 @@ export default function UpdateProjectForm() {
                   >
                      Actual Start Date
                   </label>
-                  <div className="mt-2.5">
+                  <div className="mt-1">
                     <input
                       type="date"
                       name="first-name"
@@ -137,7 +137,7 @@ export default function UpdateProjectForm() {
                   >
                      Actual End Date
                   </label>
-                  <div className="mt-2.5">
+                  <div className="mt-1">
                     <input
                       type="date"
                       name="last-name"
@@ -154,7 +154,7 @@ export default function UpdateProjectForm() {
                   >
                     Project Lead
                   </label>
-                  <div className="mt-2.5">
+                  <div className="mt-1">
                     <input
                       type="text"
                       name="first-name"
@@ -171,7 +171,7 @@ export default function UpdateProjectForm() {
                   >
                     Client Name
                   </label>
-                  <div className="mt-2.5">
+                  <div className="mt-1">
                     <input
                       type="text"
                       name="last-name"
@@ -188,7 +188,7 @@ export default function UpdateProjectForm() {
                   >
                     Description
                   </label>
-                  <div className="mt-2.5">
+                  <div className="mt-1">
                     <input
                       type="text"
                       name="first-name"
@@ -205,7 +205,7 @@ export default function UpdateProjectForm() {
                   >
                     Comments
                   </label>
-                  <div className="mt-2.5">
+                  <div className="mt-1">
                     <input
                       type="text"
                       name="last-name"
