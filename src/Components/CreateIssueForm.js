@@ -1,23 +1,7 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-
-
 import {  Col, Container, Row } from "react-bootstrap";
 import Button from '@mui/material/Button';
 
-export default function UpdateIssueForm() {
+export default function CreateIssueForm() {
   return (
     <>
        <Container>
@@ -28,11 +12,11 @@ export default function UpdateIssueForm() {
         </div>
         </Col> */}
         <Col sm>
-        <div className="w-full">
+        <div className="mx-auto">
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-0">
         <div className="text-center">
           <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-            Update Issue Form
+            Create New Issue 
           </h1>
         </div>
        
@@ -46,7 +30,7 @@ export default function UpdateIssueForm() {
                     Issue Name
                   </label>
 
-                  <div className="mt-1  w-100 col-10">
+                  <div className="mt-0">
                     <input
                       type="text"
                       name="first-name"
@@ -59,15 +43,15 @@ export default function UpdateIssueForm() {
  
                 </div>
 
-                <div className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
-                <div className="mt-1">
+                <div className="grid  gap-x-8 gap-y-3 sm:grid-cols-2">
+                <div className="mt-2">
                   <label
                     htmlFor="first-name"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
-                    Start Date
+                   Issue Start Date
                   </label>
-                  <div className="mt-1">
+                  <div className="mt-0">
                     <input
                       type="date"
                       name="first-name"
@@ -77,14 +61,14 @@ export default function UpdateIssueForm() {
                     />
                   </div>
                 </div>
-                <div className="mt-1">
+                <div className="mt-2">
                   <label
                     htmlFor="last-name"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
-                    End Date
+                   Issue End Date
                   </label>
-                  <div className="mt-1">
+                  <div className="mt-0">
                     <input
                       type="date"
                       name="last-name"
@@ -94,14 +78,14 @@ export default function UpdateIssueForm() {
                     />
                   </div>
                 </div>
-                <div className="mt-1">
+                <div className="mt-0">
                   <label
                     htmlFor="first-name"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
-                     Status
+                     Issue Type
                   </label>
-                  <div className="mt-1">
+                  <div className="mt-0">
                     <input
                       type="text"
                       name="first-name"
@@ -111,14 +95,14 @@ export default function UpdateIssueForm() {
                     />
                   </div>
                 </div>
-                <div className="mt-1">
+                <div className="mt-0">
                   <label
                     htmlFor="last-name"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
-                     Type
+                     Priority
                   </label>
-                  <div className="mt-1">
+                  <div className="mt-0">
                     <input
                       type="text"
                       name="last-name"
@@ -128,14 +112,14 @@ export default function UpdateIssueForm() {
                     />
                   </div>
                 </div>
-                <div className="mt-1">
+                <div className="mt-0">
                   <label
                     htmlFor="first-name"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
-                    Priority
+                    Assign To
                   </label>
-                  <div className="mt-1">
+                  <div className="mt-0">
                     <input
                       type="text"
                       name="first-name"
@@ -145,12 +129,12 @@ export default function UpdateIssueForm() {
                     />
                   </div>
                 </div>
-                <div className="mt-1">
+                <div className="mt-0">
                   <label
                     htmlFor="last-name"
                     className="block text-sm font-semibold leading-6 text-gray-900"
                   >
-                    Assigned to
+                    Status
                   </label>
                   <div className="mt-1">
                     <input
@@ -169,41 +153,7 @@ export default function UpdateIssueForm() {
                   >
                     Description
                   </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      name="first-name"
-                      id="first-name"
-                      autoComplete="given-name"
-                      className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="mt-1">
-                  <label
-                    htmlFor="last-name"
-                    className="block text-sm font-semibold leading-6 text-gray-900"
-                  >
-                    Attachment
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="file"
-                      name="last-name"
-                      id="last-name"
-                      autoComplete="family-name"
-                      className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="mt-0">
-                  <label
-                    htmlFor="first-name"
-                    className="block text-sm font-semibold leading-6 text-gray-900"
-                  >
-                    Comments
-                  </label>
-                  <div className="mt-1 w-100 col-10">
+                  <div className="mt-0  w-100 col-10">
                     <input
                       type="text"
                       name="first-name"
@@ -213,12 +163,11 @@ export default function UpdateIssueForm() {
                     />
                   </div>
                 </div>
-
               </div>
-             <div className="mx-auto mt-3 d-flex align-items-center justify-content-center "> <Button variant="contained" className="justify-content-center flex items-center" >
-        Update 
-      </Button>
-      </div>
+             <div className="mx-auto mt-3.5 d-flex align-items-center justify-content-center "> <Button variant="contained" className="justify-content-center flex items-center" >
+             Update 
+            </Button>
+             </div>
             </form>
         </div>
         </Col>

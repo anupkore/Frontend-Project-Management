@@ -1,103 +1,55 @@
 export const projects = [
     {
       id: 1,
-      project_title: "Project A",
-      status: "TODO"
+      title: "Project 1",
+      startDate: "2023-05-01",
+      endDate: "2023-06-01",
+      status: "In Progress",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit amet consectetur.",
     },
     {
       id: 2,
-      project_title: "Project B",
-      status: "IN PROGRESS"
+      title: "Project 2",
+      startDate: "2023-06-01",
+      endDate: "2023-07-01",
+      status: "Completed",
+      description:
+        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
     {
       id: 3,
-      project_title: "Project C",
-      status: "IN REVIEW"
+      title: "Project 3",
+      startDate: "2023-07-01",
+      endDate: "2023-08-01",
+      status: "Planned",
+      description:
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     },
     {
       id: 4,
-      project_title: "Project D",
-      status: "DONE"
+      title: "Project 4",
+      startDate: "2023-05-01",
+      endDate: "2023-06-01",
+      status: "In Progress",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit consectetur .",
     },
     {
       id: 5,
-      project_title: "Project E",
-      status: "IN PROGRESS"
+      title: "Project 5",
+      startDate: "2023-06-01",
+      endDate: "2023-07-01",
+      status: "Completed",
+      description:
+        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
     {
       id: 6,
-      project_title: "Project F",
-      status: "TODO"
-    },
-    {
-      id: 7,
-      project_title: "Project G",
-      status: "DONE"
-    },
-    {
-      id: 8,
-      project_title: "Project H",
-      status: "IN REVIEW"
-    },
-    {
-      id: 9,
-      project_title: "Project I",
-      status: "TODO"
-    },
-    {
-      id: 10,
-      project_title: "Project J",
-      status: "IN PROGRESS"
-    },
-    {
-      id: 11,
-      project_title: "Project K",
-      status: "IN REVIEW"
-    },
-    {
-      id: 12,
-      project_title: "Project L",
-      status: "DONE"
-    },
-    {
-      id: 13,
-      project_title: "Project M",
-      status: "IN PROGRESS"
-    },
-    {
-      id: 14,
-      project_title: "Project N",
-      status: "IN REVIEW"
-    },
-    {
-      id: 15,
-      project_title: "Project O",
-      status: "TODO"
-    },
-    {
-      id: 16,
-      project_title: "Project P",
-      status: "DONE"
-    },
-    {
-      id: 17,
-      project_title: "Project Q",
-      status: "TODO"
-    },
-    {
-      id: 18,
-      project_title: "Project R",
-      status: "IN REVIEW"
-    },
-    {
-      id: 19,
-      project_title: "Project S",
-      status: "IN PROGRESS"
-    },
-    {
-      id: 20,
-      project_title: "Project T",
-      status: "DONE"
+      title: "Project 6",
+      startDate: "2023-07-01",
+      endDate: "2023-08-01",
+      status: "Planned",
+      description:
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     }
+    // Add more project objects...
   ];
-  
