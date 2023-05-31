@@ -13,4 +13,9 @@ export default class AuthenticationService
     {
         return AxiosService.SignUp(AuthenticationConfiguration.SignUp(), data);
     }
+
+    static createProject(data)
+    {
+        return AxiosService.createProject(AuthenticationConfiguration.createProject() , data);
+    }
 }

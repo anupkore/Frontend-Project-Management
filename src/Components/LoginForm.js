@@ -90,11 +90,7 @@ export const  LoginForm = ({ toggleSignup }) =>
                  name="email"
                  type="email"
                  ref={email}
-<<<<<<< HEAD
-                 value={"rupa@gmail.com"}
-=======
                  
->>>>>>> c9386eebacea57f99b6d4ed4cb3bbba0a6a23836
                 //  onChange={handleInputChange}
                  autoComplete="email"
                  required
@@ -121,11 +117,7 @@ export const  LoginForm = ({ toggleSignup }) =>
                  name="password"
                  type="password"
                  ref={password}
-<<<<<<< HEAD
-                 value={"123"}
-=======
-                 
->>>>>>> c9386eebacea57f99b6d4ed4cb3bbba0a6a23836
+
                 //  onChange={handleInputChangePassword}
                  autoComplete="current-password"
                  required

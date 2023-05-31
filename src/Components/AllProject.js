@@ -3,14 +3,19 @@ import { Link } from "react-router-dom";
 import FormDialog from "./Dialog";
 
 // import bgProject from "../images/bg-allproject.jpg";
-import bgProject from "../images/cool-background.png";
+// import bgProject from "../images/cool-background.png";
 
 import AddNewProject from "./AddNewProject";
 import { projects, projects1 } from "./TEST/Projects";
-import Workflow_1 from "./Workflow_1";
 
-export const AllProjectList = () => {
-  const maxWidth = "md";
+import { red } from "@mui/material/colors";
+
+
+
+
+export const AllProjectList = () => 
+{
+  const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
 
   const filteredProjects = projects.filter((project) => {
@@ -25,6 +30,8 @@ export const AllProjectList = () => {
     setFilterStatus(event.target.value);
   };
 
+  
+
   return (
     <section
       className="bg-blur-3xl bg-opacity-30 border-solid rounded-lg border-2 w-fit mx-auto p-5"
@@ -33,7 +40,7 @@ export const AllProjectList = () => {
         // margin: "5%",
         // borderRadius: "10px",
         // padding: "1rem",
-        backgroundImage: `url(${bgProject})`,
+        // backgroundImage: `url(${bgProject})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
