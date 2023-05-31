@@ -3,23 +3,20 @@ import Button from "@mui/material/Button";
 import FormDialog from "./Dialog";
 import Workflow_1 from "./Workflow_1";
 import { useState } from "react";
-
-export default function AddNewProject() 
-{
-
+export default function AddNewProject() {
   const [taskWorkflow, setTaskWorkflow] = useState("");
   const [defectWorkflow, setDefectWorkflow] = useState("");
 
-  const projectName = useState('');
-  const description = useState('');
-  const clientName = useState('');
-  const leadName = useState('');
-  const plannedStartDate = useState('');
-  const plannedEndDate = useState('');
-  const risks = useState('');
-  const mitigations = useState('');
-  const workflowTask = useState('');
-  const workflowDefects = useState('');
+  const projectName = useState("");
+  const description = useState("");
+  const clientName = useState("");
+  const leadName = useState("");
+  const plannedStartDate = useState("");
+  const plannedEndDate = useState("");
+  const risks = useState("");
+  const mitigations = useState("");
+  const workflowTask = useState("");
+  const workflowDefects = useState("");
 
   const taskWorkflowChange = (event) => {
     setTaskWorkflow(event.target.value);
@@ -27,22 +24,17 @@ export default function AddNewProject()
   const defectWorkflowChange = (event) => {
     setDefectWorkflow(event.target.value);
   };
-  
-  
+
   return (
     <>
       <div className="flex">
-
         <div className="flex justify-items-end align-items-center">
           <img src="/Images/CreateProject4.jpg"></img>
         </div>
 
-
         <div className="">
-
           <Container>
             <Row>
-
               <Col lg>
                 <div>
                   <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
@@ -173,7 +165,6 @@ export default function AddNewProject()
                             />
                           </div>
                         </div>
-
                       </div>
                       <div>
                         <label
@@ -223,26 +214,32 @@ export default function AddNewProject()
                         <div className="mt-2.5 flex">
                           <select
                             className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-
                             value={taskWorkflow}
                             onChange={taskWorkflowChange}
                           >
                             <option value="">Select Task WorkFlow</option>
-                            <option ref={workflowTask} value="workflow-1">Workflow-1</option>
-                            <option ref={workflowTask} value="workflow-2">Workflow-2</option>
-                            <option ref={workflowTask} value="workflow-3">Workflow-3</option>
-                            <option ref={workflowTask} value="workflow-4">Workflow-4</option>
+                            <option ref={workflowTask} value="workflow-1">
+                              Workflow-1
+                            </option>
+                            <option ref={workflowTask} value="workflow-2">
+                              Workflow-2
+                            </option>
+                            <option ref={workflowTask} value="workflow-3">
+                              Workflow-3
+                            </option>
+                            <option ref={workflowTask} value="workflow-4">
+                              Workflow-4
+                            </option>
                           </select>
                           <div className=" ml-3 ">
                             <FormDialog
                               prop={<Workflow_1 path={taskWorkflow} />}
-                              style={'md'}
-                              buttonTitle="Preview"
+                              style={"md"}
+                              // buttonTitle={"Preview"}
+                              icon={"./Images/eye-fill.svg"}
+                              variant={""}
                             />
                           </div>
-
-
-
                         </div>
                       </div>
 
@@ -256,29 +253,34 @@ export default function AddNewProject()
                         <div className="mt-2.5 flex">
                           <select
                             className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-
                             value={defectWorkflow}
                             onChange={defectWorkflowChange}
                           >
                             <option value="">Select defect WorkFlow</option>
-                            <option ref={workflowDefects} value="workflow-1">Workflow-1</option>
-                            <option ref={workflowDefects} value="workflow-2">Workflow-2</option>
-                            <option ref={workflowDefects} value="workflow-3">Workflow-3</option>
-                            <option ref={workflowDefects} value="workflow-4">Workflow-4</option>
+                            <option ref={workflowDefects} value="workflow-1">
+                              Workflow-1
+                            </option>
+                            <option ref={workflowDefects} value="workflow-2">
+                              Workflow-2
+                            </option>
+                            <option ref={workflowDefects} value="workflow-3">
+                              Workflow-3
+                            </option>
+                            <option ref={workflowDefects} value="workflow-4">
+                              Workflow-4
+                            </option>
                           </select>
                           <div className=" ml-3 ">
                             <FormDialog
                               prop={<Workflow_1 path={defectWorkflow} />}
-                              style={'md'}
-                              buttonTitle="Preview"
+                              style={"md"}
+                              // buttonTitle="Preview"
+                              icon={"./Images/eye-fill.svg"}
+                variant={""}
                             />
                           </div>
                         </div>
                       </div>
-
-
-
-
                     </div>
                     <div className="flex mt-5 justify-center ">
                       <Button variant="contained" className="">
@@ -290,7 +292,6 @@ export default function AddNewProject()
               </Col>
             </Row>
           </Container>
-
         </div>
       </div>
     </>

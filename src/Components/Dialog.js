@@ -1,11 +1,11 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import Button from "@mui/material/Button";
 
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
 
-export default function FormDialog({prop,style,buttonTitle}) {
+export default function FormDialog({ prop, style, buttonTitle, icon ,variant}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -18,13 +18,19 @@ export default function FormDialog({prop,style,buttonTitle}) {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleClickOpen}>
-        {buttonTitle} 
+      <div className="w-full">
+      <Button wid variant={variant ==="" ? "" : "contained" } onClick={handleClickOpen}>
+        <div className="flex space-x-4 w-full">
+          <div className="my-auto">
+            <img src={icon} alt=""></img>
+          </div>
+          <div className=" flex my-auto">{buttonTitle}</div>
+        </div>
       </Button>
+      </div>
+      
       <Dialog open={open} onClose={handleClose} maxWidth={style} fullWidth>
-        <DialogContent>
-          {prop}
-        </DialogContent>
+        <DialogContent>{prop}</DialogContent>
         {/* <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions> */}

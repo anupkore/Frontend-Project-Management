@@ -9,6 +9,7 @@ import { useParams } from "react-router";
 
 import CreateIssueForm from "./CreateIssueForm";
 import FormDialog from "./Dialog";
+import { Button } from "@mui/material";
 
 
 const colors = [
@@ -43,44 +44,46 @@ export default function IssueDashboard(props) {
   const {p_id}=useParams();
   return (
     <>
-      <div className="flex">
+      <div className="flex bg-[#ffffff]">
 
-        <div className="w-1/5">
+        <div className="max-w-2/12">
           <SideBar p_id={p_id}></SideBar>
 
         </div>
-        <div className="w-8/12 mx-auto">
-        <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} buttonTitle={"Create Issue"}></FormDialog>
+        <div className="w-9/12 mx-auto ">
+        {/* <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} buttonTitle={"Create Issue"}></FormDialog> */}
           <div className="relative">
             <div className="flex items-center">
               <div className="">
-                <button
+              <Button 
                   onClick={scrollLeft}
+
                   className="p-2 m-2 rounded-full bg-white"
                 >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className=" fill-blue-500 bi bi-caret-left-square-fill" viewBox="0 0 16 16">
-  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm10.5 10V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4A.5.5 0 0 0 10.5 12z"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
 </svg>
-                </button>
+                </Button>
               </div>
               <div className="mx-auto py-4 text-xl font-bold">
                 Issue Workflow
               </div>
               <div className="">
-                <button 
+                <Button 
                   onClick={scrollRight}
+
                   className="p-2 m-2 rounded-full bg-white"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="fill-blue-500 bi bi-caret-right-square-fill" viewBox="0 0 16 16">
-  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
 </svg>
-                </button>
+                </Button>
               </div>
             </div>
             <div>
               <div
                 id="content"
-                className="carousel p-5 flex overflow-x-auto scroll-smooth scrollbar-hide"
+                className="carousel p-5 flex overflow-x-auto scroll-smooth scrollbar-thin scrollbar-thumb-slate-200 scrollbar"
               >
                 {statusValues.map((status) => (
                   <div className="mx-3 ">

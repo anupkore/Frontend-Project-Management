@@ -64,7 +64,9 @@ export const AllProjectList = () => {
               <FormDialog
                 prop={<AddNewProject />}
                 style={maxWidth}
+                icon={"./Images/plus-lg.svg"}
                 buttonTitle="Create Project"
+                variant={"outlined"}
               />
             </div>
           </div>
