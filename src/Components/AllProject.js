@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FormDialog from "./Dialog";
 
+// import bgProject from "../images/bg-allproject.jpg";
+
 import AddNewProject from "./AddNewProject";
 import { projects, projects1 } from "./TEST/Projects";
-import { red } from "@mui/material/colors";
+import AuthenticationService from "../Services/AuthenticationService";
 
 
-export const AllProjectList = () => {
+
+
+
+
+
+export const AllProjectList = () => 
+{
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
 
@@ -22,6 +30,19 @@ export const AllProjectList = () => {
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
   };
+
+  const [projectList , setProjectList] = useState([]);
+
+        useEffect(()=>{
+            
+            AuthenticationService.allProjects().then((response)=>{
+                  setProjectList((existingData)=>{
+                    return response.data;
+                  });
+            });
+
+        },[]);
+
 
   return (
     <>
