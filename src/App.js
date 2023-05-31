@@ -23,6 +23,8 @@ import ChangePassword from './Components/ChangePassword';
 import UpdateIssueForm from './Components/UpdateIssueForm';
 import CreateIssueForm from './Components/CreateIssueForm';
 import AdminDashboard from './Components/Dashboard';
+import NumberOfIssuesBar from './Components/NumberOfIssuesBar';
+import IssueTypeBar from './Components/IssueTypeBar';
 
 
 
@@ -60,6 +62,9 @@ function App() {
               <Route path='/changePassword' element={<ChangePassword/>} />
               <Route path='/updateissueform' element={<UpdateIssueForm/>} />
               <Route path='/createissueform' element={<CreateIssueForm/>} />
+
+              <Route path='/bar' element={<NumberOfIssuesBar/>} />
+              <Route path='/bar2' element={<IssueTypeBar/>} />
               
 
             </Routes>
