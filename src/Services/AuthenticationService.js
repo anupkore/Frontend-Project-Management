@@ -1,11 +1,16 @@
 import AuthenticationConfiguration from "../Configurations/AuthenticationConfiguration";
 import AxiosService from "./AxiosService";
 
-export default function AuthenticationService() 
+export default class AuthenticationService 
 {
-    SignIn(data) 
+    static SignIn(data)
     {
-        console.log("SignIn : " + AuthenticationConfiguration.SignIn);
-        return AxiosService.post(AuthenticationConfig.SignIn, data, false);
+      console.log("SignIn : " + AuthenticationConfiguration.SignIn());
+      return AxiosService.Post(AuthenticationConfiguration.SignIn(), data);
+    }
+
+    static SignUp(data)
+    {
+        return AxiosService.SignUp(AuthenticationConfiguration.SignUp(), data);
     }
 }

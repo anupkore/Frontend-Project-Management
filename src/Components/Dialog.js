@@ -25,9 +25,9 @@ export default function FormDialog({prop,style,buttonTitle}) {
         <DialogContent>
           {prop}
         </DialogContent>
-        <DialogActions>
+        {/* <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-        </DialogActions>
+        </DialogActions> */}
       </Dialog>
     </div>
   );

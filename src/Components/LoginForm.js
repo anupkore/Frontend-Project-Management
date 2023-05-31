@@ -6,6 +6,8 @@ import { Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import AuthenticationConfiguration from "../Configurations/AuthenticationConfiguration";
+import axios from "axios";
+import AuthenticationService from "../Services/AuthenticationService";
 
 
 export const  LoginForm = ({ toggleSignup }) => 
@@ -16,6 +18,7 @@ export const  LoginForm = ({ toggleSignup }) =>
     const [errorMessageFull , setErrorMessageFull] = useState('');
     const [errorMessageEmail , setErrorMessageEmail] = useState('');
     const [errorMessagePassword , setErrorMessagePassword] = useState('');
+    const message = useState("");
     // const [email, setEmail] = useState('');
     // const [password, setPassword] = useState('');
 
@@ -52,30 +55,21 @@ export const  LoginForm = ({ toggleSignup }) =>
     //    localStorage.setItem("USERNAME",document.getElementById('email').value);
     //    window.location.href= "/allprojects" ;
     //  }
-
+      event.preventDefault();
       var payload = 
       {
-          Email: email.current.value,
-          Password: password.current.value
+          email_id: email.current.value,
+          password: password.current.value
       }
 
-      AuthenticationConfiguration.SignIn(payload).then((data)=>{
-      console.log("Sign Successfull",data);
-      window.location.href= "/allprojects" ;
+      AuthenticationService.SignIn(payload).then(()=>{
+        console.log("Hi");
       })
-
 
     }
  return (
    <>
-     {/*
-       This example requires updating your template:
-
-       ```
-       <html class="h-full bg-white">
-       <body class="h-full">
-       ```
-     */}
+     
      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
          
@@ -96,7 +90,11 @@ export const  LoginForm = ({ toggleSignup }) =>
                  name="email"
                  type="email"
                  ref={email}
+<<<<<<< HEAD
                  value={"rupa@gmail.com"}
+=======
+                 
+>>>>>>> c9386eebacea57f99b6d4ed4cb3bbba0a6a23836
                 //  onChange={handleInputChange}
                  autoComplete="email"
                  required
@@ -123,7 +121,11 @@ export const  LoginForm = ({ toggleSignup }) =>
                  name="password"
                  type="password"
                  ref={password}
+<<<<<<< HEAD
                  value={"123"}
+=======
+                 
+>>>>>>> c9386eebacea57f99b6d4ed4cb3bbba0a6a23836
                 //  onChange={handleInputChangePassword}
                  autoComplete="current-password"
                  required
