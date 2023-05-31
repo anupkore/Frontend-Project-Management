@@ -22,7 +22,7 @@ export default class AxiosService
         return axios.get(url);
     }
 
-    static exploreProject(url)
+    static projectExplore(url)
     {
         return axios.get(url);
     }

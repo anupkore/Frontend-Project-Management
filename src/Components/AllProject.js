@@ -35,6 +35,7 @@
 //     });
 //   }, []);
 
+
 //   const [currentPage, setCurrentPage] = useState(1);
 //   const [membersPerPage, setMembersPerPage] = useState(5);
 
@@ -189,6 +190,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import FormDialog from "./Dialog";
+
 import AddNewProject from "./AddNewProject";
 import { projects } from "./TEST/Projects";
 import { FaSortDown, FaSortUp } from "react-icons/fa";
@@ -207,6 +209,7 @@ export const AllProjectList = () => {
     const newSortOrder = sortOrder === "Ascending" ? "Descending" : "Ascending";
     setSortOrder(newSortOrder);
   };
+
 
   const handleSortStartDateToggle = () => {
     const newSortOrderByStartDate =
@@ -244,6 +247,43 @@ export const AllProjectList = () => {
       }
     });
 
+
+
+        useEffect(()=>{
+            
+            AuthenticationService.allProjects().then((response)=>{
+                  setProjectList((existingData)=>{
+                    console.log(response.data);
+                  });
+            });
+
+  const sortedAndFilteredProjects = [...projects]
+    .sort((a, b) => {
+      if (sortOrder === "Ascending") {
+        return a.title.localeCompare(b.title);
+      } else {
+        return b.title.localeCompare(a.title);
+      }
+    })
+    .sort((a, b) => {
+      const dateA = new Date(a.startDate);
+      const dateB = new Date(b.startDate);
+      if (sortOrderByStartDate === "Ascending") {
+        return dateA - dateB;
+      } else {
+        return dateB - dateA;
+      }
+    })
+    .filter((project) => {
+      if (filterStatus === "All") {
+        return true;
+      } else {
+        return project.status === filterStatus;
+      }
+    });
+
+
+
   const renderNameHeader = () => {
     const arrowIcon =
       sortOrder === "Ascending" ? <FaSortUp /> : <FaSortDown />;
@@ -256,6 +296,7 @@ export const AllProjectList = () => {
       </th>
     );
   };
+
 
   const renderStartDateHeader = () => {
     const arrowIcon =
@@ -281,6 +322,35 @@ export const AllProjectList = () => {
       </th>
     );
   };
+
+
+
+  const renderStartDateHeader = () => {
+    const arrowIcon =
+      sortOrderByStartDate === "Ascending" ? <FaSortUp /> : <FaSortDown />;
+    return (
+      <th className="px-4 py-2">
+        Start Date{" "}
+        <button className="sort-button" onClick={handleSortStartDateToggle}>
+          {arrowIcon}
+        </button>
+      </th>
+    );
+  };
+  const renderEndDateHeader = () => {
+    const arrowIcon =
+      sortOrderByEndDate === "Ascending" ? <FaSortUp /> : <FaSortDown />;
+    return (
+      <th className="px-4 py-2">
+        Start Date{" "}
+        <button className="sort-button" onClick={handleSortEndDateToggle}>
+          {arrowIcon}
+        </button>
+      </th>
+    );
+  };
+
+
 
   
   return (
@@ -355,7 +425,9 @@ export const AllProjectList = () => {
         </div>
       </section>
     </section>
+
   );
 };
 
 export default AllProjectList;
+
