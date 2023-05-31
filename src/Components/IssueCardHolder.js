@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { issues } from "./TEST/Issues";
 import CreateIssueForm from "./CreateIssueForm";
 import FormDialog from "./Dialog";
+import { Badge } from "react-bootstrap";
 
 function IssueCardHolder(props) {
   const issueCards = issues.filter((issue) => issue.status === props.iss);
@@ -11,13 +12,16 @@ function IssueCardHolder(props) {
   return (
     <div id="content" className="mx-auto ">
       <Link to={`/issue/${props.iss}`}>
-      <div className="flex badge bg-light sticky justify-center space-x-2 py-3 ">
-        <span className="text-dark">{props.iss}</span>
-        <span className="badge bg-dark">{issueCards.length}</span>
+      <div className="flex bg-light sticky justify-center space-x-2 py-3 ">
+        <span className="text-dark my-auto underline decoration-sky-500 decoration-[6px]">{props.iss}</span>
+        {/* <span className="badge bg-dark">{issueCards.length}</span> */}
+        <Badge pill bg="secondary">
+        {issueCards.length}
+      </Badge>
       </div>
       </Link>
-      <div className="w-64 h-[36rem] overflow-y-scroll scrollbar-thin scrollbar-thumb-slate-200 scrollbar">
-        <div className="rounded-lg bg-[#f4f5f7] space-y-3 px-2 py-4 ">
+      <div className="w-64 h-[36rem] overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-[#f8f9fa] scrollbar-thumb-zinc-300 scrollbar">
+        <div className="rounded-b-lg bg-[#f4f5f7] space-y-3 px-2 py-4 ">
           {issueCards.map((proj) => (
             <IssueCard pro={proj} key={proj.id} />
           ))}

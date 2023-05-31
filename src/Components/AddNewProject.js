@@ -60,7 +60,7 @@ export default function AddNewProject()
     <>
       <div className="flex">
         <div className="flex justify-items-end align-items-center">
-          <img src="/Images/CreateProject4.jpg"></img>
+          <img src="/Images/projectmag.png" width={600} height={550}></img>
         </div>
 
         <div className="">
