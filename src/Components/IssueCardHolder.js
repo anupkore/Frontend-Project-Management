@@ -2,25 +2,30 @@ import React from "react";
 import IssueCard from "./IssueCard";
 import { Link } from "react-router-dom";
 import { issues } from "./TEST/Issues";
+import CreateIssueForm from "./CreateIssueForm";
+import FormDialog from "./Dialog";
 
 function IssueCardHolder(props) {
   const issueCards = issues.filter((issue) => issue.status === props.iss);
-
+  const maxWidth = 'md';
   return (
     <div id="content" className="mx-auto ">
-      <div className="flex badge bg-light sticky justify-center space-x-2 py-2.5 ">
+      <Link to={`/issue/${props.iss}`}>
+      <div className="flex badge bg-light sticky justify-center space-x-2 py-3 ">
         <span className="text-dark">{props.iss}</span>
         <span className="badge bg-dark">{issueCards.length}</span>
       </div>
-      <div className="w-64 h-[36rem] overflow-y-scroll">
-        <div className="rounded-b-4 bg-lime-100 space-y-3 px-2 py-4 ">
+      </Link>
+      <div className="w-64 h-[36rem] overflow-y-scroll scrollbar-thin scrollbar-thumb-slate-200 scrollbar">
+        <div className="rounded-lg bg-[#f4f5f7] space-y-3 px-2 py-4 ">
           {issueCards.map((proj) => (
             <IssueCard pro={proj} key={proj.id} />
           ))}
-          <div className="flex justify-end">
-            <Link to={`/issue/${props.iss}`}>
+          <div className="flex justify-center">
+            {/* <Link to={`/issue/${props.iss}`}>
               <h1 className="font-semibold">See More</h1>
-            </Link>
+            </Link> */}
+            <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} icon={"/Images/plus-lg.svg"} variant={""} buttonTitle={"Create issue"}></FormDialog>
           </div>
         </div>
       </div>
