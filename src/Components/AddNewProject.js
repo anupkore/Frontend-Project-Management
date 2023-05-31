@@ -13,16 +13,16 @@ export default function AddNewProject()
   const [taskWorkflow, setTaskWorkflow] = useState("");
   const [defectWorkflow, setDefectWorkflow] = useState("");
 
-  const projectName = useState("");
-  const description = useState("");
-  const clientName = useState("");
-  const leadName = useState("");
-  const plannedStartDate = useState("");
-  const plannedEndDate = useState("");
-  const risks = useState("");
-  const mitigations = useState("");
-  const workflowTask = useState("");
-  const workflowDefects = useState("");
+  const [projectName, setProjectName] = useState("");
+  const [description, setDescription] = useState("");
+  const [clientName, setClientName] = useState("");
+  const [leadName, setLeadName] = useState("");
+  const [plannedStartDate, setPlannedStartDate] = useState("");
+  const [plannedEndDate, setPlannedEndDate] = useState("");
+  const [risks, setRisks] = useState("");
+  const [mitigations, setMitigations] = useState("");
+  const [workflowTask, setWorkFlowTask] = useState("");
+  const [workflowDefects, setWorkFlowDefects] = useState("");
 
   const taskWorkflowChange = (event) => {
     setTaskWorkflow(event.target.value);
@@ -31,24 +31,65 @@ export default function AddNewProject()
     setDefectWorkflow(event.target.value);
   };
 
+  function handleInputChangeProjectName(event) 
+     {
+        setProjectName(event.target.value);
+
+     }
+
+     function handleInputChangeDescription(event) 
+     {
+        setDescription(event.target.value);
+     }
+
+     function handleInputChangeClientName(event) 
+     {
+        setClientName(event.target.value);
+     }
+
+     function handleInputChangeLeadName(event) 
+     {
+        setLeadName(event.target.value);
+     }
+
+     function handleInputChangePlannedStartDate(event) 
+     {
+        setPlannedStartDate(event.target.value);
+     }
+
+     function handleInputChangePlannedEndDate(event) 
+     {
+        setPlannedEndDate(event.target.value);
+     }
+
+     function handleInputChangeRisks(event) 
+     {
+        setRisks(event.target.value);
+     }
+
+     function handleInputChangeMitigations(event) 
+     {
+        setMitigations(event.target.value);
+     }
+
 
   function handleAddProject(event)
   {
     event.preventDefault();
     var payload = 
     {
-        project_name: projectName.target.value,
-        project_description: description.target.value,
-        planned_sd: plannedStartDate.target.value,
-        planned_ed: plannedEndDate.target.value,
-        client_name: clientName.target.value,
-        project_lead: leadName.target.value,
-        risk: risks.target.value,
-        mitigation: mitigations.target.value,
-        workflowTask: workflowTask.target.value,
-        workflowDefects: workflowDefects.target.value
+        project_name: projectName,
+        project_description: description,
+        planned_sd: plannedStartDate,
+        planned_ed: plannedEndDate,
+        client_name: clientName,
+        project_lead: leadName,
+        risk: risks,
+        mitigation: mitigations,
+        workflowTask: workflowTask,
+        workflowDefects: workflowDefects
     }
-
+    console.log(payload);
     AuthenticationService.createProject(payload).then(()=>{
       console.log("Hi Create Project");
     })
@@ -93,6 +134,7 @@ export default function AddNewProject()
                             name="first-name"
                             id="first-name"
                             value={projectName}
+                            onChange={handleInputChangeProjectName}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -112,6 +154,7 @@ export default function AddNewProject()
                             name="last-name"
                             id="last-name"
                             value={description}
+                            onChange={handleInputChangeDescription}
                             autoComplete="family-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -133,6 +176,7 @@ export default function AddNewProject()
                             name="first-name"
                             id="first-name"
                             value={clientName}
+                            onChange={handleInputChangeClientName}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -151,6 +195,7 @@ export default function AddNewProject()
                             name="last-name"
                             id="last-name"
                             value={leadName}
+                            onChange={handleInputChangeLeadName}
                             autoComplete="family-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -171,6 +216,7 @@ export default function AddNewProject()
                               name="company"
                               id="company"
                               value={plannedStartDate}
+                              onChange={handleInputChangePlannedStartDate}
                               autoComplete="organization"
                               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                             />
@@ -191,6 +237,7 @@ export default function AddNewProject()
                               name="company"
                               id="company"
                               value={plannedEndDate}
+                              onChange={handleInputChangePlannedEndDate}
                               autoComplete="organization"
                               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                             />
@@ -210,6 +257,7 @@ export default function AddNewProject()
                             name="first-name"
                             id="first-name"
                             value={risks}
+                            onChange={handleInputChangeRisks}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -229,6 +277,7 @@ export default function AddNewProject()
                             name="first-name"
                             id="first-name"
                             value={mitigations}
+                            onChange={handleInputChangeMitigations}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
