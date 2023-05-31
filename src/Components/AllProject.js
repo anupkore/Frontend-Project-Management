@@ -102,7 +102,7 @@ export const AllProjectList = () => {
                   <td className="px-4 py-2">{project.startDate}</td>
                   <td className="px-4 py-2">{project.endDate}</td>
                   <td className="px-4 py-2">{project.description}</td>
-                  
+
                   <td className="px-4 py-2 underline text-blue-900">
                     <Link to={`/projectexplore/${project.id}`}> Explore</Link>
                   </td>
