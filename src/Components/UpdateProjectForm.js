@@ -2,16 +2,13 @@
 import {  Col, Container, Row } from "react-bootstrap";
 import Button from '@mui/material/Button';
 
-export default function UpdateProjectForm() {
+export default function UpdateProjectForm() 
+{
   return (
     <>
        <Container>
         <Row>
-        {/* <Col>
-        <div style={{width:"20rem",height:"14rem" }}>
-          <img src="/Images/header.png" />
-        </div>
-        </Col> */}
+        
         <Col sm>
         <div className="w-full">
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-0">
@@ -50,13 +47,11 @@ export default function UpdateProjectForm() {
                     Status
                   </label>
                   <div className="mt-1">
-                    <input
-                      type="text"
-                      name="last-name"
-                      id="last-name"
-                      autoComplete="family-name"
-                      className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
+                  <select className="block  w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                      <option value={'Open'}>Open</option>
+                      <option value={'In Progress'}>In progress</option>
+                      <option value={'Done'}>Done</option>
+                    </select>
                   </div>
                 </div>
                 

@@ -5,62 +5,71 @@ import { Email } from "@mui/icons-material";
 import { Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import AuthenticationConfiguration from "../Configurations/AuthenticationConfiguration";
+import axios from "axios";
+import AuthenticationService from "../Services/AuthenticationService";
 
 
 export const  LoginForm = ({ toggleSignup }) => 
 {
 
-    //const email = useRef("");
+    const email = useRef("");
+    const password = useRef("");
     const [errorMessageFull , setErrorMessageFull] = useState('');
     const [errorMessageEmail , setErrorMessageEmail] = useState('');
     const [errorMessagePassword , setErrorMessagePassword] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const message = useState("");
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
 
 
-    function handleInputChange(event) 
-    {
-     setEmail(event.target.value);
-     setErrorMessageEmail('');
-    }
+    // function handleInputChange(event) 
+    // {
+    //  setEmail(event.target.value);
+    //  setErrorMessageEmail('');
+    // }
 
-    function handleInputChangePassword(event) 
-    {
-     setPassword(event.target.value);
-     setErrorMessagePassword('');
-    }
+    // function handleInputChangePassword(event) 
+    // {
+    //  setPassword(event.target.value);
+    //  setErrorMessagePassword('');
+    // }
     
     function handleSignIn(event)
     {
-     event.preventDefault();
-     const email = document.getElementById('email').value;
-     const password = document.getElementById('password').value;
-     if(email !== 'anup')
-     {
-       setErrorMessageEmail('Invalid Email');
-       return;
-     }
-     else if(password !== 'anup')
-     {
-       setErrorMessagePassword('Invalid Password');
-       return;
-     }
-     else 
-     {
-       localStorage.setItem("USERNAME",document.getElementById('email').value);
-       window.location.href= "/allprojects" ;
-     }
+    //  event.preventDefault();
+    //  const email = document.getElementById('email').value;
+    //  const password = document.getElementById('password').value;
+    //  if(email !== 'anup')
+    //  {
+    //    setErrorMessageEmail('Invalid Email');
+    //    return;
+    //  }
+    //  else if(password !== 'anup')
+    //  {
+    //    setErrorMessagePassword('Invalid Password');
+    //    return;
+    //  }
+    //  else 
+    //  {
+    //    localStorage.setItem("USERNAME",document.getElementById('email').value);
+    //    window.location.href= "/allprojects" ;
+    //  }
+      event.preventDefault();
+      var payload = 
+      {
+          email_id: email.current.value,
+          password: password.current.value
+      }
+
+      AuthenticationService.SignIn(payload).then(()=>{
+        console.log("Hi");
+      })
+
     }
  return (
    <>
-     {/*
-       This example requires updating your template:
-
-       ```
-       <html class="h-full bg-white">
-       <body class="h-full">
-       ```
-     */}
+     
      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
          
@@ -80,8 +89,9 @@ export const  LoginForm = ({ toggleSignup }) =>
                  id="email"
                  name="email"
                  type="email"
-                 value={email}
-                 onChange={handleInputChange}
+                 ref={email}
+                 
+                //  onChange={handleInputChange}
                  autoComplete="email"
                  required
                  className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -106,8 +116,9 @@ export const  LoginForm = ({ toggleSignup }) =>
                  id="password"
                  name="password"
                  type="password"
-                 value={password}
-                 onChange={handleInputChangePassword}
+                 ref={password}
+                 
+                //  onChange={handleInputChangePassword}
                  autoComplete="current-password"
                  required
                  className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

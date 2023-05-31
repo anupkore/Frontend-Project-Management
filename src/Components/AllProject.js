@@ -8,7 +8,7 @@ import { red } from "@mui/material/colors";
 
 
 export const AllProjectList = () => {
-  const maxWidth = "md";
+  const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
 
   const filteredProjects = projects.filter((project) => {
