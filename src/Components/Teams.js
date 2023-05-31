@@ -44,16 +44,17 @@ export const Teams = () => {
           </div>
 
           <div className="flex-wrap justify-between items-center py-1 px-2">
-            <span className="text-xl font-bold">
+            {/* <span className="text-xl font-bold">
               Project Title: {Project_Id.title}
-            </span>
+            </span> */}
             <div className="flex items-center space-x-4">
               <span className="text-l text-gray-500">
                 <div>
                   <FormDialog
                     prop={<AddNewMember></AddNewMember>}
                     style={maxWidth}
-                    buttonTitle={"Add Member"}
+                    buttonTitle={"Assign"}
+                    icon={"/Images/plus-lg-white.svg"}
                   ></FormDialog>
                 </div>
               </span>

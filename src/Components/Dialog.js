@@ -20,12 +20,14 @@ export default function FormDialog({ prop, style, buttonTitle, icon ,variant}) {
     <div>
       <div className="w-full">
       <Button wid variant={variant ==="" ? "" : "contained" } onClick={handleClickOpen}>
-        <div className="flex space-x-4 w-full">
-          <div className="my-auto">
-            <img src={icon} alt=""></img>
+          <div className={`flex ${icon !== "" ? "space-x-4" : ""} w-full`}>
+                {icon !== "" ? (
+                  <div className="m-auto">
+                    <img src={icon} alt="" />
+                  </div>
+                ) : null}
+            <div className=" flex my-auto">{buttonTitle}</div>
           </div>
-          <div className=" flex my-auto">{buttonTitle}</div>
-        </div>
       </Button>
       </div>
       
