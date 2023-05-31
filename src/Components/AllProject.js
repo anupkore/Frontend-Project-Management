@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FormDialog from "./Dialog";
 
 // import bgProject from "../images/bg-allproject.jpg";
-import bgProject from "../images/cool-background.png";
+
 import AddNewProject from "./AddNewProject";
 import { projects, projects1 } from "./TEST/Projects";
+import AuthenticationService from "../Services/AuthenticationService";
 
-import { red } from "@mui/material/colors";
+
+
 
 
 
@@ -29,7 +31,18 @@ export const AllProjectList = () =>
     setFilterStatus(event.target.value);
   };
 
-  
+  const [projectList , setProjectList] = useState([]);
+
+        useEffect(()=>{
+            
+            AuthenticationService.allProjects().then((response)=>{
+                  setProjectList((existingData)=>{
+                    return response.data;
+                  });
+            });
+
+        },[]);
+
 
   return (
     <>
