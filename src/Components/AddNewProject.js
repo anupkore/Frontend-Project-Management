@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import FormDialog from "./Dialog";
 import Workflow_1 from "./Workflow_1";
 import { useState } from "react";
+import AuthenticationService from "../Services/AuthenticationService";
 
 export default function AddNewProject() 
 {
@@ -27,6 +28,28 @@ export default function AddNewProject()
   const defectWorkflowChange = (event) => {
     setDefectWorkflow(event.target.value);
   };
+
+  function handleAddProject(event)
+  {
+    event.preventDefault();
+    var payload = 
+    {
+        project_name: projectName.current.value,
+        project_description: description.current.value,
+        planned_sd: plannedStartDate.current.value,
+        planned_ed: plannedEndDate.current.value,
+        client_name: clientName.current.value,
+        project_lead: leadName.current.value,
+        risk: risks.current.value,
+        mitigation: mitigations.current.value,
+        workflowTask: workflowTask.current.value,
+        workflowDefects: workflowDefects.current.value
+    }
+
+    AuthenticationService.createProject(payload).then(()=>{
+      console.log("Hi Create Project");
+    })
+  }
   
   
   return (
@@ -281,7 +304,7 @@ export default function AddNewProject()
 
                     </div>
                     <div className="flex mt-5 justify-center ">
-                      <Button variant="contained" className="">
+                      <Button onClick={handleAddProject} variant="contained" className="">
                         Create
                       </Button>
                     </div>

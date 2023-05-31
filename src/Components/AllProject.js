@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import FormDialog from "./Dialog";
-
 // import bgProject from "../images/bg-allproject.jpg";
 import bgProject from "../images/cool-background.png";
-
 import AddNewProject from "./AddNewProject";
 import { projects, projects1 } from "./TEST/Projects";
-import Workflow_1 from "./Workflow_1";
 
-export const AllProjectList = () => {
+
+export const AllProjectList = () => 
+{
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
 
@@ -24,6 +23,8 @@ export const AllProjectList = () => {
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
   };
+
+  
 
   return (
     <section

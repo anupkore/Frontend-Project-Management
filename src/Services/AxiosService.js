@@ -11,4 +11,14 @@ export default class AxiosService
     {
         return axios.post(url , data);
     }
+
+    static createProject(url , data)
+    {
+        return axios.post(url , data);
+    }
+
+    static allProjects(url)
+    {
+        return axios.get(url);
+    }
 }
