@@ -17,7 +17,7 @@ export default function AddNewMember()
           name: name.current.value,
           email_id: email.current.value,
           contact: contact.current.value,
-          roles: role.current.value,
+          
 
       }
 
@@ -83,6 +83,7 @@ export default function AddNewMember()
                   />
                 </div>
               </div>
+
   
               <div>
                 <div className="flex items-center justify-between">

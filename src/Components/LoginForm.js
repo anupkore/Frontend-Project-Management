@@ -62,8 +62,26 @@ export const  LoginForm = ({ toggleSignup }) =>
           password: password.current.value
       }
 
-      AuthenticationService.SignIn(payload).then(()=>{
-        console.log("Hi");
+      AuthenticationService.SignIn(payload).then((response)=>{
+        const message = response.data.Return;
+        console.log(message);
+        if(message === "login sucessfull")
+        {
+            window.location.href = '/allprojects';
+        }
+        else if(message === "Invalid Email")
+        {
+          setErrorMessageEmail('Invalid Email');
+
+          
+          return;
+        }
+        else if(message === "Invalid Password")
+        {
+          setErrorMessagePassword('Invalid Password');
+          return;
+        }
+
       })
 
     }

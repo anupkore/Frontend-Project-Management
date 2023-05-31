@@ -32,6 +32,15 @@ export const AllProjectList = () => {
     setSortOrderByEndDate(newSortOrderByStartDate);
   };
 
+
+        useEffect(()=>{
+            
+            AuthenticationService.allProjects().then((response)=>{
+                  setProjectList((existingData)=>{
+                    console.log(response.data);
+                  });
+            });
+
   const sortedAndFilteredProjects = [...projects]
     .sort((a, b) => {
       if (sortOrder === "Ascending") {
@@ -70,6 +79,7 @@ export const AllProjectList = () => {
       </th>
     );
   };
+
 
   const renderStartDateHeader = () => {
     const arrowIcon =

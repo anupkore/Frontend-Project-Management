@@ -37,16 +37,16 @@ export default function AddNewProject()
     event.preventDefault();
     var payload = 
     {
-        project_name: projectName.current.value,
-        project_description: description.current.value,
-        planned_sd: plannedStartDate.current.value,
-        planned_ed: plannedEndDate.current.value,
-        client_name: clientName.current.value,
-        project_lead: leadName.current.value,
-        risk: risks.current.value,
-        mitigation: mitigations.current.value,
-        workflowTask: workflowTask.current.value,
-        workflowDefects: workflowDefects.current.value
+        project_name: projectName.target.value,
+        project_description: description.target.value,
+        planned_sd: plannedStartDate.target.value,
+        planned_ed: plannedEndDate.target.value,
+        client_name: clientName.target.value,
+        project_lead: leadName.target.value,
+        risk: risks.target.value,
+        mitigation: mitigations.target.value,
+        workflowTask: workflowTask.target.value,
+        workflowDefects: workflowDefects.target.value
     }
 
     AuthenticationService.createProject(payload).then(()=>{
@@ -92,7 +92,7 @@ export default function AddNewProject()
                             type="text"
                             name="first-name"
                             id="first-name"
-                            ref={projectName}
+                            value={projectName}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -111,7 +111,7 @@ export default function AddNewProject()
                             type="textarea"
                             name="last-name"
                             id="last-name"
-                            ref={description}
+                            value={description}
                             autoComplete="family-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -132,7 +132,7 @@ export default function AddNewProject()
                             type="text"
                             name="first-name"
                             id="first-name"
-                            ref={clientName}
+                            value={clientName}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -150,7 +150,7 @@ export default function AddNewProject()
                             type="text"
                             name="last-name"
                             id="last-name"
-                            ref={leadName}
+                            value={leadName}
                             autoComplete="family-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -170,7 +170,7 @@ export default function AddNewProject()
                               type="date"
                               name="company"
                               id="company"
-                              ref={plannedStartDate}
+                              value={plannedStartDate}
                               autoComplete="organization"
                               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                             />
@@ -190,7 +190,7 @@ export default function AddNewProject()
                               type="date"
                               name="company"
                               id="company"
-                              ref={plannedEndDate}
+                              value={plannedEndDate}
                               autoComplete="organization"
                               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                             />
@@ -209,7 +209,7 @@ export default function AddNewProject()
                             type="text"
                             name="first-name"
                             id="first-name"
-                            ref={risks}
+                            value={risks}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -228,7 +228,7 @@ export default function AddNewProject()
                             type="text"
                             name="first-name"
                             id="first-name"
-                            ref={mitigations}
+                            value={mitigations}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
@@ -249,16 +249,16 @@ export default function AddNewProject()
                             onChange={taskWorkflowChange}
                           >
                             <option value="">Select Task WorkFlow</option>
-                            <option ref={workflowTask} value="workflow-1">
+                            <option  value="workflow-1">
                               Workflow-1
                             </option>
-                            <option ref={workflowTask} value="workflow-2">
+                            <option  value="workflow-2">
                               Workflow-2
                             </option>
-                            <option ref={workflowTask} value="workflow-3">
+                            <option  value="workflow-3">
                               Workflow-3
                             </option>
-                            <option ref={workflowTask} value="workflow-4">
+                            <option  value="workflow-4">
                               Workflow-4
                             </option>
                           </select>
@@ -288,16 +288,16 @@ export default function AddNewProject()
                             onChange={defectWorkflowChange}
                           >
                             <option value="">Select defect WorkFlow</option>
-                            <option ref={workflowDefects} value="workflow-1">
+                            <option  value="workflow-1">
                               Workflow-1
                             </option>
-                            <option ref={workflowDefects} value="workflow-2">
+                            <option  value="workflow-2">
                               Workflow-2
                             </option>
-                            <option ref={workflowDefects} value="workflow-3">
+                            <option  value="workflow-3">
                               Workflow-3
                             </option>
-                            <option ref={workflowDefects} value="workflow-4">
+                            <option  value="workflow-4">
                               Workflow-4
                             </option>
                           </select>
