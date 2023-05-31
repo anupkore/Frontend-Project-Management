@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FormDialog from "./Dialog";
+
 import AddNewProject from "./AddNewProject";
 import { projects } from "./TEST/Projects";
 import { FaSortDown, FaSortUp } from "react-icons/fa";
@@ -56,6 +57,7 @@ export const AllProjectList = () => {
       }
     });
 
+
   const renderNameHeader = () => {
     const arrowIcon =
       sortOrder === "Ascending" ? <FaSortUp /> : <FaSortDown />;
@@ -93,6 +95,7 @@ export const AllProjectList = () => {
       </th>
     );
   };
+
 
   
   return (
@@ -167,6 +170,7 @@ export const AllProjectList = () => {
         </div>
       </section>
     </section>
+
   );
 };
 

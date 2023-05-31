@@ -23,10 +23,6 @@ export default function Navbar()
         <div className="flex lg:flex-1 text-lg font-semibold">
           <Link to={"/"}><img src='/Images/jira-low-resolution-logo-color-on-transparent-background.png' alt='PMT LOGO' height="30px" width="30px"></img></Link>
         </div>
-
-        <div className="mx-auto lg:flex-1 text-lg font-semibold lg:justify-center ">
-          Welcome {userName}
-        </div>
        
         <div className="text-lg font-semibold leading-6 text-gray-900   ">
           <div>

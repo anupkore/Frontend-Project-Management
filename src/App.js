@@ -2,20 +2,17 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginForm  from './Components/LoginForm.js';
 import Home from './Components/Home';
 import Navbar from './Components/Navbar';
 import ErrorPage from './Components/ErrorPage';
 import {AllProjectList}from './Components/AllProject';
 import { ProjectExplore } from './Components/ProjectExplore';
-import Dashboard from './Components/Dashboard';
 import Calender from './Components/Calender';
 import IssueDashboard from './Components/IssueDashboard';
 import IssueDes from './Components/IssueDes';
 import Profilepage from './Components/Profilepage';
 import AddNewProject from './Components/AddNewProject';
 import AddNewMember from './Components/AddNewMember';
-import {SignupForm} from './Components/SignupForm';
 import ParticularIssueDashboard from './Components/ParticularIssueDashboard';
 
 import { Teams } from './Components/Teams';
@@ -25,6 +22,7 @@ import ForgotPassword from './Components/ForgotPassword';
 import ChangePassword from './Components/ChangePassword';
 import UpdateIssueForm from './Components/UpdateIssueForm';
 import CreateIssueForm from './Components/CreateIssueForm';
+import AdminDashboard from './Components/Dashboard';
 
 
 
@@ -46,7 +44,7 @@ function App() {
               <Route path='/allprojects' element={<AllProjectList/>} />
               <Route path='/projectexplore/:id1' element={<ProjectExplore/>} />
               <Route path='/projectexplore/teams/:p_id' element={<Teams></Teams>} />
-              <Route path='/dashboard' element={<Dashboard/>} />
+              <Route path='/dashboard' element={<AdminDashboard/>} />
               <Route path='/cal' element={<Calender/>} />
               <Route path='/projectexplore/issues/:p_id' element={<IssueDashboard></IssueDashboard>} />
               <Route path='/issuedes/:issueId' element={<IssueDes/>} />

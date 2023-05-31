@@ -20,4 +20,16 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"create_project"
         return url;
     }
+
+    static allProjects()
+    {
+        const url = ParentConfiguration.parentURL()+"cardProjectdetails";
+        return url;
+    }
+
+    static projectExplore()
+    {
+        const url = ParentConfiguration.parentURL()+"completeProjectdetails";
+        return url;
+    }
 }

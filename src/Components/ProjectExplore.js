@@ -203,7 +203,7 @@ export const ProjectExplore = () => {
 
           </div>
           <div className="mt-5 mb-5 flex justify-center align-items-center">
-            <FormDialog prop={<UpdateProjectForm></UpdateProjectForm>} style={maxWidth} buttonTitle={"Update"}></FormDialog>
+            <FormDialog prop={<UpdateProjectForm></UpdateProjectForm>} style={maxWidth} buttonTitle={"Update"} icon={"/Images/arrow-repeat.svg"}></FormDialog>
             <button className="btn btn-danger ml-3" onClick={() => setShowModal(true)}>Delete</button>
           </div>
           <div>
