@@ -179,7 +179,7 @@ export default function IssueDes() {
 
           </div>
           <div className="my-4 flex justify-center align-items-center">
-            <FormDialog prop={<UpdateIssueForm></UpdateIssueForm>} style={maxWidth} buttonTitle={"Update"}></FormDialog>
+            <FormDialog prop={<UpdateIssueForm></UpdateIssueForm>} style={maxWidth} buttonTitle={"Update"} icon={"/Images/arrow-repeat.svg"}></FormDialog>
             <button className="btn btn-danger ml-3" >Delete</button>
           </div>
           <div>

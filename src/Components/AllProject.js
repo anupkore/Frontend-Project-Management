@@ -7,15 +7,9 @@ import FormDialog from "./Dialog";
 import AddNewProject from "./AddNewProject";
 import { projects, projects1 } from "./TEST/Projects";
 import AuthenticationService from "../Services/AuthenticationService";
+import Pagination from "./Pagination";
 
-
-
-
-
-
-
-export const AllProjectList = () => 
-{
+export const AllProjectList = () => {
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
 
@@ -31,18 +25,28 @@ export const AllProjectList = () =>
     setFilterStatus(event.target.value);
   };
 
-  const [projectList , setProjectList] = useState([]);
+  const [projectList, setProjectList] = useState([]);
 
-        useEffect(()=>{
-            
-            AuthenticationService.allProjects().then((response)=>{
-                  setProjectList((existingData)=>{
-                    return response.data;
-                  });
-            });
+  useEffect(() => {
+    AuthenticationService.allProjects().then((response) => {
+      setProjectList((existingData) => {
+        return response.data;
+      });
+    });
+  }, []);
 
-        },[]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [membersPerPage, setMembersPerPage] = useState(5);
 
+  //Get Current member
+  const indexOfLastMember = currentPage * membersPerPage;
+  const indexOfFirstMember = indexOfLastMember - membersPerPage;
+  const currentMembers = filteredProjects.slice(
+    indexOfFirstMember,
+    indexOfLastMember
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
@@ -59,9 +63,8 @@ export const AllProjectList = () =>
                 clipPath:
                   "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
               }}
-              >
-          </div>
-          <div
+            ></div>
+            <div
               className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[-180deg] bg-gradient-to-r from-indigo-600 via-purple-400 to-pink-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
               style={{
                 // backgroundImage: `url("/Images/cool-background.svg")` ,
@@ -80,12 +83,12 @@ export const AllProjectList = () =>
               <span className="bg-white px-2 py-2 rounded-md shadow-md text-navy-blue ">
                 My Projects
               </span>
-            </h1>
+            </h1> 
             <div className="ml-auto justify-right">
               <FormDialog
                 prop={<AddNewProject />}
                 style={maxWidth}
-                icon={"./Images/plus-lg.svg"}
+                icon={"./Images/plus-lg-white.svg"}
                 buttonTitle="Create Project"
                 variant={"outlined"}
               />
@@ -109,7 +112,7 @@ export const AllProjectList = () =>
             </select>
           </div>
           <div className="container-lg bg-blur-3xl bg-opacity-30 rounded-lg  p-4 ">
-            <div className="w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-slate-400 scrollbar" >
+            <div className="w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-slate-400 scrollbar">
               <div className="flex max-h-[28] min-w-[200rem] items-center py-2">
                 <table className="table-fixed bg-white rounded-3xl w-auto mx-auto shadow-md">
                   <thead>
@@ -128,7 +131,7 @@ export const AllProjectList = () =>
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredProjects.map((project, index) => (
+                    {currentMembers.map((project, index) => (
                       <tr key={project.id} className="my-4 divide-y space-y-5">
                         <td className="px-4 py-2">{index + 1}</td>
                         <td className="px-4 py-2">{project.description}</td>
@@ -154,10 +157,26 @@ export const AllProjectList = () =>
                 </table>
               </div>
             </div>
+            <div className="flex mt-3 mx-auto justify-center">
+              <div className="mr-20 my-auto">
+                <span>
+                  {currentPage} of{" "}
+                  {Math.ceil(filteredProjects.length / membersPerPage)}
+                </span>
+              </div>
+              <div>
+                <Pagination
+                  membersPerPage={membersPerPage}
+                  totalMembers={filteredProjects.length}
+                  paginate={paginate}
+                  currentPage={currentPage}
+                ></Pagination>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      </>
+    </>
   );
 };
 export default AllProjectList;
