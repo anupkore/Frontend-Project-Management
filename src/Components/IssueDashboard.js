@@ -52,32 +52,34 @@ export default function IssueDashboard(props) {
         </div>
         <div className="w-9/12 mx-auto ">
         {/* <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} buttonTitle={"Create Issue"}></FormDialog> */}
+          <div>
+            <h1 className="font-bold underline decoration-[6px] decoration-pink-500 text-xl">PROJECT NAME</h1>
+          </div>
           <div className="relative">
             <div className="flex items-center">
               <div className="">
-              <Button 
-                  onClick={scrollLeft}
-
-                  className="p-2 m-2 rounded-full bg-white"
+              <button 
+                  onClick={scrollLeft}  
+                  className="p-2 m-2 rounded-full bg-white shadow-lg"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="blue" className="bi bi-arrow-left" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
 </svg>
-                </Button>
+                </button>
               </div>
               <div className="mx-auto py-4 text-xl font-bold">
                 Issue Workflow
               </div>
               <div className="">
-                <Button 
+                <button 
                   onClick={scrollRight}
 
-                  className="p-2 m-2 rounded-full bg-white"
+                  className="p-2 m-2 rounded-full bg-white shadow-lg"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="blue" className="bi bi-arrow-right" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
 </svg>
-                </Button>
+                </button>
               </div>
             </div>
             <div>

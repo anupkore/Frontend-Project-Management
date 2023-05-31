@@ -135,7 +135,7 @@ export const  LoginForm = ({ toggleSignup }) =>
                  name="password"
                  type="password"
                  ref={password}
-                 
+
                 //  onChange={handleInputChangePassword}
                  autoComplete="current-password"
                  required

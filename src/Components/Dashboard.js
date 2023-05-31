@@ -3,20 +3,17 @@ import { Button } from "@mui/material";
 import FormDialog from "./Dialog";
 import { Link } from "react-router-dom";
 import SideBar from "./SideBar";
+import { Teams } from "./Teams";
 
-export default function Dashboard() {
+export default function AdminDashboard() {
 
 
   return (
     <>
-      <div className="flex">
-        <div><SideBar></SideBar></div>
+      <div className="">
         
-        <div className="h-screen flex-1 p-7">
-            <h1>HOME PAGE</h1>
-            <Link to={"/issues"}>
-            <Button variant="contained" >Issues</Button></Link>
-            <FormDialog></FormDialog>
+        <div className="h-screen">
+            <Teams></Teams>
         </div>
         
       </div>
