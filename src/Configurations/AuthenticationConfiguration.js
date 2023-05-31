@@ -14,4 +14,10 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"add_user";
         return url;
     }
+
+    static createProject()
+    {
+        const url = ParentConfiguration.parentURL()+"create_project"
+        return url;
+    }
 }
