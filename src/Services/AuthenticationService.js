@@ -23,4 +23,9 @@ export default class AuthenticationService
     {
         return AxiosService.allProjects(AuthenticationConfiguration.allProjects());
     }
+
+    static projectExplore()
+    {
+        return AxiosService.projectExplore(AuthenticationConfiguration.projectExplore());
+    }
 }

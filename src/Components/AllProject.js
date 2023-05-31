@@ -37,7 +37,7 @@ export const AllProjectList = () =>
             
             AuthenticationService.allProjects().then((response)=>{
                   setProjectList((existingData)=>{
-                    return response.data;
+                    console.log(response.data);
                   });
             });
 

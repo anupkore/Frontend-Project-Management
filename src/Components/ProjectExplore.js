@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SideBar from "./SideBar";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
@@ -8,28 +8,27 @@ import UpdateProjectForm from "./UpdateProjectForm";
 import FormDialog from "./Dialog";
 import Comments from "./Comments";
 import { projects1 } from "./TEST/Projects";
+import AuthenticationService from "../Services/AuthenticationService";
 
 
-
-
-
-
-
-
-
-
-export const ProjectExplore = () => {
+export const ProjectExplore = () => 
+{
   const maxWidth = 'md';
   const { id1 } = useParams();
   const ProjectData = projects1.find((proj) => proj.id === Number(id1));
   const [showModal, setShowModal] = useState(false);
 
-  // const handleDelete = () => {
-  //   // Perform delete operation or call the onDelete prop
-  //   // to handle the deletion in parent component
-  //   // onDelete();
-  //   setShowModal(false);
-  // };
+  const [projectDetails , setProjectDetails] = useState([]);
+
+        useEffect(()=>{
+            
+            AuthenticationService.projectExplore().then((response)=>{
+                  setProjectDetails((existingData)=>{
+                    return response.data;
+                  });
+            });
+
+        },[]);
 
   return (
 
