@@ -26,4 +26,9 @@ export default class AxiosService
     {
         return axios.get(url);
     }
+
+    static createIssue(url , data)
+    {
+        return axios.post(url , data);
+    }
 }

@@ -32,4 +32,9 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"completeProjectdetails";
         return url;
     }
+
+    static createIssue()
+    {
+        const url = ParentConfiguration.parentURL()+"create_issue";
+    }
 }
