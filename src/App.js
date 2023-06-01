@@ -25,6 +25,8 @@ import CreateIssueForm from './Components/CreateIssueForm';
 import AdminDashboard from './Components/Dashboard';
 import NumberOfIssuesBar from './Components/NumberOfIssuesBar';
 import IssueTypeBar from './Components/IssueTypeBar';
+import ReportsDashboard from './Components/ReportsDashboard';
+
 
 
 
@@ -65,6 +67,7 @@ function App() {
 
               <Route path='/bar' element={<NumberOfIssuesBar/>} />
               <Route path='/bar2' element={<IssueTypeBar/>} />
+              <Route path='/reports' element={<ReportsDashboard/>} />
               
 
             </Routes>

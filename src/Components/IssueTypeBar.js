@@ -1,56 +1,69 @@
 
-import { ResponsiveContainer , BarChart , Bar , XAxis , YAxis, Legend} from 'recharts';
+
+import { ResponsiveContainer , BarChart , Bar , XAxis , YAxis, Legend ,Text, CartesianGrid} from 'recharts';
 
 function IssueTypeBar()
 {
     const data = [
         {
             Issue: "Issue-1",
-            ToDo: 5,
-            InProgress: 7,
-            InReview: 3
+            Tasks: 5,
+            Defects: 7,
+            
         },
         {
             Issue: "Issue-2",
-            ToDo: 5,
-            InProgress: 7,
-            InReview: 3
+            Tasks: 5,
+            Defects: 7,
+           
         },
         {
             Issue: "Issue-3",
-            ToDo: 5,
-            InProgress: 7,
-            InReview: 3
+            Tasks: 5,
+            Defects: 7,
+            
         },
         {
             Issue: "Issue-4",
-            ToDo: 5,
-            InProgress: 7,
-            InReview: 3
+            Tasks: 5,
+            Defects: 7,
+            
         }
     ]
 
     const color = ["indigo" , "Orange" , "green" , "Red" ,"Blue"]
 
+    
+
     return(
         <>
-            <div className='w-full max-w-3xl min-h-[20rem] mx-auto shadow'>
-                <div className='flex align-items-center justify-content-center'>
-                    <ResponsiveContainer width="70%" aspect={2} >
+            
+            <div>
+                        
+            <div className='w-full max-w-3xl min-h-[25rem] mx-auto shadow mt-5'>
+                <h2 className='text-center text-dark mb-3'>Issue Types VS  Count</h2>
 
+                
+        
+                <div className='flex align-items-center justify-content-center mt-5'>
+                    
+                    <ResponsiveContainer width="70%" aspect={2}  >
+        
                         <BarChart data={data}>
+                            <CartesianGrid>
+                            </CartesianGrid>
                             <XAxis dataKey="Issue" />
                             <YAxis />
                             <Legend />
-                            <Bar dataKey="ToDo" fill={color[0]} />
-                            <Bar dataKey="InProgress" fill={color[1]} />
-                            <Bar dataKey="InReview" fill={color[2]} />
+                            <Bar dataKey="Tasks" fill={color[2]} />
+                            <Bar dataKey="Defects" fill={color[1]} />
+                            
                         </BarChart>
 
                     </ResponsiveContainer>
                 </div>
             </div>
-
+            </div>
         </>
     );
 }
