@@ -28,4 +28,9 @@ export default class AuthenticationService
     {
         return AxiosService.projectExplore(AuthenticationConfiguration.projectExplore());
     }
+
+    static createIssue(data)
+    {
+        return AxiosService.createIssue(AuthenticationConfiguration.createIssue() , data);
+    }
 }
