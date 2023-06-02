@@ -32,7 +32,11 @@ export const AllProjectList = () => {
       setProjectList((existingData) => {
         return response.data;
       });
-    });
+    }) 
+    .catch((error)=>{
+        console.log(error.data);
+    })
+    
   }, []);
 
 

@@ -7,7 +7,7 @@ export default function AddNewMember()
     const name = useRef('');
     const email = useRef('');
     const contact = useRef('');
-    const role = useRef('');
+    
 
     function handleSignUp(event)
     {
@@ -17,10 +17,8 @@ export default function AddNewMember()
           name: name.current.value,
           email_id: email.current.value,
           contact: contact.current.value,
-          
-
       }
-
+      console.log(payload);
       AuthenticationService.SignUp(payload).then(()=>{
         console.log("Hi");
       })

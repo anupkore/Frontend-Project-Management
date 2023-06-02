@@ -41,8 +41,6 @@ export const  LoginForm = ({ toggleSignup }) =>
         else if(message === "Invalid Email")
         {
           setErrorMessageEmail('Invalid Email');
-
-          
           return;
         }
         else if(message === "Invalid Password")
