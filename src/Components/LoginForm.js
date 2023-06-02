@@ -19,42 +19,11 @@ export const  LoginForm = ({ toggleSignup }) =>
     const [errorMessageEmail , setErrorMessageEmail] = useState('');
     const [errorMessagePassword , setErrorMessagePassword] = useState('');
     const message = useState("");
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-
-
-    // function handleInputChange(event) 
-    // {
-    //  setEmail(event.target.value);
-    //  setErrorMessageEmail('');
-    // }
-
-    // function handleInputChangePassword(event) 
-    // {
-    //  setPassword(event.target.value);
-    //  setErrorMessagePassword('');
-    // }
+    
     
     function handleSignIn(event)
     {
-    //  event.preventDefault();
-    //  const email = document.getElementById('email').value;
-    //  const password = document.getElementById('password').value;
-    //  if(email !== 'anup')
-    //  {
-    //    setErrorMessageEmail('Invalid Email');
-    //    return;
-    //  }
-    //  else if(password !== 'anup')
-    //  {
-    //    setErrorMessagePassword('Invalid Password');
-    //    return;
-    //  }
-    //  else 
-    //  {
-    //    localStorage.setItem("USERNAME",document.getElementById('email').value);
-    //    window.location.href= "/allprojects" ;
-    //  }
+    
       event.preventDefault();
       var payload = 
       {
@@ -82,6 +51,10 @@ export const  LoginForm = ({ toggleSignup }) =>
           return;
         }
 
+      })
+      .catch((error)=>{
+        if(error.response)
+        console.log(error.response.data);
       })
 
     }
