@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import AuthenticationService from "../Services/AuthenticationService";
 
 export default function AddNewMember() 
@@ -7,20 +7,71 @@ export default function AddNewMember()
     const name = useRef('');
     const email = useRef('');
     const contact = useRef('');
-    const role = useRef('');
+    const[errorName , setErrorName] = useState('');
+    const[errorEmail , setErrorEmail] = useState('');
+    const [errorContact , setErrorContact] = useState('');
+
+    function validateName(name) 
+    {
+      const nameRegex = /^[a-zA-Z\s'-]{2,50}$/;
+      return nameRegex.test(name);
+    }
+
+    function validateEmail(email) 
+    {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function validateContact(contact) 
+    {
+      const contactRegex = /^\d{10}$/;
+      return contactRegex.test(contact);
+    }
+
+    function handleInputChangeName()
+    {
+      setErrorName('');
+    }
+    function handleInputChangeEmail()
+    {
+      setErrorEmail('');
+    }
+    function handleInputChangeContact()
+    {
+      setErrorContact('');
+    }
+
+    
 
     function handleSignUp(event)
     {
+      
       event.preventDefault();
+
+      if (!validateName(name.current.value)) 
+      {
+        setErrorName('Please Enter Valid Name');
+        return;
+      }
+      if (!validateEmail(email.current.value)) 
+      {
+        setErrorEmail('Please Enter Valid Email');
+        return;
+      }
+      if (!validateContact(contact.current.value)) 
+      {
+        setErrorContact('Please Enter Valid Contact');
+        return;
+      }
+      
       var payload = 
       {
           name: name.current.value,
           email_id: email.current.value,
           contact: contact.current.value,
-          
-
       }
-
+      console.log(payload);
       AuthenticationService.SignUp(payload).then(()=>{
         console.log("Hi");
       })
@@ -56,14 +107,16 @@ export default function AddNewMember()
                 </label>
                 <div className="mt-2">
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
+                    id="name"
+                    name="name"
+                    type="text"
                     ref={name}
-                    autoComplete="email"
+                    onChange={handleInputChangeName}
+                    autoComplete="name"
                     required
                     className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  <span className="text-danger">{errorName}</span>
                 </div>
               </div>
 
@@ -77,10 +130,12 @@ export default function AddNewMember()
                     name="email"
                     type="email"
                     ref={email}
+                    onChange={handleInputChangeEmail}
                     autoComplete="email"
                     required
                     className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  <span className="text-danger">{errorEmail}</span>
                 </div>
               </div>
 
@@ -97,10 +152,12 @@ export default function AddNewMember()
                     name="contact"
                     type="text"
                     ref={contact}
+                    onChange={handleInputChangeContact}
                     autoComplete="current-password"
                     required
                     className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  <span className="text-danger">{errorContact}</span>
                 </div>
               </div>
 

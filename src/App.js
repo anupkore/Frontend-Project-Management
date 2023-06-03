@@ -26,6 +26,7 @@ import AdminDashboard from './Components/Dashboard';
 import NumberOfIssuesBar from './Components/NumberOfIssuesBar';
 import IssueTypeBar from './Components/IssueTypeBar';
 import ReportsDashboard from './Components/ReportsDashboard';
+import URLTesting from './Components/URLTesting';
 
 
 
@@ -68,6 +69,8 @@ function App() {
               <Route path='/bar' element={<NumberOfIssuesBar/>} />
               <Route path='/bar2' element={<IssueTypeBar/>} />
               <Route path='/reports' element={<ReportsDashboard/>} />
+
+              <Route path='urlTest' element={<URLTesting/>} />
               
 
             </Routes>

@@ -55,6 +55,7 @@ export default function CreateIssueForm()
         setStatus(event.target.value);
      }
 
+     
      function handleCreateIssue(event)
      {
       event.preventDefault();
