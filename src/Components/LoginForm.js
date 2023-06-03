@@ -15,10 +15,9 @@ export const  LoginForm = ({ toggleSignup }) =>
 
     const email = useRef("");
     const password = useRef("");
-    const [errorMessageFull , setErrorMessageFull] = useState('');
     const [errorMessageEmail , setErrorMessageEmail] = useState('');
     const [errorMessagePassword , setErrorMessagePassword] = useState('');
-    const message = useState("");
+    
     
     
     function handleSignIn(event)
@@ -30,7 +29,7 @@ export const  LoginForm = ({ toggleSignup }) =>
           email_id: email.current.value,
           password: password.current.value
       }
-
+      console.log(payload);
       AuthenticationService.SignIn(payload).then((response)=>{
         const message = response.data.Return;
         console.log(message);
