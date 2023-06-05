@@ -2,7 +2,7 @@ export default class ParentConfiguration
 {
     static parentURL=()=>
     {
-        const url = "http://flask-app-rohan91196-dev.apps.sandbox-m3.1530.p1.openshiftapps.com/";
+        const url = "http://localhost:5000/";
         //console.log(url)
         return url;
     }
