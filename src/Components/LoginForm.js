@@ -18,7 +18,15 @@ export const  LoginForm = ({ toggleSignup }) =>
     const [errorMessageEmail , setErrorMessageEmail] = useState('');
     const [errorMessagePassword , setErrorMessagePassword] = useState('');
     
-    
+    function handleInputChangeEmail()
+    {
+      setErrorMessageEmail('');
+    }
+
+    function handleInputChangePassword()
+    {
+      setErrorMessagePassword('');
+    }
     
     function handleSignIn(event)
     {
@@ -33,25 +41,19 @@ export const  LoginForm = ({ toggleSignup }) =>
       AuthenticationService.SignIn(payload).then((response)=>{
         const message = response.data.Return;
         console.log(message);
-        if(message === "login sucessfull")
-        {
-            window.location.href = '/allprojects';
-        }
-        else if(message === "Invalid Email")
-        {
-          setErrorMessageEmail('Invalid Email');
-          return;
-        }
-        else if(message === "Invalid Password")
-        {
-          setErrorMessagePassword('Invalid Password');
-          return;
-        }
-
+        window.location.href = '/allprojects';
       })
       .catch((error)=>{
-        if(error.response)
         console.log(error.response.data);
+        console.log(error.response.data.error);
+        if(error.response.data.error === "Email is invalid")
+        {
+          setErrorMessageEmail("Invalid Email");
+        }
+        else if(error.response.data.error === "Password is invalid")
+        {
+          setErrorMessagePassword("Invalid Password");
+        }
       })
 
     }
@@ -78,7 +80,7 @@ export const  LoginForm = ({ toggleSignup }) =>
                  name="email"
                  type="email"
                  ref={email}
-                 
+                 onChange={handleInputChangeEmail}
                 //  onChange={handleInputChange}
                  autoComplete="email"
                  required
@@ -106,7 +108,7 @@ export const  LoginForm = ({ toggleSignup }) =>
                  type="password"
                  ref={password}
 
-                //  onChange={handleInputChangePassword}
+                onChange={handleInputChangePassword}
                  autoComplete="current-password"
                  required
                  className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
