@@ -3,143 +3,114 @@ import IssueTypeBar from "./IssueTypeBar";
 import NumberOfIssuesBar from "./NumberOfIssuesBar";
 import SideBar from "./SideBar";
 
+function ReportsDashboard(props) {
+  const [selectedOption, setSelectedOption] = useState("daily");
 
-function ReportsDashboard(props)
-{
-    
-    const daily = [
-        {
-            project: "Project-1",
-            Issues: 5
-        },
-        {
-            project: "Project-2",
-            Issues: 7
-        },
-        {
-            project: "Project-3",
-            Issues: 3
-        },
-        {
-            project: "Project-4",
-            Issues: 9
-        }
-    ]
+  const handleOptionChange = (option) => {
+   
 
-    const weekly = [
-        {
-            project: "Project-1",
-            Issues: 3
-        },
-        {
-            project: "Project-2",
-            Issues: 5
-        },
-        {
-            project: "Project-3",
-            Issues: 9
-        },
-        {
-            project: "Project-4",
-            Issues: 2
-        }
-    ]
+    setSelectedOption(option);
 
-    const monthly = [
-        {
-            project: "Project-1",
-            Issues: 2
-        },
-        {
-            project: "Project-2",
-            Issues: 3
-        },
-        {
-            project: "Project-3",
-            Issues: 5
-        },
-        {
-            project: "Project-4",
-            Issues: 1
-        }
-    ]
+   
+  };
 
-    const quarterly = [
-        {
-            project: "Project-1",
-            Issues: 1
-        },
-        {
-            project: "Project-2",
-            Issues: 1
-        },
-        {
-            project: "Project-3",
-            Issues: 1
-        },
-        {
-            project: "Project-4",
-            Issues: 1
-        }
-    ]
-    
-    const [selectedOption, setSelectedOption] = useState('daily');
-    const handleOptionChange = (option) => {
-        setSelectedOption(option);
-        console.log(option);
-        if(option==='Daily')
-        {
-            localStorage.setItem("data",daily);
-        }
-        
-      };
-    
-    return(
-        <>
-        
-            <div className="flex">
-                <div className="max-w-2/12">
-                    <SideBar></SideBar>
-                </div>
-                
-                <div className="ml-2 w-full">
+ 
 
-                    <div className='flex justify-content-center'>
-                        <div className='ml-3 mr-3 shadow'>
-                            <button onClick={() => handleOptionChange('daily')} className={selectedOption === 'daily' ? 'active' : '' }>
-                                Daily
-                            </button>
-                        </div>
-                        <div className='ml-3 mr-3 shadow'>
-                            <button onClick={() => handleOptionChange('daily')} className={selectedOption === 'daily' ? 'active' : '' }>
-                                Weekly
-                            </button>
-                        </div>
-                        <div className='ml-3 mr-3 shadow'>
-                            <button onClick={() => handleOptionChange('daily')} className={selectedOption === 'daily' ? 'active' : '' }>
-                                Monthly
-                            </button>
-                        </div>
-                        <div className='ml-3 mr-3 shadow'>
-                            <button onClick={() => handleOptionChange('daily')} className={selectedOption === 'daily' ? 'active' : '' }>
-                                Quarterly
-                            </button>
-                        </div>
-                    </div>
+  const data = [
+    {
+      project: "Project-1",
+      daily: 5,
+      weekly: 20,
+      monthly: 50,
+      quarterly: 100,
+    },
+    {
+      project: "Project-2",
+      daily: 7,
+      weekly: 15,
+      monthly: 40,
+      quarterly: 20,
+    },
+    {
+      project: "Project-3",
+      daily: 3,
+      weekly: 10,
+      monthly: 30,
+      quarterly: 60,
+    },
+    {
+      project: "Project-4",
+      daily: 9,
+      weekly: 25,
+      monthly: 60,
+      quarterly: 120,
+    },
+  ];
 
+  const filteredData = data.map((item) => {
+    const filteredItem = { project: item.project, Issues: item[selectedOption] };
+    return filteredItem;
+  });
 
-                    <div className="mt-3">
-                    <IssueTypeBar></IssueTypeBar>
-                    </div>
-
-                    <div className="mb-3">
-                    <NumberOfIssuesBar></NumberOfIssuesBar>
-                    </div>
-
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="flex">
+        <div className="max-w-2/12">
+          <SideBar />
+        </div>
+        <div className="ml-2 w-full">
+          <div className="flex justify-center space-x-4">
+            <button
+              onClick={() => handleOptionChange("daily")}
+              className={`${
+                selectedOption === "daily"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-800"
+              } rounded-lg py-2 px-4`}
+            >
+              Daily
+            </button>
+            <button
+              onClick={() => handleOptionChange("weekly")}
+              className={`${
+                selectedOption === "weekly"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-800"
+              } rounded-lg py-2 px-4`}
+            >
+              Weekly
+            </button>
+            <button
+              onClick={() => handleOptionChange("monthly")}
+              className={`${
+                selectedOption === "monthly"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-800"
+              } rounded-lg py-2 px-4`}
+            >
+              monthly
+            </button>
+            <button
+              onClick={() => handleOptionChange("quarterly")}
+              className={`${
+                selectedOption === "quarterly"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-800"
+              } rounded-lg py-2 px-4`}
+            >
+              Quarterly
+            </button>
+          </div>
+          <div className="mt-3">
+            <IssueTypeBar selectedOption={selectedOption}/>
+          </div>
+          <div className="mb-3">
+            <NumberOfIssuesBar data={filteredData} />
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default ReportsDashboard;
