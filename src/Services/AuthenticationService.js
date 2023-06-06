@@ -83,4 +83,9 @@ export default class AuthenticationService
     {
         return AxiosService.teamDetails(AuthenticationConfiguration.teamDetails());
     }
+
+    static getDataForIssues()
+    {
+        return AxiosService.getDataForIssues(AuthenticationConfiguration.getDataForIssues());
+    }
 }
