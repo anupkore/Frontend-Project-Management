@@ -9,6 +9,8 @@ import { projects, projects1 } from "./TEST/Projects";
 import AuthenticationService from "../Services/AuthenticationService";
 import Pagination from "./Pagination";
 
+import { FaSortDown, FaSortUp } from "react-icons/fa";
+
 export const AllProjectList = () => {
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
@@ -25,6 +27,27 @@ export const AllProjectList = () => {
     setFilterStatus(event.target.value);
   };
 
+  //   const handleFilterChange = (event) => {
+  //   setFilterStatus(event.target.value);
+  // };
+
+  const handleSortToggle = () => {
+    const newSortOrder = sortOrder === "Ascending" ? "Descending" : "Ascending";
+    setSortOrder(newSortOrder);
+  };
+
+  const handleSortStartDateToggle = () => {
+    const newSortOrderByStartDate =
+      sortOrderByStartDate === "Ascending" ? "Descending" : "Ascending";
+    setSortOrderByStartDate(newSortOrderByStartDate);
+  };
+  const handleSortEndDateToggle = () => {
+    const newSortOrderByStartDate =
+      sortOrderByEndDate === "Ascending" ? "Descending" : "Ascending";
+    setSortOrderByEndDate(newSortOrderByStartDate);
+  };
+
+
   const [projectList, setProjectList] = useState([]);
 
   useEffect(() => {
@@ -32,7 +55,11 @@ export const AllProjectList = () => {
       setProjectList((existingData) => {
         return response.data;
       });
-    });
+    }) 
+    .catch((error)=>{
+        console.log(error.data);
+    })
+    
   }, []);
 
 
@@ -49,6 +76,62 @@ export const AllProjectList = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+
+  
+  const [sortOrder, setSortOrder] = useState("Ascending");
+  const [sortOrderByStartDate, setSortOrderByStartDate] = useState("Ascending");
+  const [sortOrderByEndDate, setSortOrderByEndDate] = useState("Ascending");
+
+  const sortedAndFilteredProjects = [...projects]
+    .sort((a, b) => {
+      if (sortOrder === "Ascending") {
+        return a.title.localeCompare(b.title);
+      } else {
+        return b.title.localeCompare(a.title);
+      }
+    })
+    .sort((a, b) => {
+      const dateA = new Date(a.startDate);
+      const dateB = new Date(b.startDate);
+      if (sortOrderByStartDate === "Ascending") {
+        return dateA - dateB;
+      } else {
+        return dateB - dateA;
+      }
+    })
+    .filter((project) => {
+      if (filterStatus === "All") {
+        return true;
+      } else {
+        return project.status === filterStatus;
+      }
+    });
+
+  const renderNameHeader = () => {
+    const arrowIcon =
+      sortOrder === "Ascending" ? <FaSortUp /> : <FaSortDown />;
+    return (
+      <th className="px-4 py-2">
+        Name{" "}
+        <button className="sort-button" onClick={handleSortToggle}>
+          {arrowIcon}
+        </button>
+      </th>
+    );
+  };
+
+  const renderStartDateHeader = () => {
+    const arrowIcon =
+      sortOrderByStartDate === "Ascending" ? <FaSortUp /> : <FaSortDown />;
+    return (
+      <th className="px-4 py-2">
+        Start Date{" "}
+        <button className="sort-button" onClick={handleSortStartDateToggle}>
+          {arrowIcon}
+        </button>
+      </th>
+    );
+  };
   return (
     <>
       <div>
@@ -118,10 +201,10 @@ export const AllProjectList = () => {
                 <table className="table-fixed bg-white rounded-3xl w-auto mx-auto shadow-md">
                   <thead>
                     <tr>
-                      <th className="px-4 py-2">Sr.No</th>
-                      <th className="px-4 py-2">Name</th>
-                      <th className="px-4 py-2">Status</th>
-                      <th className="px-4 py-2">Start Date</th>
+                    <th className="px-4 py-2">Sr.No</th>
+                    {renderNameHeader()}
+                 <th className="px-4 py-2">Status</th>
+                       {renderStartDateHeader()}
                       <th className="px-4 py-2">End Date</th>
                       <th className="px-4 py-2">Client Name</th>
                       <th className="px-4 py-2">Lead Name</th>
@@ -132,7 +215,7 @@ export const AllProjectList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {currentMembers.map((project, index) => (
+                    {sortedAndFilteredProjects.map((project, index) => (
                       <tr key={project.id} className="my-4 divide-y space-y-5">
                         <td className="px-4 py-2">{index + 1}</td>
                         <td className="px-4 py-2">{project.description}</td>

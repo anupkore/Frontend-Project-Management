@@ -23,7 +23,15 @@ import ChangePassword from './Components/ChangePassword';
 import UpdateIssueForm from './Components/UpdateIssueForm';
 import CreateIssueForm from './Components/CreateIssueForm';
 import AdminDashboard from './Components/Dashboard';
+
 import CreateWorkflow from './Components/CreateWorkflow';
+
+import NumberOfIssuesBar from './Components/NumberOfIssuesBar';
+import IssueTypeBar from './Components/IssueTypeBar';
+import ReportsDashboard from './Components/ReportsDashboard';
+import URLTesting from './Components/URLTesting';
+
+
 
 
 
@@ -61,6 +69,12 @@ function App() {
               <Route path='/changePassword' element={<ChangePassword/>} />
               <Route path='/updateissueform' element={<UpdateIssueForm/>} />
               <Route path='/createissueform' element={<CreateIssueForm/>} />
+
+              <Route path='/bar' element={<NumberOfIssuesBar/>} />
+              <Route path='/bar2' element={<IssueTypeBar/>} />
+              <Route path='/reports' element={<ReportsDashboard/>} />
+
+              <Route path='urlTest' element={<URLTesting/>} />
               
 
             </Routes>
