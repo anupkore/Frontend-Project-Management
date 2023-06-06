@@ -15,73 +15,45 @@ export const  LoginForm = ({ toggleSignup }) =>
 
     const email = useRef("");
     const password = useRef("");
-    const [errorMessageFull , setErrorMessageFull] = useState('');
     const [errorMessageEmail , setErrorMessageEmail] = useState('');
     const [errorMessagePassword , setErrorMessagePassword] = useState('');
-    const message = useState("");
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
+    
+    function handleInputChangeEmail()
+    {
+      setErrorMessageEmail('');
+    }
 
-
-    // function handleInputChange(event) 
-    // {
-    //  setEmail(event.target.value);
-    //  setErrorMessageEmail('');
-    // }
-
-    // function handleInputChangePassword(event) 
-    // {
-    //  setPassword(event.target.value);
-    //  setErrorMessagePassword('');
-    // }
+    function handleInputChangePassword()
+    {
+      setErrorMessagePassword('');
+    }
     
     function handleSignIn(event)
     {
-    //  event.preventDefault();
-    //  const email = document.getElementById('email').value;
-    //  const password = document.getElementById('password').value;
-    //  if(email !== 'anup')
-    //  {
-    //    setErrorMessageEmail('Invalid Email');
-    //    return;
-    //  }
-    //  else if(password !== 'anup')
-    //  {
-    //    setErrorMessagePassword('Invalid Password');
-    //    return;
-    //  }
-    //  else 
-    //  {
-    //    localStorage.setItem("USERNAME",document.getElementById('email').value);
-    //    window.location.href= "/allprojects" ;
-    //  }
+    
       event.preventDefault();
       var payload = 
       {
           email_id: email.current.value,
           password: password.current.value
       }
-
+      console.log(payload);
       AuthenticationService.SignIn(payload).then((response)=>{
         const message = response.data.Return;
         console.log(message);
-        if(message === "login sucessfull")
+        window.location.href = '/allprojects';
+      })
+      .catch((error)=>{
+        console.log(error.response.data);
+        console.log(error.response.data.error);
+        if(error.response.data.error === "Email is invalid")
         {
-            window.location.href = '/allprojects';
+          setErrorMessageEmail("Invalid Email");
         }
-        else if(message === "Invalid Email")
+        else if(error.response.data.error === "Password is invalid")
         {
-          setErrorMessageEmail('Invalid Email');
-
-          
-          return;
+          setErrorMessagePassword("Invalid Password");
         }
-        else if(message === "Invalid Password")
-        {
-          setErrorMessagePassword('Invalid Password');
-          return;
-        }
-
       })
 
     }
@@ -108,7 +80,7 @@ export const  LoginForm = ({ toggleSignup }) =>
                  name="email"
                  type="email"
                  ref={email}
-                 
+                 onChange={handleInputChangeEmail}
                 //  onChange={handleInputChange}
                  autoComplete="email"
                  required
@@ -136,7 +108,7 @@ export const  LoginForm = ({ toggleSignup }) =>
                  type="password"
                  ref={password}
 
-                //  onChange={handleInputChangePassword}
+                onChange={handleInputChangePassword}
                  autoComplete="current-password"
                  required
                  className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

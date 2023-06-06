@@ -1,7 +1,7 @@
                                                                                   Project-Management-Application
                                                                                   
 OpenThis URL:
-https://frontend-project-management-yjb-yjb28-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/
+https://frontend-project-management1-yjb28-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
 
 Follow This steps:
 # Getting Started with Create React App

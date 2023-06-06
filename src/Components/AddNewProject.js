@@ -8,11 +8,6 @@ import AuthenticationService from "../Services/AuthenticationService";
 
 export default function AddNewProject() 
 {
-
-
-  const [taskWorkflow, setTaskWorkflow] = useState("");
-  const [defectWorkflow, setDefectWorkflow] = useState("");
-
   const [projectName, setProjectName] = useState("");
   const [description, setDescription] = useState("");
   const [clientName, setClientName] = useState("");
@@ -24,58 +19,153 @@ export default function AddNewProject()
   const [workflowTask, setWorkFlowTask] = useState("");
   const [workflowDefects, setWorkFlowDefects] = useState("");
 
-  const taskWorkflowChange = (event) => {
-    setTaskWorkflow(event.target.value);
-  };
-  const defectWorkflowChange = (event) => {
-    setDefectWorkflow(event.target.value);
-  };
+  const[errorClientName , setErrorClientName] = useState("");
+  const[errorLeadName , setErrorLeadName] = useState('');
+  const[errorPlannedStartDate , setErrorPlannedStartDate] = useState('');
+  const[errorPlannedEndDate , setErrorPlannedEndDate] = useState('');
+  const[errorMessageProjectName , setErrorMessageProjectName] = useState('');
+  const[errorMessageDescription , setErrorMessageDescription] = useState('');
+  const[errorMessageRisks , setErrorMessagRisks] = useState('');
+  const[errorMessageMitigations , setErrorMessageMitigations] = useState('');
+
+    const taskWorkflowChange = (event) => 
+    {
+      setWorkFlowTask(event.target.value);
+    };
+    const defectWorkflowChange = (event) => 
+    {
+      setWorkFlowDefects(event.target.value);
+    };
 
   function handleInputChangeProjectName(event) 
      {
         setProjectName(event.target.value);
+        setErrorMessageProjectName('');
 
      }
 
      function handleInputChangeDescription(event) 
      {
         setDescription(event.target.value);
+        setErrorMessageDescription('');
      }
 
      function handleInputChangeClientName(event) 
      {
         setClientName(event.target.value);
+        setErrorClientName('');
      }
 
      function handleInputChangeLeadName(event) 
      {
         setLeadName(event.target.value);
+        setErrorLeadName('');
      }
 
      function handleInputChangePlannedStartDate(event) 
      {
         setPlannedStartDate(event.target.value);
+        setErrorPlannedStartDate('');
      }
 
      function handleInputChangePlannedEndDate(event) 
      {
         setPlannedEndDate(event.target.value);
+        setErrorPlannedEndDate('');
      }
 
      function handleInputChangeRisks(event) 
      {
         setRisks(event.target.value);
+        setErrorMessagRisks('');
      }
 
      function handleInputChangeMitigations(event) 
      {
         setMitigations(event.target.value);
+        setErrorMessageMitigations('');
      }
+
+     function validateClientName(name) 
+     {
+      const nameRegex = /^[a-zA-Z\s'-]{2,50}$/;
+      return nameRegex.test(name);
+     }
+
+     // Function to validate the planned start date
+      function validatePlannedStartDate(startDate) 
+      {
+        const today = new Date();
+        const selectedDate = new Date(startDate);
+
+        // Check if the selected date is before today's date
+        return selectedDate >= today;
+      }
+
+      // Function to validate the planned end date
+      function validatePlannedEndDate(startDate, endDate) 
+      {
+        const startDateObj = new Date(startDate);
+        const endDateObj = new Date(endDate);
+
+        // Check if the end date is before the start date
+        return endDateObj >= startDateObj;
+      }
+
+
 
 
   function handleAddProject(event)
   {
     event.preventDefault();
+
+    if (projectName.trim() === '') 
+    {
+      setErrorMessageProjectName("This field is required");
+      return;
+    }
+
+    if (description.trim() === '') 
+    {
+      setErrorMessageDescription("This field is required");
+      return;
+    }
+    
+    if (!validateClientName(clientName)) 
+    {
+      setErrorClientName('Please Enter Valid Client Name');
+      return;
+    }
+    if (!validateClientName(leadName)) 
+    {
+      setErrorLeadName('Please Enter Valid Lead Name');
+      return;
+    }
+    if (!validatePlannedStartDate(plannedStartDate)) 
+    {
+      setErrorPlannedStartDate('Please Enter valid Start Date');
+      return;
+    }
+  
+    if (!validatePlannedEndDate(plannedStartDate, plannedEndDate)) 
+    {
+      setErrorPlannedEndDate('Please Enter valid End Date');
+      return;
+    }
+
+    if (risks.trim() === '') 
+    {
+      setErrorMessagRisks("This field is required");
+      return;
+    }
+
+    if (mitigations.trim() === '') 
+    {
+      setErrorMessageMitigations("This field is required");
+      return;
+    }
+  
+
     var payload = 
     {
         project_name: projectName,
@@ -135,9 +225,11 @@ export default function AddNewProject()
                             id="first-name"
                             value={projectName}
                             onChange={handleInputChangeProjectName}
+                            required
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
+                          <span className="text-danger">{errorMessageProjectName}</span>
                         </div>
                       </div>
 
@@ -158,6 +250,7 @@ export default function AddNewProject()
                             autoComplete="family-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
+                          <span className="text-danger">{errorMessageDescription}</span>
                         </div>
                       </div>
                     </div>
@@ -180,6 +273,7 @@ export default function AddNewProject()
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
+                          <span className="text-danger">{errorClientName}</span>
                         </div>
                       </div>
                       <div>
@@ -199,6 +293,7 @@ export default function AddNewProject()
                             autoComplete="family-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
+                          <span className="text-danger">{errorLeadName}</span>
                         </div>
                       </div>
 
@@ -220,6 +315,7 @@ export default function AddNewProject()
                               autoComplete="organization"
                               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                             />
+                            <span className="text-danger">{errorPlannedStartDate}</span>
                           </div>
                         </div>
                       </div>
@@ -241,6 +337,7 @@ export default function AddNewProject()
                               autoComplete="organization"
                               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                             />
+                            <span className="text-danger">{errorPlannedEndDate}</span>
                           </div>
                         </div>
                       </div>
@@ -261,6 +358,7 @@ export default function AddNewProject()
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
+                          <span className="text-danger">{errorMessageRisks}</span>
                         </div>
                       </div>
 
@@ -281,6 +379,7 @@ export default function AddNewProject()
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
+                          <span className="text-danger">{errorMessageMitigations}</span>
                         </div>
                       </div>
 
@@ -294,7 +393,7 @@ export default function AddNewProject()
                         <div className="mt-2.5 flex">
                           <select
                             className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                            value={taskWorkflow}
+                            value={workflowTask}
                             onChange={taskWorkflowChange}
                           >
                             <option value="">Select Task WorkFlow</option>
@@ -313,7 +412,7 @@ export default function AddNewProject()
                           </select>
                           <div className=" ml-3 ">
                             <FormDialog
-                              prop={<Workflow_1 path={taskWorkflow} />}
+                              prop={<Workflow_1 path={workflowTask} />}
                               style={"md"}
                               // buttonTitle={"Preview"}
                               icon={"./Images/eye-fill.svg"}
@@ -333,7 +432,7 @@ export default function AddNewProject()
                         <div className="mt-2.5 flex">
                           <select
                             className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                            value={defectWorkflow}
+                            value={workflowDefects}
                             onChange={defectWorkflowChange}
                           >
                             <option value="">Select defect WorkFlow</option>
@@ -352,11 +451,11 @@ export default function AddNewProject()
                           </select>
                           <div className=" ml-3 ">
                             <FormDialog
-                              prop={<Workflow_1 path={defectWorkflow} />}
+                              prop={<Workflow_1 path={workflowDefects} />}
                               style={"md"}
                               // buttonTitle="Preview"
                               icon={"./Images/eye-fill.svg"}
-                variant={""}
+                              variant={""}
                             />
                           </div>
                         </div>
