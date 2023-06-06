@@ -97,4 +97,9 @@ export default class AxiosService
     {
         return axios.get(url);
     }
+
+    static getDataForIssues(url)
+    {
+        return axios.get(url);
+    }
 }

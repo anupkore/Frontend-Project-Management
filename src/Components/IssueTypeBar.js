@@ -1,6 +1,10 @@
 import { BarChart, Bar, XAxis, YAxis, Legend, ResponsiveContainer } from 'recharts';
+import AuthenticationService from '../Services/AuthenticationService';
 
-function IssueTypeBar(props) {
+
+
+function IssueTypeBar(props) 
+{
   const { selectedOption } = props;
 
   const data = [
@@ -54,8 +58,13 @@ function IssueTypeBar(props) {
       },
   ];
   
-
   const filteredData = data.filter(item => item.filterType === selectedOption);
+
+  
+    AuthenticationService.getDataForIssues().then((response)=>{
+          console.log(response.data);
+    })
+  
 
   return (
     <div className='w-full max-w-3xl min-h-[25rem] mx-auto shadow mt-5'>
