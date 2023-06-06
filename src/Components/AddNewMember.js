@@ -7,6 +7,7 @@ export default function AddNewMember()
     const name = useRef('');
     const email = useRef('');
     const contact = useRef('');
+    const role = useRef('');
     const[errorName , setErrorName] = useState('');
     const[errorEmail , setErrorEmail] = useState('');
     const [errorContact , setErrorContact] = useState('');
@@ -70,6 +71,7 @@ export default function AddNewMember()
           name: name.current.value,
           email_id: email.current.value,
           contact: contact.current.value,
+          role: role.current.value
       }
       console.log(payload);
       AuthenticationService.SignUp(payload).then(()=>{
@@ -138,6 +140,28 @@ export default function AddNewMember()
                   <span className="text-danger">{errorEmail}</span>
                 </div>
               </div>
+
+              <div>
+                <label htmlFor="role" className="block text-sm font-medium leading-6 text-gray-900">
+                  Role
+                </label>
+                <div className="mt-2">
+                <select
+                    className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    ref={role}
+                >
+                    <option value="">Select Role</option>
+                    <option  value="Manager">
+                        Project Manager
+                    </option>
+                     <option  value="User">
+                        Team Member
+                     </option>
+                </select>
+                  
+                </div>
+              </div>
+
 
   
               <div>
