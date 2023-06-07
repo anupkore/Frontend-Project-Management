@@ -55,6 +55,7 @@ export const Teams = () => {
                     style={maxWidth}
                     buttonTitle={"Assign"}
                     icon={"/Images/plus-lg-white.svg"}
+                    ic={"false"}
                   ></FormDialog>
                 </div>
               </span>

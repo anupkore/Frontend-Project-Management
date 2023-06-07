@@ -186,6 +186,7 @@ export const AllProjectList = () => {
                 icon={"./Images/plus-lg-white.svg"}
                 buttonTitle="Create Project"
                 variant={"outlined"}
+                ic={"false"}
               />
             </div>
           </div>
