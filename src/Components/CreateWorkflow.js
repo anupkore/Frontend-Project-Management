@@ -248,7 +248,7 @@ const InputGrid = () => {
                 ))}
               </div>
             </div>
-            <div className="flex justify-end p-4">
+            <div className="flex justify-end p-4 gap-4">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 onClick={handleWorkflowSubmit}
@@ -256,9 +256,11 @@ const InputGrid = () => {
               >
                 Submit Workflow
               </button>
+
               {submittedRows.length !==  0 && <FormDialog
                 prop={<GraphVisualization workflow={workflow}></GraphVisualization>}
                 style={"md"}
+                ic="true"
                 // buttonTitle={"Preview"}
                 icon={"./Images/eye-fill.svg"}
                 variant={""}

@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 
-export default function FormDialog({ prop, style, buttonTitle, icon ,variant}) {
+export default function FormDialog({ prop, style, buttonTitle, icon ,variant,ic}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -19,7 +19,7 @@ export default function FormDialog({ prop, style, buttonTitle, icon ,variant}) {
     <div>
       <div className="w-full">
       <Button variant={variant ==="" ? "" : "contained" } onClick={handleClickOpen}>
-          <div className={`flex ${icon !== "" ? "space-x-4" : ""} w-full`}>
+          <div className={`flex ${(icon !== "" && ic ==="false") ? "space-x-4" : ""} w-full`}>
                 {icon !== "" ? (
                   <div className="m-auto">
                     <img src={icon} alt="" />
