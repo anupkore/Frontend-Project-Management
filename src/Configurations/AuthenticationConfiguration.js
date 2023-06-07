@@ -99,6 +99,12 @@ export default class AuthenticationConfiguration
         return url;
     }
 
+    static getDataForIssues()
+    {
+        const url = ParentConfiguration.parentURL()+"issueData";
+        return url;
+    }
+
     
     
 }

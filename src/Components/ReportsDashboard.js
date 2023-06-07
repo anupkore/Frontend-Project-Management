@@ -6,12 +6,9 @@ import SideBar from "./SideBar";
 function ReportsDashboard(props) {
   const [selectedOption, setSelectedOption] = useState("daily");
 
-  const handleOptionChange = (option) => {
-   
-
-    setSelectedOption(option);
-
-   
+  const handleOptionChange = (option) => 
+  {
+   setSelectedOption(option);
   };
 
  

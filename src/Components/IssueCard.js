@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function IssueCard(props) {
   return (
     <>
-      <Card sx={{ minWidth: 200, maxHeight: 130 }}>
+      <Card sx={{ minWidth: 200, maxHeight: 130 }} className="shadow-xl transition duration-300 ease-in-out transform hover:shadow-2xl hover:scale-105">
         <Link to={"/issuedes/" + props.pro.id}>
           <CardContent>
             <Typography gutterBottom component="div">
