@@ -5,7 +5,7 @@ import FormDialog from "./Dialog";
 // import bgProject from "../images/bg-allproject.jpg";
 
 import AddNewProject from "./AddNewProject";
-import { projects, projects1 } from "./TEST/Projects";
+// import { projects, projects1 } from "./TEST/Projects";
 import AuthenticationService from "../Services/AuthenticationService";
 import Pagination from "./Pagination";
 
@@ -14,8 +14,29 @@ import { FaSortDown, FaSortUp } from "react-icons/fa";
 export const AllProjectList = () => {
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
+  const [allList , setAllList] = useState([]);
+  const [projectID , setProjectID] = useState();
 
-  const filteredProjects = projects.filter((project) => {
+  useEffect(() => {
+    AuthenticationService.allProjects().then((response) => {
+      setProjectList((existingData) => 
+      {
+        console.log(response.data);
+        setAllList(response.data);
+        console.log("Hi"+allList);
+        //setProjectID(response.data.Project_ID);
+        //console.log(response.data.Project_ID);
+        //console.log(response.data)
+        
+      });
+    }) 
+    .catch((error)=>{
+        console.log(error.data);
+    })
+    
+  }, []);
+
+  const filteredProjects = allList.filter((project) => {
     if (filterStatus === "All") {
       return true;
     } else {
@@ -50,17 +71,7 @@ export const AllProjectList = () => {
 
   const [projectList, setProjectList] = useState([]);
 
-  useEffect(() => {
-    AuthenticationService.allProjects().then((response) => {
-      setProjectList((existingData) => {
-        return response.data;
-      });
-    }) 
-    .catch((error)=>{
-        console.log(error.data);
-    })
-    
-  }, []);
+ 
 
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -82,12 +93,12 @@ export const AllProjectList = () => {
   const [sortOrderByStartDate, setSortOrderByStartDate] = useState("Ascending");
   const [sortOrderByEndDate, setSortOrderByEndDate] = useState("Ascending");
 
-  const sortedAndFilteredProjects = [...projects]
+  const sortedAndFilteredProjects = [...allList]
     .sort((a, b) => {
       if (sortOrder === "Ascending") {
-        return a.title.localeCompare(b.title);
+        return a.Project_name.localeCompare(b.Project_name);
       } else {
-        return b.title.localeCompare(a.title);
+        return b.Project_name.localeCompare(a.Project_name);
       }
     })
     .sort((a, b) => {
@@ -197,7 +208,7 @@ export const AllProjectList = () => {
           </div>
           <div className="container-lg bg-blur-3xl bg-opacity-30 rounded-lg  p-4 ">
             <div className="w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-slate-400 scrollbar">
-              <div className="flex max-h-[28] min-w-[200rem] items-center py-2">
+              <div className="flex max-h-[28] min-w-[105em] items-center py-2">
                 <table className="table-fixed bg-white rounded-3xl w-auto mx-auto shadow-md">
                   <thead>
                     <tr>
@@ -218,19 +229,16 @@ export const AllProjectList = () => {
                     {sortedAndFilteredProjects.map((project, index) => (
                       <tr key={project.id} className="my-4 divide-y space-y-5">
                         <td className="px-4 py-2">{index + 1}</td>
-                        <td className="px-4 py-2">{project.description}</td>
-                        <td className="px-4 py-2">{project.status}</td>
-                        <td className="px-4 py-2">{project.startDate}</td>
-                        <td className="px-4 py-2">{project.endDate}</td>
-                        <td className="px-4 py-2">JP Morgan</td>
-                        <td className="px-4 py-2">Yashwant Singh</td>
-                        <td className="px-4 py-2">
-                          {project.description}
-                          {project.description}
-                        </td>
-                        <td className="px-4 py-2">{project.description}</td>
+                        <td className="px-4 py-2">{project.Project_name}</td>
+                        <td className="px-4 py-2">{project.Status}</td>
+                        <td className="px-4 py-2">{project.planned_sd}</td>
+                        <td className="px-4 py-2">{project.planned_ed}</td>
+                        <td className="px-4 py-2">{project.client_name}</td>
+                        <td className="px-4 py-2">{project.project_lead}</td>
+                        <td className="px-4 py-2">{project.risk}</td>
+                        <td className="px-4 py-2">{project.mitigation}</td>
                         <td className="px-4 py-2 underline text-blue-900">
-                          <Link to={`/projectexplore/${project.id}`}>
+                          <Link to={`/projectexplore/${project.Project_id}`}>
                             {" "}
                             Explore
                           </Link>

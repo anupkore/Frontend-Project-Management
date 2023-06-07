@@ -24,9 +24,9 @@ export default class AuthenticationService
         return AxiosService.allProjects(AuthenticationConfiguration.allProjects());
     }
 
-    static projectExplore()
+    static projectExplore(data)
     {
-        return AxiosService.projectExplore(AuthenticationConfiguration.projectExplore());
+        return AxiosService.projectExplore(AuthenticationConfiguration.projectExplore(),data);
     }
 
     static updateProject(data)

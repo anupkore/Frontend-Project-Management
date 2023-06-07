@@ -251,8 +251,8 @@ const InputGrid = () => {
               >
                 Submit Workflow
               </button>
-              {isWorkflowSubmitted && <FormDialog
-                              prop={<GraphVisualization graph={workflow}></GraphVisualization>}
+              {submittedRows.length !== 0 && <FormDialog
+                              prop={<GraphVisualization workflow={workflow}></GraphVisualization>}
                               style={"md"}
                               // buttonTitle={"Preview"}
                               icon={"./Images/eye-fill.svg"}
