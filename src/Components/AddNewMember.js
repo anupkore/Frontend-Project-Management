@@ -71,7 +71,7 @@ export default function AddNewMember()
       }
       console.log(payload);
       AuthenticationService.SignUp(payload).then(()=>{
-        console.log("Hi");
+        console.log("New User Created");
       })
     }
 
