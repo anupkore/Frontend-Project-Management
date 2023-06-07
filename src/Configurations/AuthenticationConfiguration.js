@@ -23,7 +23,7 @@ export default class AuthenticationConfiguration
 
     static allProjects()
     {
-        const url = ParentConfiguration.parentURL()+"cardProjectdetails";
+        const url = ParentConfiguration.parentURL()+"ProjectList";
         return url;
     }
 

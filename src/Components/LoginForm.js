@@ -96,7 +96,7 @@ export const  LoginForm = ({ toggleSignup }) =>
                  Password
                </label>
                <div className="text-sm">
-                 <a href="/" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                 <a href="/forgotPassword" className="font-semibold text-indigo-600 hover:text-indigo-500">
                    Forgot password?
                  </a>
                </div>
@@ -128,12 +128,7 @@ export const  LoginForm = ({ toggleSignup }) =>
            </div>
          </form>
 
-         <p className="mt-10 text-center text-sm text-gray-500">
-           Not a member?{' '}
-           <Link  className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500" onClick={toggleSignup} type="submit">
-           Signup
-           </Link>
-         </p>
+         
 
         
        </div>
