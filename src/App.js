@@ -60,7 +60,7 @@ function App() {
               <Route path='/addNewProject'  element={<AddNewProject/>} />
 
               <Route path='*'  element={<ErrorPage/>} />
-              <Route path='/demo'element={<InputGrid></InputGrid>}/>
+              <Route path='/addWorkflow'element={<InputGrid></InputGrid>}/>
               <Route path='/updateprojectform'  element={<UpdateProjectForm></UpdateProjectForm>} />
               <Route path='/addNewMember'   element={<AddNewMember/>} />  
               <Route path='/forgotPassword' element={<ForgotPassword/>} />
