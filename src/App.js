@@ -23,13 +23,11 @@ import ChangePassword from './Components/ChangePassword';
 import UpdateIssueForm from './Components/UpdateIssueForm';
 import CreateIssueForm from './Components/CreateIssueForm';
 import AdminDashboard from './Components/Dashboard';
-
-import CreateWorkflow from './Components/CreateWorkflow';
-
 import NumberOfIssuesBar from './Components/NumberOfIssuesBar';
 import IssueTypeBar from './Components/IssueTypeBar';
 import ReportsDashboard from './Components/ReportsDashboard';
 import URLTesting from './Components/URLTesting';
+import InputGrid from './Components/CreateWorkflow';
 
 
 
@@ -54,7 +52,7 @@ function App() {
               <Route path='/projectexplore/:id1' element={<ProjectExplore/>} />
               <Route path='/projectexplore/teams/:p_id' element={<Teams></Teams>} />
               <Route path='/dashboard' element={<AdminDashboard/>} />
-              <Route path='/cal' element={<Calender/>} />
+              {/* <Route path='/cal' element={<Calender/>} /> */}
               <Route path='/projectexplore/issues/:p_id' element={<IssueDashboard></IssueDashboard>} />
               <Route path='/issuedes/:issueId' element={<IssueDes/>} />
               <Route path='/issue/:status' element={<ParticularIssueDashboard></ParticularIssueDashboard>}/>
@@ -62,7 +60,7 @@ function App() {
               <Route path='/addNewProject'  element={<AddNewProject/>} />
 
               <Route path='*'  element={<ErrorPage/>} />
-              <Route path='/demo'element={<CreateWorkflow></CreateWorkflow>}/>
+              <Route path='/demo'element={<InputGrid></InputGrid>}/>
               <Route path='/updateprojectform'  element={<UpdateProjectForm></UpdateProjectForm>} />
               <Route path='/addNewMember'   element={<AddNewMember/>} />  
               <Route path='/forgotPassword' element={<ForgotPassword/>} />

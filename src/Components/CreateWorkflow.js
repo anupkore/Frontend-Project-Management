@@ -9,9 +9,12 @@ const InputGrid = () => {
   const [editRowIndex, setEditRowIndex] = useState(null);
   const [dropdownOptions, setDropdownOptions] = useState([]);
   const [isWorkflowSubmitted, setIsWorkflowSubmitted] = useState(false);
-  const workflow1 = [["1", "2", "3"], ["3", "4", "5", "6", "7"], ["4", "5", "7"]];
+  const workflow1 = [
+    ["1", "2", "3"],
+    ["3", "4", "5", "6", "7"],
+    ["4", "5", "7"],
+  ];
   useEffect(() => {
-   
     if (workflow.length > 0) {
       const firstColumnValues = workflow.flatMap((row) => row.slice(1)); // Exclude first element of each row
       setDropdownOptions([...new Set(firstColumnValues)]);
@@ -114,7 +117,9 @@ const InputGrid = () => {
     <>
       <div>
         <div className="flex justify-center p-2 my-2 ">
-          <h2 className="font-bold underline decoration-sky-400 decoration-8 text-3xl">Create a Workflow</h2>
+          <h2 className="font-bold underline decoration-sky-400 decoration-8 text-3xl">
+            Create a Workflow
+          </h2>
         </div>
         <div className="container-lg border-2 rounded-md mx-auto p-4">
           <div className="flex px-3">
@@ -233,10 +238,10 @@ const InputGrid = () => {
               </div>
               <div className="p-5 ">
                 {workflow.map((rowStates, index) => (
-                  <div key={index} >
+                  <div key={index}>
                     {rowStates.map((state, stateIndex) => (
                       <span key={stateIndex}>
-                        {state} {"\u2192"} {" "}
+                        {state} {"\u2192"}{" "}
                       </span>
                     ))}
                   </div>
@@ -251,13 +256,14 @@ const InputGrid = () => {
               >
                 Submit Workflow
               </button>
-              {isWorkflowSubmitted && <FormDialog
-                              prop={<GraphVisualization graph={workflow}></GraphVisualization>}
-                              style={"md"}
-                              // buttonTitle={"Preview"}
-                              icon={"./Images/eye-fill.svg"}
-                              variant={""}
-                            />}
+              {submittedRows.length !==  0 && <FormDialog
+                prop={<GraphVisualization workflow={workflow}></GraphVisualization>}
+                style={"md"}
+                // buttonTitle={"Preview"}
+                icon={"./Images/eye-fill.svg"}
+                variant={""}
+              />
+              }
             </div>
           </div>
         </div>
