@@ -31,7 +31,6 @@ const GraphVisualization = (props) => {
     const svg = d3.select(svgRef.current);
     const rectWidth = 120;
     const rectHeight = 40;
-
     const width = d3.max(nodes, (d) => d.x + rectWidth / 2) + 20;
     const height = d3.max(nodes, (d) => d.y + rectHeight / 2) + 20;
 
@@ -76,8 +75,6 @@ const GraphVisualization = (props) => {
       //   return (sourceY + targetY) / 2;
       // })
       // .text((d) => d.target);
-
-      
 
     const node = svg
       .selectAll("rect")
@@ -142,8 +139,6 @@ const GraphVisualization = (props) => {
         // Translate the arrowhead to the adjusted position and rotate it towards the target node
         return `translate(${arrowheadX},${arrowheadY}) rotate(${angle})`;
       });
-    
-    
   }, [workflow]);
 
   return <svg ref={svgRef}></svg>;
