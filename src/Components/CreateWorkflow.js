@@ -9,11 +9,11 @@ const InputGrid = () => {
   const [editRowIndex, setEditRowIndex] = useState(null);
   const [dropdownOptions, setDropdownOptions] = useState([]);
   const [isWorkflowSubmitted, setIsWorkflowSubmitted] = useState(false);
-  const workflow1 = [
-    ["1", "2", "3"],
-    ["3", "4", "5", "6", "7"],
-    ["4", "5", "7"],
-  ];
+  // const workflow1 = [
+  //   ["1", "2", "3"],
+  //   ["3", "4", "5", "6", "7"],
+  //   ["4", "5", "7"],
+  // ];
   useEffect(() => {
     if (workflow.length > 0) {
       const firstColumnValues = workflow.flatMap((row) => row.slice(1)); // Exclude first element of each row
@@ -42,10 +42,13 @@ const InputGrid = () => {
     if (canAddRow) {
       setInputValues((prevInputValues) => [...prevInputValues, [""]]);
       setCanAddRow(false);
+      console.log("Row added");
     }
+
   };
 
   const handleSubmitRow = (rowIndex) => {
+   
     const rowStates = inputValues[rowIndex].filter(
       (value) => value.trim() !== ""
     );
@@ -53,7 +56,9 @@ const InputGrid = () => {
       setWorkflow((prevWorkflow) => [...prevWorkflow, rowStates]);
       setSubmittedRows((prevSubmittedRows) => [...prevSubmittedRows, rowIndex]);
       setCanAddRow(true);
+      console.log("Row submitted " + rowIndex);
     }
+   
   };
 
   // Check if the previous row is submitted before allowing the addition of a new row
@@ -95,6 +100,7 @@ const InputGrid = () => {
       newInputValues[rowIndex] = [...newInputValues[rowIndex], ""];
       return newInputValues;
     });
+    console.log("column added");
   };
 
   const deleteColumn = (rowIndex, colIndex) => {
@@ -105,6 +111,7 @@ const InputGrid = () => {
       );
       return newInputValues;
     });
+    console.log("colum deleted");
   };
 
   const handleWorkflowSubmit = () => {

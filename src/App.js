@@ -52,7 +52,7 @@ function App() {
               <Route path='/projectexplore/:id1' element={<ProjectExplore/>} />
               <Route path='/projectexplore/teams/:p_id' element={<Teams></Teams>} />
               <Route path='/dashboard' element={<AdminDashboard/>} />
-              {/* <Route path='/cal' element={<Calender/>} /> */}
+              <Route path='/cal' element={<Calender/>} />
               <Route path='/projectexplore/issues/:p_id' element={<IssueDashboard></IssueDashboard>} />
               <Route path='/issuedes/:issueId' element={<IssueDes/>} />
               <Route path='/issue/:status' element={<ParticularIssueDashboard></ParticularIssueDashboard>}/>

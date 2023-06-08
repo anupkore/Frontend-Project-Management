@@ -77,6 +77,8 @@ const GraphVisualization = (props) => {
       // })
       // .text((d) => d.target);
 
+      
+
     const node = svg
       .selectAll("rect")
       .data(nodes)
