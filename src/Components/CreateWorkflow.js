@@ -9,11 +9,7 @@ const InputGrid = () => {
   const [editRowIndex, setEditRowIndex] = useState(null);
   const [dropdownOptions, setDropdownOptions] = useState([]);
   const [isWorkflowSubmitted, setIsWorkflowSubmitted] = useState(false);
-  // const workflow1 = [
-  //   ["1", "2", "3"],
-  //   ["3", "4", "5", "6", "7"],
-  //   ["4", "5", "7"],
-  // ];
+
   useEffect(() => {
     if (workflow.length > 0) {
       const firstColumnValues = workflow.flatMap((row) => row.slice(1)); // Exclude first element of each row
