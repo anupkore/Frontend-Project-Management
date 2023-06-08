@@ -2,10 +2,6 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import { BrowserRouter as Router, Switch } from 'react-router-dom';
-
-
 import Home from './Components/Home';
 import Navbar from './Components/Navbar';
 import ErrorPage from './Components/ErrorPage';
@@ -18,9 +14,7 @@ import Profilepage from './Components/Profilepage';
 import AddNewProject from './Components/AddNewProject';
 import AddNewMember from './Components/AddNewMember';
 import ParticularIssueDashboard from './Components/ParticularIssueDashboard';
-
 import { Teams } from './Components/Teams';
-
 import UpdateProjectForm from './Components/UpdateProjectForm';
 import ForgotPassword from './Components/ForgotPassword';
 import ChangePassword from './Components/ChangePassword';
@@ -32,36 +26,15 @@ import IssueTypeBar from './Components/IssueTypeBar';
 import ReportsDashboard from './Components/ReportsDashboard';
 import URLTesting from './Components/URLTesting';
 import InputGrid from './Components/CreateWorkflow';
-
 import UsersTable from './Components/UsersTable';
-
 import ProtectedRoute from './Components/ProtectedRoute';
-
-
-
-
-
-
 
 
 
 function App() {
   return (
     <>
-
-{/* <Router>
-      <Routes>
-        <Route path="/" component={Home} />
-        <ProtectedRoute path="/allprojects" component={AllProjectList} />
-        <ProtectedRoute path='/projectexplore/:id1' component={ProjectExplore} />
-        <ProtectedRoute path='/projectexplore/teams/:p_id' component={Teams} />
-      </Routes>
-</Router> */}
-
-
-
-      <BrowserRouter>
-      
+        <BrowserRouter>
             <Routes>
               <Route path='/' element={<Home></Home>} />
             </Routes>
