@@ -1,5 +1,3 @@
-import { CleaningServices } from '@mui/icons-material';
-import { useState } from 'react';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Legend, CartesianGrid } from 'recharts';
 
 function NumberOfIssuesBar(props) {
@@ -19,8 +17,7 @@ function NumberOfIssuesBar(props) {
                             label={{ value: 'No. of Issues', angle: -90, position: 'insideLeft', offset: 20, fontSize: 14, fontWeight: 'bold' }}
                             tick={{ fontSize: 12 }}
                         />
-                        <Legend />
-                       
+                        <Legend />                      
 
                         <Bar dataKey="Issues" name="No. of Issues" fill='blue'  />
                         

@@ -3,7 +3,8 @@ import * as Components from "./Components";
 import { useRef } from 'react';
 import { Email } from "@mui/icons-material";
 import { Input } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { useNavigate  } from 'react-router-dom';
 import { useState } from "react";
 import AuthenticationConfiguration from "../Configurations/AuthenticationConfiguration";
 import axios from "axios";
@@ -17,6 +18,7 @@ export const  LoginForm = ({ toggleSignup }) =>
     const password = useRef("");
     const [errorMessageEmail , setErrorMessageEmail] = useState('');
     const [errorMessagePassword , setErrorMessagePassword] = useState('');
+    const navigate = useNavigate();
     
     function handleInputChangeEmail()
     {
@@ -37,23 +39,29 @@ export const  LoginForm = ({ toggleSignup }) =>
           email_id: email.current.value,
           password: password.current.value
       }
-      console.log(payload);
-      AuthenticationService.SignIn(payload).then((response)=>{
+      console.log("data",payload);
+      AuthenticationService.signIn(payload).then((response) => {
         const message = response.data.Return;
-        console.log(message);
-        window.location.href = '/allprojects';
+        console.log("message", message);
+        const token = response.data.token;
+        // Store the token in local storage
+        localStorage.setItem('token', token);
+        console.log("token1", token);
+      // Redirect the user to a protected route
+        navigate('/allprojects'); // Navigate to /allprojects
       })
       .catch((error)=>{
-        console.log(error.response.data);
-        console.log(error.response.data.error);
-        if(error.response.data.error === "Email is invalid")
-        {
-          setErrorMessageEmail("Invalid Email");
-        }
-        else if(error.response.data.error === "Password is invalid")
-        {
-          setErrorMessagePassword("Invalid Password");
-        }
+        console.error('Login failed:', error);
+        // console.log(error.response.data);    
+        // console.log(error.response.data.error);
+        // if(error.response.data.error === "Email is invalid")
+        // {
+        //   setErrorMessageEmail("Invalid Email");
+        // }
+        // else if(error.response.data.error === "Password is invalid")
+        // {
+        //   setErrorMessagePassword("Invalid Password");
+        // }
       })
 
     }

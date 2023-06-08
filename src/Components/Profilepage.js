@@ -1,15 +1,6 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import {
-  ArrowPathIcon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-} from '@heroicons/react/24/outline'
-
-
 const callsToAction = [
   { name: 'Update Profile', href: '#' },
   { name: 'Logout', href: '#'},
@@ -22,21 +13,12 @@ export default function Profilepage()
     localStorage.removeItem("USERNAME");
     window.location.href = "/" ;
   }
-
-  return (
-    
+return (
     <Popover className="relative">
-      {/* <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-      <legend style={{cursor:"pointer"}} className="text-lg font-semibold leading-6 text-gray-900 lg:justify-end pointer-cursor" >
-            Profile  
-          </legend>
-        <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
-      </Popover.Button> */}
-      <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+       <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
         <p>Profile</p>
         <ChevronDownIcon className="h-3 w-3" aria-hidden="true" />
       </Popover.Button>
-
       <Transition
         as={Fragment}
         enter="transition ease-out duration-200"
@@ -66,7 +48,6 @@ export default function Profilepage()
                   onClick={handleLogout}
                   className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-blue-200"
                 >
-                 
                   {item.name}
                 </a>
               ))}

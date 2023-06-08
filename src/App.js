@@ -14,9 +14,7 @@ import Profilepage from './Components/Profilepage';
 import AddNewProject from './Components/AddNewProject';
 import AddNewMember from './Components/AddNewMember';
 import ParticularIssueDashboard from './Components/ParticularIssueDashboard';
-
 import { Teams } from './Components/Teams';
-
 import UpdateProjectForm from './Components/UpdateProjectForm';
 import ForgotPassword from './Components/ForgotPassword';
 import ChangePassword from './Components/ChangePassword';
@@ -28,10 +26,7 @@ import IssueTypeBar from './Components/IssueTypeBar';
 import ReportsDashboard from './Components/ReportsDashboard';
 import URLTesting from './Components/URLTesting';
 import InputGrid from './Components/CreateWorkflow';
-
-
-
-
+import ProtectedRoute from './Components/ProtectedRoute';
 
 
 
@@ -39,8 +34,7 @@ import InputGrid from './Components/CreateWorkflow';
 function App() {
   return (
     <>
-      <BrowserRouter>
-      
+        <BrowserRouter>
             <Routes>
               <Route path='/' element={<Home></Home>} />
             </Routes>
@@ -71,8 +65,8 @@ function App() {
               <Route path='/bar' element={<NumberOfIssuesBar/>} />
               <Route path='/bar2' element={<IssueTypeBar/>} />
               <Route path='/reports' element={<ReportsDashboard/>} />
-
               <Route path='urlTest' element={<URLTesting/>} />
+              
               
 
             </Routes>

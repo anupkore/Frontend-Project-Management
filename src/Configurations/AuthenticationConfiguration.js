@@ -9,7 +9,7 @@ export default class AuthenticationConfiguration
         return url2;
     }
 
-    static SignUp()
+    static signUp()
     {
         const url = ParentConfiguration.parentURL()+"add_user";
         return url;

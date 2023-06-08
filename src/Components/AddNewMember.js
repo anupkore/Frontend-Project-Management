@@ -70,7 +70,7 @@ export default function AddNewMember()
           role: role.current.value
       }
       console.log(payload);
-      AuthenticationService.SignUp(payload).then(()=>{
+      AuthenticationService.signUp(payload).then(()=>{
         console.log("New User Created");
       })
     }
