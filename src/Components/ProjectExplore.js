@@ -20,15 +20,18 @@ export const ProjectExplore = () =>
   const [projectDetails , setProjectDetails] = useState([]);
   const project_id = id1;
   const payload = {project_id:project_id};
-  const [allProjectData,setAllProjectData] = useState([]);
+  const [projectData,setProjectData] = useState([]);
+  const [projectID , setProjectID] = useState();
 
         useEffect(()=>{
             
             AuthenticationService.projectExplore(payload).then((response)=>{
                   setProjectDetails((existingData)=>{
                     console.log(response.data);
-                    //setAllProjectData(response.data);
-                    //console.log('HI'+allProjectData);
+                    setProjectData(response.data);
+                    console.log("projectData",projectData);
+                    // console.log(allProjectData.Project_name);
+                    // setProjectID(allProjectData.Project_id);
                   });
                   
             })
@@ -37,6 +40,9 @@ export const ProjectExplore = () =>
             })
 
         },[]);
+
+        //localStorage.setItem("ProjectID",projectID);
+        //console.log(projectID);
 
   return (
 
@@ -48,13 +54,13 @@ export const ProjectExplore = () =>
         </div>
 
 
-        <div>
+        <div className="mx-auto">
           <div className={`sm:px-0 mt-2`}>
             <h3 className="text-base mx-auto font-bold text-center leading-7 text-gray-900 mb-3">
               Project Details
             </h3>
             <p className="mt-1 text-base font-bold text-center leading-7 text-blue-800 mb-4">
-              {/* {ProjectData.projectTitle} */}
+              {projectData.Project_name}
             </p>
           </div>
           <div>
@@ -67,7 +73,7 @@ export const ProjectExplore = () =>
                   Planned Start Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.startDate} */}
+                  {projectData.planned_sd}
                 </dd>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {/* {ProjectData.name} */}
@@ -80,7 +86,7 @@ export const ProjectExplore = () =>
                   Planned End Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.startDate} */}
+                  {projectData.planned_ed}
                 </dd>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {/* {ProjectData.type} */}
@@ -95,7 +101,7 @@ export const ProjectExplore = () =>
                   Actual Start Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.actualStartDate} */}
+                  {projectData.Actual_sd}
                 </dd>
 
 
@@ -106,7 +112,7 @@ export const ProjectExplore = () =>
                   Actual End Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.actualEndDate} */}
+                  {projectData.Actual_ed}
                 </dd>
 
 
@@ -119,7 +125,7 @@ export const ProjectExplore = () =>
                   Lead Name
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.leadName} */}
+                  {projectData.project_lead}
                 </dd>
 
               </div>
@@ -131,7 +137,7 @@ export const ProjectExplore = () =>
                   Client Name
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.clientName} */}
+                  {projectData.client_name}
                 </dd>
               </div>
 
@@ -141,7 +147,7 @@ export const ProjectExplore = () =>
                   Mitigations
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.description} */}
+                  {projectData.mitigation}
                 </dd>
               </div>
 
@@ -151,7 +157,7 @@ export const ProjectExplore = () =>
                   Status
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.projectStatus} */}
+                  {projectData.Status}
                 </dd>
               </div>
 
@@ -160,7 +166,7 @@ export const ProjectExplore = () =>
                   Risks
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.description} */}
+                  {projectData.risk}
                 </dd>
               </div>
               <div>
@@ -168,7 +174,7 @@ export const ProjectExplore = () =>
                   Description
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.description} */}
+                  {projectData.description}
                 </dd>
               </div>
               <div>

@@ -67,7 +67,7 @@ export default function AddNewMember()
           name: name.current.value,
           email_id: email.current.value,
           contact: contact.current.value,
-          role: role.current.value
+          //role: role.current.value
       }
       console.log(payload);
       AuthenticationService.signUp(payload).then(()=>{
@@ -134,7 +134,7 @@ export default function AddNewMember()
                       </div>
                     </div>
 
-                    <div>
+                    {/* <div>
                       <label htmlFor="role" className="block text-sm font-medium leading-6 text-gray-900">
                         Role
                       </label>
@@ -153,7 +153,7 @@ export default function AddNewMember()
                       </select>
                         
                       </div>
-                    </div>
+                    </div> */}
 
                     <div>
                       <div className="flex items-center justify-between">

@@ -17,7 +17,7 @@ export const AllProjectList = () => {
       {
         console.log(response.data);
         setAllList(response.data);
-        console.log("Hi"+allList);
+        console.log("Hi");
       });
     }) 
     .catch((error)=>{

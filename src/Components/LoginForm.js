@@ -42,18 +42,17 @@ export const  LoginForm = ({ toggleSignup }) =>
       console.log("data",payload);
       AuthenticationService.signIn(payload).then((response) => {
         const message = response.data.Return;
-        console.log("message", message);
-        const token = response.data.token;
+        console.log(response.data);
+        //const token = response.data.token;
         // Store the token in local storage
-        localStorage.setItem('token', token);
-        console.log("token1", token);
+        //localStorage.setItem('token', token);
+        //console.log("token1", token);
       // Redirect the user to a protected route
         navigate('/allprojects'); // Navigate to /allprojects
       })
       .catch((error)=>{
-        console.error('Login failed:', error);
-        // console.log(error.response.data);    
-        // console.log(error.response.data.error);
+        //console.error('Login failed:', error);    
+        console.log(error.response);
         // if(error.response.data.error === "Email is invalid")
         // {
         //   setErrorMessageEmail("Invalid Email");
