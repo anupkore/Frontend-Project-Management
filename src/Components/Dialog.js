@@ -32,13 +32,6 @@ export default function FormDialog({ prop, style, buttonTitle, icon ,variant,ic}
       
       <Dialog open={open} onClose={handleClose} maxWidth={style} fullWidth>
         <DialogContent>{prop}</DialogContent>
-
-
-
-        
-        {/* <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-        </DialogActions> */}
       </Dialog>
     </div>
   );
