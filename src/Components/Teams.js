@@ -7,7 +7,6 @@ import SideBar from "./SideBar";
 import { TeamData } from "./TEST/TeamData";
 import { useState } from "react";
 import Pagination from "./Pagination";
-
 export const Teams = () => {
   const { p_id } = useParams();
   const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
@@ -30,10 +29,7 @@ export const Teams = () => {
 
         <section
           className="bg-blur-3xl bg-opacity-30 flex-wrap h-full w-full mx-20 px-8 py-4 rounded-5 border-solid border-2"
-          // style={{
-          //   backgroundImage: `url(${bgProject})`,
-          //   backgroundSize: "cover",
-          // }}
+         
         >
           <div className="flex-wrap pt-4 pb-1 px-5 justify-end">
             <h1 className="text-center mb-0 flex-grow-1 mb-2">
@@ -44,9 +40,6 @@ export const Teams = () => {
           </div>
 
           <div className="flex-wrap justify-between items-center py-1 px-2">
-            {/* <span className="text-xl font-bold">
-              Project Title: {Project_Id.title}
-            </span> */}
             <div className="flex items-center space-x-4">
               <span className="text-l text-gray-500">
                 <div>
@@ -59,8 +52,6 @@ export const Teams = () => {
                   ></FormDialog>
                 </div>
               </span>
-
-              {/* Add any additional elements here */}
             </div>
           </div>
 
