@@ -1,3 +1,4 @@
+//  Below Data export for the Report dashbord Page
 export const data = [
     {
       project: "Project-1",
@@ -29,7 +30,7 @@ export const data = [
     },
   ];
 
-// IssueTypeBar 
+//  Below Data export for the IssueTypeBar Page
   export const dataIssue = [
     {
       Issue: "Issue-1",
