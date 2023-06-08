@@ -1,19 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { cursor } from 'react-bootstrap';
 import Profilepage from './Profilepage';
-
 export default function Navbar() 
 {
     const userName = localStorage.getItem("USERNAME");
-
     function handleLogout()
     {
       localStorage.removeItem("USERNAME");
       window.location.href = "/" ;
     }
-    
-      const linkStyle = {
+     const linkStyle = {
         cursor: 'pointer',
       };
 
@@ -23,21 +19,10 @@ export default function Navbar()
         <div className="flex lg:flex-1 text-lg font-semibold">
           <Link to={"/"}><img src='/Images/jira-low-resolution-logo-color-on-transparent-background.png' alt='PMT LOGO' height="30px" width="30px"></img></Link>
         </div>
-        {/* <legend style={linkStyle} className="text-lg font-semibold leading-6 text-gray-900 lg:justify-end pointer-cursor" onClick={handleLogout}>
-            Logout <span aria-hidden="true">&rarr;</span> 
-          </legen  d>
-           */}
-       
-        <div className="text-lg font-semibold leading-6 text-gray-900   ">
+       <div className="text-lg font-semibold leading-6 text-gray-900   ">
           <div>
             <Profilepage></Profilepage>
           </div>
-
-          
-          {/* <legend style={linkStyle} className="text-lg font-semibold leading-6 text-gray-900 lg:justify-end pointer-cursor" onClick={handleLogout}>
-            Logout <span aria-hidden="true">&rarr;</span> 
-          </legen  d>
-           */}
         </div>
 
       </nav>

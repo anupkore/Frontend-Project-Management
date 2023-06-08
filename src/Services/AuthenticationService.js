@@ -3,13 +3,13 @@ import AxiosService from "./AxiosService";
 
 export default class AuthenticationService 
 {
-    static SignIn(data)
+    static signIn(data)
     {
       //console.log("SignIn : " + AuthenticationConfiguration.SignIn());
       return AxiosService.signIn(AuthenticationConfiguration.SignIn(), data);
     }
 
-    static SignUp(data)
+    static signUp(data)
     {
         return AxiosService.SignUp(AuthenticationConfiguration.signUp(), data);
     }
