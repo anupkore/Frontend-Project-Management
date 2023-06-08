@@ -2,6 +2,10 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Switch } from 'react-router-dom';
+
+
 import Home from './Components/Home';
 import Navbar from './Components/Navbar';
 import ErrorPage from './Components/ErrorPage';
@@ -28,7 +32,11 @@ import IssueTypeBar from './Components/IssueTypeBar';
 import ReportsDashboard from './Components/ReportsDashboard';
 import URLTesting from './Components/URLTesting';
 import InputGrid from './Components/CreateWorkflow';
+
 import UsersTable from './Components/UsersTable';
+
+import ProtectedRoute from './Components/ProtectedRoute';
+
 
 
 
@@ -40,6 +48,18 @@ import UsersTable from './Components/UsersTable';
 function App() {
   return (
     <>
+
+{/* <Router>
+      <Routes>
+        <Route path="/" component={Home} />
+        <ProtectedRoute path="/allprojects" component={AllProjectList} />
+        <ProtectedRoute path='/projectexplore/:id1' component={ProjectExplore} />
+        <ProtectedRoute path='/projectexplore/teams/:p_id' component={Teams} />
+      </Routes>
+</Router> */}
+
+
+
       <BrowserRouter>
       
             <Routes>
@@ -53,7 +73,7 @@ function App() {
               <Route path='/projectexplore/:id1' element={<ProjectExplore/>} />
               <Route path='/projectexplore/teams/:p_id' element={<Teams></Teams>} />
               <Route path='/dashboard' element={<AdminDashboard/>} />
-              {/* <Route path='/cal' element={<Calender/>} /> */}
+              <Route path='/cal' element={<Calender/>} />
               <Route path='/projectexplore/issues/:p_id' element={<IssueDashboard></IssueDashboard>} />
               <Route path='/issuedes/:issueId' element={<IssueDes/>} />
               <Route path='/issue/:status' element={<ParticularIssueDashboard></ParticularIssueDashboard>}/>
