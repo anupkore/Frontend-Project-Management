@@ -28,6 +28,7 @@ import IssueTypeBar from './Components/IssueTypeBar';
 import ReportsDashboard from './Components/ReportsDashboard';
 import URLTesting from './Components/URLTesting';
 import InputGrid from './Components/CreateWorkflow';
+import UsersTable from './Components/UsersTable';
 
 
 
@@ -73,6 +74,7 @@ function App() {
               <Route path='/reports' element={<ReportsDashboard/>} />
 
               <Route path='urlTest' element={<URLTesting/>} />
+              <Route path='/usersTable' element={<UsersTable/>} />
               
 
             </Routes>

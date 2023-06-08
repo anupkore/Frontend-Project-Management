@@ -23,6 +23,12 @@ export default function AddNewMember()
       return emailRegex.test(email);
     }
 
+    // function validateContact(contact) 
+    // {
+    //   const contactRegex = /^\d$/;
+    //   return contactRegex.test(contact);
+    // }
+
     function validateContact(contact) 
     {
       const contactRegex = /^\d{10}$/;
