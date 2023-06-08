@@ -23,12 +23,6 @@ export default function AddNewMember()
       return emailRegex.test(email);
     }
 
-    // function validateContact(contact) 
-    // {
-    //   const contactRegex = /^\d$/;
-    //   return contactRegex.test(contact);
-    // }
-
     function validateContact(contact) 
     {
       const contactRegex = /^\d{10}$/;
@@ -76,7 +70,7 @@ export default function AddNewMember()
           role: role.current.value
       }
       console.log(payload);
-      AuthenticationService.SignUp(payload).then(()=>{
+      AuthenticationService.signUp(payload).then(()=>{
         console.log("New User Created");
       })
     }

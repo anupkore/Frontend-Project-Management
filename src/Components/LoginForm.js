@@ -40,7 +40,7 @@ export const  LoginForm = ({ toggleSignup }) =>
           password: password.current.value
       }
       console.log("data",payload);
-      AuthenticationService.SignIn(payload).then((response) => {
+      AuthenticationService.signIn(payload).then((response) => {
         const message = response.data.Return;
         console.log("message", message);
         const token = response.data.token;
