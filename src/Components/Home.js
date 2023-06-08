@@ -1,10 +1,13 @@
-import React from 'react';
-import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from "@heroicons/react/24/outline";
+import React from "react";
+import {
+  ArrowPathIcon,
+  CloudArrowUpIcon,
+  FingerPrintIcon,
+  LockClosedIcon,
+} from "@heroicons/react/24/outline";
 import { useState } from "react";
-import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import {LoginForm} from "./LoginForm";
-import {SignupForm} from "./SignupForm";
+import { LoginForm } from "./LoginForm";
+import { SignupForm } from "./SignupForm";
 
 const features = [
   {
@@ -46,15 +49,7 @@ const navigation = [
   { name: "Company", href: "#" },
 ];
 
-
 export default function Example() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
-
-  const toggleSignup = () => {
-    setShowSignup(!showSignup);
-  };
-
   const [showLogin, setShowLogin] = useState(true);
 
   const toggleForm = () => {
@@ -77,25 +72,23 @@ export default function Example() {
             />
           </div>
 
-
-            <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-0">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            One platform to streamline all workflows
-          </h1>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
-            Your all-in-one platform to manage projects, organize work, enhance collaboration, and accelerate execution across all departments.
-          </p>
-        </div>
-        {showLogin ? (
-        <LoginForm toggleSignup={toggleForm} />
-      ) : (
-        <SignupForm toggleLogin={toggleForm} />
-      )}
-      </div>
-
-
-
+          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-0">
+            <div className="text-center">
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                One platform to streamline all workflows
+              </h1>
+              <p className="mt-2 text-lg leading-8 text-gray-600">
+                Your all-in-one platform to manage projects, organize work,
+                enhance collaboration, and accelerate execution across all
+                departments.
+              </p>
+            </div>
+            {showLogin ? (
+              <LoginForm toggleSignup={toggleForm} />
+            ) : (
+              <SignupForm toggleLogin={toggleForm} />
+            )}
+          </div>
 
           <div
             className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
@@ -114,12 +107,13 @@ export default function Example() {
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            
             <p className="mt-0 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Boost Productivity and Focus On Work That Drives ROI
+              Boost Productivity and Focus On Work That Drives ROI
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-            Wrike streamlines work processes for maximum efficiency, empowering teams across all departments to collaborate, manage projects, drive strategic initiatives, and achieve goals.
+              Wrike streamlines work processes for maximum efficiency,
+              empowering teams across all departments to collaborate, manage
+              projects, drive strategic initiatives, and achieve goals.
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -177,19 +171,16 @@ export default function Example() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-            Try the #1 software in project and product management
+              Try the #1 software in project and product management
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-300">
-            Whether you want to start with a pre-built template for marketing, operations, product, learn more from a demo, or talk to our support team, Project-Management-App can help with that.
+              Whether you want to start with a pre-built template for marketing,
+              operations, product, learn more from a demo, or talk to our
+              support team, Project-Management-App can help with that.
             </p>
           </div>
           <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-              {/* {links.map((link) => (
-                <a key={link.name} href={link.href}>
-                  {link.name} <span aria-hidden="true">&rarr;</span>
-                </a>
-              ))} */}
             </div>
             <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
               {stats.map((stat) => (
