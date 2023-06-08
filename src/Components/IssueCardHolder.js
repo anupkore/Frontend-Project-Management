@@ -29,7 +29,7 @@ function IssueCardHolder(props) {
             {/* <Link to={`/issue/${props.iss}`}>
               <h1 className="font-semibold">See More</h1>
             </Link> */}
-            <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} icon={"/Images/plus-lg.svg"} variant={""} buttonTitle={"Create issue"}></FormDialog>
+            <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} icon={"/Images/plus-lg.svg"} ic={"false"} variant={""} buttonTitle={"Create issue"}></FormDialog>
           </div>
         </div>
       </div>

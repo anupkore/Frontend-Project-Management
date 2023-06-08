@@ -182,6 +182,7 @@ export default function AddNewProject()
     console.log(payload);
     AuthenticationService.createProject(payload).then(()=>{
       console.log("Hi Create Project");
+      window.location.href = '/allProjects';
     })
   }
   

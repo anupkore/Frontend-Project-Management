@@ -55,6 +55,7 @@ export const Teams = () => {
                     style={maxWidth}
                     buttonTitle={"Assign"}
                     icon={"/Images/plus-lg-white.svg"}
+                    ic={"false"}
                   ></FormDialog>
                 </div>
               </span>
@@ -72,7 +73,7 @@ export const Teams = () => {
                     <th className="px-4 py-2">Name</th>
                     <th className="px-4 py-2">Email</th>
                     <th className="px-4 py-2">Role</th>
-                    <th className="px-4 py-2">Issues</th>
+                    <th className="px-4 py-2">Contact</th>
                   </tr>
                 </thead>
                 <tbody>

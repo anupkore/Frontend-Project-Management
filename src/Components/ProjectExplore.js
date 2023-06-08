@@ -17,16 +17,24 @@ export const ProjectExplore = () =>
   const { id1 } = useParams();
   const ProjectData = projects1.find((proj) => proj.id === Number(id1));
   const [showModal, setShowModal] = useState(false);
-
   const [projectDetails , setProjectDetails] = useState([]);
+  const project_id = id1;
+  const payload = {project_id:project_id};
+  const [allProjectData,setAllProjectData] = useState([]);
 
         useEffect(()=>{
             
-            AuthenticationService.projectExplore().then((response)=>{
+            AuthenticationService.projectExplore(payload).then((response)=>{
                   setProjectDetails((existingData)=>{
-                    return response.data;
+                    console.log(response.data);
+                    //setAllProjectData(response.data);
+                    //console.log('HI'+allProjectData);
                   });
-            });
+                  
+            })
+            .catch((error)=>{
+              console.log(error.response.data);
+            })
 
         },[]);
 
@@ -46,7 +54,7 @@ export const ProjectExplore = () =>
               Project Details
             </h3>
             <p className="mt-1 text-base font-bold text-center leading-7 text-blue-800 mb-4">
-              {ProjectData.projectTitle}
+              {/* {ProjectData.projectTitle} */}
             </p>
           </div>
           <div>
@@ -59,10 +67,10 @@ export const ProjectExplore = () =>
                   Planned Start Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.startDate}
+                  {/* {ProjectData.startDate} */}
                 </dd>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.name}
+                  {/* {ProjectData.name} */}
                 </dd>
               </div>
 
@@ -72,10 +80,10 @@ export const ProjectExplore = () =>
                   Planned End Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.startDate}
+                  {/* {ProjectData.startDate} */}
                 </dd>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.type}
+                  {/* {ProjectData.type} */}
                 </dd>
 
 
@@ -87,7 +95,7 @@ export const ProjectExplore = () =>
                   Actual Start Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.actualStartDate}
+                  {/* {ProjectData.actualStartDate} */}
                 </dd>
 
 
@@ -98,7 +106,7 @@ export const ProjectExplore = () =>
                   Actual End Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.actualEndDate}
+                  {/* {ProjectData.actualEndDate} */}
                 </dd>
 
 
@@ -111,7 +119,7 @@ export const ProjectExplore = () =>
                   Lead Name
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.leadName}
+                  {/* {ProjectData.leadName} */}
                 </dd>
 
               </div>
@@ -123,7 +131,7 @@ export const ProjectExplore = () =>
                   Client Name
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.clientName}
+                  {/* {ProjectData.clientName} */}
                 </dd>
               </div>
 
@@ -133,7 +141,7 @@ export const ProjectExplore = () =>
                   Mitigations
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.description}
+                  {/* {ProjectData.description} */}
                 </dd>
               </div>
 
@@ -143,7 +151,7 @@ export const ProjectExplore = () =>
                   Status
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.projectStatus}
+                  {/* {ProjectData.projectStatus} */}
                 </dd>
               </div>
 
@@ -152,7 +160,7 @@ export const ProjectExplore = () =>
                   Risks
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.description}
+                  {/* {ProjectData.description} */}
                 </dd>
               </div>
               <div>
@@ -160,7 +168,7 @@ export const ProjectExplore = () =>
                   Description
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {ProjectData.description}
+                  {/* {ProjectData.description} */}
                 </dd>
               </div>
               <div>
@@ -172,7 +180,7 @@ export const ProjectExplore = () =>
                     role="list"
                     className=" divide-gray-100 rounded-md border border-gray-200"
                   >
-                    {ProjectData.attachments.map((attachments) => (
+                    {/* {ProjectData.attachments.map((attachments) => (
                       <li className="flex items-center justify-between text-sm leading-6">
                       <div className="flex h-10 items-center">
                         <PaperClipIcon
@@ -188,7 +196,7 @@ export const ProjectExplore = () =>
                       </div>
 
                     </li>
-                    ))}
+                    ))} */}
                   </ul>
                 </dd>
               </div>
@@ -202,7 +210,7 @@ export const ProjectExplore = () =>
 
           </div>
           <div className="mt-5 mb-5 flex justify-center align-items-center">
-            <FormDialog prop={<UpdateProjectForm></UpdateProjectForm>} style={maxWidth} buttonTitle={"Update"} icon={"/Images/arrow-repeat.svg"}></FormDialog>
+            <FormDialog prop={<UpdateProjectForm></UpdateProjectForm>} style={maxWidth} buttonTitle={"Update"} ic={"false"} icon={"/Images/arrow-repeat.svg"}></FormDialog>
             <button className="btn btn-danger ml-3" onClick={() => setShowModal(true)}>Delete</button>
           </div>
           <div>

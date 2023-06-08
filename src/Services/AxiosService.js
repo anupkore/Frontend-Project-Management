@@ -27,9 +27,9 @@ export default class AxiosService
     }
 
     //For displaying the details of a perticular project in project explore
-    static projectExplore(url)
+    static projectExplore(url,data)
     {
-        return axios.get(url);
+        return axios.post(url,data);
     }
 
     //For Updating the project (PID)
