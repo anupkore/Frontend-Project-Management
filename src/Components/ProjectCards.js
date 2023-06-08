@@ -9,6 +9,8 @@ export default function ProjectCards() {
     //       <MDBCol md="9" lg="7" xl="5" className="mt-5">
     //         <MDBCard style={{ borderRadius: '15px', backgroundColor: '#93e2bb' }}>
     //           <MDBCardBody className="p-4 text-black">
+
+    
     //             <div>
     //               <MDBTypography tag='h6'>Exquisite hand henna tattoo</MDBTypography>
     //               <div className="d-flex align-items-center justify-content-between mb-3">

@@ -10,6 +10,8 @@ import {
 } from '@heroicons/react/24/outline'
 
 
+
+
 const callsToAction = [
   { name: 'Update Profile', href: '#' },
   { name: 'Logout', href: '#'},
@@ -32,6 +34,10 @@ export default function Profilepage()
           </legend>
         <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
       </Popover.Button> */}
+      {/* <legend style={linkStyle} className="text-lg font-semibold leading-6 text-gray-900 lg:justify-end pointer-cursor" onClick={handleLogout}>
+            Logout <span aria-hidden="true">&rarr;</span> 
+          </legen  d>
+           */}
       <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
         <p>Profile</p>
         <ChevronDownIcon className="h-3 w-3" aria-hidden="true" />
@@ -67,6 +73,10 @@ export default function Profilepage()
                   className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-blue-200"
                 >
                  
+
+
+
+
                   {item.name}
                 </a>
               ))}
