@@ -47,7 +47,6 @@ export const  LoginForm = ({ toggleSignup }) =>
         // Store the token in local storage
         localStorage.setItem('token', token);
         console.log("token1", token);
-        // localStorage.getItem(token);
       // Redirect the user to a protected route
         navigate('/allprojects'); // Navigate to /allprojects
       })
