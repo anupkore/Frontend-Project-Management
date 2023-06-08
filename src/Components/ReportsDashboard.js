@@ -2,6 +2,7 @@ import { useState } from "react";
 import IssueTypeBar from "./IssueTypeBar";
 import NumberOfIssuesBar from "./NumberOfIssuesBar";
 import SideBar from "./SideBar";
+import {data} from "./TEST/Data";
 
 function ReportsDashboard(props) {
   const [selectedOption, setSelectedOption] = useState("daily");
@@ -10,39 +11,6 @@ function ReportsDashboard(props) {
   {
    setSelectedOption(option);
   };
-
- 
-
-  const data = [
-    {
-      project: "Project-1",
-      daily: 5,
-      weekly: 20,
-      monthly: 50,
-      quarterly: 100,
-    },
-    {
-      project: "Project-2",
-      daily: 7,
-      weekly: 15,
-      monthly: 40,
-      quarterly: 20,
-    },
-    {
-      project: "Project-3",
-      daily: 3,
-      weekly: 10,
-      monthly: 30,
-      quarterly: 60,
-    },
-    {
-      project: "Project-4",
-      daily: 9,
-      weekly: 25,
-      monthly: 60,
-      quarterly: 120,
-    },
-  ];
 
   const filteredData = data.map((item) => {
     const filteredItem = { project: item.project, Issues: item[selectedOption] };
