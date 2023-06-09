@@ -11,18 +11,21 @@ export const AllProjectList = () => {
   const [filterStatus, setFilterStatus] = useState("All");
   const [allList, setAllList] = useState([]);
   const [flag , setFlag] = useState('false');
+  const userID = 2002;
+  var payload = {user_id: userID};
+  console.log(userID);
   useEffect(() => {
-    AuthenticationService.allProjects()
-      .then((response) => {
-        setProjectList((existingData) => {
-          console.log(response.data);
-          setAllList(response.data);
-          console.log("Hi" + allList);
-        });
-      })
-      .catch((error) => {
+    AuthenticationService.allProjects(payload).then((response) => {
+        console.log(response.data);
+        setAllList(response.data);
+        console.log("Hi");
+        console.log(allList);
+      
+    }) 
+    .catch((error)=>{
         console.log(error.data);
-      });
+    })
+    
   }, []);
 
   const filteredProjects = allList.filter((project) => {
@@ -120,7 +123,7 @@ export const AllProjectList = () => {
 
   return (
     <>
-      {projectList.length === 0 ? (
+      {allList.length === 0 ? (
         <div className="mx-auto">
           <div className="flex justify-center">
             <h1 className="text-5xl font-bold">Create Your First Project</h1>
