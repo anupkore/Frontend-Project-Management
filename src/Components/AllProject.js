@@ -115,8 +115,8 @@ export const AllProjectList = () => {
       </th>
     );
   };
-  console.log(sortedAndFilteredProjects.length);
-  console.log(allList.length);
+  // console.log(sortedAndFilteredProjects.length);
+  // console.log(allList.length);
 
   return (
     <>

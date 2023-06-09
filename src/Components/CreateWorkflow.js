@@ -19,7 +19,6 @@ const InputGrid = () => {
 
   const handleInputChange = (rowIndex, colIndex, event) => {
     const { value } = event.target;
-
     setInputValues((prevInputValues) => {
       const newInputValues = prevInputValues.map((row, rIndex) => {
         if (rIndex === rowIndex) {
@@ -27,24 +26,20 @@ const InputGrid = () => {
         }
         return row;
       });
-
       return newInputValues;
     });
   };
 
   const [canAddRow, setCanAddRow] = useState(true);
-
   const addRow = () => {
     if (canAddRow) {
       setInputValues((prevInputValues) => [...prevInputValues, [""]]);
       setCanAddRow(false);
       console.log("Row added");
     }
-
   };
 
-  const handleSubmitRow = (rowIndex) => {
-   
+    const handleSubmitRow = (rowIndex) => {
     const rowStates = inputValues[rowIndex].filter(
       (value) => value.trim() !== ""
     );
@@ -54,7 +49,6 @@ const InputGrid = () => {
       setCanAddRow(true);
       console.log("Row submitted " + rowIndex);
     }
-   
   };
 
   // Check if the previous row is submitted before allowing the addition of a new row
@@ -259,7 +253,6 @@ const InputGrid = () => {
               >
                 Submit Workflow
               </button>
-
               {submittedRows.length !==  0 && <FormDialog
                 prop={<GraphVisualization workflow={workflow}></GraphVisualization>}
                 style={"md"}

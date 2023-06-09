@@ -21,9 +21,9 @@ export default class AxiosService
     }
 
     //For displaying the ist of all projects in table
-    static allProjects(url)
+    static allProjects(url,data)
     {
-        return axios.get(url);
+        return axios.post(url,data);
     }
 
     //For displaying the details of a perticular project in project explore

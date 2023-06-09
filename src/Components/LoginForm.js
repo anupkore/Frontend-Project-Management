@@ -41,27 +41,35 @@ export const  LoginForm = ({ toggleSignup }) =>
       }
       console.log("data",payload);
       AuthenticationService.signIn(payload).then((response) => {
-        const message = response.data.Return;
-        console.log("message", message);
-        const token = response.data.token;
-        // Store the token in local storage
-        localStorage.setItem('token', token);
-        console.log("token1", token);
-      // Redirect the user to a protected route
-        navigate('/allprojects'); // Navigate to /allprojects
+        console.log(response.data);
+        console.log(response.data.msg);
+        console.log(response.data.token);
+        console.log(response.data.user_detail[0][1]);
+        if(response.data.user_detail[0][1] === 'project Manager')
+        {
+          window.location.href = '/tableofusers';
+        }
+        if(response.data.user_detail[0][1] === 'User')
+        {
+          localStorage.setItem("UserID",response.data.user_detail[0][0]);
+          console.log(response.data.user_detail[0][0]);
+          const test = localStorage.getItem("UserID")
+          console.log("Hi"+test);
+
+          window.location.href = '/allProjects';
+          
+        }
       })
-      .catch((error)=>{
-        console.error('Login failed:', error);
-        // console.log(error.response.data);    
-        // console.log(error.response.data.error);
-        // if(error.response.data.error === "Email is invalid")
-        // {
-        //   setErrorMessageEmail("Invalid Email");
-        // }
-        // else if(error.response.data.error === "Password is invalid")
-        // {
-        //   setErrorMessagePassword("Invalid Password");
-        // }
+      .catch((error)=>{    
+        console.log(error.response);
+        if(error.response.data.error === "Email is invalid")
+        {
+          setErrorMessageEmail("Invalid Email");
+        }
+        else if(error.response.data.error === "Password is invalid")
+        {
+          setErrorMessagePassword("Invalid Password");
+        }
       })
 
     }
