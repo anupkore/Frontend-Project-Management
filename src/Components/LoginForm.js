@@ -51,15 +51,19 @@ export const  LoginForm = ({ toggleSignup }) =>
         const token = response.data.token;
       // Store the token in local storage
       localStorage.setItem('token', token);
+      localStorage.setItem("UserID",response.data.user_detail[0][0]);
+          localStorage.setItem("UserName",response.data.user_detail[0][2]);
+          localStorage.setItem("UserEmail",response.data.user_detail[0][3]);
       // Redirect the user to a protected route
         if(response.data.user_detail[0][1] === 'project Manager')
         {
           // window.location.href = '/tableofusers';
+          
           navigate('/tableofusers');
         }
         if(response.data.user_detail[0][1] === 'User')
         {
-          localStorage.setItem("UserID",response.data.user_detail[0][0]);
+          
           console.log(response.data.user_detail[0][0]);
           const test = localStorage.getItem("UserID")
           console.log("Hi"+test);

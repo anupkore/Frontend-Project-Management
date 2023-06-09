@@ -5,13 +5,15 @@ import AddNewProject from "./AddNewProject";
 import AuthenticationService from "../Services/AuthenticationService";
 import Pagination from "./Pagination";
 import { FaSortDown, FaSortUp } from "react-icons/fa";
+import Navbar from "./Navbar";
 
 export const AllProjectList = () => {
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
   const [allList, setAllList] = useState([]);
   const [flag , setFlag] = useState('false');
-  const userID = 2002;
+  const userID = localStorage.getItem("UserID");
+  console.log("userID",userID);
   var payload = {user_id: userID};
   console.log(userID);
   useEffect(() => {
@@ -123,6 +125,7 @@ export const AllProjectList = () => {
 
   return (
     <>
+      <Navbar></Navbar>
       {allList.length === 0 ? (
         <div className="mx-auto">
           <div className="flex justify-center">
