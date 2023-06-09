@@ -77,7 +77,7 @@ export default class AuthenticationConfiguration
 
     static allUsers()
     {
-        const url = ParentConfiguration.parentURL()+"allusers";
+        const url = ParentConfiguration.parentURL()+"show_user";
         return url ;
     }
 

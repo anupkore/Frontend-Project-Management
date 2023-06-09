@@ -12,19 +12,29 @@ function TableOfUsers()
 
     useEffect(() => {
         AuthenticationService.allUsersTable().then((response) => {
-          setUserList((existingData) => 
-          {
-            console.log(response.data);
             setUserList(response.data);
+            console.log(response.data);
             console.log("Hi");
             console.log(userList);
-          });
+        //   setUserList((existingData) => 
+        //   {
+        //   });
         }) 
         .catch((error)=>{
             console.log(error.data);
         })
         
       }, []);
+
+      function handleUpdate()
+      {
+
+      }
+
+      function handleDelete()
+      {
+
+      }
     
     return(
         <>
@@ -53,14 +63,21 @@ function TableOfUsers()
                             </tr>
                         </thead>
                         
-                        <tbody className="mt-3">
-                            <td className="px-4 py-2">1</td>
-                            <td className="px-4 py-2">Anup</td>
-                            <td className="px-4 py-2">anup@infobellit.com</td>
-                            <td className="px-4 py-2">8698995577</td>
-                            <td> <button className="btn btn-primary mx-auto">Update</button> </td>
-                            <td> <button className="btn btn-danger mx-auto">Delete</button>  </td>
-                        </tbody>
+
+                        {/* <td className="px-4 py-2">{resp[1].user_id}</td> */}
+                        {userList.map((event) => (
+  <tbody className="mt-3">
+    <td className="px-4 py-2">{event.user_id}</td>
+    <td className="px-4 py-2">{event.name}</td>
+    <td className="px-4 py-2">anup@infobellit.com</td>
+    <td className="px-4 py-2">8698995577</td>
+    <td> <button onClick={handleUpdate} className="btn btn-primary mx-auto">Update</button> </td>
+    <td> <button onClick={handleDelete} className="btn btn-danger mx-auto">Delete</button>  </td>
+  </tbody>
+))}
+
+
+                        
                     </table>
 
                 </div>
