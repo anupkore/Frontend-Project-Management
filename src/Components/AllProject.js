@@ -10,15 +10,16 @@ export const AllProjectList = () => {
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
   const [allList , setAllList] = useState([]);
-
+  const userID = 2002;
+  var payload = {user_id: userID};
+  console.log(userID);
   useEffect(() => {
-    AuthenticationService.allProjects().then((response) => {
-      setProjectList((existingData) => 
-      {
+    AuthenticationService.allProjects(payload).then((response) => {
         console.log(response.data);
         setAllList(response.data);
         console.log("Hi");
-      });
+        console.log(allList);
+      
     }) 
     .catch((error)=>{
         console.log(error.data);
