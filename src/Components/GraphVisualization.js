@@ -4,7 +4,11 @@ import * as d3 from "d3";
 const GraphVisualization = (props) => {
   const svgRef = useRef(null);
   const { workflow } = props;
-
+  // const workflow = [
+  //   ["START", "IN PROGRESS", "REVIEW", "DONE","COMPLETED"],
+  //   ["REVIEW", "RESOLVED", "DONE"],
+  //   ["DONE", "RE-OPENED", "RE-ASSIGN", "IN PROGRESS"],
+  // ];
   useEffect(() => {
     const nodes = [];
     const links = [];
