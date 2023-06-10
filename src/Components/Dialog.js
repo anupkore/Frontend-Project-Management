@@ -18,7 +18,8 @@ export default function FormDialog({ prop, style, buttonTitle, icon ,variant,ic}
   return (
     <div>
       <div className="w-full">
-      <Button variant={variant ==="" ? "" : "contained" } onClick={handleClickOpen}>
+
+      <Button variant={variant === "" ? "" : "contained" } onClick={handleClickOpen} >
           <div className={`flex ${(icon !== "" && ic ==="false") ? "space-x-4" : ""} w-full`}>
                 {icon !== "" ? (
                   <div className="m-auto">
@@ -32,6 +33,13 @@ export default function FormDialog({ prop, style, buttonTitle, icon ,variant,ic}
       
       <Dialog open={open} onClose={handleClose} maxWidth={style} fullWidth>
         <DialogContent>{prop}</DialogContent>
+
+
+
+
+        {/* <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+        </DialogActions> */}
       </Dialog>
     </div>
   );

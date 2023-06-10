@@ -3,14 +3,17 @@ import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 const callsToAction = [
   { name: 'Update Profile', href: '#' },
-  { name: 'Logout', href: '#'},
+  { name: 'Logout', href: '/'},
 ]
 
 export default function Profilepage()
  {
   function handleLogout()
   {
-    localStorage.removeItem("USERNAME");
+    localStorage.removeItem("token");
+    localStorage.removeItem("UserName");
+    localStorage.removeItem("UserID");
+    localStorage.removeItem("UserEmail");
     window.location.href = "/" ;
   }
 return (
@@ -36,8 +39,8 @@ return (
             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
             </svg></div>
               <div>
-                <p className='text-center font-bold my-8 ...>my-8'>Yashwantsingh</p>
-                <p className='text-center font-semibold text-gray-900 my-8 ...>my-20' >Yashwant@infobell.com</p>
+                <p className='text-center font-bold my-8 ...>my-8'>{localStorage.getItem("UserName")}</p>
+                <p className='text-center font-semibold text-gray-900 my-8 ...>my-20' >{localStorage.getItem("UserEmail")}</p>
               </div>
             </div>
             <div className="grid grid-cols-2 divide-x divide-gray-900/5 " variant="contained">
