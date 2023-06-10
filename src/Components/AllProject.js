@@ -134,8 +134,8 @@ export const AllProjectList = () => {
     <>
       {loading ? (
         <div className="flex justify-center">
-          {/* <HashLoader color="#1976d2" style={{marginTop:"10%"}} size={100} speedMultiplier={1} /> */}
-          <PacmanLoader color="#1976d2" size={50}/>  
+          <HashLoader color="#1976d2" style={{marginTop:"10%"}} size={100} speedMultiplier={1} />
+          {/* <PacmanLoader color="#1976d2" size={50}/>   */}
         </div>
       ) : allList.length === 0 ? (
         <div className="mx-auto ">
