@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import AuthenticationService from "../Services/AuthenticationService";
 
-export default function AddNewMember() 
+export default function UpdateUser() 
 {
     const name = useRef('');
     const email = useRef('');
