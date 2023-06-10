@@ -88,4 +88,15 @@ export default class AuthenticationService
     {
         return AxiosService.getDataForIssues(AuthenticationConfiguration.getDataForIssues());
     }
+
+    static addworkflow(data)
+    {
+        return AxiosService.addWorkflow(AuthenticationConfiguration.addWorkflow() , data);
+
+    }
+
+    static getWorkFlow()
+    {
+        return AxiosService.getAllWorkflows(AuthenticationConfiguration.getAllWorkFlows());
+    }
 }
