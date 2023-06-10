@@ -16,47 +16,63 @@ export const  LoginForm = ({ toggleSignup }) =>
 
     const email = useRef("");
     const password = useRef("");
+  //   const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
     const [errorMessageEmail , setErrorMessageEmail] = useState('');
     const [errorMessagePassword , setErrorMessagePassword] = useState('');
     const navigate = useNavigate();
     
+    //Function to handle the email value change in input tag
     function handleInputChangeEmail()
     {
       setErrorMessageEmail('');
     }
 
+    //Function to handle the password value change in input tag
     function handleInputChangePassword()
     {
       setErrorMessagePassword('');
     }
     
+    //Function to send payload to the server for checking credentials and login process
     function handleSignIn(event)
     {
-    
+      
       event.preventDefault();
       var payload = 
       {
           email_id: email.current.value,
           password: password.current.value
       }
-      console.log("data",payload);
+      console.log("data.....1",payload);
+
       AuthenticationService.signIn(payload).then((response) => {
         console.log(response.data);
         console.log(response.data.msg);
         console.log(response.data.token);
         console.log(response.data.user_detail[0][1]);
+        const token = response.data.token;
+      // Store the token in local storage
+      localStorage.setItem('token', token);
+      localStorage.setItem("UserID",response.data.user_detail[0][0]);
+          localStorage.setItem("UserName",response.data.user_detail[0][2]);
+          localStorage.setItem("UserEmail",response.data.user_detail[0][3]);
+      // Redirect the user to a protected route
         if(response.data.user_detail[0][1] === 'project Manager')
         {
-          window.location.href = '/tableofusers';
+          // window.location.href = '/tableofusers';
+          
+          navigate('/tableofusers');
         }
         if(response.data.user_detail[0][1] === 'User')
         {
-          localStorage.setItem("UserID",response.data.user_detail[0][0]);
+          
           console.log(response.data.user_detail[0][0]);
           const test = localStorage.getItem("UserID")
           console.log("Hi"+test);
 
-          window.location.href = '/allProjects';
+          // window.location.href = '/allProjects';
+          navigate('/allProjects');
           
         }
       })

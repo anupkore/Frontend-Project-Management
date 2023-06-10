@@ -9,16 +9,20 @@ import { Button, ButtonGroup } from "@mui/material";
 import ParticularIssueDashboard from "./ParticularIssueDashboard";
 import MyIssues from "./Myissues";
 import { GridLoader ,HashLoader,PacmanLoader } from "react-spinners";
+import Navbar from "./Navbar";
+
 
 export const AllProjectList = () => {
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
   const [allList, setAllList] = useState([]);
+
   const [myIssues, setMyIssues] = useState(false);
   const [loading, setLoading] = useState(true);
-
-  const userID = 2002;
-  var payload = { user_id: userID };
+  const [flag , setFlag] = useState('false');
+  const userID = localStorage.getItem("UserID");
+  console.log("userID",userID);
+  var payload = {user_id: userID};
   console.log(userID);
   useEffect(() => {
     setLoading(true);
@@ -36,6 +40,7 @@ export const AllProjectList = () => {
         setLoading(false); // Set loading state to false when the request is completed
       });
   }, []);
+  
 
   const filteredProjects = allList.filter((project) => {
     if (filterStatus === "All") {
@@ -132,6 +137,7 @@ export const AllProjectList = () => {
 
   return (
     <>
+
       {loading ? (
         <div className="flex justify-center">
           <HashLoader color="#1976d2" style={{marginTop:"10%"}} size={100} speedMultiplier={1} />
@@ -139,6 +145,7 @@ export const AllProjectList = () => {
         </div>
       ) : allList.length === 0 ? (
         <div className="mx-auto ">
+
           <div className="flex justify-center">
             <h1 className="text-5xl font-bold">Create Your First Project</h1>
           </div>

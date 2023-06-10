@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
+import Navbar from "./Navbar";
 
 function TableOfUsers()
 {
@@ -38,14 +39,14 @@ function TableOfUsers()
     
     return(
         <>
-            
+            <Navbar></Navbar>
             <div className="flex mt-4">
 
-                <div className="w-1/4 mx-auto">
+                <div className="w-1/3 mx-auto">
                     <img src="/Images/CreateProject2.jpg"></img>
                 </div>
 
-                <div className="w-3/4 container-md">
+                <div className="w-2/3 container-lg">
                     
                     <div className="d-flex justify-content-center mb-3">
                         <button className="btn btn-primary" onClick={handleAddNewMember}>Add New User</button>
@@ -69,10 +70,10 @@ function TableOfUsers()
   <tbody className="mt-3">
     <td className="px-4 py-2">{event.user_id}</td>
     <td className="px-4 py-2">{event.name}</td>
-    <td className="px-4 py-2">anup@infobellit.com</td>
-    <td className="px-4 py-2">8698995577</td>
-    <td> <button onClick={handleUpdate} className="btn btn-primary mx-auto">Update</button> </td>
-    <td> <button onClick={handleDelete} className="btn btn-danger mx-auto">Delete</button>  </td>
+    <td className="px-4 py-2">{event.Email_id}</td>
+    <td className="px-4 py-2">{event.contact}</td>
+    <td> <button className="btn btn-primary mx-auto">Update</button> </td>
+    <td> <button className="btn btn-danger mx-auto">Delete</button>  </td>
   </tbody>
 ))}
 
