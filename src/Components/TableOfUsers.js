@@ -69,10 +69,10 @@ function TableOfUsers()
   <tbody className="mt-3">
     <td className="px-4 py-2">{event.user_id}</td>
     <td className="px-4 py-2">{event.name}</td>
-    <td className="px-4 py-2">anup@infobellit.com</td>
-    <td className="px-4 py-2">8698995577</td>
-    <td> <button onClick={handleUpdate} className="btn btn-primary mx-auto">Update</button> </td>
-    <td> <button onClick={handleDelete} className="btn btn-danger mx-auto">Delete</button>  </td>
+    <td className="px-4 py-2">{event.Email_id}</td>
+    <td className="px-4 py-2">{event.contact}</td>
+    <td> <button className="btn btn-primary mx-auto">Update</button> </td>
+    <td> <button className="btn btn-danger mx-auto">Delete</button>  </td>
   </tbody>
 ))}
 

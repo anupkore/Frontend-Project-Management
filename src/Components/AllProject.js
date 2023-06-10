@@ -26,6 +26,7 @@ export const AllProjectList = () => {
     })
     
   }, []);
+  
 
   const filteredProjects = allList.filter((project) => {
     if (filterStatus === "All") {

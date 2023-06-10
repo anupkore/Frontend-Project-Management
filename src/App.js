@@ -28,6 +28,7 @@ import URLTesting from './Components/URLTesting';
 import InputGrid from './Components/CreateWorkflow';
 import ProtectedRoute from './Components/ProtectedRoute';
 import TableOfUsers from './Components/TableOfUsers';
+import UpdateUser from './Components/UpdateUser';
 
 
 
@@ -69,6 +70,7 @@ function App() {
               <Route path='/reports' element={<ReportsDashboard/>} />
               <Route path='/urlTest' element={<URLTesting/>} />
               <Route path='/tableofusers' element={<TableOfUsers/>} />
+              <Route path='/updateUser' element={<UpdateUser/>} />
               
               
 
