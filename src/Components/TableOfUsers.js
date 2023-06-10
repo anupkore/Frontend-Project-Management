@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
+import Navbar from "./Navbar";
 
 function TableOfUsers()
 {
@@ -38,14 +39,14 @@ function TableOfUsers()
     
     return(
         <>
-            
+            <Navbar></Navbar>
             <div className="flex mt-4">
 
-                <div className="w-1/4 mx-auto">
+                <div className="w-1/3 mx-auto">
                     <img src="/Images/CreateProject2.jpg"></img>
                 </div>
 
-                <div className="w-3/4 container-md">
+                <div className="w-2/3 container-lg">
                     
                     <div className="d-flex justify-content-center mb-3">
                         <button className="btn btn-primary" onClick={handleAddNewMember}>Add New User</button>

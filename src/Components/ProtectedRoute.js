@@ -1,19 +1,26 @@
-import React from 'react';
-import { Route, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Home from './Home';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const navigate = useNavigate();
-  const token = localStorage.getItem('token');
-  const isAuthenticated = !!token;
+const ProtectedRoute = ({ element: Element}) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  if (!isAuthenticated) {
-    // Redirect to the desired route if not authenticated
-    navigate('/', { replace: true });
-    return null;
-  }
+  useEffect(() => {
+    // Check if the user is authenticated
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
+  }, []);
 
-  return <Route {...rest} element={<Component />} />;
+  return isAuthenticated ? (
+    <>
+      <Element></Element>
+      {/* Display the protected content */}
+    </>
+  ) : (
+    <>
+      <Home></Home>
+    </>
+  );
 };
 
 export default ProtectedRoute;
-
