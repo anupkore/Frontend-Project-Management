@@ -22,16 +22,19 @@ export const  LoginForm = ({ toggleSignup }) =>
     const [errorMessagePassword , setErrorMessagePassword] = useState('');
     const navigate = useNavigate();
     
+    //Function to handle the email value change in input tag
     function handleInputChangeEmail()
     {
       setErrorMessageEmail('');
     }
 
+    //Function to handle the password value change in input tag
     function handleInputChangePassword()
     {
       setErrorMessagePassword('');
     }
     
+    //Function to send payload to the server for checking credentials and login process
     function handleSignIn(event)
     {
       
