@@ -29,12 +29,17 @@ import TableOfUsers from './Components/TableOfUsers';
 import UpdateUser from './Components/UpdateUser';
 
 import ProtectedRoute from "./Components/ProtectedRoute"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import WorkflowCard from './Components/WorkflowCards';
 
 
 const App = () => {
   return (
     <Router>
+          <ToastContainer/>
       <Routes>
+ 
         <Route path="/" element={<Home />} />
         <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
         <Route path="/allProjects" element={<ProtectedRoute element={AllProjectList} />} />
@@ -65,7 +70,7 @@ const App = () => {
 <Route path="/reports" element={<ProtectedRoute element={ReportsDashboard} />} />
 <Route path="/urlTest" element={<ProtectedRoute element={URLTesting} />} />
 <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
-
+<Route path='/workflow' element={<ProtectedRoute element={WorkflowCard} />} />
 
       </Routes>
     </Router>

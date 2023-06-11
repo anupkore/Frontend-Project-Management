@@ -110,6 +110,6 @@ export default class AxiosService
 
     static getAllWorkflows(url)
     {
-        return axios.get(url);
+        return axios.post(url);
     }
 }

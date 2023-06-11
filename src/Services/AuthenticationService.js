@@ -91,6 +91,7 @@ export default class AuthenticationService
 
     static addworkflow(data)
     {
+        console.log(data);
         return AxiosService.addWorkflow(AuthenticationConfiguration.addWorkflow() , data);
 
     }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import FormDialog from "./Dialog";
 import GraphVisualization from "./GraphVisualization";
 import AuthenticationService from "../Services/AuthenticationService";
+import { toast } from "react-toastify";
 
 const InputGrid = () => {
   const [inputValues, setInputValues] = useState([[]]);
@@ -116,18 +117,37 @@ const InputGrid = () => {
     setWorkflow(inputValues);
     setIsWorkflowSubmitted(true);
   };
-  useEffect(() => {
-    AuthenticationService.addWorkflow(workflowData)
-    .then((response) => {
-      console.log(response.data);      
-    })
-    .catch((error) => {
-      console.log("ERROR" + error.data);
-    })
+ 
+   
 
-  }, [])
+  useEffect(() => {
+    if (isWorkflowSubmitted) {
+      AuthenticationService.addworkflow(workflowData)
+        .then((response) => {
+          console.log(response.data);
+          toast.success('Workflow Added Sucessfully!!', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+          console.log("Workflow created Succesfully!!");
+        })
+        .catch((error) => {
+          console.log("ERROR" + error);
+
+          toast.error("Failed to create");
+
+        });
+    }
+  }, [isWorkflowSubmitted]);
   
   return (
+    
     <>
       <div>
         <div className="flex justify-center p-2 my-2 ">
