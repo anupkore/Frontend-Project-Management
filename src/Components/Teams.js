@@ -13,11 +13,13 @@ export const Teams = () => {
   const { p_id } = useParams();
   const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
   const maxWidth = "sm";
-  const id = 6;
+  const id = localStorage.getItem("ProjectID");
+  const id2 = 12;
+  var payload = {project_id:id2}
   const [currentPage, setCurrentPage] = useState(1);
   const [membersPerPage, setMembersPerPage] = useState(5);
-
-  AuthenticationService.teamDetails(id).then((response)=>{
+  console.log(id);
+  AuthenticationService.teamDetails(payload).then((response)=>{
     console.log(response.data);
   })
 

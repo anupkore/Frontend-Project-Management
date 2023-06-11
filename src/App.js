@@ -67,6 +67,7 @@ const App = () => {
 <Route path="/urlTest" element={<ProtectedRoute element={URLTesting} />} />
 <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
 <Route path='/assignMember' element={<AssignMember></AssignMember>} />
+<Route path='/updateUser/:uid' element={<UpdateUser></UpdateUser>} />
 
 
       </Routes>

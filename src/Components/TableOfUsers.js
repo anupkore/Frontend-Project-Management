@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
+import UpdateUser from "./UpdateUser";
 
 
 function TableOfUsers() {
@@ -24,14 +26,16 @@ function TableOfUsers() {
   function handleUpdate(userId) {
     // Perform the update operation using the userId parameter
     console.log(`Updating user with ID: ${userId}`);
-    AuthenticationService.updateUser(userId).then((result) => {
-        // Code to handle successful promise resolution
-        console.log(result);
-      })
-      .catch((error) => {
-        // Code to handle the error
-        console.log('An error occurred while upadating....:', error);
-      });
+    // AuthenticationService.updateUser(userId).then((result) => {
+    //     // Code to handle successful promise resolution
+    //     console.log(result);
+    //   })
+    //   .catch((error) => {
+    //     // Code to handle the error
+    //     console.log('An error occurred while upadating....:', error);
+    //   });
+    window.location.href = `/updateUser/${userId}` ;
+  
   }
 
   function handleDelete(userId) {

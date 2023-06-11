@@ -109,4 +109,9 @@ export default class AuthenticationService
     {
         return AxiosService.postComments(AuthenticationConfiguration.postComment(),data);
     }
+
+    static getUserDetailByID(data)
+    {
+        return AxiosService.getUserDetailByID(AuthenticationConfiguration.getUserDetailByID(),data);
+    }
 }
