@@ -92,12 +92,6 @@ export default class AxiosService
         return axios.delete(url);
     }
 
-    //For Getting List of Members Assigned in a Perticular Project (Have to pass PID)
-    static teamDetails(url)
-    {
-        return axios.get(url);
-    }
-
     static getDataForIssues(url)
     {
         return axios.get(url);
@@ -112,4 +106,22 @@ export default class AxiosService
     {
         return axios.get(url);
     }
+
+    static assignMember(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    //For Getting List of Members Assigned in a Perticular Project (Have to pass PID)
+    static teamDetails(url,data)
+    {
+        return axios.get(url,data);
+    }
+
+    static postComments(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+
 }
