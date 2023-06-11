@@ -79,11 +79,6 @@ export default class AuthenticationService
         return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser(),id);
     }
 
-    static teamDetails()
-    {
-        return AxiosService.teamDetails(AuthenticationConfiguration.teamDetails());
-    }
-
     static getDataForIssues()
     {
         return AxiosService.getDataForIssues(AuthenticationConfiguration.getDataForIssues());
@@ -98,5 +93,20 @@ export default class AuthenticationService
     static getWorkFlow()
     {
         return AxiosService.getAllWorkflows(AuthenticationConfiguration.getAllWorkFlows());
+    }
+
+    static assignMember(data)
+    {
+        return AxiosService.assignMember(AuthenticationConfiguration.assignMember(),data);
+    }
+
+    static teamDetails(data)
+    {
+        return AxiosService.teamDetails(AuthenticationConfiguration.teamDetails(),data);
+    }
+
+    static postComment(data)
+    {
+        return AxiosService.postComments(AuthenticationConfiguration.postComment(),data);
     }
 }
