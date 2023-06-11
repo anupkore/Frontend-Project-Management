@@ -81,15 +81,15 @@ export default class AxiosService
     }
 
     //For Updating users (For alpha admin)
-    static updateUsers(url , data)
+    static updateUsers(url,id)
     {
-        return axios.put(url ,data);
+        return axios.put(url,id);
     }
 
     //For deleting a user (For alpha admin)
-    static deleteUser(url)
+    static deleteUser(url,id)
     {
-        return axios.delete(url);
+        return axios.delete(url,id);
     }
 
     //For Getting List of Members Assigned in a Perticular Project (Have to pass PID)

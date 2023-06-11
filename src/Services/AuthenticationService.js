@@ -69,14 +69,14 @@ export default class AuthenticationService
         return AxiosService.allUsersTable(AuthenticationConfiguration.allUsers());
     }
 
-    static updateUser(data)
+    static updateUser(id)
     {
-        return AxiosService.updateUsers(AuthenticationConfiguration.updateUser() , data);
+        return AxiosService.updateUsers(AuthenticationConfiguration.updateUser(),id);
     }
 
-    static deleteUser()
+    static deleteUser(id)
     {
-        return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser());
+        return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser(),id);
     }
 
     static teamDetails()
