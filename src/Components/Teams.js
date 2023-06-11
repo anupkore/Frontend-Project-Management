@@ -7,18 +7,23 @@ import SideBar from "./SideBar";
 import { TeamData } from "./TEST/TeamData";
 import { useState } from "react";
 import Pagination from "./Pagination";
+import AssignMember from "./AssignMember";
+import AuthenticationService from "../Services/AuthenticationService";
 export const Teams = () => {
   const { p_id } = useParams();
   const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
   const maxWidth = "sm";
+  const id = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const [membersPerPage, setMembersPerPage] = useState(5);
 
-  //Get Current member
+  AuthenticationService.teamDetails(id).then((response)=>{
+    console.log(response.data);
+  })
+
   const indexOfLastMember = currentPage * membersPerPage;
   const indexOfFirstMember = indexOfLastMember - membersPerPage;
   const currentMembers = TeamData.slice(indexOfFirstMember, indexOfLastMember);
-
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <>
@@ -44,7 +49,7 @@ export const Teams = () => {
               <span className="text-l text-gray-500">
                 <div>
                   <FormDialog
-                    prop={<AddNewMember></AddNewMember>}
+                    prop={<AssignMember></AssignMember>}
                     style={maxWidth}
                     buttonTitle={"Assign"}
                     icon={"/Images/plus-lg-white.svg"}
@@ -63,20 +68,16 @@ export const Teams = () => {
                     <th className="px-4 py-2">Sr.No</th>
                     <th className="px-4 py-2">Name</th>
                     <th className="px-4 py-2">Email</th>
-                    <th className="px-4 py-2">Role</th>
                     <th className="px-4 py-2">Contact</th>
                   </tr>
                 </thead>
                 <tbody>
                   {currentMembers.map((issue, index) => (
                     <tr key={issue.id} className="my-4 divide-y space-y-5">
-                      <td className="px-4 py-2">{index + 1}</td>
-                      <td className="px-4 py-2">{issue.assignedTo[0].name}</td>
-                      <td className="px-4 py-2">{issue.assignedTo[0].email}</td>
-                      <td className="px-4 py-2">{issue.assignedTo[0].role}</td>
-                      <td className="px-4 py-2 underline text-blue-900">
-                        <Link to="/issues">Issue</Link>
-                      </td>
+                      <td className="px-4 py-2">{}</td>
+                      <td className="px-4 py-2">{}</td>
+                      <td className="px-4 py-2">{}</td>
+                      <td className="px-4 py-2">{}</td>
                     </tr>
                   ))}
                 </tbody>

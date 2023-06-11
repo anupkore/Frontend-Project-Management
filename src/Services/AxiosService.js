@@ -81,21 +81,15 @@ export default class AxiosService
     }
 
     //For Updating users (For alpha admin)
-    static updateUsers(url , data)
+    static updateUsers(url,id)
     {
-        return axios.put(url ,data);
+        return axios.put(url,id);
     }
 
     //For deleting a user (For alpha admin)
-    static deleteUser(url)
+    static deleteUser(url,id)
     {
-        return axios.delete(url);
-    }
-
-    //For Getting List of Members Assigned in a Perticular Project (Have to pass PID)
-    static teamDetails(url)
-    {
-        return axios.get(url);
+        return axios.delete(url,id);
     }
 
     static getDataForIssues(url)
@@ -112,4 +106,22 @@ export default class AxiosService
     {
         return axios.post(url);
     }
+
+    static assignMember(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    //For Getting List of Members Assigned in a Perticular Project (Have to pass PID)
+    static teamDetails(url,data)
+    {
+        return axios.get(url,data);
+    }
+
+    static postComments(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+
 }

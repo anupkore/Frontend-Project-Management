@@ -19,6 +19,7 @@ export const ProjectExplore = () =>
   const [showModal, setShowModal] = useState(false);
   const [projectDetails , setProjectDetails] = useState([]);
   const project_id = id1;
+  localStorage.setItem("ProjectID",project_id);
   const payload = {project_id:project_id};
   const [projectData,setProjectData] = useState([]);
   const [projectID , setProjectID] = useState();

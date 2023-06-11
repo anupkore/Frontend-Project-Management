@@ -8,9 +8,8 @@ import { FaSortDown, FaSortUp } from "react-icons/fa";
 import { Button, ButtonGroup } from "@mui/material";
 import ParticularIssueDashboard from "./ParticularIssueDashboard";
 import MyIssues from "./Myissues";
-import { GridLoader ,HashLoader,PacmanLoader } from "react-spinners";
+import { GridLoader, HashLoader, PacmanLoader } from "react-spinners";
 import Navbar from "./Navbar";
-
 
 export const AllProjectList = () => {
   const maxWidth = "lg";
@@ -19,10 +18,10 @@ export const AllProjectList = () => {
 
   const [myIssues, setMyIssues] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [flag , setFlag] = useState('false');
+  const [flag, setFlag] = useState("false");
   const userID = localStorage.getItem("UserID");
-  console.log("userID",userID);
-  var payload = {user_id: userID};
+  console.log("userID", userID);
+  var payload = { user_id: userID };
   console.log(userID);
   useEffect(() => {
     setLoading(true);
@@ -40,7 +39,6 @@ export const AllProjectList = () => {
         setLoading(false); // Set loading state to false when the request is completed
       });
   }, []);
-  
 
   const filteredProjects = allList.filter((project) => {
     if (filterStatus === "All") {
@@ -137,30 +135,15 @@ export const AllProjectList = () => {
 
   return (
     <>
-
       {loading ? (
         <div className="flex justify-center">
-          <HashLoader color="#1976d2" style={{marginTop:"10%"}} size={100} speedMultiplier={1} />
+          <HashLoader
+            color="#1976d2"
+            style={{ marginTop: "10%" }}
+            size={100}
+            speedMultiplier={1}
+          />
           {/* <PacmanLoader color="#1976d2" size={50}/>   */}
-        </div>
-      ) : allList.length === 0 ? (
-        <div className="mx-auto ">
-
-          <div className="flex justify-center">
-            <h1 className="text-5xl font-bold">Create Your First Project</h1>
-          </div>
-          <div className="flex border-dashed container-md justify-center mt-20 w-screen h-96 border-2 rounded-md">
-            <div className="m-auto">
-              <FormDialog
-                prop={<AddNewProject />}
-                style={maxWidth}
-                icon={"./Images/plus-lg.svg"}
-                // buttonTitle="Create Project"
-                variant={""}
-                ic={"true"}
-              />
-            </div>
-          </div>
         </div>
       ) : (
         <div>
@@ -189,7 +172,10 @@ export const AllProjectList = () => {
             <div className="py-4 px-5 flex flex-row">
               <div className="mx-auto">
                 <ButtonGroup variant="text" aria-label="text button group">
-                  <Button onClick={() => setMyIssues(false)}  disabled={!myIssues}>
+                  <Button
+                    onClick={() => setMyIssues(false)}
+                    disabled={!myIssues}
+                  >
                     {" "}
                     <h1
                       className="text-center flex-grow-1 items-center text-xl font-bold"
@@ -216,6 +202,27 @@ export const AllProjectList = () => {
             </div>
             {myIssues ? (
               <MyIssues></MyIssues>
+            ) : allList.length === 0 ? (
+              <div className="mx-auto ">
+                <div className="flex justify-center">
+                  <h1 className="text-5xl font-bold">
+                    Create Your First Project
+                  </h1>
+                </div>
+                <div className="flex border-dashed container-md justify-center mt-20 w-screen h-96 border-2 rounded-md">
+                  <div className="m-auto">
+                    <FormDialog
+                      prop={<AddNewProject />}
+                      style={maxWidth}
+                      icon={"./Images/plus-lg.svg"}
+                      // buttonTitle="Create Project"
+                      largebutton ={"true"}
+                      variant={""}
+                      ic={"true"}
+                    />
+                  </div>
+                </div>
+              </div>
             ) : (
               <>
                 <div className="flex justify-left my-2">
