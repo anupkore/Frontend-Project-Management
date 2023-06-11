@@ -105,6 +105,16 @@ export default class AuthenticationConfiguration
         return url;
     }
 
-    
+    static addWorkflow()
+    {
+        const url = ParentConfiguration.parentURL()+"AddWorkFlow";
+        return url;
+    }
+
+    static getAllWorkFlows()
+    {
+        const url = ParentConfiguration.parentURL()+"GetWorkflow";
+        return url;
+    }
     
 }

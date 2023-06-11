@@ -25,7 +25,11 @@ import ReportsDashboard from './Components/ReportsDashboard';
 import URLTesting from './Components/URLTesting';
 import InputGrid from './Components/CreateWorkflow';
 import TableOfUsers from './Components/TableOfUsers';
+
+import UpdateUser from './Components/UpdateUser';
+
 import ProtectedRoute from "./Components/ProtectedRoute"
+
 
 const App = () => {
   return (
@@ -55,11 +59,13 @@ const App = () => {
 <Route path="/updateissueform" element={<ProtectedRoute element={UpdateIssueForm} />} />
 <Route path="/createissueform" element={<ProtectedRoute element={CreateIssueForm} />} />
 
+
 <Route path="/bar" element={<ProtectedRoute element={NumberOfIssuesBar} />} />
 <Route path="/bar2" element={<ProtectedRoute element={IssueTypeBar} />} />
 <Route path="/reports" element={<ProtectedRoute element={ReportsDashboard} />} />
 <Route path="/urlTest" element={<ProtectedRoute element={URLTesting} />} />
 <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
+
 
       </Routes>
     </Router>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
 import Navbar from "./Navbar";
 
+
 function TableOfUsers() {
   const [userList, setUserList] = useState([]);
 
@@ -104,6 +105,7 @@ function TableOfUsers() {
       </div>
     </>
   );
+
 }
 
 export default TableOfUsers;
