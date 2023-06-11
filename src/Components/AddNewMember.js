@@ -1,15 +1,24 @@
 import { useRef, useState } from "react"
 import AuthenticationService from "../Services/AuthenticationService";
+import { useEffect } from "react";
 
-export default function AddNewMember() 
-{
-    const name = useRef('');
-    const email = useRef('');
-    const contact = useRef('');
-    const role = useRef('User');
-    const[errorName , setErrorName] = useState('');
-    const[errorEmail , setErrorEmail] = useState('');
-    const[errorContact , setErrorContact] = useState('');
+export default function AddNewMember({ userData }) {
+  const name = useRef("");
+  const email = useRef("");
+  const contact = useRef("");
+  const role = useRef("User");
+  const [errorName, setErrorName] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorContact, setErrorContact] = useState("");
+
+  useEffect(() => {
+    if (userData) {
+      name.current.value = userData.name;
+      email.current.value = userData.email_id;
+      contact.current.value = userData.contact;
+      // role.current.value = userData.role;
+    }
+  }, [userData]);
 
     function validateName(name) 
     {

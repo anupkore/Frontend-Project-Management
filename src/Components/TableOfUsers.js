@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import ReactDOM from 'react-dom';
 import AuthenticationService from "../Services/AuthenticationService";
 import Navbar from "./Navbar";
-import { Link } from "react-router-dom";
-import UpdateUser from "./UpdateUser";
+import AddNewMember from "./AddNewMember";
 
 
 function TableOfUsers() {
@@ -26,30 +26,41 @@ function TableOfUsers() {
   function handleUpdate(userId) {
     // Perform the update operation using the userId parameter
     console.log(`Updating user with ID: ${userId}`);
-    // AuthenticationService.updateUser(userId).then((result) => {
-    //     // Code to handle successful promise resolution
-    //     console.log(result);
-    //   })
-    //   .catch((error) => {
-    //     // Code to handle the error
-    //     console.log('An error occurred while upadating....:', error);
-    //   });
-    window.location.href = `/updateUser/${userId}` ;
-  
-  }
-
-  function handleDelete(userId) {
-    // Perform the delete operation using the userId parameter
-    console.log(`Deleting user with ID: ${userId}`);
-    AuthenticationService.deleteUser(userId).then((result) => {
-        // Code to handle successful promise resolution
-        console.log(result);
+    // Fetch the user data for the specified userId
+    AuthenticationService.getUser(userId)
+      .then((response) => {
+        const userData = response.data;
+        // Render the AddNewMember component with the user data
+        ReactDOM.render(
+          <AddNewMember userData={userData} />,
+          document.getElementById("root")
+        );
       })
       .catch((error) => {
         // Code to handle the error
-        console.log('An error occurred while deleting....:', error);
+        console.log("An error occurred while fetching user data:", error);
       });
   }
+
+  function handleDelete(userId) {
+    // Display confirmation box
+    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+  
+    if (confirmDelete) {
+      // Perform the delete operation using the userId parameter
+      console.log(`Deleting user with ID: ${userId}`);
+      AuthenticationService.deleteUser(userId)
+        .then((result) => {
+          // Code to handle successful promise resolution
+          console.log(result);
+        })
+        .catch((error) => {
+          // Code to handle the error
+          console.log('An error occurred while deleting....:', error);
+        });
+    }
+  }
+  
 
   return (
     <>
