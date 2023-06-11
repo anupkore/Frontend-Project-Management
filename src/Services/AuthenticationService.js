@@ -34,9 +34,9 @@ export default class AuthenticationService
         return AxiosService.updateProject(AuthenticationConfiguration.updateProject(),data);
     }
 
-    static deleteProject()
+    static deleteProject(id)
     {
-        return  AxiosService.deleteProject(AuthenticationConfiguration.deleteProject());
+        return  AxiosService.deleteProject(AuthenticationConfiguration.deleteProject(),id);
     }
 
     static createIssue(data)
