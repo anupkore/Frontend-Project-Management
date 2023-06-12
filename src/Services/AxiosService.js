@@ -115,10 +115,15 @@ export default class AxiosService
     //For Getting List of Members Assigned in a Perticular Project (Have to pass PID)
     static teamDetails(url,data)
     {
-        return axios.get(url,data);
+        return axios.post(url,data);
     }
 
     static postComments(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static getUserDetailByID(url,data)
     {
         return axios.post(url,data);
     }

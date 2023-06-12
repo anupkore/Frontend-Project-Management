@@ -1,8 +1,14 @@
 import { useRef, useState } from "react"
 import AuthenticationService from "../Services/AuthenticationService";
+import { useParams } from "react-router-dom";
 
 export default function UpdateUser() 
 {
+    const { uid } = useParams();  
+    console.log(uid);
+    AuthenticationService.getUserDetailByID(uid).then((response)=>{
+      console.log(response.data);
+    })
     const name = useRef('');
     const email = useRef('');
     const contact = useRef('');
@@ -90,7 +96,7 @@ export default function UpdateUser()
               
               <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <h2 className="mt-10 text-center my-auto text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                  Add  New Member
+                  Update Member Details
                 </h2>
               </div>
   
@@ -178,7 +184,7 @@ export default function UpdateUser()
 
                     <div>
                       <button onClick={handleSignUp} type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                        Add
+                        Update
                       </button>
                     </div>
             

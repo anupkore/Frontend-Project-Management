@@ -5,7 +5,7 @@ export default function Comments()
 {
 
   const comment = useRef('');
-  const ProjectID = 6; 
+  const ProjectID = localStorage.getItem("ProjectID"); 
 
   function handlePost(event)
   {
@@ -15,6 +15,7 @@ export default function Comments()
       project_id: ProjectID,
       comment: comment.current.value
     }
+    console.log(payload);
     AuthenticationService.postComment(payload).then((response)=>{
       console.log(response.data);
     })
@@ -51,6 +52,8 @@ export default function Comments()
             </button>
           </form>
           <div className="h-[24rem] overflow-y-scroll">
+          
+          
           <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
             <footer className="flex justify-between items-center mb-2">
               <div className="flex items-center">
@@ -73,41 +76,7 @@ export default function Comments()
                 </p>
               </div>
               
-              {/* Dropdown menu */}
-              <div
-                id="dropdownComment1"
-                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-              >
-                <ul
-                  className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                  aria-labelledby="dropdownMenuIconHorizontalButton"
-                >
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Edit
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Remove
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Report
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              
             </footer>
             <p className="text-gray-500 dark:text-gray-400">
               Very straight-to-point article. Really worth time reading. Thank
@@ -120,139 +89,7 @@ export default function Comments()
             </div>
           </article>
           
-          <article className="p-6 mb-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-            <footer className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                  <img
-                    className="mr-2 w-6 h-6 rounded-full"
-                    src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-                    alt="Bonnie Green"
-                  />
-                  Bonnie Green
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  <time
-                    pubdate=""
-                    dateTime="2022-03-12"
-                    title="March 12th, 2022"
-                  >
-                    Mar. 12, 2022
-                  </time>
-                </p>
-              </div>
-             
-              {/* Dropdown menu */}
-              <div
-                id="dropdownComment3"
-                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-              >
-                <ul
-                  className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                  aria-labelledby="dropdownMenuIconHorizontalButton"
-                >
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Edit
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Remove
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Report
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </footer>
-            <p className="text-gray-500 dark:text-gray-400">
-              The article covers the essentials, challenges, myths and stages
-              the UX designer should consider while creating the design
-              strategy.
-            </p>
-            <div className="flex items-center mt-4 space-x-4">
-              
-            </div>
-          </article>
-          <article className="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-            <footer className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                  <img
-                    className="mr-2 w-6 h-6 rounded-full"
-                    src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
-                    alt="Helene Engels"
-                  />
-                  Helene Engels
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  <time
-                    pubdate=""
-                    dateTime="2022-06-23"
-                    title="June 23rd, 2022"
-                  >
-                    Jun. 23, 2022
-                  </time>
-                </p>
-              </div>
-              
-              {/* Dropdown menu */}
-              <div
-                id="dropdownComment4"
-                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-              >
-                <ul
-                  className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                  aria-labelledby="dropdownMenuIconHorizontalButton"
-                >
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Edit
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Remove
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Report
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </footer>
-            <p className="text-gray-500 dark:text-gray-400">
-              Thanks for sharing this. I do came from the Backend development
-              and explored some of the tools to design my Side Projects.
-            </p>
-            <div className="flex items-center mt-4 space-x-4">
-             
-            </div>
-          </article>
+          
           </div>
         </div>
       </section>

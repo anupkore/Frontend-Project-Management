@@ -113,19 +113,25 @@ export default class AuthenticationConfiguration
 
     static assignMember()
     {
-        const url = ParentConfiguration.parentURL()+"AssignUser";
+        const url = ParentConfiguration.parentURL()+"assign_user";
         return url;
     }
 
     static teamDetails()
     {
-        const url = ParentConfiguration.parentURL()+"teamDetails";
+        const url = ParentConfiguration.parentURL()+"userdetails_project";
         return url;
     }
 
     static postComment()
     {
         const url = ParentConfiguration.parentURL()+"postComment";
+        return url;
+    }
+
+    static getUserDetailByID()
+    {
+        const url = ParentConfiguration.parentURL()+"getUserDetailByID";
         return url;
     }
     
