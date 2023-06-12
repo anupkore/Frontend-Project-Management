@@ -64,8 +64,7 @@ function TableOfUsers() {
 
   return (
     <>
-      <Navbar />
-      <div className="flex mt-4">
+            <div className="flex mt-4">
         <div className="w-1/3">
           <img src="/Images/CreateProject2.jpg" alt="Project" />
         </div>
