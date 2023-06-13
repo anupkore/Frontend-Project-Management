@@ -9,19 +9,60 @@ import { useState } from "react";
 import Pagination from "./Pagination";
 import AssignMember from "./AssignMember";
 import AuthenticationService from "../Services/AuthenticationService";
-export const Teams = () => {
+import { useEffect } from "react";
+
+export const Teams = () => 
+{
   const { p_id } = useParams();
   const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
   const maxWidth = "sm";
   const id = localStorage.getItem("ProjectID");
   const id2 = 12;
-  var payload = {project_id:id2}
+  var payload = {project_id:id}
   const [currentPage, setCurrentPage] = useState(1);
   const [membersPerPage, setMembersPerPage] = useState(5);
-  console.log(id);
-  AuthenticationService.teamDetails(payload).then((response)=>{
-    console.log(response.data);
-  })
+  const [teamDetails , setTeamDetails] = useState([]);
+  const[teamData,setTeamData] = useState([]);
+  const[isLoading,setLoading] = useState(true);
+  
+  // console.log(id);
+  // AuthenticationService.teamDetails(payload).then((response)=>{
+  //   setTeamDetails(response.data.users)
+  //    console.log(response.data);
+  //   // console.log(response.data.users[0])
+  //   // console.log(response.data.users[0].email)
+  //   // console.log(teamDetails);
+  // })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await AuthenticationService.teamDetails(payload);
+        console.log(response.data.users);
+        const details = response.data.users;
+        setTeamData(details);
+        console.log(details);
+        //setIsLoading(false);
+        return response.data;
+      } catch (error) {
+        // Handle error if needed
+        console.error("Error fetching workflow data:", error);
+        //setIsLoading(false);
+        throw error;
+      }
+    };
+
+    fetchData()
+      .then(() => {
+        console.log("Fetching data",teamData);
+      })
+      .catch((error) => {
+        // Handle error if needed
+        console.error("Error in subsequent logic:", error);
+   });
+},[]);
+
+   //console.log("Team:"+teamDetails);
 
   const indexOfLastMember = currentPage * membersPerPage;
   const indexOfFirstMember = indexOfLastMember - membersPerPage;
@@ -68,36 +109,33 @@ export const Teams = () => {
                 <thead>
                   <tr>
                     <th className="px-4 py-2">Sr.No</th>
-                    <th className="px-4 py-2">Name</th>
+                    <th className="px-4 py-2">Name11</th>
                     <th className="px-4 py-2">Email</th>
                     <th className="px-4 py-2">Contact</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {currentMembers.map((issue, index) => (
-                    <tr key={issue.id} className="my-4 divide-y space-y-5">
-                      <td className="px-4 py-2">{}</td>
-                      <td className="px-4 py-2">{}</td>
-                      <td className="px-4 py-2">{}</td>
-                      <td className="px-4 py-2">{}</td>
+                
+                  {/* {teamDetails.map((issue, index) => {
+                    <tr className="my-4 divide-y space-y-5">
+                      <td className="px-4 py-2">{index+1}</td>
+                      <td className="px-4 py-2">{issue.name} vv</td>
+                      <td className="px-4 py-2">{issue.email_id}</td>
+                      <td className="px-4 py-2">{issue.role}</td>
                     </tr>
-                  ))}
+                    })} */}
                 </tbody>
+                     
               </table>
               <div className="flex mt-3 mx-auto">
-                <div className="mr-20 my-auto">
-                  <span>
-                    {currentPage} of{" "}
-                    {Math.ceil(TeamData.length / membersPerPage)}
-                  </span>
-                </div>
+                
                 <div>
-                  <Pagination
+                  {/* <Pagination
                     membersPerPage={membersPerPage}
                     totalMembers={TeamData.length}
                     paginate={paginate}
                     currentPage={currentPage}
-                  ></Pagination>
+                  ></Pagination> */}
                 </div>
               </div>
             </div>

@@ -115,6 +115,10 @@ export default class AxiosService
         return axios.get(url);
     }
 
+    static getWorkflowByName(url,data){
+        return axios.post(url,data);
+    }
+
     static assignMember(url,data)
     {
         return axios.post(url,data);
@@ -132,6 +136,21 @@ export default class AxiosService
     }
 
     static getUserDetailByID(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static createTask(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static createDefect(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static allIssuesNew(url,data)
     {
         return axios.post(url,data);
     }

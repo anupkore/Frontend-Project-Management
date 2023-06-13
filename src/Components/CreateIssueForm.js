@@ -8,11 +8,7 @@ export default function CreateIssueForm()
 
   const [issueName , setIssueName] = useState('');
   const [description , setDescription] = useState('');
-  const [issueStartDate , setIssueStartDate] = useState('');
-  const [issueEndDate , setIssueEndDate] = useState('');
   const [issueType , setIssueType] = useState('');
-  const [priority , setPriority] = useState('');
-  const [assignee , setAssignee] = useState('');
   const [status , setStatus] = useState('');
 
     function handleInputChangeIssueName(event) 
@@ -25,29 +21,9 @@ export default function CreateIssueForm()
         setDescription(event.target.value);
      }
 
-     function handleInputChangeIssueStartDate(event) 
-     {
-        setIssueStartDate(event.target.value);
-     }
-
-     function handleInputChangeIssueEndDate(event) 
-     {
-        setIssueEndDate(event.target.value);
-     }
-
      function handleInputChangeIssueType(event) 
      {
         setIssueType(event.target.value);
-     }
-
-     function handleInputChangePriority(event) 
-     {
-        setPriority(event.target.value);
-     }
-
-     function handleInputChangeAssignee(event) 
-     {
-        setAssignee(event.target.value);
      }
 
      function handleInputChangeStatus(event) 
@@ -56,24 +32,29 @@ export default function CreateIssueForm()
      }
 
      
-     function handleCreateIssue(event)
+     function handleNext(event)
      {
       event.preventDefault();
       var payload = 
       {
         issue_name: issueName,
         description: description,
-        issuestartdate: issueStartDate,
-        issueenddate: issueEndDate,
         issuetype: issueType,
-        issuepriority: priority,
-        assignee: assignee,
         status: status
       }
     console.log(payload);
-    AuthenticationService.createIssue(payload).then(()=>{
+    //AuthenticationService.createIssue(payload).then((response)=>{
       console.log("Hi Create Issue");
-    })
+      console.log(issueType);
+      if(issueType==="Task")
+      {
+        window.location.href = '/createTask';
+      }
+      else
+      {
+        window.location.href = '/createDefect';
+      }
+    //})
      }
 
   return (
@@ -130,43 +111,7 @@ export default function CreateIssueForm()
                       />
                     </div>
                   </div>
-                  <div className="mt-2">
-                    <label
-                      htmlFor="first-name"
-                      className="block text-sm font-semibold leading-6 text-gray-900"
-                    >
-                      Issue Start Date
-                    </label>
-                    <div className="mt-0">
-                      <input
-                        type="date"
-                        name="first-name"
-                        id="first-name"
-                        value={issueStartDate}
-                        onChange={handleInputChangeIssueStartDate}
-                        autoComplete="given-name"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-2">
-                    <label
-                      htmlFor="last-name"
-                      className="block text-sm font-semibold leading-6 text-gray-900"
-                    >
-                      Issue End Date
-                    </label>
-                    <div className="mt-0">
-                      <input
-                        type="date"
-                        name="last-name"
-                        id="last-name"
-                        value={issueEndDate}
-                        onChange={handleInputChangeIssueEndDate}
-                        autoComplete="family-name"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                      />
-                    </div>
+                  
                   </div>
                   <div className="mt-0">
 
@@ -178,51 +123,15 @@ export default function CreateIssueForm()
                     </label>
                    
 
-                  <select value={issueType} onChange={handleInputChangeIssueType} className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:shadow-outline"
-                    >
-                      <option value='Task'>Task</option>
-                      <option value='Defects'>Defects</option>
-                      
-                    </select>
+                  <select value={issueType} onChange={handleInputChangeIssueType} className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:shadow-outline">
+                      <option value="">Select Issue Type</option>
+                      <option value="Task">Task</option>
+                      <option value="Defects">Defects</option>
+                  </select>
 
                   </div>
-                  <div className="mt-0">
-
-                    <label
-                      htmlFor="last-name"
-                      className="block text-sm font-semibold leading-6 text-gray-900"
-                    >
-                      Priority
-                    </label>
-                   
-
-                  <select value={priority} onChange={handleInputChangePriority} className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:shadow-outline"
-                    >
-                      <option value='High'>High</option>
-                      <option value='Medium'>Medium</option>
-                      <option value='Low'>Low</option>
-                    </select>
-
-                  </div>
-                  <div className="mt-0">
-                    <label
-                      htmlFor="first-name"
-                      className="block text-sm font-semibold leading-6 text-gray-900"
-                    >
-                      Assign To
-                    </label>
-                    <div className="mt-0">
-                      <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
-                        value={assignee}
-                        onChange={handleInputChangeAssignee}
-                        autoComplete="given-name"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
+                  
+                  
                   <div className="mt-0">
                     <label
                       htmlFor="last-name"
@@ -240,13 +149,13 @@ export default function CreateIssueForm()
                         autoComplete="family-name"
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                       />
-                    </div>
+                    
                   </div>
                 </div>
                 <div className="mx-auto mt-3.5 d-flex align-items-center justify-content-center ">
                   {" "}
-                  <Button onClick={handleCreateIssue} variant="contained" className="justify-content-center flex items-center">
-                    Create
+                  <Button onClick={handleNext} variant="contained" className="justify-content-center flex items-center">
+                    Next
                   </Button>
                 </div>
               </form>

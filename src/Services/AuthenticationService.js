@@ -91,6 +91,7 @@ export default class AuthenticationService
 
     static addworkflow(data)
     {
+        console.log(data);
         return AxiosService.addWorkflow(AuthenticationConfiguration.addWorkflow() , data);
 
     }
@@ -99,7 +100,9 @@ export default class AuthenticationService
     {
         return AxiosService.getAllWorkflows(AuthenticationConfiguration.getAllWorkFlows());
     }
-
+    static getWorkflowByName(data){
+        return AxiosService.getWorkflowByName(AuthenticationConfiguration.getWorkflowByName(),data);
+    }
     static assignMember(data)
     {
         return AxiosService.assignMember(AuthenticationConfiguration.assignMember(),data);
@@ -118,5 +121,20 @@ export default class AuthenticationService
     static getUserDetailByID(data)
     {
         return AxiosService.getUserDetailByID(AuthenticationConfiguration.getUserDetailByID(),data);
+    }
+
+    static createTask(data)
+    {
+        return AxiosService.createTask(AuthenticationConfiguration.createTask(),data);
+    }
+
+    static createDefect(data)
+    {
+        return AxiosService.createDefect(AuthenticationConfiguration.createDefect(),data);
+    }
+
+    static allIssuesNew(data)
+    {
+        return AxiosService.allIssuesNew(AuthenticationConfiguration.allIssuesNew(),data);
     }
 }

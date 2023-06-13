@@ -115,7 +115,10 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"GetWorkflow";
         return url;
     }
-
+    static getWorkflowByName(){
+        const url = ParentConfiguration.parentURL()+"GetWorkflowByName";
+        return url;
+    }
     static assignMember()
     {
         const url = ParentConfiguration.parentURL()+"assign_user";
@@ -137,6 +140,24 @@ export default class AuthenticationConfiguration
     static getUserDetailByID()
     {
         const url = ParentConfiguration.parentURL()+"getUserDetailByID";
+        return url;
+    }
+
+    static createTask()
+    {
+        const url = ParentConfiguration.parentURL()+"create_Task";
+        return url;
+    }
+
+    static createDefect()
+    {
+        const url = ParentConfiguration.parentURL()+"create_Defect";
+        return url;
+    }
+
+    static allIssuesNew()
+    {
+        const url = ParentConfiguration.parentURL()+"issue_list";
         return url;
     }
     

@@ -23,26 +23,33 @@ import NumberOfIssuesBar from './Components/NumberOfIssuesBar';
 import IssueTypeBar from './Components/IssueTypeBar';
 import ReportsDashboard from './Components/ReportsDashboard';
 import URLTesting from './Components/URLTesting';
-import InputGrid from './Components/CreateWorkflow';
 import TableOfUsers from './Components/TableOfUsers';
 
 import UpdateUser from './Components/UpdateUser';
 
 import ProtectedRoute from "./Components/ProtectedRoute"
-import AssignMember from './Components/AssignMember';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import WorkflowCard from './Components/WorkflowCards';
+import CreateWorkflow from './Components/CreateWorkflow';
+import CreateTask from './Components/CreateTask';
+import CreateDefect from './Components/CreateDefect';
+import AllIssues from './Components/AllIssues';
 
 
 const App = () => {
   return (
     <Router>
+          <ToastContainer/>
       <Routes>
+ 
         <Route path="/" element={<Home />} />
         <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
         <Route path="/allProjects" element={<ProtectedRoute element={AllProjectList} />} />
 
         {/* /// */}
 <Route path="/projectexplore/:id1" element={<ProtectedRoute element={ProjectExplore} />} />
-<Route path="/projectexplore/teams/:p_id" element={<ProtectedRoute element={Teams} />} />
+<Route path="/teams" element={<ProtectedRoute element={Teams} />} />
 <Route path="/dashboard" element={<ProtectedRoute element={AdminDashboard} />} />
 <Route path="/cal" element={<ProtectedRoute element={Calender} />} />
 <Route path="/projectexplore/issues/:p_id" element={<ProtectedRoute element={IssueDashboard} />} />
@@ -52,7 +59,7 @@ const App = () => {
 <Route path="/addNewProject" element={<ProtectedRoute element={AddNewProject} />} />
 
 <Route path="*" element={<ProtectedRoute element={ErrorPage} />} />
-<Route path="/addWorkflow" element={<ProtectedRoute element={InputGrid} />} />
+<Route path="/addWorkflow" element={<ProtectedRoute element={CreateWorkflow} />} />
 <Route path="/updateprojectform" element={<ProtectedRoute element={UpdateProjectForm} />} />
 <Route path="/addNewMember" element={<ProtectedRoute element={AddNewMember} />} />
 <Route path="/forgotPassword" element={<ProtectedRoute element={ForgotPassword} />} />
@@ -66,9 +73,11 @@ const App = () => {
 <Route path="/reports" element={<ProtectedRoute element={ReportsDashboard} />} />
 <Route path="/urlTest" element={<ProtectedRoute element={URLTesting} />} />
 <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
-<Route path='/assignMember' element={<AssignMember></AssignMember>} />
+<Route path='/workflow' element={<ProtectedRoute element={WorkflowCard} />} />
 <Route path='/updateUser/:uid' element={<UpdateUser></UpdateUser>} />
-
+<Route path='/createTask' element={<CreateTask></CreateTask>} />
+<Route path='/createDefect' element={<CreateDefect></CreateDefect>} />
+<Route path='/allIssues' element={<AllIssues></AllIssues>} />
 
       </Routes>
     </Router>
