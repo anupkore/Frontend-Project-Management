@@ -30,6 +30,9 @@ import UpdateUser from './Components/UpdateUser';
 
 import ProtectedRoute from "./Components/ProtectedRoute"
 import AssignMember from './Components/AssignMember';
+import CreateTask from './Components/CreateTask';
+import CreateDefect from './Components/CreateDefect';
+import AllIssues from './Components/AllIssues';
 
 
 const App = () => {
@@ -42,7 +45,7 @@ const App = () => {
 
         {/* /// */}
 <Route path="/projectexplore/:id1" element={<ProtectedRoute element={ProjectExplore} />} />
-<Route path="/projectexplore/teams/:p_id" element={<ProtectedRoute element={Teams} />} />
+<Route path="/teams" element={<ProtectedRoute element={Teams} />} />
 <Route path="/dashboard" element={<ProtectedRoute element={AdminDashboard} />} />
 <Route path="/cal" element={<ProtectedRoute element={Calender} />} />
 <Route path="/projectexplore/issues/:p_id" element={<ProtectedRoute element={IssueDashboard} />} />
@@ -68,6 +71,9 @@ const App = () => {
 <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
 <Route path='/assignMember' element={<AssignMember></AssignMember>} />
 <Route path='/updateUser/:uid' element={<UpdateUser></UpdateUser>} />
+<Route path='/createTask' element={<CreateTask></CreateTask>} />
+<Route path='/createDefect' element={<CreateDefect></CreateDefect>} />
+<Route path='/allIssues' element={<AllIssues></AllIssues>} />
 
 
       </Routes>

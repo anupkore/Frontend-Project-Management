@@ -134,5 +134,23 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"getUserDetailByID";
         return url;
     }
+
+    static createTask()
+    {
+        const url = ParentConfiguration.parentURL()+"create_Task";
+        return url;
+    }
+
+    static createDefect()
+    {
+        const url = ParentConfiguration.parentURL()+"create_Defect";
+        return url;
+    }
+
+    static allIssuesNew()
+    {
+        const url = ParentConfiguration.parentURL()+"issue_list";
+        return url;
+    }
     
 }

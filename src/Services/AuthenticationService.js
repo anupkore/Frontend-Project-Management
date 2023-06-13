@@ -114,4 +114,19 @@ export default class AuthenticationService
     {
         return AxiosService.getUserDetailByID(AuthenticationConfiguration.getUserDetailByID(),data);
     }
+
+    static createTask(data)
+    {
+        return AxiosService.createTask(AuthenticationConfiguration.createTask(),data);
+    }
+
+    static createDefect(data)
+    {
+        return AxiosService.createDefect(AuthenticationConfiguration.createDefect(),data);
+    }
+
+    static allIssuesNew(data)
+    {
+        return AxiosService.allIssuesNew(AuthenticationConfiguration.allIssuesNew(),data);
+    }
 }

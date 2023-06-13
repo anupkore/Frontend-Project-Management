@@ -9,18 +9,25 @@ import { useState } from "react";
 import Pagination from "./Pagination";
 import AssignMember from "./AssignMember";
 import AuthenticationService from "../Services/AuthenticationService";
-export const Teams = () => {
+
+export const Teams = () => 
+{
   const { p_id } = useParams();
   const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
   const maxWidth = "sm";
   const id = localStorage.getItem("ProjectID");
   const id2 = 12;
-  var payload = {project_id:id2}
+  var payload = {project_id:id}
   const [currentPage, setCurrentPage] = useState(1);
   const [membersPerPage, setMembersPerPage] = useState(5);
+  const [teamDetails , setTeamDetails] = useState([]);
   console.log(id);
   AuthenticationService.teamDetails(payload).then((response)=>{
+    setTeamDetails(response.data.users)
     console.log(response.data);
+    console.log(response.data.users[0])
+    console.log(response.data.users[0].email)
+    console.log(teamDetails);
   })
 
   const indexOfLastMember = currentPage * membersPerPage;

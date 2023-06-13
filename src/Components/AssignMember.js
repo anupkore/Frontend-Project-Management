@@ -23,7 +23,7 @@ function AssignMember()
       console.log(payload);
       AuthenticationService.assignMember(payload).then(()=>{
         console.log("New User added");
-        //window.location.href = '/tableofusers';
+        window.location.href = "/teams";
       })
     }
     

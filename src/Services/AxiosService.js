@@ -128,5 +128,20 @@ export default class AxiosService
         return axios.post(url,data);
     }
 
+    static createTask(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static createDefect(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static allIssuesNew(url,data)
+    {
+        return axios.post(url,data);
+    }
+
 
 }
