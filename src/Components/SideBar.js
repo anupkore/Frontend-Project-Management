@@ -4,21 +4,14 @@ import { Link, useParams } from "react-router-dom";
 export default function SideBar(props) {
   const [open, setOpen] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
-
-
-    const Menus = [
+  const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
       { title: "Teams", src: "Chat",li:`/projectexplore/teams/${props.p_id}`},
       { title: "Issues Workflow", src: "User" ,li:`/projectexplore/issues/${props.p_id}`},
       { title: "Reports", src: "Chart", li:`/reports` },
       { title: "Admin DashBoard", src: "Chart_fill" ,li:"/dashboard"},
     ];
-    
-
-  
-  
-
-  const handleResize = () => {
+    const handleResize = () => {
     const isMobile = window.innerWidth <= 768; // Set your desired responsive breakpoint here
     setIsResponsive(isMobile);
     if (isMobile && open) {
