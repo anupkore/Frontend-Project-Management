@@ -23,19 +23,23 @@ import NumberOfIssuesBar from './Components/NumberOfIssuesBar';
 import IssueTypeBar from './Components/IssueTypeBar';
 import ReportsDashboard from './Components/ReportsDashboard';
 import URLTesting from './Components/URLTesting';
-import InputGrid from './Components/CreateWorkflow';
 import TableOfUsers from './Components/TableOfUsers';
 
 import UpdateUser from './Components/UpdateUser';
 
 import ProtectedRoute from "./Components/ProtectedRoute"
-import AssignMember from './Components/AssignMember';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import WorkflowCard from './Components/WorkflowCards';
+import CreateWorkflow from './Components/CreateWorkflow';
 
 
 const App = () => {
   return (
     <Router>
+          <ToastContainer/>
       <Routes>
+ 
         <Route path="/" element={<Home />} />
         <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
         <Route path="/allProjects" element={<ProtectedRoute element={AllProjectList} />} />
@@ -52,7 +56,7 @@ const App = () => {
 <Route path="/addNewProject" element={<ProtectedRoute element={AddNewProject} />} />
 
 <Route path="*" element={<ProtectedRoute element={ErrorPage} />} />
-<Route path="/addWorkflow" element={<ProtectedRoute element={InputGrid} />} />
+<Route path="/addWorkflow" element={<ProtectedRoute element={CreateWorkflow} />} />
 <Route path="/updateprojectform" element={<ProtectedRoute element={UpdateProjectForm} />} />
 <Route path="/addNewMember" element={<ProtectedRoute element={AddNewMember} />} />
 <Route path="/forgotPassword" element={<ProtectedRoute element={ForgotPassword} />} />
@@ -66,8 +70,7 @@ const App = () => {
 <Route path="/reports" element={<ProtectedRoute element={ReportsDashboard} />} />
 <Route path="/urlTest" element={<ProtectedRoute element={URLTesting} />} />
 <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
-<Route path='/assignMember' element={<AssignMember></AssignMember>} />
-
+<Route path='/workflow' element={<ProtectedRoute element={WorkflowCard} />} />
 
       </Routes>
     </Router>

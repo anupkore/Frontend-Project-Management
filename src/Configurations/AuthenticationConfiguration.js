@@ -110,7 +110,10 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"GetWorkflow";
         return url;
     }
-
+    static getWorkflowByName(){
+        const url = ParentConfiguration.parentURL()+"GetWorkflowByName";
+        return url;
+    }
     static assignMember()
     {
         const url = ParentConfiguration.parentURL()+"AssignUser";
