@@ -4,7 +4,10 @@ import GraphVisualization from "./GraphVisualization";
 import AuthenticationService from "../Services/AuthenticationService";
 import { toast } from "react-toastify";
 
-const InputGrid = () => {
+const CreateWorkflow = ({proj,type}) => {
+
+  console.log(proj);
+  console.log(type);
   const [inputValues, setInputValues] = useState([[]]);
   const [workflow, setWorkflow] = useState([]);
   const [submittedRows, setSubmittedRows] = useState([]);
@@ -152,9 +155,11 @@ const InputGrid = () => {
       <div>
         <div className="flex justify-center p-2 my-2 ">
           <h2 className="font-bold underline decoration-sky-400 decoration-8 text-3xl">
-            Create a Workflow
+            Workflow For : {type}
           </h2>
+          
         </div>
+        <h1>Project Name : {proj}</h1>
         <div className="container-lg border-2 rounded-md mx-auto p-4">
           <div className="flex p-3 ">
             <input
@@ -357,4 +362,4 @@ const InputGrid = () => {
   );
 };
 
-export default InputGrid;
+export default CreateWorkflow;

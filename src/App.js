@@ -23,7 +23,6 @@ import NumberOfIssuesBar from './Components/NumberOfIssuesBar';
 import IssueTypeBar from './Components/IssueTypeBar';
 import ReportsDashboard from './Components/ReportsDashboard';
 import URLTesting from './Components/URLTesting';
-import InputGrid from './Components/CreateWorkflow';
 import TableOfUsers from './Components/TableOfUsers';
 
 import UpdateUser from './Components/UpdateUser';
@@ -32,6 +31,7 @@ import ProtectedRoute from "./Components/ProtectedRoute"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import WorkflowCard from './Components/WorkflowCards';
+import CreateWorkflow from './Components/CreateWorkflow';
 
 
 const App = () => {
@@ -56,7 +56,7 @@ const App = () => {
 <Route path="/addNewProject" element={<ProtectedRoute element={AddNewProject} />} />
 
 <Route path="*" element={<ProtectedRoute element={ErrorPage} />} />
-<Route path="/addWorkflow" element={<ProtectedRoute element={InputGrid} />} />
+<Route path="/addWorkflow" element={<ProtectedRoute element={CreateWorkflow} />} />
 <Route path="/updateprojectform" element={<ProtectedRoute element={UpdateProjectForm} />} />
 <Route path="/addNewMember" element={<ProtectedRoute element={AddNewMember} />} />
 <Route path="/forgotPassword" element={<ProtectedRoute element={ForgotPassword} />} />

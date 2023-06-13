@@ -95,7 +95,9 @@ export default class AuthenticationService
     {
         return AxiosService.getAllWorkflows(AuthenticationConfiguration.getAllWorkFlows());
     }
-
+    static getWorkflowByName(data){
+        return AxiosService.getWorkflowByName(AuthenticationConfiguration.getWorkflowByName(),data);
+    }
     static assignMember(data)
     {
         return AxiosService.assignMember(AuthenticationConfiguration.assignMember(),data);

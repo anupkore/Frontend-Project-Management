@@ -104,7 +104,11 @@ export default class AxiosService
 
     static getAllWorkflows(url)
     {
-        return axios.post(url);
+        return axios.get(url);
+    }
+
+    static getWorkflowByName(url,data){
+        return axios.post(url,data);
     }
 
     static assignMember(url,data)
