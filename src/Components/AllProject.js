@@ -8,7 +8,7 @@ import { FaSortDown, FaSortUp } from "react-icons/fa";
 import { Button, ButtonGroup } from "@mui/material";
 import ParticularIssueDashboard from "./ParticularIssueDashboard";
 import MyIssues from "./Myissues";
-import { GridLoader, HashLoader, PacmanLoader } from "react-spinners";
+import {HashLoader} from "react-spinners";
 import Navbar from "./Navbar";
 
 export const AllProjectList = () => {
