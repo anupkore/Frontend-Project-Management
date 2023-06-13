@@ -39,9 +39,9 @@ export default class AxiosService
     }
 
     //For Deleting a Project (PID)
-    static deleteProject(url)
+    static deleteProject(url,data)
     {
-        return axios.delete(url)
+        return axios.post(url,data)
     }
 
     //For Create Issue Form
@@ -81,16 +81,24 @@ export default class AxiosService
     }
 
     //For Updating users (For alpha admin)
-    static updateUsers(url,id)
+    static updateUsers(url,data)
     {
-        return axios.put(url,id);
+        return axios.post(url,data);
+    }
+    static getUser(url,user_id)
+    {
+        return axios.post(url,user_id);
     }
 
     //For deleting a user (For alpha admin)
-    static deleteUser(url,id)
-    {
-        return axios.delete(url,id);
-    }
+    // static deleteUser(url,user_id)
+    // {
+    //     return axios.post(url,user_id);
+    // }
+
+    static deleteUser(url,data) {
+        return axios.post(url,data);
+      }
 
     static getDataForIssues(url)
     {

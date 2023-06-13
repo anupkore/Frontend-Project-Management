@@ -83,13 +83,18 @@ export default class AuthenticationConfiguration
 
     static updateUser()
     {
-        const url = ParentConfiguration.parentURL()+"updateUser"
+        const url = ParentConfiguration.parentURL()+"update_user"
+        return url;
+    }
+    static getUser()
+    {
+        const url = ParentConfiguration.parentURL()+"useridwise_user"
         return url;
     }
 
     static deleteUser()
     {
-        const url = ParentConfiguration.parentURL()+"deleteUser";
+        const url = ParentConfiguration.parentURL()+"delete_user";
         return url;
     }
 

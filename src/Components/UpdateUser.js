@@ -1,21 +1,26 @@
 import { useRef, useState } from "react"
 import AuthenticationService from "../Services/AuthenticationService";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-export default function UpdateUser() 
-{
-    const { uid } = useParams();  
-    console.log(uid);
-    AuthenticationService.getUserDetailByID(uid).then((response)=>{
-      console.log(response.data);
-    })
-    const name = useRef('');
-    const email = useRef('');
-    const contact = useRef('');
-    const role = useRef('');
-    const[errorName , setErrorName] = useState('');
-    const[errorEmail , setErrorEmail] = useState('');
-    const[errorContact , setErrorContact] = useState('');
+export default function UpdateUser({ userData,user_id }) {
+  const name = useRef("");
+  const Email_id = useRef("");
+  const contact = useRef("");
+  const role = useRef("User");
+  const [errorName, setErrorName] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorContact, setErrorContact] = useState("");
+  console.log("mydataaa",userData);
+  console.log("idddd",user_id);
+
+  useEffect(() => {
+    if (userData) {
+      name.current.value = userData.name;
+      Email_id.current.value = userData.Email_id;
+      contact.current.value = userData.contact;
+      // role.current.value = userData.role;
+    }
+  }, [userData]);
 
     function validateName(name) 
     {
@@ -57,7 +62,7 @@ export default function UpdateUser()
         setErrorName('Please Enter Valid Name');
         return;
       }
-      if (!validateEmail(email.current.value)) 
+      if (!validateEmail(Email_id.current.value)) 
       {
         setErrorEmail('Please Enter Valid Email');
         return;
@@ -69,15 +74,16 @@ export default function UpdateUser()
       }
       
       var payload = 
-      {
+      {   user_id:user_id,
           name: name.current.value,
-          email_id: email.current.value,
+          email_id: Email_id.current.value,
           contact: contact.current.value,
           //role: role.current.value
       }
-      console.log(payload);
-      AuthenticationService.signUp(payload).then(()=>{
-        console.log("New User Created");
+      console.log("payload",payload);
+      AuthenticationService.updateUser(payload).then(()=>{
+        console.log("upadte User ");
+        window.location.href = '/tableofusers';
       })
     }
 
@@ -96,7 +102,7 @@ export default function UpdateUser()
               
               <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <h2 className="mt-10 text-center my-auto text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                  Update Member Details
+                  Upadte Member
                 </h2>
               </div>
   
@@ -130,7 +136,7 @@ export default function UpdateUser()
                           id="email"
                           name="email"
                           type="email"
-                          ref={email}
+                          ref={Email_id}
                           onChange={handleInputChangeEmail}
                           autoComplete="email"
                           required
@@ -184,7 +190,7 @@ export default function UpdateUser()
 
                     <div>
                       <button onClick={handleSignUp} type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                        Update
+                        Add
                       </button>
                     </div>
             
