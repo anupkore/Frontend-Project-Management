@@ -10,6 +10,7 @@ import Comments from "./Comments";
 import { projects1 } from "./TEST/Projects";
 import AuthenticationService from "../Services/AuthenticationService";
 import CreateWorkflow from "./CreateWorkflow";
+import { HashLoader } from "react-spinners";
 
 export const ProjectExplore = () => {
   const maxWidth = "md";
@@ -24,6 +25,7 @@ export const ProjectExplore = () => {
   const [projectData, setProjectData] = useState([]);
   const [projectID, setProjectID] = useState();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     AuthenticationService.projectExplore(payload)
@@ -31,6 +33,7 @@ export const ProjectExplore = () => {
         setProjectDetails((existingData) => {
           console.log(response.data);
           setProjectData(response.data);
+          setIsLoading(false);
           console.log("projectData", projectData);
           // console.log(allProjectData.Project_name);
           // setProjectID(allProjectData.Project_id);
@@ -38,6 +41,7 @@ export const ProjectExplore = () => {
       })
       .catch((error) => {
         console.log(error.response.data);
+        setIsLoading(false);
       });
   }, []);
 
@@ -95,6 +99,18 @@ export const ProjectExplore = () => {
   };
 
   return (
+    <>
+    {isLoading ?(
+      <div className="flex justify-center">
+          <HashLoader
+            color="#1976d2"
+            style={{ marginTop: "10%" }}
+            size={100}
+            speedMultiplier={1}
+          />
+          {/* <PacmanLoader color="#1976d2" size={50}/>   */}
+        </div>
+    ):(
     <>
       <div className="flex">
         <div className="">
@@ -346,6 +362,8 @@ export const ProjectExplore = () => {
           </div>
         </Modal>
       )}
+    </>
+    )}
     </>
   );
 };
