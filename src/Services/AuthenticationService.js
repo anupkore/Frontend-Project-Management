@@ -34,9 +34,9 @@ export default class AuthenticationService
         return AxiosService.updateProject(AuthenticationConfiguration.updateProject(),data);
     }
 
-    static deleteProject(id)
+    static deleteProject(data)
     {
-        return  AxiosService.deleteProject(AuthenticationConfiguration.deleteProject(),id);
+        return  AxiosService.deleteProject(AuthenticationConfiguration.deleteProject(),data);
     }
 
     static createIssue(data)
@@ -68,15 +68,20 @@ export default class AuthenticationService
     {
         return AxiosService.allUsersTable(AuthenticationConfiguration.allUsers());
     }
+    
 
-    static updateUser(id)
+    static updateUser(data)
     {
-        return AxiosService.updateUsers(AuthenticationConfiguration.updateUser(),id);
+        return AxiosService.updateUsers(AuthenticationConfiguration.updateUser(),data);
+    }
+    static getUser(data)
+    {
+        return AxiosService.getUser(AuthenticationConfiguration.getUser(),data);
     }
 
-    static deleteUser(id)
+    static deleteUser(data)
     {
-        return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser(),id);
+        return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser(),data);
     }
 
     static getDataForIssues()

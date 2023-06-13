@@ -4,17 +4,18 @@ import { useEffect } from "react";
 
 export default function AddNewMember({ userData }) {
   const name = useRef("");
-  const email = useRef("");
+  const Email_id = useRef("");
   const contact = useRef("");
   const role = useRef("User");
   const [errorName, setErrorName] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorContact, setErrorContact] = useState("");
+  console.log("mydataaa",userData);
 
   useEffect(() => {
     if (userData) {
       name.current.value = userData.name;
-      email.current.value = userData.email_id;
+      Email_id.current.value = userData.Email_id;
       contact.current.value = userData.contact;
       // role.current.value = userData.role;
     }
@@ -60,7 +61,7 @@ export default function AddNewMember({ userData }) {
         setErrorName('Please Enter Valid Name');
         return;
       }
-      if (!validateEmail(email.current.value)) 
+      if (!validateEmail(Email_id.current.value)) 
       {
         setErrorEmail('Please Enter Valid Email');
         return;
@@ -72,9 +73,9 @@ export default function AddNewMember({ userData }) {
       }
       
       var payload = 
-      {
+      {   
           name: name.current.value,
-          email_id: email.current.value,
+          email_id: Email_id.current.value,
           contact: contact.current.value,
           //role: role.current.value
       }
@@ -134,7 +135,7 @@ export default function AddNewMember({ userData }) {
                           id="email"
                           name="email"
                           type="email"
-                          ref={email}
+                          ref={Email_id}
                           onChange={handleInputChangeEmail}
                           autoComplete="email"
                           required

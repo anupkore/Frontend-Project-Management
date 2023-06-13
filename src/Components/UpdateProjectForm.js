@@ -2,6 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
+import { Navigate } from "react-router-dom";
 
 export default function UpdateProjectForm(props) {
   const { projectData } = props;
@@ -61,22 +62,23 @@ export default function UpdateProjectForm(props) {
     console.log("iddddddddd",projectData.Project_id);
     // console.log("iddddddddd",projectData.project_id});
     var updateData = {
-      Project_ID: projectData.Project_id,
-      Project_Name: projectName,
-      Status: status,
-      Planned_SD: startDate,
-      Planned_ED: endDate,
-      Actual_SD: actualStartDate,
-      Actual_ED: actualEndDate,
-      Project_Lead: projectLead,
-      Client_Name: clientName,
-      Project_Description: project_description,
+      project_id: projectData.Project_id,
+      project_name: projectName,
+      status: status,
+      Planned_sd: startDate,
+      Planned_ed: endDate,
+      actual_sd: actualStartDate,
+      actual_ed: actualEndDate,
+      project_lead: projectLead,
+      client_name: clientName,
+      project_description: project_description,
     };
 
     console.log(updateData);
 
     AuthenticationService.updateProject(updateData).then(() => {
-      console.log("Project details updated...................");
+      console.log(`Project details updated.................../projectexplore/:${projectData.Project_id}`);
+      Navigate(`/projectexplore/:${projectData.Project_id}`);
     });
   }
 

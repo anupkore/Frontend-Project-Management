@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import SideBar from "./SideBar";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
 import Modal from "./Modal";
@@ -50,19 +50,21 @@ export const ProjectExplore = () => {
   };
 
  
-  function handleDeleteProject(userId) {
+  function handleDeleteProject(project_id) {
+    payload={project_id:project_id}
     // Display confirmation box
     const confirmDelete = window.confirm("Are you sure you want to delete this Project?");
   
     if (confirmDelete) {
       // Perform the delete operation using the userId parameter
-      console.log(`Deleting user with ID: ${userId}`);
+      console.log(`Deleting user with ID: ${project_id}`);
        // Make an API call to delete the project
-    AuthenticationService.deleteProject(userId)
+    AuthenticationService.deleteProject(payload)
     .then((response) => {
       // Handle the success response
       console.log(response.data);
       // Redirect the user to the project list or perform any necessary actions
+      Navigate("/allProjects");
     })
     .catch((error) => {
       // Handle the error response
