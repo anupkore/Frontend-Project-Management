@@ -91,6 +91,7 @@ export default class AuthenticationService
 
     static addworkflow(data)
     {
+        console.log(data);
         return AxiosService.addWorkflow(AuthenticationConfiguration.addWorkflow() , data);
 
     }
@@ -99,7 +100,9 @@ export default class AuthenticationService
     {
         return AxiosService.getAllWorkflows(AuthenticationConfiguration.getAllWorkFlows());
     }
-
+    static getWorkflowByName(data){
+        return AxiosService.getWorkflowByName(AuthenticationConfiguration.getWorkflowByName(),data);
+    }
     static assignMember(data)
     {
         return AxiosService.assignMember(AuthenticationConfiguration.assignMember(),data);
