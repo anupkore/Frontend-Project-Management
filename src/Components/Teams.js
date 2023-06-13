@@ -10,21 +10,21 @@ import Pagination from "./Pagination";
 import AssignMember from "./AssignMember";
 import AuthenticationService from "../Services/AuthenticationService";
 import { useEffect } from "react";
+import { index } from "d3-array";
 
-export const Teams = () => 
-{
+export const Teams = () => {
   const { p_id } = useParams();
-  const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
+  // const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
   const maxWidth = "sm";
   const id = localStorage.getItem("ProjectID");
   const id2 = 12;
-  var payload = {project_id:id}
+  var payload = { project_id: id }
   const [currentPage, setCurrentPage] = useState(1);
   const [membersPerPage, setMembersPerPage] = useState(5);
-  const [teamDetails , setTeamDetails] = useState([]);
-  const[teamData,setTeamData] = useState([]);
-  const[isLoading,setLoading] = useState(true);
-  
+  const [teamDetails, setTeamDetails] = useState([]);
+  // const[teamData,setTeamData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   // console.log(id);
   // AuthenticationService.teamDetails(payload).then((response)=>{
   //   setTeamDetails(response.data.users)
@@ -40,29 +40,30 @@ export const Teams = () =>
         const response = await AuthenticationService.teamDetails(payload);
         console.log(response.data.users);
         const details = response.data.users;
-        setTeamData(details);
-        console.log(details);
-        //setIsLoading(false);
-        return response.data;
+        setTeamDetails(details);
+        // console.log(details);
+        setIsLoading(false);
+
       } catch (error) {
         // Handle error if needed
         console.error("Error fetching workflow data:", error);
-        //setIsLoading(false);
+        setIsLoading(false);
         throw error;
       }
     };
 
-    fetchData()
-      .then(() => {
-        console.log("Fetching data",teamData);
-      })
-      .catch((error) => {
-        // Handle error if needed
-        console.error("Error in subsequent logic:", error);
-   });
-},[]);
+    fetchData();
+  }, []);
 
-   //console.log("Team:"+teamDetails);
+  useEffect(()=>{
+    if (teamDetails.length >0) {
+      console.log(teamDetails);
+    } else {
+      console.log("No Team is there!!")
+    }
+   
+  },[teamDetails])
+   console.log("Teams",teamDetails);
 
   const indexOfLastMember = currentPage * membersPerPage;
   const indexOfFirstMember = indexOfLastMember - membersPerPage;
@@ -77,12 +78,12 @@ export const Teams = () =>
 
         <section
           className="bg-blur-3xl bg-opacity-30 flex-wrap h-full w-full mx-20 px-8 py-4 rounded-5 border-solid border-2"
-         
+
         >
           <div className="flex-wrap pt-4 pb-1 px-5 justify-end">
             <h1 className="text-center mb-0 flex-grow-1 mb-2">
               <span className="bg-white px-4 py-2 rounded-md shadow-md text-navy-blue align-items-center mx-auto text-center">
-                Team Members
+                Team Members {teamDetails.length}
               </span>
             </h1>
           </div>
@@ -114,21 +115,22 @@ export const Teams = () =>
                     <th className="px-4 py-2">Contact</th>
                   </tr>
                 </thead>
-                <tbody>
                 
-                  {/* {teamDetails.map((issue, index) => {
-                    <tr className="my-4 divide-y space-y-5">
-                      <td className="px-4 py-2">{index+1}</td>
-                      <td className="px-4 py-2">{issue.name} vv</td>
-                      <td className="px-4 py-2">{issue.email_id}</td>
-                      <td className="px-4 py-2">{issue.role}</td>
-                    </tr>
-                    })} */}
-                </tbody>
-                     
+                    {teamDetails.map((member)=>{
+                      <tbody>
+                        
+                        <td className="px-4 py-2">1</td>
+                        <td className="px-4 py-2">{member.name}</td>
+                        <td className="px-4 py-2">111</td>
+                        <td className="px-4 py-2">111</td>
+                        
+                      </tbody>
+                    })}
+                
+
               </table>
               <div className="flex mt-3 mx-auto">
-                
+
                 <div>
                   {/* <Pagination
                     membersPerPage={membersPerPage}
