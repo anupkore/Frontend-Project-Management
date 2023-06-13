@@ -116,16 +116,19 @@ export const Teams = () => {
                   </tr>
                 </thead>
                 
-                    {teamDetails.map((member)=>{
                       <tbody>
                         
-                        <td className="px-4 py-2">1</td>
-                        <td className="px-4 py-2">{member.name}</td>
-                        <td className="px-4 py-2">111</td>
-                        <td className="px-4 py-2">111</td>
+                      {teamDetails.map((member, index) => (
+                        <tr key={index}>
+                          <td className="px-4 py-2">{index + 1}</td>
+                          <td className="px-4 py-2">{member.name}</td>
+                          <td className="px-4 py-2">{member.email_id}</td>
+                          <td className="px-4 py-2">111</td>
+                        </tr>
+                      ))}
                         
                       </tbody>
-                    })}
+                  
                 
 
               </table>
