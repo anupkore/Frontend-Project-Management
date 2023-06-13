@@ -6,7 +6,7 @@ export default function SideBar(props) {
   const [isResponsive, setIsResponsive] = useState(false);
   const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
-      { title: "Teams", src: "Chat",li:`/projectexplore/teams/${props.p_id}`},
+      { title: "Teams", src: "Chat",li:"/teams"},
       { title: "Issues Workflow", src: "User" ,li:`/projectexplore/issues/${props.p_id}`},
       { title: "Reports", src: "Chart", li:`/reports` },
       { title: "Admin DashBoard", src: "Chart_fill" ,li:"/dashboard"},

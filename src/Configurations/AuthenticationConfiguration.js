@@ -83,13 +83,18 @@ export default class AuthenticationConfiguration
 
     static updateUser()
     {
-        const url = ParentConfiguration.parentURL()+"updateUser"
+        const url = ParentConfiguration.parentURL()+"update_user"
+        return url;
+    }
+    static getUser()
+    {
+        const url = ParentConfiguration.parentURL()+"useridwise_user"
         return url;
     }
 
     static deleteUser()
     {
-        const url = ParentConfiguration.parentURL()+"deleteUser";
+        const url = ParentConfiguration.parentURL()+"delete_user";
         return url;
     }
 
@@ -116,19 +121,43 @@ export default class AuthenticationConfiguration
     }
     static assignMember()
     {
-        const url = ParentConfiguration.parentURL()+"AssignUser";
+        const url = ParentConfiguration.parentURL()+"assign_user";
         return url;
     }
 
     static teamDetails()
     {
-        const url = ParentConfiguration.parentURL()+"teamDetails";
+        const url = ParentConfiguration.parentURL()+"userdetails_project";
         return url;
     }
 
     static postComment()
     {
         const url = ParentConfiguration.parentURL()+"postComment";
+        return url;
+    }
+
+    static getUserDetailByID()
+    {
+        const url = ParentConfiguration.parentURL()+"getUserDetailByID";
+        return url;
+    }
+
+    static createTask()
+    {
+        const url = ParentConfiguration.parentURL()+"create_Task";
+        return url;
+    }
+
+    static createDefect()
+    {
+        const url = ParentConfiguration.parentURL()+"create_Defect";
+        return url;
+    }
+
+    static allIssuesNew()
+    {
+        const url = ParentConfiguration.parentURL()+"issue_list";
         return url;
     }
     

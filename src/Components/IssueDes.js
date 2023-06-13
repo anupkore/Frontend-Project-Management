@@ -13,7 +13,8 @@ export default function IssueDes() {
   // console.log(Number(issueId));
   const issue = issues.find((issue) => issue.id === Number(issueId));
   const maxWidth = "md";
-  const [workflow1 , setWorkflow1] = useState([]);
+  const [workflowData , setWorkflowData] = useState([]);
+
   const getAdjacentStates = (workflow, currentState) => {
     const graph = {};
 
@@ -42,21 +43,21 @@ export default function IssueDes() {
     return { previousStates, nextStates };
   };
 
-  const workflowString = "[['START', 'IN PROGRESS', 'REVIEW', 'DONE'], ['REVIEW', 'RESOLVED', 'DONE'], ['DONE', 'RE-OPENED', 'RE-ASSIGN', 'COMPLETED']]";
-
+  // const workflowString = "[['START', 'IN PROGRESS', 'REVIEW', 'DONE'], ['REVIEW', 'RESOLVED', 'DONE'], ['DONE', 'RE-OPENED', 'RE-ASSIGN', 'COMPLETED']]";
+  const workflowString = workflowData[0].array
   const workflow = JSON.parse(workflowString.replace(/'/g, '"'));
   
-  // console.log(workflow);
-  
+  // const work = workflowData.map((e)=> e.array_name);
+  // console.log(work);
 
   const currentState = "DONE";
   const { previousStates, nextStates } = getAdjacentStates(
     workflow,
     currentState
   );
-
-  // console.log("Previous States:", previousStates);
-  // console.log("Next States:", nextStates);
+  console.log(workflow);
+  console.log("Previous States:", previousStates);
+  console.log("Next States:", nextStates);
 
   // useEffect(() => {
   //   // Simulating an asynchronous API call to fetch the issue details
@@ -90,13 +91,15 @@ export default function IssueDes() {
   // }, [issueId]);
   useEffect(() => {
     AuthenticationService.getWorkFlow().then((response) => {
-      console.log(response.data);
-      setWorkflow1(JSON.parse(response.data.replace(/'/g, '"')));
+      // console.log(response.data);
+      setWorkflowData(response.data);
       // console.log(JSON.stringify(response.data));
       
-      console.log("WORKFLOWDATA : " +workflow1 +"generated");
+      // console.log("WORKFLOWDATA : " +JSON.stringify(workflowData) +"generated");
     });
   }, []);
+  
+
   return (
     <>
       <div className="flex">

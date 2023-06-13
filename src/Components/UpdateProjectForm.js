@@ -2,6 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function UpdateProjectForm(props) {
   const { projectData } = props;
@@ -15,6 +16,7 @@ export default function UpdateProjectForm(props) {
   const [projectLead, setProjectLead] = useState(projectData.project_lead);
   const [clientName, setClientName] = useState(projectData.client_name);
   const [project_description, setDescription] = useState(projectData.description);
+  const navigate = useNavigate();
 
   // function handleInputChangeProjectId(event) {
   //   setProject_id(projectData.project_id);
@@ -61,22 +63,23 @@ export default function UpdateProjectForm(props) {
     console.log("iddddddddd",projectData.Project_id);
     // console.log("iddddddddd",projectData.project_id});
     var updateData = {
-      Project_ID: projectData.Project_id,
-      Project_Name: projectName,
-      Status: status,
-      Planned_SD: startDate,
-      Planned_ED: endDate,
-      Actual_SD: actualStartDate,
-      Actual_ED: actualEndDate,
-      Project_Lead: projectLead,
-      Client_Name: clientName,
-      Project_Description: project_description,
+      project_id: projectData.Project_id,
+      project_name: projectName,
+      status: status,
+      planned_sd: startDate,
+      planned_ed: endDate,
+      actual_sd: actualStartDate,
+      actual_ed: actualEndDate,
+      project_lead: projectLead,
+      client_name: clientName,
+      project_description: project_description,
     };
 
     console.log(updateData);
 
     AuthenticationService.updateProject(updateData).then(() => {
-      console.log("Project details updated...................");
+      console.log(`Project details updated.................../projectexplore/:${projectData.Project_id}`);
+      navigate(`/projectexplore/:${projectData.Project_id}`);
     });
   }
 
@@ -164,14 +167,14 @@ export default function UpdateProjectForm(props) {
                     </label>
                     <div className="mt-1">
                     <input
-  type="date"
-  name="start-date"
-  id="start-date"
-  value={startDate.split('T')[0]}
-  onChange={handleInputChangeStartDate}
-  autoComplete="given-name"
-  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-/>
+                      type="date"
+                      name="start-date"
+                      id="start-date"
+                      value={startDate}
+                      onChange={handleInputChangeStartDate}
+                      autoComplete="given-name"
+                      className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
 
                     </div>
                   </div>
@@ -184,14 +187,14 @@ export default function UpdateProjectForm(props) {
                     </label>
                     <div className="mt-1">
                     <input
-  type="date"
-  name="start-date"
-  id="start-date"
-  value={endDate.split('T')[0]}
-  onChange={handleInputChangeEndDate}
-  autoComplete="given-name"
-  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-/>
+                      type="date"
+                      name="start-date"
+                      id="start-date"
+                      value={endDate}
+                      onChange={handleInputChangeEndDate}
+                      autoComplete="given-name"
+                      className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
 
                     </div>
                   </div>
@@ -204,14 +207,14 @@ export default function UpdateProjectForm(props) {
                     </label>
                     <div className="mt-1">
                      <input
-  type="date"
-  name="start-date"
-  id="start-date"
-  value={actualStartDate.split('T')[0]}
-  onChange={handleInputChangeActualStartDate}
-  autoComplete="given-name"
-  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-/>
+                        type="date"
+                        name="start-date"
+                        id="start-date"
+                        value={actualStartDate}
+                        onChange={handleInputChangeActualStartDate}
+                        autoComplete="given-name"
+                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      />
 
                     </div>
                   </div>
@@ -224,14 +227,14 @@ export default function UpdateProjectForm(props) {
                     </label>
                     <div className="mt-1">
                     <input
-  type="date"
-  name="start-date"
-  id="start-date"
-  value={actualEndDate.split('T')[0]}
-  onChange={handleInputChangeActualEndDate}
-  autoComplete="given-name"
-  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-/>
+                      type="date"
+                      name="start-date"
+                      id="start-date"
+                      value={actualEndDate}
+                      onChange={handleInputChangeActualEndDate}
+                      autoComplete="given-name"
+                      className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
 
                     </div>
                   </div>

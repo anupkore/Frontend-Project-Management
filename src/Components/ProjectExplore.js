@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import SideBar from "./SideBar";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
 import Modal from "./Modal";
@@ -23,6 +23,7 @@ export const ProjectExplore = () => {
   const payload = { project_id: project_id };
   const [projectData, setProjectData] = useState([]);
   const [projectID, setProjectID] = useState();
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
   useEffect(() => {
     AuthenticationService.projectExplore(payload)
@@ -40,8 +41,58 @@ export const ProjectExplore = () => {
       });
   }, []);
 
-  //localStorage.setItem("ProjectID",projectID);
-  //console.log(projectID);
+  const handleUpdateProject = (updatedData) => {
+    // Make an API call to update the project with the updatedData
+    AuthenticationService.updateProject(updatedData)
+      .then((response) => {
+        // Handle the success response
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle the error response
+        console.log(error.response.data);
+      });
+  };
+
+ 
+  function handleDeleteProject(project_id) {
+    payload={project_id:project_id}
+    // Display confirmation box
+    const confirmDelete = window.confirm("Are you sure you want to delete this Project?");
+  
+    if (confirmDelete) {
+      // Perform the delete operation using the userId parameter
+      console.log(`Deleting user with ID: ${project_id}`);
+       // Make an API call to delete the project
+    AuthenticationService.deleteProject(payload)
+    .then((response) => {
+      // Handle the success response
+      console.log(response.data);
+      // Redirect the user to the project list or perform any necessary actions
+      Navigate("/allProjects");
+    })
+    .catch((error) => {
+      // Handle the error response
+      console.log(error.response.data);
+    });
+    }
+  }
+  
+  const handleShowDeleteConfirmation = () => {
+    setShowDeleteConfirmation(true);
+  };
+
+  const handleCloseDeleteConfirmation = () => {
+    setShowDeleteConfirmation(false);
+  };
+
+  const handleShowUpdateForm = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseUpdateForm = () => {
+    setShowModal(false);
+  };
 
   return (
     <>
@@ -67,11 +118,7 @@ export const ProjectExplore = () => {
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {projectData.planned_sd}
                 </dd>
-                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {/* {ProjectData.name} */}
-                </dd>
               </div>
-
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Planned End Date
@@ -83,7 +130,6 @@ export const ProjectExplore = () => {
                   {/* {ProjectData.type} */}
                 </dd>
               </div>
-
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Actual Start Date
@@ -92,7 +138,6 @@ export const ProjectExplore = () => {
                   {projectData.Actual_sd}
                 </dd>
               </div>
-
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Actual End Date
@@ -101,7 +146,6 @@ export const ProjectExplore = () => {
                   {projectData.Actual_ed}
                 </dd>
               </div>
-
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Lead Name
@@ -110,7 +154,6 @@ export const ProjectExplore = () => {
                   {projectData.project_lead}
                 </dd>
               </div>
-
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Client Name
@@ -119,7 +162,6 @@ export const ProjectExplore = () => {
                   {projectData.client_name}
                 </dd>
               </div>
-
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Mitigations
@@ -128,7 +170,6 @@ export const ProjectExplore = () => {
                   {projectData.mitigation}
                 </dd>
               </div>
-
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Status
@@ -137,7 +178,6 @@ export const ProjectExplore = () => {
                   {projectData.Status}
                 </dd>
               </div>
-
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Risks
@@ -164,22 +204,18 @@ export const ProjectExplore = () => {
                     className=" divide-gray-100 rounded-md border border-gray-200"
                   >
                     {/* {ProjectData.attachments.map((attachments) => (
-                      <li className="flex items-center justify-between text-sm leading-6">
-                      <div className="flex h-10 items-center">
-                        <PaperClipIcon
-                          className="h-5 w-5 flex-shrink-0 text-gray-400"
-                          aria-hidden="true"
-                        />
-                        <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                          <span className="truncate font-medium">
-                            {attachments}
-                          </span>
-
-                        </div>
-                      </div>
-
-                    </li>
-                    ))} */}
+            <li className="flex items-center justify-between text-sm leading-6">
+              <div className="flex h-10 items-center">
+                <PaperClipIcon
+                  className="h-5 w-5 flex-shrink-0 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="ml-4 flex min-w-0 flex-1 gap-2">
+                  <span className="truncate font-medium">{attachments}</span>
+                </div>
+              </div>
+            </li>
+          ))} */}
                   </ul>
                 </dd>
               </div>
@@ -254,9 +290,10 @@ export const ProjectExplore = () => {
               </div>
             </div>
           </div>
+
           <div className="mt-5 mb-5 flex justify-center align-items-center">
-            <FormDialog
-              prop={<UpdateProjectForm></UpdateProjectForm>}
+          <FormDialog
+              prop={<UpdateProjectForm onSubmit={handleUpdateProject}  projectData={projectData}/>}
               style={maxWidth}
               buttonTitle={"Update"}
               ic={"false"}
@@ -264,9 +301,10 @@ export const ProjectExplore = () => {
             ></FormDialog>
             <button
               className="btn btn-danger ml-3"
-              onClick={() => setShowModal(true)}
+             
+              onClick={() => handleDeleteProject(projectData.Project_id)}
             >
-              Delete
+              Delete 
             </button>
           </div>
           <div>
@@ -274,6 +312,40 @@ export const ProjectExplore = () => {
           </div>
         </div>
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      {showDeleteConfirmation && (
+        <Modal onClose={handleCloseDeleteConfirmation}>
+          <div className="p-5">
+            <h2 className="text-lg font-bold mb-3">Delete Project</h2>
+            <p>Are you sure you want to delete this project?</p>
+            <div className="mt-5 flex justify-end">
+              <button className="btn btn-primary" onClick={handleDeleteProject}>
+                Confirm Delete
+              </button>
+              <button
+                className="btn btn-secondary ml-3"
+                onClick={handleCloseDeleteConfirmation}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {/* Update Form Modal */}
+      {showModal && (
+        <Modal onClose={handleCloseUpdateForm}>
+          <div className="p-5">
+            <h2 className="text-lg font-bold mb-3">Update Project</h2>
+            <UpdateProjectForm
+              onSubmit={handleUpdateProject}
+              initialValues={projectData}
+            />
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

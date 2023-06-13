@@ -5,7 +5,7 @@ function AssignMember()
 {
     const email = useRef('');
     const[errorEmail , setErrorEmail] = useState('');
-    const pid = 6;
+    const pid = localStorage.getItem("ProjectID");
     const uid = 2002;
     function handleInputChangeEmail()
     {
@@ -18,13 +18,12 @@ function AssignMember()
         var payload = 
       {
         email_id: email.current.value,
-        //user_id: uid,
         project_id: pid
       }
       console.log(payload);
       AuthenticationService.assignMember(payload).then(()=>{
-        console.log("New User Created");
-        //window.location.href = '/tableofusers';
+        console.log("New User added");
+        window.location.href = "/teams";
       })
     }
     
