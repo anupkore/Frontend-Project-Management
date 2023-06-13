@@ -19,9 +19,9 @@ export default class AuthenticationService
         return AxiosService.createProject(AuthenticationConfiguration.createProject() , data);
     }
 
-    static allProjects()
+    static allProjects(data)
     {
-        return AxiosService.allProjects(AuthenticationConfiguration.allProjects());
+        return AxiosService.allProjects(AuthenticationConfiguration.allProjects(),data);
     }
 
     static projectExplore(data)
@@ -69,23 +69,44 @@ export default class AuthenticationService
         return AxiosService.allUsersTable(AuthenticationConfiguration.allUsers());
     }
 
-    static updateUser(data)
+    static updateUser(id)
     {
-        return AxiosService.updateUsers(AuthenticationConfiguration.updateUser() , data);
+        return AxiosService.updateUsers(AuthenticationConfiguration.updateUser(),id);
     }
 
-    static deleteUser()
+    static deleteUser(id)
     {
-        return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser());
-    }
-
-    static teamDetails()
-    {
-        return AxiosService.teamDetails(AuthenticationConfiguration.teamDetails());
+        return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser(),id);
     }
 
     static getDataForIssues()
     {
         return AxiosService.getDataForIssues(AuthenticationConfiguration.getDataForIssues());
+    }
+
+    static addworkflow(data)
+    {
+        return AxiosService.addWorkflow(AuthenticationConfiguration.addWorkflow() , data);
+
+    }
+
+    static getWorkFlow()
+    {
+        return AxiosService.getAllWorkflows(AuthenticationConfiguration.getAllWorkFlows());
+    }
+
+    static assignMember(data)
+    {
+        return AxiosService.assignMember(AuthenticationConfiguration.assignMember(),data);
+    }
+
+    static teamDetails(data)
+    {
+        return AxiosService.teamDetails(AuthenticationConfiguration.teamDetails(),data);
+    }
+
+    static postComment(data)
+    {
+        return AxiosService.postComments(AuthenticationConfiguration.postComment(),data);
     }
 }

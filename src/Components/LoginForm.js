@@ -16,52 +16,76 @@ export const  LoginForm = ({ toggleSignup }) =>
 
     const email = useRef("");
     const password = useRef("");
+  //   const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
     const [errorMessageEmail , setErrorMessageEmail] = useState('');
     const [errorMessagePassword , setErrorMessagePassword] = useState('');
     const navigate = useNavigate();
     
+    //Function to handle the email value change in input tag
     function handleInputChangeEmail()
     {
       setErrorMessageEmail('');
     }
 
+    //Function to handle the password value change in input tag
     function handleInputChangePassword()
     {
       setErrorMessagePassword('');
     }
     
+    //Function to send payload to the server for checking credentials and login process
     function handleSignIn(event)
     {
-    
+      
       event.preventDefault();
       var payload = 
       {
           email_id: email.current.value,
           password: password.current.value
       }
-      console.log("data",payload);
+      console.log("data.....1",payload);
+
       AuthenticationService.signIn(payload).then((response) => {
-        const message = response.data.Return;
-        console.log("message", message);
+        console.log(response.data);
+        console.log(response.data.msg);
+        console.log(response.data.token);
+        console.log(response.data.user_detail[0][1]);
         const token = response.data.token;
-        // Store the token in local storage
-        localStorage.setItem('token', token);
-        console.log("token1", token);
+      // Store the token in local storage
+      localStorage.setItem('token', token);
+      localStorage.setItem("UserID",response.data.user_detail[0][0]);
+          localStorage.setItem("UserName",response.data.user_detail[0][2]);
+          localStorage.setItem("UserEmail",response.data.user_detail[0][3]);
       // Redirect the user to a protected route
-        navigate('/allprojects'); // Navigate to /allprojects
+        if(response.data.user_detail[0][1] === 'project Manager')
+        {
+          // window.location.href = '/tableofusers';
+          
+          navigate('/tableofusers');
+        }
+        if(response.data.user_detail[0][1] === 'User')
+        {
+          
+          console.log(response.data.user_detail[0][0]);
+          const test = localStorage.getItem("UserID")
+          console.log("Hi"+test);
+
+          // window.location.href = '/allProjects';
+          navigate('/allProjects');
+          
+        }
       })
-      .catch((error)=>{
-        console.error('Login failed:', error);
-        // console.log(error.response.data);    
-        // console.log(error.response.data.error);
-        // if(error.response.data.error === "Email is invalid")
-        // {
-        //   setErrorMessageEmail("Invalid Email");
-        // }
-        // else if(error.response.data.error === "Password is invalid")
-        // {
-        //   setErrorMessagePassword("Invalid Password");
-        // }
+      .catch((error)=>{    
+        console.log(error.response);
+        if(error.response.data.error === "Email is invalid")
+        {
+          setErrorMessageEmail("Invalid Email");
+        }
+        else if(error.response.data.error === "Password is invalid")
+        {
+          setErrorMessagePassword("Invalid Password");
+        }
       })
 
     }

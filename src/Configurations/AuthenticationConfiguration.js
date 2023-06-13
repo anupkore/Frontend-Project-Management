@@ -77,7 +77,7 @@ export default class AuthenticationConfiguration
 
     static allUsers()
     {
-        const url = ParentConfiguration.parentURL()+"allusers";
+        const url = ParentConfiguration.parentURL()+"show_user";
         return url ;
     }
 
@@ -93,18 +93,40 @@ export default class AuthenticationConfiguration
         return url;
     }
 
-    static teamDetails()
-    {
-        const url = ParentConfiguration.parentURL()+"teamDetails";
-        return url;
-    }
-
     static getDataForIssues()
     {
         const url = ParentConfiguration.parentURL()+"issueData";
         return url;
     }
 
-    
+    static addWorkflow()
+    {
+        const url = ParentConfiguration.parentURL()+"AddWorkFlow";
+        return url;
+    }
+
+    static getAllWorkFlows()
+    {
+        const url = ParentConfiguration.parentURL()+"GetWorkflow";
+        return url;
+    }
+
+    static assignMember()
+    {
+        const url = ParentConfiguration.parentURL()+"AssignUser";
+        return url;
+    }
+
+    static teamDetails()
+    {
+        const url = ParentConfiguration.parentURL()+"teamDetails";
+        return url;
+    }
+
+    static postComment()
+    {
+        const url = ParentConfiguration.parentURL()+"postComment";
+        return url;
+    }
     
 }

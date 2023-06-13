@@ -4,7 +4,11 @@ import * as d3 from "d3";
 const GraphVisualization = (props) => {
   const svgRef = useRef(null);
   const { workflow } = props;
-
+  // const workflow = [
+  //   ["START", "IN PROGRESS", "REVIEW", "DONE","COMPLETED"],
+  //   ["REVIEW", "RESOLVED", "DONE"],
+  //   ["DONE", "RE-OPENED", "RE-ASSIGN", "IN PROGRESS"],
+  // ];
   useEffect(() => {
     const nodes = [];
     const links = [];
@@ -31,7 +35,6 @@ const GraphVisualization = (props) => {
     const svg = d3.select(svgRef.current);
     const rectWidth = 120;
     const rectHeight = 40;
-
     const width = d3.max(nodes, (d) => d.x + rectWidth / 2) + 20;
     const height = d3.max(nodes, (d) => d.y + rectHeight / 2) + 20;
 
@@ -140,8 +143,6 @@ const GraphVisualization = (props) => {
         // Translate the arrowhead to the adjusted position and rotate it towards the target node
         return `translate(${arrowheadX},${arrowheadY}) rotate(${angle})`;
       });
-    
-    
   }, [workflow]);
 
   return <svg ref={svgRef}></svg>;

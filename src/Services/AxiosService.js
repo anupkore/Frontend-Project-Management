@@ -21,9 +21,9 @@ export default class AxiosService
     }
 
     //For displaying the ist of all projects in table
-    static allProjects(url)
+    static allProjects(url,data)
     {
-        return axios.get(url);
+        return axios.post(url,data);
     }
 
     //For displaying the details of a perticular project in project explore
@@ -81,25 +81,47 @@ export default class AxiosService
     }
 
     //For Updating users (For alpha admin)
-    static updateUsers(url , data)
+    static updateUsers(url,id)
     {
-        return axios.put(url ,data);
+        return axios.put(url,id);
     }
 
     //For deleting a user (For alpha admin)
-    static deleteUser(url)
+    static deleteUser(url,id)
     {
-        return axios.delete(url);
-    }
-
-    //For Getting List of Members Assigned in a Perticular Project (Have to pass PID)
-    static teamDetails(url)
-    {
-        return axios.get(url);
+        return axios.delete(url,id);
     }
 
     static getDataForIssues(url)
     {
         return axios.get(url);
     }
+
+    static addWorkflow(url , data)
+    {
+        return axios.post(url,data);
+    }
+
+    static getAllWorkflows(url)
+    {
+        return axios.get(url);
+    }
+
+    static assignMember(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    //For Getting List of Members Assigned in a Perticular Project (Have to pass PID)
+    static teamDetails(url,data)
+    {
+        return axios.get(url,data);
+    }
+
+    static postComments(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+
 }

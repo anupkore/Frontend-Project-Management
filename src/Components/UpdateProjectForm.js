@@ -3,88 +3,83 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
 
-export default function UpdateProjectForm() {
-  const [projectName , setProjectName] = useState('');
-    const [status , setStatus] = useState('');
-    const [startDate , setStartDate] = useState('');
-    const [endDate , setEndDate] = useState('');
-    const [actualStartDate , setActualStartDate] = useState('');
-    const [actualEndDate , setActualEndDate] = useState('');
-    const [projectLead , setProjectLead] = useState('');
-    const [clientName , setClientName] = useState('');
-    const [description , setDescription] = useState('');
-    const [comments , setComments] = useState('');
-    
-  
-      function handleInputChangeProjectName(event) 
-       {
-          setProjectName(event.target.value);
-       }
-  
-       function handleInputChangeStatus(event) 
-       {
-          setStatus(event.target.value);
-       }
-  
-       function handleInputChangeStartDate(event) 
-       {
-          setStartDate(event.target.value);
-       }
-  
-       function handleInputChangeEndDate(event) 
-       {
-          setEndDate(event.target.value);
-       }
-  
-       function handleInputChangeActualStartDate(event) 
-       {
-          setActualStartDate(event.target.value);
-       }
-  
-       function handleInputChangeActualEndDate(event) 
-       {
-          setActualEndDate(event.target.value);
-       }
-  
-       function handleInputChangeProjectLead(event) 
-       {
-          setProjectLead(event.target.value);
-       }
-  
-       function handleInputChangeClientName(event) 
-       {
-          setClientName(event.target.value);
-       }
-       function handleInputChangeDescription(event) 
-       {
-          setDescription(event.target.value);
-       }
-       function handleInputChangeComments(event) 
-       {
-          setComments(event.target.value);
-       }
-  
-       function handleUpdateProject(event)
-       {
-        event.preventDefault();
-        var payload = 
-        {
-          issue_name: projectName,
-          issuestartdate: status,
-          issueenddate: startDate,
-          issuetype: endDate,
-          issuetype: actualStartDate,
-          issuepriority: actualEndDate,
-          assignee: projectLead,
-          assignee: clientName,
-          issuepriority: description,
-          issuepriority: comments
-          }
-      console.log(payload);
-      AuthenticationService.UpdateProjectForm(payload).then(()=>{
-        console.log("Project details updated");
-      })
-       }
+export default function UpdateProjectForm(props) {
+  const { projectData } = props;
+  // const [project_id, setProject_id] = useState(projectData.project_id);
+  const [projectName, setProjectName] = useState(projectData.Project_name);
+  const [status, setStatus] = useState(projectData.Status);
+  const [startDate, setStartDate] = useState(projectData.planned_sd);
+  const [endDate, setEndDate] = useState(projectData.planned_ed);
+  const [actualStartDate, setActualStartDate] = useState(projectData.Actual_sd);
+  const [actualEndDate, setActualEndDate] = useState(projectData.Actual_ed);
+  const [projectLead, setProjectLead] = useState(projectData.project_lead);
+  const [clientName, setClientName] = useState(projectData.client_name);
+  const [project_description, setDescription] = useState(projectData.description);
+
+  // function handleInputChangeProjectId(event) {
+  //   setProject_id(projectData.project_id);
+  // }
+
+  function handleInputChangeProjectName(event) {
+    setProjectName(event.target.value);
+  }
+
+  function handleInputChangeStatus(event) {
+    setStatus(event.target.value);
+  }
+
+  function handleInputChangeStartDate(event) {
+    setStartDate(event.target.value);
+  }
+
+  function handleInputChangeEndDate(event) {
+    setEndDate(event.target.value);
+  }
+
+  function handleInputChangeActualStartDate(event) {
+    setActualStartDate(event.target.value);
+  }
+
+  function handleInputChangeActualEndDate(event) {
+    setActualEndDate(event.target.value);
+  }
+
+  function handleInputChangeProjectLead(event) {
+    setProjectLead(event.target.value);
+  }
+
+  function handleInputChangeClientName(event) {
+    setClientName(event.target.value);
+  }
+
+  function handleInputChangeDescription(event) {
+    setDescription(event.target.value);
+  }
+
+  function handleUpdateProject(event) {
+    event.preventDefault();
+    console.log("iddddddddd",projectData.Project_id);
+    // console.log("iddddddddd",projectData.project_id});
+    var updateData = {
+      Project_ID: projectData.Project_id,
+      Project_Name: projectName,
+      Status: status,
+      Planned_SD: startDate,
+      Planned_ED: endDate,
+      Actual_SD: actualStartDate,
+      Actual_ED: actualEndDate,
+      Project_Lead: projectLead,
+      Client_Name: clientName,
+      Project_Description: project_description,
+    };
+
+    console.log(updateData);
+
+    AuthenticationService.updateProject(updateData).then(() => {
+      console.log("Project details updated...................");
+    });
+  }
+
   return (
     <>
       <Container>
@@ -105,9 +100,19 @@ export default function UpdateProjectForm() {
                 className="m-auto mt-20 max-w-l sm:mt-20"
               >
                 <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 mt-6">
+                  {/* <div>
+                    <input
+                      type="di"
+                      name="project-id"
+                      id="project-id"
+                      value={project_id}
+                      onChange={handleInputChangeProjectId}
+                    />
+                  </div> */}
+
                   <div>
                     <label
-                      htmlFor="first-name"
+                      htmlFor="project-name"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       Project Name
@@ -116,10 +121,10 @@ export default function UpdateProjectForm() {
                     <div className="mt-1  w-full col-10">
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
+                        name="project-name"
+                        id="project-name"
                         value={projectName}
-                      onChange={handleInputChangeProjectName}
+                        onChange={handleInputChangeProjectName}
                         autoComplete="given-name"
                         className="block  w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       />
@@ -128,16 +133,22 @@ export default function UpdateProjectForm() {
 
                   <div>
                     <label
-                      htmlFor="last-name"
+                      htmlFor="status"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       Status
                     </label>
                     <div className="mt-1">
-                      <select onChange={handleInputChangeStatus} className="block  w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                        <option value={"Open"}>Open</option>
-                        <option value={"In Progress"}>In progress</option>
-                        <option value={"Done"}>Done</option>
+                      <select
+                        name="status"
+                        id="status"
+                        value={status}
+                        onChange={handleInputChangeStatus}
+                        className="block  w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      >
+                        <option value="Open">Open</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Done">Done</option>
                       </select>
                     </div>
                   </div>
@@ -146,83 +157,87 @@ export default function UpdateProjectForm() {
                 <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                   <div>
                     <label
-                      htmlFor="first-name"
+                      htmlFor="start-date"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       Start Date
                     </label>
                     <div className="mt-1">
-                      <input
-                        type="date"
-                        name="first-name"
-                        id="first-name"
-                        value={startDate}
-                      onChange={handleInputChangeStartDate}
-                        autoComplete="given-name"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
+                    <input
+  type="date"
+  name="start-date"
+  id="start-date"
+  value={startDate.split('T')[0]}
+  onChange={handleInputChangeStartDate}
+  autoComplete="given-name"
+  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+/>
+
                     </div>
                   </div>
                   <div>
                     <label
-                      htmlFor="last-name"
+                      htmlFor="end-date"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       End Date
                     </label>
                     <div className="mt-1">
-                      <input
-                        type="date"
-                        name="last-name"
-                        id="last-name"
-                        value={endDate}
-                      onChange={handleInputChangeEndDate}
-                        autoComplete="family-name"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
+                    <input
+  type="date"
+  name="start-date"
+  id="start-date"
+  value={endDate.split('T')[0]}
+  onChange={handleInputChangeEndDate}
+  autoComplete="given-name"
+  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+/>
+
                     </div>
                   </div>
                   <div>
                     <label
-                      htmlFor="first-name"
+                      htmlFor="actual-start-date"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       Actual Start Date
                     </label>
                     <div className="mt-1">
-                      <input
-                        type="date"
-                        name="first-name"
-                        id="first-name"
-                        value={actualStartDate}
-                      onChange={handleInputChangeActualStartDate}
-                        autoComplete="given-name"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
+                     <input
+  type="date"
+  name="start-date"
+  id="start-date"
+  value={actualStartDate.split('T')[0]}
+  onChange={handleInputChangeActualStartDate}
+  autoComplete="given-name"
+  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+/>
+
                     </div>
                   </div>
                   <div>
                     <label
-                      htmlFor="last-name"
+                      htmlFor="actual-end-date"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       Actual End Date
                     </label>
                     <div className="mt-1">
-                      <input
-                        type="date"
-                        name="last-name"
-                        id="last-name"
-                        value={actualEndDate}
-                      onChange={handleInputChangeActualEndDate}
-                        autoComplete="family-name"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
+                    <input
+  type="date"
+  name="start-date"
+  id="start-date"
+  value={actualEndDate.split('T')[0]}
+  onChange={handleInputChangeActualEndDate}
+  autoComplete="given-name"
+  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+/>
+
                     </div>
                   </div>
                   <div>
                     <label
-                      htmlFor="first-name"
+                      htmlFor="project-lead"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       Project Lead
@@ -230,10 +245,10 @@ export default function UpdateProjectForm() {
                     <div className="mt-1">
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
+                        name="project-lead"
+                        id="project-lead"
                         value={projectLead}
-                      onChange={handleInputChangeProjectLead}
+                        onChange={handleInputChangeProjectLead}
                         autoComplete="given-name"
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       />
@@ -241,7 +256,7 @@ export default function UpdateProjectForm() {
                   </div>
                   <div>
                     <label
-                      htmlFor="last-name"
+                      htmlFor="client-name"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       Client Name
@@ -249,10 +264,10 @@ export default function UpdateProjectForm() {
                     <div className="mt-1">
                       <input
                         type="text"
-                        name="last-name"
-                        id="last-name"
+                        name="client-name"
+                        id="client-name"
                         value={clientName}
-                      onChange={handleInputChangeClientName}
+                        onChange={handleInputChangeClientName}
                         autoComplete="family-name"
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       />
@@ -260,50 +275,31 @@ export default function UpdateProjectForm() {
                   </div>
                   <div>
                     <label
-                      htmlFor="first-name"
+                      htmlFor="project-description"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
-                      Description
+                      Project Description
                     </label>
                     <div className="mt-1">
-                      <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
-                        value={description}
-                      onChange={handleInputChangeDescription}
-                        autoComplete="given-name"
+                      <textarea
+                        name="project-description"
+                        id="project-description"
+                        rows="3"
+                        value={project_description}
+                        onChange={handleInputChangeDescription}
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="last-name"
-                      className="block text-sm font-semibold leading-6 text-gray-900"
-                    >
-                      Comments
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="last-name"
-                        id="last-name"
-                        value={comments}
-                      onChange={handleInputChangeComments}
-                        autoComplete="family-name"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
+                      ></textarea>
                     </div>
                   </div>
                 </div>
-                <div className="mx-auto mt-5 d-flex align-items-center justify-content-center ">
-                  {" "}
-                  <Button onClick={handleUpdateProject}
+
+                <div className="flex items-center justify-center mt-6">
+                  <Button
+                    onClick={handleUpdateProject}
                     variant="contained"
-                    className="justify-content-center flex items-center"
+                    color="primary"
                   >
-                    Update
+                    Update Project1
                   </Button>
                 </div>
               </form>

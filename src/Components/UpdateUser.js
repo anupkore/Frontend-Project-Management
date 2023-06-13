@@ -1,12 +1,12 @@
 import { useRef, useState } from "react"
 import AuthenticationService from "../Services/AuthenticationService";
 
-export default function AddNewMember() 
+export default function UpdateUser() 
 {
     const name = useRef('');
     const email = useRef('');
     const contact = useRef('');
-    const role = useRef('User');
+    const role = useRef('');
     const[errorName , setErrorName] = useState('');
     const[errorEmail , setErrorEmail] = useState('');
     const[errorContact , setErrorContact] = useState('');
@@ -72,7 +72,6 @@ export default function AddNewMember()
       console.log(payload);
       AuthenticationService.signUp(payload).then(()=>{
         console.log("New User Created");
-        window.location.href = '/tableofusers';
       })
     }
 
