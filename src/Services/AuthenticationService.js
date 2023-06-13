@@ -34,9 +34,9 @@ export default class AuthenticationService
         return AxiosService.updateProject(AuthenticationConfiguration.updateProject(),data);
     }
 
-    static deleteProject()
+    static deleteProject(data)
     {
-        return  AxiosService.deleteProject(AuthenticationConfiguration.deleteProject());
+        return  AxiosService.deleteProject(AuthenticationConfiguration.deleteProject(),data);
     }
 
     static createIssue(data)
@@ -68,15 +68,20 @@ export default class AuthenticationService
     {
         return AxiosService.allUsersTable(AuthenticationConfiguration.allUsers());
     }
+    
 
-    static updateUser(id)
+    static updateUser(data)
     {
-        return AxiosService.updateUsers(AuthenticationConfiguration.updateUser(),id);
+        return AxiosService.updateUsers(AuthenticationConfiguration.updateUser(),data);
+    }
+    static getUser(data)
+    {
+        return AxiosService.getUser(AuthenticationConfiguration.getUser(),data);
     }
 
-    static deleteUser(id)
+    static deleteUser(data)
     {
-        return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser(),id);
+        return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser(),data);
     }
 
     static getDataForIssues()
@@ -111,5 +116,25 @@ export default class AuthenticationService
     static postComment(data)
     {
         return AxiosService.postComments(AuthenticationConfiguration.postComment(),data);
+    }
+
+    static getUserDetailByID(data)
+    {
+        return AxiosService.getUserDetailByID(AuthenticationConfiguration.getUserDetailByID(),data);
+    }
+
+    static createTask(data)
+    {
+        return AxiosService.createTask(AuthenticationConfiguration.createTask(),data);
+    }
+
+    static createDefect(data)
+    {
+        return AxiosService.createDefect(AuthenticationConfiguration.createDefect(),data);
+    }
+
+    static allIssuesNew(data)
+    {
+        return AxiosService.allIssuesNew(AuthenticationConfiguration.allIssuesNew(),data);
     }
 }

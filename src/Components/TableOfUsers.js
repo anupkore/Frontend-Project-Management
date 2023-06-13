@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import ReactDOM from 'react-dom';
 import AuthenticationService from "../Services/AuthenticationService";
 import Navbar from "./Navbar";
+import AddNewMember from "./AddNewMember";
+import UpdateUser from "./UpdateUser";
 
 
 function TableOfUsers() {
@@ -24,33 +27,52 @@ function TableOfUsers() {
   function handleUpdate(userId) {
     // Perform the update operation using the userId parameter
     console.log(`Updating user with ID: ${userId}`);
-    AuthenticationService.updateUser(userId).then((result) => {
-        // Code to handle successful promise resolution
-        console.log(result);
+    // Fetch the user data for the specified userId
+    const payload = {user_id: userId}
+    AuthenticationService.getUser(payload)
+      .then((response) => {
+        const userData = response.data[0];
+        console.log("getting data...",userData[0]);
+        // Render the AddNewMember component with the user data
+        ReactDOM.render(
+          <UpdateUser userData={userData} user_id={userId} />,
+          document.getElementById("root")
+        );
       })
       .catch((error) => {
         // Code to handle the error
-        console.log('An error occurred while upadating....:', error);
+        console.log("An error occurred while fetching user data:", error);
       });
   }
 
-  function handleDelete(userId) {
-    // Perform the delete operation using the userId parameter
-    console.log(`Deleting user with ID: ${userId}`);
-    AuthenticationService.deleteUser(userId).then((result) => {
-        // Code to handle successful promise resolution
-        console.log(result);
-      })
-      .catch((error) => {
-        // Code to handle the error
-        console.log('An error occurred while deleting....:', error);
-      });
+  function handleDelete(user_id) {
+    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+    const payload = {user_id: user_id}
+    if (confirmDelete) {
+      console.log(`Deleting user with ID: ${user_id}`);
+      AuthenticationService.deleteUser(payload)
+        .then((result) => {
+          console.log(result);
+          // Refresh the user list after successful deletion
+          AuthenticationService.allUsersTable()
+            .then((response) => {
+              setUserList(response.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        })
+        .catch((error) => {
+          console.log(`An error occurred while deleting user with ID ${user_id}:`, error);
+        });
+    }
   }
+  
+  
 
   return (
     <>
-      <Navbar />
-      <div className="flex mt-4">
+            <div className="flex mt-4">
         <div className="w-1/3">
           <img src="/Images/CreateProject2.jpg" alt="Project" />
         </div>
