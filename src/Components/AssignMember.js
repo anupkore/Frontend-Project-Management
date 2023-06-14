@@ -30,7 +30,7 @@ function AssignMember()
     return(
         <>
             <div className="flex align-items-center justify-content-center mt-5">
-                <div className="w-72 h-64 border-1 shadow border-gray-500 ">
+                <div className="w-full h-full border-1 shadow border-gray-500 ">
                 <div className="flex align-items-center justify-content-center">
                 <form>
                     <div>

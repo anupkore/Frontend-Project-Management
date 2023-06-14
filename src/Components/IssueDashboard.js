@@ -26,6 +26,9 @@ const colors = [
 ];
 
 export default function IssueDashboard(props) {
+  
+  const { p_id } = useParams();
+  
   const scrollLeft = () => {
     document.getElementById("content").scrollLeft -= 400;
   };
@@ -41,7 +44,6 @@ export default function IssueDashboard(props) {
   }, [issues]);
   const maxWidth = 'md';
   console.log(JSON.stringify(statusValues));
-  const {p_id}=useParams();
   return (
     <>
       <div className="flex bg-[#ffffff]">

@@ -140,6 +140,18 @@ export default class AxiosService
     {
         return axios.post(url,data);
     }
+    static deleteComment(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static editComment(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static allComment(url,data)
+    {
+        return axios.post(url,data);
+    }
 
     static getUserDetailByID(url,data)
     {

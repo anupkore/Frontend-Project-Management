@@ -64,6 +64,7 @@ export const ProjectExplore = () => {
     payload={project_id:project_id}
     // Display confirmation box
     const confirmDelete = window.confirm("Are you sure you want to delete this Project?");
+    console.log("deleteing...",payload);
   
     if (confirmDelete) {
       // Perform the delete operation using the userId parameter
@@ -252,11 +253,11 @@ export const ProjectExplore = () => {
              
               onClick={() => handleDeleteProject(projectData.Project_id)}
             >
-              Delete 
+              Delete11
             </button>
           </div>
           <div>
-            <Comments></Comments>
+            <Comments id={projectData.Project_id} ></Comments>
           </div>
         </div>
       </div>

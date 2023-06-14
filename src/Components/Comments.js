@@ -1,32 +1,117 @@
-import { useRef, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
 
-export default function Comments() 
-{
+export default function Comments({ id }) {
+  const comment = useRef("");
+  const ProjectID = localStorage.getItem("ProjectID");
+  const UserID = localStorage.getItem("UserID");
 
-  const comment = useRef('');
-  const ProjectID = localStorage.getItem("ProjectID"); 
+  const [allComment, setAllComment] = useState([]);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [showLatestComment, setShowLatestComment] = useState(false);
 
-  function handlePost(event)
-  {
+  function handlePost(event) {
     event.preventDefault();
-    var payload = 
-    {
-      project_id: ProjectID,
-      comment: comment.current.value
-    }
-    console.log(payload);
-    AuthenticationService.postComment(payload).then((response)=>{
-      console.log(response.data);
-    })
+    var payload = {
+      id: Number(ProjectID),
+      user_id: Number(UserID),
+      description: comment.current.value,
+    };
+    console.log("commentttt", payload);
+    AuthenticationService.postComment(payload)
+      .then((response) => {
+        console.log(response.data);
+        console.log("addeddddd");
+
+        const newComment = {
+          comment_id: response.data.comment_id,
+          author_name: response.data.author_name,
+          description: payload.description,
+          date: new Date().toISOString(),
+        };
+
+        setAllComment((prevComments) => [newComment, ...prevComments]);
+        setShowLatestComment(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
+  useEffect(() => {
+    var payload = {
+      id: Number(ProjectID),
+    };
+
+    AuthenticationService.allComment(payload)
+      .then((response) => {
+        console.log(response.data);
+        setAllComment(response.data.reverse());
+      })
+      .catch((error) => {
+        console.log("ERROR" + error.data);
+      });
+  }, []);
+
+  const handleMenuToggle = (index) => {
+    setAllComment((prevState) =>
+      prevState.map((comment, i) => {
+        if (i === index) {
+          return {
+            ...comment,
+            showMenu: !comment.showMenu,
+          };
+        }
+        return comment;
+      })
+    );
+  };
+
+  const handleEdit = (id) => {
+    // Handle edit functionality here
+    console.log("Edit comment:", id);
+  };
+
+  const handleDelete = (comment_id) => {
+    AuthenticationService.deleteComment({ comment_id })
+      .then((response) => {
+        console.log(response.data);
+        setAllComment((prevComments) => {
+          const updatedComments = prevComments.filter(
+            (comment) => comment.comment_id !== comment_id
+          );
+          return updatedComments;
+        });
+        setShowDeletePopup(true);
+      })
+      .catch((error) => {
+        console.log("ERROR..." + error.data);
+      });
+  };
+
   return (
     <>
+      {showDeletePopup && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+            <p className="text-lg text-gray-900 dark:text-white">
+              Comment deleted successfully.
+            </p>
+            <button
+              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg"
+              onClick={() => setShowDeletePopup(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <section className="bg-white dark:bg-gray-900 py-8 lg:py-16">
         <div className="max-w-2xl mx-auto px-4">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-              Discussion (5)
+              Discussion ({allComment.length})
             </h2>
           </div>
           <form className="mb-6">
@@ -51,48 +136,87 @@ export default function Comments()
               Post comment
             </button>
           </form>
-          <div className="h-[24rem] overflow-y-scroll">
-          
-          
-          <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
-            <footer className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                  <img
-                    className="mr-2 w-6 h-6 rounded-full"
-                    src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                    alt="Michael Gough"
-                  />
-                  Michael Gough
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  <time
-                    pubdate=""
-                    dateTime="2022-02-08"
-                    title="February 8th, 2022"
-                  >
-                    Feb. 8, 2022
-                  </time>
-                </p>
-              </div>
-              
-              
-            </footer>
-            <p className="text-gray-500 dark:text-gray-400">
-              Very straight-to-point article. Really worth time reading. Thank
-              you! But tools are just the instruments for the UX designers. The
-              knowledge of the design tools are as important as the creation of
-              the design strategy.
-            </p>
-            <div className="flex items-center mt-4 space-x-4">
-            
+          {showLatestComment && allComment.length > 0 && (
+            <div className="mb-6">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Latest Comment: {allComment[0].description}
+              </p>
             </div>
-          </article>
-          
-          
+          )}
+          <div className="h-[24rem] overflow-y-scroll">
+            {allComment.map((data, index) => (
+              <article
+                className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900"
+                key={index}
+              >
+                <footer className="flex justify-between items-center mb-2">
+                  <div className="flex items-center">
+                    <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                      <img
+                        className="mr-2 w-6 h-6 rounded-full"
+                        src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                        alt="Michael Gough"
+                      />
+                      {data.author_name}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <time pubdate="" dateTime={data.date} title={data.date}>
+                        {data.date}
+                      </time>
+                    </p>
+                  </div>
+                  {/* Three-dot menu */}
+                  <div className="relative inline-block text-left">
+                    <button
+                      className="focus:outline-none"
+                      onClick={() => handleMenuToggle(index)}
+                    >
+                      <svg
+                        className="w-5 h-5 text-gray-500 dark:text-gray-400 cursor-pointer"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M2 9a2 2 0 114 0 2 2 0 01-4 0zm6 0a2 2 0 114 0 2 2 0 01-4 0zm8 0a2 2 0 114 0 2 2 0 01-4 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                    {data.showMenu && (
+                      <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <ul className="py-1">
+                          <li>
+                            <button
+                              className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                              onClick={() => handleEdit(data.comment_id)}
+                            >
+                              Edit
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              className="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-700"
+                              onClick={() => handleDelete(data.comment_id)}
+                            >
+                              Delete
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </footer>
+                <p className="text-gray-500 dark:text-gray-400">{data.description}</p>
+                <div className="flex items-center mt-4 space-x-4"></div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
     </>
   );
 }
+
+// export default Comments;

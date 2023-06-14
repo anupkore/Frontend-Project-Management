@@ -16,7 +16,7 @@ import { HashLoader } from "react-spinners";
 export const Teams = () => {
   const { p_id } = useParams();
   // const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
-  const maxWidth = "sm";
+  const maxWidth = "md";
   const id = localStorage.getItem("ProjectID");
   const id2 = 12;
   var payload = { project_id: id }

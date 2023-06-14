@@ -136,12 +136,33 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"userdetails_project";
         return url;
     }
-
+//add comment
     static postComment()
     {
-        const url = ParentConfiguration.parentURL()+"postComment";
+        const url = ParentConfiguration.parentURL()+"comment_add";
         return url;
     }
+
+    //delte comment
+    static deleteComment()
+    {
+        const url = ParentConfiguration.parentURL()+"deletecomment";
+        return url;
+    }
+ //edit comment
+ static editComment()
+ {
+     const url = ParentConfiguration.parentURL()+"upadtecomment";
+     return url;
+ }
+  //All comment
+  static allComment()
+  {
+      const url = ParentConfiguration.parentURL()+"display_comment";
+      return url;
+  }
+
+    
 
     static getUserDetailByID()
     {
