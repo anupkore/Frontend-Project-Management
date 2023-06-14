@@ -26,6 +26,7 @@ export const ProjectExplore = () => {
   const [projectID, setProjectID] = useState();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate  = useNavigate();
 
   useEffect(() => {
     AuthenticationService.projectExplore(payload)
@@ -59,8 +60,8 @@ export const ProjectExplore = () => {
   };
 
  
-  function handleDeleteProject(project_id) {
-    // payload={project_id:project_id}
+  function handleDeleteProject() {
+    payload={project_id:project_id}
     // Display confirmation box
     const confirmDelete = window.confirm("Are you sure you want to delete this Project?");
     console.log("deleteing...",payload);
@@ -74,7 +75,7 @@ export const ProjectExplore = () => {
       // Handle the success response
       console.log(response.data);
       // Redirect the user to the project list or perform any necessary actions
-      Navigate("/allProjects");
+      navigate("/allProjects");
     })
     .catch((error) => {
       // Handle the error response
