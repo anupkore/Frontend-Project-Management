@@ -26,24 +26,16 @@ const CreateWorkflow = ({proj,type}) => {
 
   const handleInputChange = (rowIndex, colIndex, event) => {
     const { value } = event.target;
-    const isUppercase = value === value.toUpperCase();
-    if(!isUppercase){
-      alert("enter the fields in capital")
-    }
-  
     setInputValues((prevInputValues) => {
       const newInputValues = prevInputValues.map((row, rIndex) => {
         if (rIndex === rowIndex) {
-          return row.map((col, cIndex) =>
-            cIndex === colIndex && isUppercase ? value : col
-          );
+          return row.map((col, cIndex) => (cIndex === colIndex ? value : col));
         }
         return row;
       });
       return newInputValues;
     });
   };
-  
 
   const [canAddRow, setCanAddRow] = useState(true);
   const addRow = () => {
@@ -370,8 +362,4 @@ const CreateWorkflow = ({proj,type}) => {
   );
 };
 
-<<<<<<< HEAD
-export default InputGrid;
-=======
 export default CreateWorkflow;
->>>>>>> bfd1fab78cfb753bcd66d3b7acc57d116986d75b
