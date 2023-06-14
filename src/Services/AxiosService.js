@@ -107,6 +107,7 @@ export default class AxiosService
 
     static addWorkflow(url , data)
     {
+        console.log(data);
         return axios.post(url,data);
     }
 
@@ -116,6 +117,11 @@ export default class AxiosService
     }
 
     static getWorkflowByName(url,data){
+        return axios.post(url,data);
+    }
+
+    static assignWorkflow(url,data){
+        console.log(data);
         return axios.post(url,data);
     }
 

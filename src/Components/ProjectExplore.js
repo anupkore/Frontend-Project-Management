@@ -13,7 +13,7 @@ import CreateWorkflow from "./CreateWorkflow";
 
 export const ProjectExplore = () => {
   const maxWidth = "md";
-  const maxWidth1 = "lg";
+
   const { id1 } = useParams();
   const ProjectData = projects1.find((proj) => proj.id === Number(id1));
   const [showModal, setShowModal] = useState(false);
@@ -218,75 +218,6 @@ export const ProjectExplore = () => {
           ))} */}
                   </ul>
                 </dd>
-              </div>
-            </div>
-            <div className="">
-              <h1 className="text-xl text-center font-bold">Workflows</h1>
-              <div className="py-4">
-                <div className="flex">
-                  <span className="my-auto font-semibold text-md">
-                    Select Workflow for Task
-                  </span>
-                  <div className="mx-auto">
-                    <select
-                      className="rounded-md shadow-md border-1"
-                      placeholder="Select your workflow"
-                      name="Workflow Name"
-                      id="Workflow"
-                    >
-                      <option>Select Your Workflow</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="flex gap-6 py-2 mt-2 ml-24">
-                  <span className="my-auto font-medium">Or Create Your Own Workflow</span>
-                  <FormDialog
-                    prop={<CreateWorkflow proj={projectData.Project_name} type={"Task"}></CreateWorkflow>}
-                    style={maxWidth1}
-                    buttonTitle={"Task Workflow"}
-                    ic={"false"}
-                    icon={"/Images/plus-lg.svg"}
-                    variant={""}
-                  ></FormDialog>
-                </div>
-              </div>
-              <div className="py-4">
-                <div className="flex">
-                  <span className="my-auto font-semibold text-md">
-                    Select Workflow for Defect
-                  </span>
-                  <div className="mx-auto">
-                    <select
-                      className="rounded-md shadow-md border-1"
-                      placeholder="Select your workflow"
-                      name="Workflow Name"
-                      id="Workflow"
-                    >
-                      <option>Select Your Workflow</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="flex py-2 mt-2 ml-24">
-                <span className="my-auto font-medium">Or Create Your Own Workflow</span>
-                  <FormDialog
-                    prop={<CreateWorkflow proj={projectData.Project_name} type={"Defect"}></CreateWorkflow>}
-                    style={maxWidth1}
-                    buttonTitle={"Defect Workflow"}
-                    ic={"false"}
-                    icon={"/Images/plus-lg.svg"}
-                    variant={""}
-                  ></FormDialog>
-                </div>
               </div>
             </div>
           </div>

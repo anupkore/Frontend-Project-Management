@@ -73,7 +73,7 @@ const App = () => {
 <Route path="/reports" element={<ProtectedRoute element={ReportsDashboard} />} />
 <Route path="/urlTest" element={<ProtectedRoute element={URLTesting} />} />
 <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
-<Route path='/workflow' element={<ProtectedRoute element={WorkflowCard} />} />
+<Route path='/workflow' element={<WorkflowCard />} />
 <Route path='/updateUser/:uid' element={<UpdateUser></UpdateUser>} />
 <Route path='/createTask' element={<CreateTask></CreateTask>} />
 <Route path='/createDefect' element={<CreateDefect></CreateDefect>} />

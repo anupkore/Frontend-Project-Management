@@ -147,7 +147,7 @@ const GraphVisualization = (props) => {
       });
   }, [workflow]);
 
-  return (<><svg ref={svgRef}></svg></>);
+  return (<><div className="w-full h-full"><svg ref={svgRef} ></svg></div></>);
 };
 
 export default GraphVisualization;

@@ -12,6 +12,7 @@ export default function SideBar(props) {
       { title: "Issues Workflow", src: "User" ,li:`/projectexplore/issues/${props.p_id}`},
       { title: "Reports", src: "Chart", li:`/reports` },
       { title: "Admin DashBoard", src: "Chart_fill" ,li:"/dashboard"},
+      {title: "Workflows", src: "Chart_fill" ,li:"/workflow"}
     ];
     
 
@@ -78,7 +79,13 @@ export default function SideBar(props) {
           <div>
             <ul className="pt-6">
               {Menus.map((Menu, index) => (
-                <Link to={`${Menu.li}`} key={index}>
+               
+                <Link to={`${Menu.li}`} key={index} 
+                  onClick={()=>{
+                    if (Menu.li === "/allprojects" ) {
+                      localStorage.removeItem("ProjectID") 
+                    }
+                }}>
                   <li
                     className="flex mt-4 rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
                   >

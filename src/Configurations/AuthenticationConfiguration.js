@@ -106,7 +106,7 @@ export default class AuthenticationConfiguration
 
     static addWorkflow()
     {
-        const url = ParentConfiguration.parentURL()+"AddWorkFlow";
+        const url = ParentConfiguration.parentURL()+"Create_Workflow";
         return url;
     }
 
@@ -119,6 +119,12 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"GetWorkflowByName";
         return url;
     }
+
+    static assignWorkflow(){
+        const url = ParentConfiguration.parentURL()+"Assign_Workflow";
+        return url;
+    }
+
     static assignMember()
     {
         const url = ParentConfiguration.parentURL()+"assign_user";

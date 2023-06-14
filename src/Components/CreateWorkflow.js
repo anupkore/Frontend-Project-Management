@@ -4,10 +4,11 @@ import GraphVisualization from "./GraphVisualization";
 import AuthenticationService from "../Services/AuthenticationService";
 import { toast } from "react-toastify";
 
-const CreateWorkflow = ({proj,type}) => {
+const CreateWorkflow = ({type}) => {
 
-  console.log(proj);
+  // console.log(proj);
   console.log(type);
+  const proj_id = localStorage.getItem("ProjectID");
   const [inputValues, setInputValues] = useState([[]]);
   const [workflow, setWorkflow] = useState([]);
   const [submittedRows, setSubmittedRows] = useState([]);
@@ -113,7 +114,9 @@ const CreateWorkflow = ({proj,type}) => {
 
   const handleWorkflowSubmit = () => {
     const workflowData1 = {
-      wf: workflowName,
+      project_id : proj_id,
+      type : type,
+      wfn: workflowName,
       array: inputValues,
     };
     setWorkflowData(workflowData1);
@@ -159,7 +162,7 @@ const CreateWorkflow = ({proj,type}) => {
           </h2>
           
         </div>
-        <h1>Project Name : {proj}</h1>
+        <h1>Project Id : {proj_id}</h1>
         <div className="container-lg border-2 rounded-md mx-auto p-4">
           <div className="flex p-3 ">
             <input
