@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import AuthenticationService from "../Services/AuthenticationService";
 
 export default function SideBar({p_id}) {
   const [open, setOpen] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
-
-
+  const project_id = localStorage.getItem("ProjectID");
+  const payload = { project_id: project_id };
+  const [pname ,setPname] = useState('');
     const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
       { title: "Teams", src: "Chat",li:"/teams"},
@@ -45,6 +47,17 @@ export default function SideBar({p_id}) {
     }
   };
 
+  useEffect(() => {
+    AuthenticationService.projectExplore(payload)
+      .then((response) => {
+        // console.log(response.data);
+        setPname(response.data.Project_name);
+      })  
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }, []);
+
   return (
     <>
       <div
@@ -73,7 +86,7 @@ export default function SideBar({p_id}) {
                 !open && "scale-0"
               }`}
             >
-              World Class
+              {pname}
             </h1>
           </div>
           <div>

@@ -15,49 +15,49 @@ export default function IssueDes() {
   const maxWidth = "md";
   const [workflowData , setWorkflowData] = useState([]);
 
-  const getAdjacentStates = (workflow, currentState) => {
-    const graph = {};
+  // const getAdjacentStates = (workflow, currentState) => {
+  //   const graph = {};
 
-    // Build the graph from the workflow array
-    workflow.forEach((row) => {
-      for (let i = 1; i < row.length; i++) {
-        const prevNode = row[i - 1];
-        const currNode = row[i];
+  //   // Build the graph from the workflow array
+  //   workflow.forEach((row) => {
+  //     for (let i = 1; i < row.length; i++) {
+  //       const prevNode = row[i - 1];
+  //       const currNode = row[i];
 
-        if (!graph[currNode]) {
-          graph[currNode] = { prev: [], next: [] };
-        }
+  //       if (!graph[currNode]) {
+  //         graph[currNode] = { prev: [], next: [] };
+  //       }
 
-        if (!graph[prevNode]) {
-          graph[prevNode] = { prev: [], next: [] };
-        }
+  //       if (!graph[prevNode]) {
+  //         graph[prevNode] = { prev: [], next: [] };
+  //       }
 
-        graph[currNode].prev.push(prevNode);
-        graph[prevNode].next.push(currNode);
-      }
-    });
+  //       graph[currNode].prev.push(prevNode);
+  //       graph[prevNode].next.push(currNode);
+  //     }
+  //   });
 
-    const previousStates = graph[currentState]?.prev || [];
-    const nextStates = graph[currentState]?.next || [];
+  //   const previousStates = graph[currentState]?.prev || [];
+  //   const nextStates = graph[currentState]?.next || [];
 
-    return { previousStates, nextStates };
-  };
+  //   return { previousStates, nextStates };
+  // };
 
-  // const workflowString = "[['START', 'IN PROGRESS', 'REVIEW', 'DONE'], ['REVIEW', 'RESOLVED', 'DONE'], ['DONE', 'RE-OPENED', 'RE-ASSIGN', 'COMPLETED']]";
-  const workflowString = workflowData[0].array
-  const workflow = JSON.parse(workflowString.replace(/'/g, '"'));
+  // // const workflowString = "[['START', 'IN PROGRESS', 'REVIEW', 'DONE'], ['REVIEW', 'RESOLVED', 'DONE'], ['DONE', 'RE-OPENED', 'RE-ASSIGN', 'COMPLETED']]";
+  // const workflowString = workflowData[0].array
+  // const workflow = JSON.parse(workflowString.replace(/'/g, '"'));
   
-  // const work = workflowData.map((e)=> e.array_name);
-  // console.log(work);
+  // // const work = workflowData.map((e)=> e.array_name);
+  // // console.log(work);
 
-  const currentState = "DONE";
-  const { previousStates, nextStates } = getAdjacentStates(
-    workflow,
-    currentState
-  );
-  console.log(workflow);
-  console.log("Previous States:", previousStates);
-  console.log("Next States:", nextStates);
+  // const currentState = "DONE";
+  // const { previousStates, nextStates } = getAdjacentStates(
+  //   workflow,
+  //   currentState
+  // );
+  // console.log(workflow);
+  // console.log("Previous States:", previousStates);
+  // console.log("Next States:", nextStates);
 
   // useEffect(() => {
   //   // Simulating an asynchronous API call to fetch the issue details

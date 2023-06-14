@@ -108,6 +108,12 @@ export default class AuthenticationService
         console.log(data);
         return AxiosService.assignWorkflow(AuthenticationConfiguration.assignWorkflow(),data);
     }
+
+    static projectWiseWorkflow(data){
+        console.log(data);
+        return AxiosService.projectWiseWorkflow(AuthenticationConfiguration.projectWiseWorkflow(),data);
+    }
+
     static assignMember(data)
     {
         return AxiosService.assignMember(AuthenticationConfiguration.assignMember(),data);

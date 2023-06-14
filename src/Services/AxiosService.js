@@ -124,7 +124,10 @@ export default class AxiosService
         console.log(data);
         return axios.post(url,data);
     }
-
+    static projectWiseWorkflow(url,data){
+        console.log(data);
+        return axios.post(url,data);
+    }
     static assignMember(url,data)
     {
         return axios.post(url,data);

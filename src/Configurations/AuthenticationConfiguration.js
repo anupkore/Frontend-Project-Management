@@ -125,6 +125,10 @@ export default class AuthenticationConfiguration
         return url;
     }
 
+    static projectWiseWorkflow(){
+        const url = ParentConfiguration.parentURL()+"Projectwise_Workflow";
+    }
+
     static assignMember()
     {
         const url = ParentConfiguration.parentURL()+"assign_user";
