@@ -128,6 +128,7 @@ const CreateWorkflow = ({type}) => {
 
   useEffect(() => {
     if (isWorkflowSubmitted) {
+      console.log(workflowData);
       AuthenticationService.addworkflow(workflowData)
         .then((response) => {
           console.log(response.data);
@@ -146,7 +147,7 @@ const CreateWorkflow = ({type}) => {
         .catch((error) => {
           console.log("ERROR" + error);
 
-          toast.error("Failed to create");
+          toast.error("Failed to create...");
 
         });
     }
