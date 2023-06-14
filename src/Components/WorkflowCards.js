@@ -6,6 +6,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 import { HashLoader } from "react-spinners";
 import CreateWorkflow from "./CreateWorkflow";
+import SideBar from "./SideBar";
 export default function WorkflowCard() {
   const workflow1 = [
     ["START", "IN PROGRESS", "REVIEW", "DONE", "COMPLETED"],
@@ -132,7 +133,11 @@ export default function WorkflowCard() {
         </div>
       ) : (
         <>
-          <h1 className="text-xl text-center font-bold ">Workflows</h1>
+        <div className="flex">
+        <div className="">
+          <SideBar></SideBar>
+        </div>
+          {/* <h1 className="text-xl text-center font-bold ">Workflows</h1> */}
           <div className="">
             <div className="flex mx-auto gap-4 mt-8 justify-center">
               <div className="py-4">
@@ -326,6 +331,7 @@ export default function WorkflowCard() {
               </div>
             </div>
           </div>
+              </div>
         </>
       )}
 

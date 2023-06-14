@@ -127,7 +127,7 @@ export const ProjectExplore = () => {
               {projectData.Project_name}
             </p>
           </div>
-          <div className="mx-10 grid grid-cols-2 gap-4">
+          <div className="mx-10">
             <div className="grid grid-rows-4 grid-cols-3 gap-4 ">
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
