@@ -28,7 +28,7 @@ export default function IssueDashboard(props) {
   const { p_id } = useParams();
   const project_id = localStorage.getItem("ProjectID");
   const payload = { project_id: project_id };
-
+  
   const scrollLeft = () => {
     document.getElementById("content").scrollLeft -= 400;
   };
@@ -44,7 +44,18 @@ export default function IssueDashboard(props) {
   }, [issues]);
   const maxWidth = "md";
   // console.log(JSON.stringify(statusValues));
-
+  // useEffect(() => {
+  //   AuthenticationService.projectWiseWorkflow(payload)
+  //   .then((response) => {
+  //     console.log(response.data);
+  //     // setWorkflowData(response.data);
+  //     // console.log(JSON.stringify(response.data));
+  //     // console.log("WORKFLOWDATA : " +JSON.stringify(workflowData) +"generated");
+  //   })
+  //   .catch((error)=>{
+  //     console.error(error);
+  //   })
+  // }, []);
   return (
     <>
       <div className="flex bg-[#ffffff]">
