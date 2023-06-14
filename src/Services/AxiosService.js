@@ -107,6 +107,7 @@ export default class AxiosService
 
     static addWorkflow(url , data)
     {
+        console.log(data);
         return axios.post(url,data);
     }
 
@@ -116,6 +117,11 @@ export default class AxiosService
     }
 
     static getWorkflowByName(url,data){
+        return axios.post(url,data);
+    }
+
+    static assignWorkflow(url,data){
+        console.log(data);
         return axios.post(url,data);
     }
 
@@ -131,6 +137,18 @@ export default class AxiosService
     }
 
     static postComments(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static deleteComment(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static editComment(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static allComment(url,data)
     {
         return axios.post(url,data);
     }

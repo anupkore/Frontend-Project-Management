@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import SideBar from "./SideBar";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
 import Modal from "./Modal";
@@ -10,10 +10,11 @@ import Comments from "./Comments";
 import { projects1 } from "./TEST/Projects";
 import AuthenticationService from "../Services/AuthenticationService";
 import CreateWorkflow from "./CreateWorkflow";
+import { HashLoader } from "react-spinners";
 
 export const ProjectExplore = () => {
   const maxWidth = "md";
-  const maxWidth1 = "lg";
+
   const { id1 } = useParams();
   const ProjectData = projects1.find((proj) => proj.id === Number(id1));
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +25,8 @@ export const ProjectExplore = () => {
   const [projectData, setProjectData] = useState([]);
   const [projectID, setProjectID] = useState();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate  = useNavigate();
 
   useEffect(() => {
     AuthenticationService.projectExplore(payload)
@@ -31,6 +34,7 @@ export const ProjectExplore = () => {
         setProjectDetails((existingData) => {
           console.log(response.data);
           setProjectData(response.data);
+          setIsLoading(false);
           console.log("projectData", projectData);
           // console.log(allProjectData.Project_name);
           // setProjectID(allProjectData.Project_id);
@@ -38,6 +42,7 @@ export const ProjectExplore = () => {
       })
       .catch((error) => {
         console.log(error.response.data);
+        setIsLoading(false);
       });
   }, []);
 
@@ -55,10 +60,11 @@ export const ProjectExplore = () => {
   };
 
  
-  function handleDeleteProject(project_id) {
+  function handleDeleteProject() {
     payload={project_id:project_id}
     // Display confirmation box
     const confirmDelete = window.confirm("Are you sure you want to delete this Project?");
+    console.log("deleteing...",payload);
   
     if (confirmDelete) {
       // Perform the delete operation using the userId parameter
@@ -69,7 +75,7 @@ export const ProjectExplore = () => {
       // Handle the success response
       console.log(response.data);
       // Redirect the user to the project list or perform any necessary actions
-      Navigate("/allProjects");
+      navigate("/allProjects");
     })
     .catch((error) => {
       // Handle the error response
@@ -96,6 +102,18 @@ export const ProjectExplore = () => {
 
   return (
     <>
+    {isLoading ?(
+      <div className="flex justify-center">
+          <HashLoader
+            color="#1976d2"
+            style={{ marginTop: "10%" }}
+            size={100}
+            speedMultiplier={1}
+          />
+          {/* <PacmanLoader color="#1976d2" size={50}/>   */}
+        </div>
+    ):(
+    <>
       <div className="flex">
         <div className="">
           <SideBar p_id={id1}></SideBar>
@@ -109,7 +127,7 @@ export const ProjectExplore = () => {
               {projectData.Project_name}
             </p>
           </div>
-          <div className="mx-10 grid grid-cols-2 gap-4">
+          <div className="mx-10">
             <div className="grid grid-rows-4 grid-cols-3 gap-4 ">
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
@@ -220,75 +238,6 @@ export const ProjectExplore = () => {
                 </dd>
               </div>
             </div>
-            <div className="">
-              <h1 className="text-xl text-center font-bold">Workflows</h1>
-              <div className="py-4">
-                <div className="flex">
-                  <span className="my-auto font-semibold text-md">
-                    Select Workflow for Task
-                  </span>
-                  <div className="mx-auto">
-                    <select
-                      className="rounded-md shadow-md border-1"
-                      placeholder="Select your workflow"
-                      name="Workflow Name"
-                      id="Workflow"
-                    >
-                      <option>Select Your Workflow</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="flex gap-6 py-2 mt-2 ml-24">
-                  <span className="my-auto font-medium">Or Create Your Own Workflow</span>
-                  <FormDialog
-                    prop={<CreateWorkflow proj={projectData.Project_name} type={"Task"}></CreateWorkflow>}
-                    style={maxWidth1}
-                    buttonTitle={"Task Workflow"}
-                    ic={"false"}
-                    icon={"/Images/plus-lg.svg"}
-                    variant={""}
-                  ></FormDialog>
-                </div>
-              </div>
-              <div className="py-4">
-                <div className="flex">
-                  <span className="my-auto font-semibold text-md">
-                    Select Workflow for Defect
-                  </span>
-                  <div className="mx-auto">
-                    <select
-                      className="rounded-md shadow-md border-1"
-                      placeholder="Select your workflow"
-                      name="Workflow Name"
-                      id="Workflow"
-                    >
-                      <option>Select Your Workflow</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="flex py-2 mt-2 ml-24">
-                <span className="my-auto font-medium">Or Create Your Own Workflow</span>
-                  <FormDialog
-                    prop={<CreateWorkflow proj={projectData.Project_name} type={"Defect"}></CreateWorkflow>}
-                    style={maxWidth1}
-                    buttonTitle={"Defect Workflow"}
-                    ic={"false"}
-                    icon={"/Images/plus-lg.svg"}
-                    variant={""}
-                  ></FormDialog>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div className="mt-5 mb-5 flex justify-center align-items-center">
@@ -304,11 +253,11 @@ export const ProjectExplore = () => {
              
               onClick={() => handleDeleteProject(projectData.Project_id)}
             >
-              Delete 
+              Delete11
             </button>
           </div>
           <div>
-            <Comments></Comments>
+            <Comments id={projectData.Project_id} ></Comments>
           </div>
         </div>
       </div>
@@ -346,6 +295,8 @@ export const ProjectExplore = () => {
           </div>
         </Modal>
       )}
+    </>
+    )}
     </>
   );
 };

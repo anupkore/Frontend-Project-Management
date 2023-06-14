@@ -16,8 +16,6 @@ export default function AddNewProject()
   const [plannedEndDate, setPlannedEndDate] = useState("");
   const [risks, setRisks] = useState("");
   const [mitigations, setMitigations] = useState("");
-  const [workflowTask, setWorkFlowTask] = useState("");
-  const [workflowDefects, setWorkFlowDefects] = useState("");
 
   const[errorClientName , setErrorClientName] = useState("");
   const[errorLeadName , setErrorLeadName] = useState('');
@@ -28,14 +26,7 @@ export default function AddNewProject()
   const[errorMessageRisks , setErrorMessagRisks] = useState('');
   const[errorMessageMitigations , setErrorMessageMitigations] = useState('');
 
-    const taskWorkflowChange = (event) => 
-    {
-      setWorkFlowTask(event.target.value);
-    };
-    const defectWorkflowChange = (event) => 
-    {
-      setWorkFlowDefects(event.target.value);
-    };
+    
 
   function handleInputChangeProjectName(event) 
      {
@@ -177,8 +168,7 @@ export default function AddNewProject()
         project_lead: leadName,
         risk: risks,
         mitigation: mitigations,
-        workflowTask: workflowTask,
-        workflowDefects: workflowDefects
+        
     }
     console.log(payload);
     AuthenticationService.createProject(payload).then(()=>{
@@ -192,11 +182,11 @@ export default function AddNewProject()
   return (
     <>
       <div className="flex">
-        <div className="flex justify-items-end align-items-center">
-          <img src="/Images/projectmag.png" width={600} height={550}></img>
+        <div className="flex justify-items-start align-items-center">
+          <img src="/Images/projectmag.png" width={550} height={550}></img>
         </div>
 
-        <div className="">
+        <div className="flex justify-items-end align-items-center">
           <Container>
             <Row>
               <Col lg>
@@ -385,83 +375,8 @@ export default function AddNewProject()
                         </div>
                       </div>
 
-                      <div>
-                        <label
-                          htmlFor="first-name"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Choose Workflow For Task
-                        </label>
-                        <div className="mt-2.5 flex">
-                          <select
-                            className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                            value={workflowTask}
-                            onChange={taskWorkflowChange}
-                          >
-                            <option value="">Select Task WorkFlow</option>
-                            <option  value="workflow-1">
-                              Workflow-1
-                            </option>
-                            <option  value="workflow-2">
-                              Workflow-2
-                            </option>
-                            <option  value="workflow-3">
-                              Workflow-3
-                            </option>
-                            <option  value="workflow-4">
-                              Workflow-4
-                            </option>
-                          </select>
-                          <div className=" ml-3 ">
-                            <FormDialog
-                              prop={<Workflow_1 path={workflowTask} />}
-                              style={"md"}
-                              // buttonTitle={"Preview"}
-                              icon={"./Images/eye-fill.svg"}
-                              variant={""}
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="first-name"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Choose Workflow For Defects
-                        </label>
-                        <div className="mt-2.5 flex">
-                          <select
-                            className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                            value={workflowDefects}
-                            onChange={defectWorkflowChange}
-                          >
-                            <option value="">Select defect WorkFlow</option>
-                            <option  value="workflow-1">
-                              Workflow-1
-                            </option>
-                            <option  value="workflow-2">
-                              Workflow-2
-                            </option>
-                            <option  value="workflow-3">
-                              Workflow-3
-                            </option>
-                            <option  value="workflow-4">
-                              Workflow-4
-                            </option>
-                          </select>
-                          <div className=" ml-3 ">
-                            <FormDialog
-                              prop={<Workflow_1 path={workflowDefects} />}
-                              style={"md"}
-                              // buttonTitle="Preview"
-                              icon={"./Images/eye-fill.svg"}
-                              variant={""}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                      
+                      
                     </div>
                     <div className="flex mt-5 justify-center ">
                       <Button onClick={handleAddProject} variant="contained" className="">

@@ -103,6 +103,11 @@ export default class AuthenticationService
     static getWorkflowByName(data){
         return AxiosService.getWorkflowByName(AuthenticationConfiguration.getWorkflowByName(),data);
     }
+
+    static assignWorkflow(data){
+        console.log(data);
+        return AxiosService.assignWorkflow(AuthenticationConfiguration.assignWorkflow(),data);
+    }
     static assignMember(data)
     {
         return AxiosService.assignMember(AuthenticationConfiguration.assignMember(),data);
@@ -116,6 +121,21 @@ export default class AuthenticationService
     static postComment(data)
     {
         return AxiosService.postComments(AuthenticationConfiguration.postComment(),data);
+    }
+
+    static deleteComment(data)
+    {
+        return AxiosService.deleteComment(AuthenticationConfiguration.deleteComment(),data);
+    }
+
+    static editComment(data)
+    {
+        return AxiosService.editComment(AuthenticationConfiguration.editComment(),data);
+    }
+
+    static allComment(data)
+    {
+        return AxiosService.allComment(AuthenticationConfiguration.allComment(),data);
     }
 
     static getUserDetailByID(data)
