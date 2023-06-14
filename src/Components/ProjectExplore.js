@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import SideBar from "./SideBar";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
 import Modal from "./Modal";
@@ -26,6 +26,7 @@ export const ProjectExplore = () => {
   const [projectID, setProjectID] = useState();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate  = useNavigate();
 
   useEffect(() => {
     AuthenticationService.projectExplore(payload)
@@ -59,7 +60,7 @@ export const ProjectExplore = () => {
   };
 
  
-  function handleDeleteProject(project_id) {
+  function handleDeleteProject() {
     payload={project_id:project_id}
     // Display confirmation box
     const confirmDelete = window.confirm("Are you sure you want to delete this Project?");
@@ -73,7 +74,7 @@ export const ProjectExplore = () => {
       // Handle the success response
       console.log(response.data);
       // Redirect the user to the project list or perform any necessary actions
-      Navigate("/allProjects");
+      navigate("/allProjects");
     })
     .catch((error) => {
       // Handle the error response
