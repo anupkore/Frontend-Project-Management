@@ -17,7 +17,8 @@ export default function UpdateProjectForm(props) {
   const [clientName, setClientName] = useState(projectData.client_name);
   const [project_description, setDescription] = useState(projectData.description);
   const navigate = useNavigate();
-
+  
+  const { id1 } = localStorage.getItem("ProjectID");
   // function handleInputChangeProjectId(event) {
   //   setProject_id(projectData.project_id);
   // }
@@ -58,8 +59,36 @@ export default function UpdateProjectForm(props) {
     setDescription(event.target.value);
   }
 
+  // function handleUpdateProject(event) {
+  //   event.preventDefault();
+  //   console.log("iddddddddd",projectData.Project_id);
+  //   // console.log("iddddddddd",projectData.project_id});
+  //   var updateData = {
+  //     project_id: projectData.Project_id,
+  //     project_name: projectName,
+  //     status: status,
+  //     planned_sd: startDate,
+  //     planned_ed: endDate,
+  //     actual_sd: actualStartDate,
+  //     actual_ed: actualEndDate,
+  //     project_lead: projectLead,
+  //     client_name: clientName,
+  //     project_description: project_description,
+  //   };
+
+  //   console.log(updateData);
+
+  //   AuthenticationService.updateProject(updateData).then(() => {
+  //     console.log(`Project details updated...........${id1}......../projectexplore/:${projectData.Project_id}`);
+  //     // navigate(`/projectexplore/:${projectData.Project_id}`);
+  //     window.location.href =`/projectexplore/${projectData.Project_id}`;
+  //     // navigate(`/allProjects`);
+  //   });
+  // }
   function handleUpdateProject(event) {
     event.preventDefault();
+
+    // Create the updateData object
     console.log("iddddddddd",projectData.Project_id);
     // console.log("iddddddddd",projectData.project_id});
     var updateData = {
@@ -76,13 +105,12 @@ export default function UpdateProjectForm(props) {
     };
 
     console.log(updateData);
-
     AuthenticationService.updateProject(updateData).then(() => {
-      console.log(`Project details updated.................../projectexplore/:${projectData.Project_id}`);
-      navigate(`/projectexplore/:${projectData.Project_id}`);
+      console.log(`Project details updated...........${id1}......../projectexplore/:${projectData.Project_id}`);
+      // navigate(`/projectexplore/${projectData.Project_id}`);
+      window.location.href = `/projectexplore/${projectData.Project_id}`;
     });
   }
-
   return (
     <>
       <Container>
@@ -296,7 +324,7 @@ export default function UpdateProjectForm(props) {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-center mt-6">
+                {/* <div className="flex items-center justify-center mt-6">
                   <Button
                     onClick={handleUpdateProject}
                     variant="contained"
@@ -304,7 +332,14 @@ export default function UpdateProjectForm(props) {
                   >
                     Update Project1
                   </Button>
-                </div>
+                </div> */}
+
+
+                <div className="flex items-center justify-center mt-6">
+        <Button onClick={handleUpdateProject} variant="contained" color="primary">
+          Update Project
+        </Button>
+      </div>
               </form>
             </div>
           </Col>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
-export default function SideBar(props) {
+export default function SideBar({p_id}) {
   const [open, setOpen] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
 
@@ -9,9 +9,9 @@ export default function SideBar(props) {
     const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
       { title: "Teams", src: "Chat",li:"/teams"},
-      { title: "Issues Workflow", src: "User" ,li:`/projectexplore/issues/${props.p_id}`},
+      { title: "Issues", src: "Chart_fill" ,li:"/allIssues"},
+      { title: "Issues Workflow", src: "User" ,li:`/projectexplore/issues/${p_id}`},
       { title: "Reports", src: "Chart", li:`/reports` },
-      { title: "Admin DashBoard", src: "Chart_fill" ,li:"/dashboard"},
     ];
     
 

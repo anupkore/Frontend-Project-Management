@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import SideBar from "./SideBar";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
 import Modal from "./Modal";
@@ -24,6 +24,7 @@ export const ProjectExplore = () => {
   const [projectData, setProjectData] = useState([]);
   const [projectID, setProjectID] = useState();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     AuthenticationService.projectExplore(payload)
@@ -70,7 +71,7 @@ export const ProjectExplore = () => {
       // Handle the success response
       console.log(response.data);
       // Redirect the user to the project list or perform any necessary actions
-      Navigate("/allProjects");
+      navigate("/allProjects");
     })
     .catch((error) => {
       // Handle the error response
@@ -309,7 +310,7 @@ export const ProjectExplore = () => {
             </button>
           </div>
           <div>
-            <Comments></Comments>
+            <Comments id={projectData.Project_id} ></Comments>
           </div>
         </div>
       </div>

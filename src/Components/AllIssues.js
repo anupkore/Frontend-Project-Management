@@ -248,9 +248,10 @@ export const AllIssues = () =>
                     />
                   </div>
                 </div>
-                <div className="container-lg bg-blur-3xl bg-opacity-30 rounded-lg  p-4 ">
-                  <div className="w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-slate-400 scrollbar">
-                    <div className="flex max-h-[28] min-w-[105em] items-center py-2">
+                {/* <div className="container-lg bg-blur-3xl bg-opacity-30 rounded-lg  p-4 "> */}
+                <div className="flex  container-md justify-center w-screen h-96 rounded-md">
+                  {/* <div className="w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-slate-400 scrollbar"> */}
+                    <div className="flex  min-w-[105em] items-center py-2">
                       <table className="table-fixed bg-white rounded-3xl w-auto mx-auto shadow-md">
                         <thead>
                           <tr>
@@ -286,8 +287,8 @@ export const AllIssues = () =>
                         </tbody>
                       </table>
                     </div>
-                  </div>
-                  <div className="flex mt-3 mx-auto justify-center">
+                  {/* </div> */}
+                  {/* <div className="flex mt-3 mx-auto justify-center">
                     <div className="mr-20 my-auto">
                       <span>
                         {currentPage} of{" "}
@@ -302,7 +303,8 @@ export const AllIssues = () =>
                         currentPage={currentPage}
                       ></Pagination>
                     </div>
-                  </div>
+                  </div> */}
+
                 </div>
               </>
             )}

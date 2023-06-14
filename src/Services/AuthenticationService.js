@@ -118,6 +118,21 @@ export default class AuthenticationService
         return AxiosService.postComments(AuthenticationConfiguration.postComment(),data);
     }
 
+    static deleteComment(data)
+    {
+        return AxiosService.deleteComment(AuthenticationConfiguration.deleteComment(),data);
+    }
+
+    static editComment(data)
+    {
+        return AxiosService.editComment(AuthenticationConfiguration.editComment(),data);
+    }
+
+    static allComment(data)
+    {
+        return AxiosService.allComment(AuthenticationConfiguration.allComment(),data);
+    }
+
     static getUserDetailByID(data)
     {
         return AxiosService.getUserDetailByID(AuthenticationConfiguration.getUserDetailByID(),data);
