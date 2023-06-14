@@ -21,7 +21,7 @@ export const ProjectExplore = () => {
   const [projectDetails, setProjectDetails] = useState([]);
   const project_id = id1;
   localStorage.setItem("ProjectID", project_id);
-  const payload = { project_id: project_id };
+  const payload = { project_id: Number(localStorage.getItem("ProjectID"))};
   const [projectData, setProjectData] = useState([]);
   const [projectID, setProjectID] = useState();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -61,7 +61,7 @@ export const ProjectExplore = () => {
 
  
   function handleDeleteProject() {
-    payload={project_id:project_id}
+    // payload={project_id:project_id}
     // Display confirmation box
     const confirmDelete = window.confirm("Are you sure you want to delete this Project?");
     console.log("deleteing...",payload);
@@ -251,9 +251,9 @@ export const ProjectExplore = () => {
             <button
               className="btn btn-danger ml-3"
              
-              onClick={() => handleDeleteProject(projectData.Project_id)}
+              onClick={handleDeleteProject}
             >
-              Delete11
+              Delete
             </button>
           </div>
           <div>
