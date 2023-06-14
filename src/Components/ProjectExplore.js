@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import SideBar from "./SideBar";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
 import Modal from "./Modal";
@@ -10,6 +10,7 @@ import Comments from "./Comments";
 import { projects1 } from "./TEST/Projects";
 import AuthenticationService from "../Services/AuthenticationService";
 import CreateWorkflow from "./CreateWorkflow";
+import { HashLoader } from "react-spinners";
 
 export const ProjectExplore = () => {
   const maxWidth = "md";
@@ -24,6 +25,8 @@ export const ProjectExplore = () => {
   const [projectData, setProjectData] = useState([]);
   const [projectID, setProjectID] = useState();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate  = useNavigate();
 
   useEffect(() => {
     AuthenticationService.projectExplore(payload)
@@ -31,6 +34,7 @@ export const ProjectExplore = () => {
         setProjectDetails((existingData) => {
           console.log(response.data);
           setProjectData(response.data);
+          setIsLoading(false);
           console.log("projectData", projectData);
           // console.log(allProjectData.Project_name);
           // setProjectID(allProjectData.Project_id);
@@ -38,6 +42,7 @@ export const ProjectExplore = () => {
       })
       .catch((error) => {
         console.log(error.response.data);
+        setIsLoading(false);
       });
   }, []);
 
@@ -55,7 +60,7 @@ export const ProjectExplore = () => {
   };
 
  
-  function handleDeleteProject(project_id) {
+  function handleDeleteProject() {
     payload={project_id:project_id}
     // Display confirmation box
     const confirmDelete = window.confirm("Are you sure you want to delete this Project?");
@@ -69,7 +74,7 @@ export const ProjectExplore = () => {
       // Handle the success response
       console.log(response.data);
       // Redirect the user to the project list or perform any necessary actions
-      Navigate("/allProjects");
+      navigate("/allProjects");
     })
     .catch((error) => {
       // Handle the error response
@@ -95,6 +100,18 @@ export const ProjectExplore = () => {
   };
 
   return (
+    <>
+    {isLoading ?(
+      <div className="flex justify-center">
+          <HashLoader
+            color="#1976d2"
+            style={{ marginTop: "10%" }}
+            size={100}
+            speedMultiplier={1}
+          />
+          {/* <PacmanLoader color="#1976d2" size={50}/>   */}
+        </div>
+    ):(
     <>
       <div className="flex">
         <div className="">
@@ -277,6 +294,8 @@ export const ProjectExplore = () => {
           </div>
         </Modal>
       )}
+    </>
+    )}
     </>
   );
 };

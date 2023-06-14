@@ -79,7 +79,7 @@ export default function UpdateProjectForm(props) {
 
     AuthenticationService.updateProject(updateData).then(() => {
       console.log(`Project details updated.................../projectexplore/:${projectData.Project_id}`);
-      navigate(`/projectexplore/:${projectData.Project_id}`);
+      navigate(`/projectexplore/${projectData.Project_id}`);
     });
   }
 
