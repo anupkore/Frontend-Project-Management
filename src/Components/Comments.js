@@ -7,6 +7,8 @@ export default function Comments({ id }) {
   const UserID = localStorage.getItem("UserID");
 
   const [allComment, setAllComment] = useState([]);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [showLatestComment, setShowLatestComment] = useState(false);
 
   function handlePost(event) {
     event.preventDefault();
@@ -20,6 +22,16 @@ export default function Comments({ id }) {
       .then((response) => {
         console.log(response.data);
         console.log("addeddddd");
+
+        const newComment = {
+          comment_id: response.data.comment_id,
+          author_name: response.data.author_name,
+          description: payload.description,
+          date: new Date().toISOString(),
+        };
+
+        setAllComment((prevComments) => [newComment, ...prevComments]);
+        setShowLatestComment(true);
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +46,7 @@ export default function Comments({ id }) {
     AuthenticationService.allComment(payload)
       .then((response) => {
         console.log(response.data);
-        setAllComment(response.data);
+        setAllComment(response.data.reverse());
       })
       .catch((error) => {
         console.log("ERROR" + error.data);
@@ -61,28 +73,45 @@ export default function Comments({ id }) {
   };
 
   const handleDelete = (comment_id) => {
-    // Handle delete functionality here
-    console.log("Delete comment:", comment_id);
-   var payload={
-    comment_id:comment_id
-   }
-   console.log("payload...",payload);
-   AuthenticationService.deleteComment(payload).then((response) => {
-    console.log(response.data);
-    setAllComment(response.data);
-  }).catch((error) => {
-    console.log("ERROR..." + error.data);
-  });
-
+    AuthenticationService.deleteComment({ comment_id })
+      .then((response) => {
+        console.log(response.data);
+        setAllComment((prevComments) => {
+          const updatedComments = prevComments.filter(
+            (comment) => comment.comment_id !== comment_id
+          );
+          return updatedComments;
+        });
+        setShowDeletePopup(true);
+      })
+      .catch((error) => {
+        console.log("ERROR..." + error.data);
+      });
   };
 
   return (
     <>
+      {showDeletePopup && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+            <p className="text-lg text-gray-900 dark:text-white">
+              Comment deleted successfully.
+            </p>
+            <button
+              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg"
+              onClick={() => setShowDeletePopup(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <section className="bg-white dark:bg-gray-900 py-8 lg:py-16">
         <div className="max-w-2xl mx-auto px-4">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-              Discussion (5)
+              Discussion ({allComment.length})
             </h2>
           </div>
           <form className="mb-6">
@@ -107,6 +136,13 @@ export default function Comments({ id }) {
               Post comment
             </button>
           </form>
+          {showLatestComment && allComment.length > 0 && (
+            <div className="mb-6">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Latest Comment: {allComment[0].description}
+              </p>
+            </div>
+          )}
           <div className="h-[24rem] overflow-y-scroll">
             {allComment.map((data, index) => (
               <article
@@ -124,8 +160,8 @@ export default function Comments({ id }) {
                       {data.author_name}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      <time pubdate="" dateTime="2022-02-08" title="February 8th, 2022">
-                        {Date(data.date)}
+                      <time pubdate="" dateTime={data.date} title={data.date}>
+                        {data.date}
                       </time>
                     </p>
                   </div>
@@ -182,3 +218,5 @@ export default function Comments({ id }) {
     </>
   );
 }
+
+// export default Comments;

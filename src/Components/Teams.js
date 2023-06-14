@@ -11,11 +11,12 @@ import AssignMember from "./AssignMember";
 import AuthenticationService from "../Services/AuthenticationService";
 import { useEffect } from "react";
 import { index } from "d3-array";
+import { HashLoader } from "react-spinners";
 
 export const Teams = () => {
   const { p_id } = useParams();
   // const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
-  const maxWidth = "sm";
+  const maxWidth = "md";
   const id = localStorage.getItem("ProjectID");
   const id2 = 12;
   var payload = { project_id: id }
@@ -71,6 +72,18 @@ export const Teams = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <>
+    {isLoading ?(
+      <div className="flex justify-center">
+          <HashLoader
+            color="#1976d2"
+            style={{ marginTop: "10%" }}
+            size={100}
+            speedMultiplier={1}
+          />
+          {/* <PacmanLoader color="#1976d2" size={50}/>   */}
+        </div>
+    ):(
+      <>
       <div className="flex">
         <div className="h-screen">
           <SideBar p_id={p_id}></SideBar>
@@ -147,6 +160,8 @@ export const Teams = () => {
           </section>
         </section>
       </div>
+    </>
+    )}
     </>
   );
 };
