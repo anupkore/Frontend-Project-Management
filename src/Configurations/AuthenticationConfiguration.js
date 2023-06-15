@@ -127,6 +127,7 @@ export default class AuthenticationConfiguration
 
     static projectWiseWorkflow(){
         const url = ParentConfiguration.parentURL()+"Projectwise_Workflow";
+        return url;
     }
 
     static assignMember()
@@ -189,6 +190,12 @@ export default class AuthenticationConfiguration
     static allIssuesNew()
     {
         const url = ParentConfiguration.parentURL()+"issue_list";
+        return url;
+    }
+
+    static getAllEmails()
+    {
+        const url = ParentConfiguration.parentURL()+"GetEmails";
         return url;
     }
     

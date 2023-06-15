@@ -24,23 +24,29 @@ export const AllIssues = () =>
   const ProjectID = localStorage.getItem("ProjectID");
   //console.log("userID",userID);
   var payload = {project_id: ProjectID};
+
+  useEffect(()=>{
+    AuthenticationService.projectWiseWorkflow(payload).then((response)=>{
+      console.log(response.data);
+    })
+  })
   
-  useEffect(() => {
-    setLoading(true);
-    AuthenticationService.allIssuesNew(payload)
-      .then((response) => {
-        console.log(response.data);
-        setAllList(response.data);
-        console.log("Hi");
-        console.log(allList);
-      })
-      .catch((error) => {
-        console.log("ERROR" + error.data);
-      })
-      .finally(() => {
-        setLoading(false); // Set loading state to false when the request is completed
-      });
-  }, []);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   AuthenticationService.allIssuesNew(payload)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setAllList(response.data);
+  //       console.log("Hi");
+  //       console.log(allList);
+  //     })
+  //     .catch((error) => {
+  //       console.log("ERROR" + error.data);
+  //     })
+  //     .finally(() => {
+  //       setLoading(false); // Set loading state to false when the request is completed
+  //     });
+  // }, []);
   
 
   const filteredProjects = allList.filter((project) => {

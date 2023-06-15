@@ -1,15 +1,28 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
 
 function AssignMember()
 {
-    const email = useRef('');
+    const [email,setEmail] = useState('');
     const[errorEmail , setErrorEmail] = useState('');
+    const[emailList , setEmailList] = useState([]);
     const pid = localStorage.getItem("ProjectID");
-    const uid = 2002;
-    function handleInputChangeEmail()
+    
+
+    useEffect(()=>{
+        AuthenticationService.getAllEmails().then((response)=>{
+            console.log(response.data);
+            setEmailList(response.data.msg);
+        }).catch((error)=>{
+            console.log(error);
+        })
+    },[])
+    
+    
+    function handleInputChangeEmail(event)
     {
-      setErrorEmail('');
+       setEmail(event.target.value);
+        
     }
 
     function handleAssign(event)
@@ -17,7 +30,7 @@ function AssignMember()
         event.preventDefault();
         var payload = 
       {
-        email_id: email.current.value,
+        email_id: email,
         project_id: pid
       }
       console.log(payload);
@@ -29,25 +42,31 @@ function AssignMember()
     
     return(
         <>
-            <div className="flex align-items-center justify-content-center mt-5">
-                <div className="w-full h-full border-1 shadow border-gray-500 ">
+            <div className="flex align-items-center justify-content-center">
+                
                 <div className="flex align-items-center justify-content-center">
                 <form>
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 mt-5">
-                            Email address
+                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                           Assign Member
                         </label>
                         <div className="mt-2">
-                            <input
+                            <select
                             id="email"
                             name="email"
-                            type="email"
-                            ref={email}
+                            value={email}
                             onChange={handleInputChangeEmail}
                             autoComplete="email"
                             required
                             className="block w-full rounded-md border-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
+                            >
+                            <option value="">Select an email</option>
+                            {emailList.map((email) => (
+                                <option key={email} value={email}>
+                                    {email}
+                                </option>
+                            ))}
+                            </select>
                             <span className="text-danger">{errorEmail}</span>
                         </div>
 
@@ -60,7 +79,7 @@ function AssignMember()
                 </form>
             </div>
             </div>
-            </div>
+    
         </>
     )
 }
