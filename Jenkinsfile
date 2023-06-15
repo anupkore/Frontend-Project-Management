@@ -1,27 +1,39 @@
 pipeline {
   agent {
-    docker {
-      image 'yjb28/project-management-app:v.1'
-      args '-v /var/run/docker.sock:/var/run/docker.sock'
-    }
+    label 'your-agent-label' // Replace with the label of your Jenkins agent
   }
+  
   stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+    
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+      }
+    }
+    
     stage('Build') {
       steps {
-        // Perform build steps here
-        sh 'docker build -t myapp .'
+        sh 'npm run build'
       }
     }
+    
     stage('Test') {
       steps {
-        // Perform test steps here
-        sh 'docker run myapp npm test'
+        sh 'npm run test'
       }
     }
+    
     stage('Deploy') {
       steps {
-        // Perform deployment steps here
-        sh 'docker push yjb28/project-management-app:v.1'
+        // Replace with your deployment commands
+        // For example, deploying to a web server via FTP
+        sh 'apt-get install -y lftp'
+        sh 'lftp -c "open -u <ftp-username>,<ftp-password> <ftp-host>; mirror -R build/ /public_html"'
       }
     }
   }
