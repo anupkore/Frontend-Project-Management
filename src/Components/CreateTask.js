@@ -2,7 +2,7 @@ import { useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
-function CreateTask()
+function CreateTask({issueId})
 {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -10,7 +10,7 @@ function CreateTask()
   const [endDate, setEndDate] = useState("");
   const [priority, setPriority] = useState("");
   const [estimatedTime , setEstimatedTime] = useState("");
-
+  console.log(issueId);
     
     function handleInputChangeTitle(event) 
      {
@@ -47,15 +47,12 @@ function CreateTask()
         
      }
 
-    
-
-
-
   function handleCreateTask(event)
   {
     event.preventDefault();
     var payload = 
     {
+        issue_id : issueId,
         title: title,
         description: description,
         planned_sd: startDate,

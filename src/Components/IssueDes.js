@@ -89,15 +89,11 @@ export default function IssueDes() {
 
   //   fetchIssueDetails();
   // }, [issueId]);
-  useEffect(() => {
-    AuthenticationService.getWorkFlow().then((response) => {
-      // console.log(response.data);
-      setWorkflowData(response.data);
-      // console.log(JSON.stringify(response.data));
-      
-      // console.log("WORKFLOWDATA : " +JSON.stringify(workflowData) +"generated");
-    });
-  }, []);
+  // useEffect(() => {
+  //   AuthenticationService.getWorkFlow().then((response) => {
+  //     setWorkflowData(response.data);
+  //   });
+  // }, []);
   
 
   return (
