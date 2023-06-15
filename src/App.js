@@ -25,6 +25,7 @@ import ReportsDashboard from './Components/ReportsDashboard';
 import URLTesting from './Components/URLTesting';
 import TableOfUsers from './Components/TableOfUsers';
 
+
 import UpdateUser from './Components/UpdateUser';
 
 import ProtectedRoute from "./Components/ProtectedRoute"
@@ -57,6 +58,7 @@ const App = () => {
 <Route path="/issue/:status" element={<ProtectedRoute element={ParticularIssueDashboard} />} />
 <Route path="/profile" element={<ProtectedRoute element={Profilepage} />} />
 <Route path="/addNewProject" element={<ProtectedRoute element={AddNewProject} />} />
+
 
 <Route path="*" element={<ProtectedRoute element={ErrorPage} />} />
 <Route path="/addWorkflow" element={<ProtectedRoute element={CreateWorkflow} />} />
