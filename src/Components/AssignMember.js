@@ -8,7 +8,7 @@ function AssignMember()
     const[emailList , setEmailList] = useState([]);
     const pid = Number(localStorage.getItem("ProjectID"));
     const payload = {project_id:pid};
-    
+    console.log(payload);
 
     useEffect(()=>{
         AuthenticationService.getAllEmails(payload).then((response)=>{

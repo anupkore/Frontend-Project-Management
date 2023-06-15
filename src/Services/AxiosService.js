@@ -178,7 +178,7 @@ export default class AxiosService
 
     static getAllEmails(url,data)
     {
-        return axios.post(url,data);
+        return axios.get(url,data);
     }
 
     
