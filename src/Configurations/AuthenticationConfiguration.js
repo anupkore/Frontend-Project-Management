@@ -47,7 +47,7 @@ export default class AuthenticationConfiguration
 
     static createIssue()
     {
-        const url = ParentConfiguration.parentURL()+"create_issue";
+        const url = ParentConfiguration.parentURL()+"create_Issue";
         return url;
     }
 
@@ -65,13 +65,13 @@ export default class AuthenticationConfiguration
 
     static updateIssue()
     {
-        const url = ParentConfiguration.parentURL()+"updateIssue";
+        const url = ParentConfiguration.parentURL()+"update_Issue";
         return url ;
     }
 
     static deleteIssue()
     {
-        const url = ParentConfiguration.parentURL()+"deleteIssue";
+        const url = ParentConfiguration.parentURL()+"delete_Issue";
         return url;
     }
 
@@ -183,7 +183,7 @@ export default class AuthenticationConfiguration
 
     static createDefect()
     {
-        const url = ParentConfiguration.parentURL()+"create_Defect";
+        const url = ParentConfiguration.parentURL()+"create_defect";
         return url;
     }
 
