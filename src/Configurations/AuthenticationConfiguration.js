@@ -177,7 +177,7 @@ export default class AuthenticationConfiguration
 
     static createTask()
     {
-        const url = ParentConfiguration.parentURL()+"create_Task";
+        const url = ParentConfiguration.parentURL()+"create_task";
         return url;
     }
 

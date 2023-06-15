@@ -7,8 +7,7 @@ export default function SideBar({p_id}) {
   const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
       { title: "Teams", src: "Chat",li:"/teams"},
-      { title: "Issues", src: "Chart_fill" ,li:"/allIssues"},
-      { title: "Issues Workflow", src: "User" ,li:`/projectexplore/issues/${p_id}`},
+      { title: "Issues Workflow", src: "User" ,li:"/allIssues"},
       { title: "Reports", src: "Chart", li:`/reports` },
       {title: "Workflows", src: "Chart_fill" ,li:"/workflow"}
     ];
