@@ -212,7 +212,7 @@ export const ProjectExplore = () => {
                   {projectData.description}
                 </dd>
               </div>
-              <div>
+              {/* <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Attachments
                 </dt>
@@ -221,7 +221,7 @@ export const ProjectExplore = () => {
                     role="list"
                     className=" divide-gray-100 rounded-md border border-gray-200"
                   >
-                    {/* {ProjectData.attachments.map((attachments) => (
+                    {ProjectData.attachments.map((attachments) => (
             <li className="flex items-center justify-between text-sm leading-6">
               <div className="flex h-10 items-center">
                 <PaperClipIcon
@@ -233,10 +233,10 @@ export const ProjectExplore = () => {
                 </div>
               </div>
             </li>
-          ))} */}
+          ))}
                   </ul>
                 </dd>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -253,7 +253,7 @@ export const ProjectExplore = () => {
              
               onClick={() => handleDeleteProject(projectData.Project_id)}
             >
-              Delete11
+              DELETE
             </button>
           </div>
           <div>

@@ -201,7 +201,7 @@ export default function AddNewProject()
                     method="POST"
                     className="m-auto mt-16 max-w-l sm:mt-20"
                   >
-                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    <div className=" gap-x-8 gap-y-6 sm:grid-cols-2">
                       <div>
                         <label
                           htmlFor="first-name"
@@ -219,75 +219,20 @@ export default function AddNewProject()
                             onChange={handleInputChangeProjectName}
                             required
                             autoComplete="given-name"
-                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6 mb-2.5"
                           />
                           <span className="text-danger">{errorMessageProjectName}</span>
                         </div>
                       </div>
+                      
+                     
 
-                      <div>
-                        <label
-                          htmlFor="last-name"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Description
-                        </label>
-                        <div className="mt-2.5">
-                          <input
-                            type="textarea"
-                            name="last-name"
-                            id="last-name"
-                            value={description}
-                            onChange={handleInputChangeDescription}
-                            autoComplete="family-name"
-                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                          />
-                          <span className="text-danger">{errorMessageDescription}</span>
-                        </div>
-                      </div>
+                     
                     </div>
+                    
 
                     <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                      <div>
-                        <label
-                          htmlFor="first-name"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Client Name
-                        </label>
-                        <div className="mt-2.5">
-                          <input
-                            type="text"
-                            name="first-name"
-                            id="first-name"
-                            value={clientName}
-                            onChange={handleInputChangeClientName}
-                            autoComplete="given-name"
-                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                          />
-                          <span className="text-danger">{errorClientName}</span>
-                        </div>
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="last-name"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Lead Name
-                        </label>
-                        <div className="mt-2.5">
-                          <input
-                            type="text"
-                            name="last-name"
-                            id="last-name"
-                            value={leadName}
-                            onChange={handleInputChangeLeadName}
-                            autoComplete="family-name"
-                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                          />
-                          <span className="text-danger">{errorLeadName}</span>
-                        </div>
-                      </div>
+                     
 
                       <div className="grid grid-cols-1 gap-x-50 gap-y-6 sm:grid-cols-2">
                         <div className="sm:col-span-2">
@@ -333,6 +278,10 @@ export default function AddNewProject()
                           </div>
                         </div>
                       </div>
+
+
+                       
+                      
                       <div>
                         <label
                           htmlFor="first-name"
@@ -374,16 +323,95 @@ export default function AddNewProject()
                           <span className="text-danger">{errorMessageMitigations}</span>
                         </div>
                       </div>
+                      <div>
+                        <label
+                          htmlFor="last-name"
+                          className="block text-sm font-semibold leading-6 text-gray-900"
+                        >
+                          Lead Name
+                        </label>
+                        <div className="mt-2.5">
+                          <input
+                            type="text"
+                            name="last-name"
+                            id="last-name"
+                            value={leadName}
+                            onChange={handleInputChangeLeadName}
+                            autoComplete="family-name"
+                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                          />
+                          <span className="text-danger">{errorLeadName}</span>
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="first-name"
+                          className="block text-sm font-semibold leading-6 text-gray-900"
+                        >
+                          Client Name
+                        </label>
+                        <div className="mt-2.5">
+                          <input
+                            type="text"
+                            name="first-name"
+                            id="first-name"
+                            value={clientName}
+                            onChange={handleInputChangeClientName}
+                            autoComplete="given-name"
+                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                          />
+                          <span className="text-danger">{errorClientName}</span>
+                        </div>
+                      </div>
+
+                     
 
                       
                       
                     </div>
+                    {/* <div>
+                        <label
+                          htmlFor="last-name"
+                          className="block text-sm font-semibold leading-6 text-gray-900 mt-2.5"
+                        >
+                          Description
+                        </label>
+                        <div className="mt-2.5">
+                          <input
+                            type="textbox"
+                            name="last-name"
+                            id="last-name"
+                            placeholder="Add Description"
+                            value={description}
+                            onChange={handleInputChangeDescription}
+                            autoComplete="family-name"
+                            className="block w-full rounded-md border-0 px-3.5 py-4 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                          />
+                          <span className="text-danger">{errorMessageDescription}</span>
+                        </div>
+                      </div> */}
+                      <div className="col-span-full">
+              <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">
+                Description
+              </label>
+              <div className="mt-2">
+                <textarea
+                  id="about"
+                  name="about"
+                  rows={3}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  defaultValue={''}
+                />
+              </div>
+
+            </div>
                     <div className="flex mt-5 justify-center ">
                       <Button onClick={handleAddProject} variant="contained" className="">
                         Create
                       </Button>
                     </div>
                   </form>
+                  
                 </div>
               </Col>
             </Row>

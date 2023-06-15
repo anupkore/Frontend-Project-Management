@@ -262,7 +262,7 @@ export const AllProjectList = () => {
                           <tr>
                             <th className="px-4 py-2">Sr.No</th>
                             {renderNameHeader()}
-                            <th className="px-4 py-2">Status</th>
+                            <th className="px-4 py-2">States</th>
                             {renderStartDateHeader()}
                             <th className="px-4 py-2">End Date</th>
                             <th className="px-4 py-2">Client Name</th>
