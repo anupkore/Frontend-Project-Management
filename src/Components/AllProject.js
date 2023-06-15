@@ -8,7 +8,7 @@ import { FaSortDown, FaSortUp } from "react-icons/fa";
 import { Button, ButtonGroup } from "@mui/material";
 import ParticularIssueDashboard from "./ParticularIssueDashboard";
 import MyIssues from "./Myissues";
-import {HashLoader} from "react-spinners";
+import { HashLoader } from "react-spinners";
 import Navbar from "./Navbar";
 
 export const AllProjectList = () => {
@@ -216,7 +216,7 @@ export const AllProjectList = () => {
                       style={maxWidth}
                       icon={"./Images/plus-lg.svg"}
                       // buttonTitle="Create Project"
-                      largebutton ={"true"}
+                      largebutton={"true"}
                       variant={""}
                       ic={"true"}
                     />
@@ -262,7 +262,7 @@ export const AllProjectList = () => {
                           <tr>
                             <th className="px-4 py-2">Sr.No</th>
                             {renderNameHeader()}
-                            <th className="px-4 py-2">Status</th>
+                            <th className="px-4 py-2">States</th>
                             {renderStartDateHeader()}
                             <th className="px-4 py-2">End Date</th>
                             <th className="px-4 py-2">Client Name</th>
@@ -274,42 +274,35 @@ export const AllProjectList = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {sortedAndFilteredProjects.map((project, index) => (
-                            <tr
-                              key={project.id}
-                              className="my-4 divide-y space-y-5"
-                            >
-                              <td className="px-4 py-2">{index + 1}</td>
-                              <td className="px-4 py-2">
-                                {project.Project_name}
-                              </td>
-                              <td className="px-4 py-2">{project.Status}</td>
-                              <td className="px-4 py-2">
-                                {project.planned_sd}
-                              </td>
-                              <td className="px-4 py-2">
-                                {project.planned_ed}
-                              </td>
-                              <td className="px-4 py-2">
-                                {project.client_name}
-                              </td>
-                              <td className="px-4 py-2">
-                                {project.project_lead}
-                              </td>
-                              <td className="px-4 py-2">{project.risk}</td>
-                              <td className="px-4 py-2">
-                                {project.mitigation}
-                              </td>
-                              <td className="px-4 py-2 underline text-blue-900">
-                                <Link
-                                  to={`/projectexplore/${project.Project_id}`}
-                                >
-                                  {" "}
-                                  Explore
-                                </Link>
-                              </td>
-                            </tr>
-                          ))}
+                        {sortedAndFilteredProjects.map((project, index) => (
+  <tr key={project.id} className="my-4 divide-y space-y-5">
+    <td className="px-4 py-2">{index + 1}</td>
+    <td className="px-4 py-2">{project.Project_name}</td>
+    <td className="px-4 py-2">{project.Status}</td>
+    <td className="px-4 py-2">
+      {new Date(project.planned_sd).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      })}
+    </td>
+    <td className="px-4 py-2">
+      {new Date(project.planned_ed).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      })}
+    </td>
+    <td className="px-4 py-2">{project.client_name}</td>
+    <td className="px-4 py-2">{project.project_lead}</td>
+    <td className="px-4 py-2">{project.risk}</td>
+    <td className="px-4 py-2">{project.mitigation}</td>
+    <td className="px-4 py-2 underline text-blue-900">
+      <Link to={`/projectexplore/${project.Project_id}`}>Explore</Link>
+    </td>
+  </tr>
+))}
+
                         </tbody>
                       </table>
                     </div>

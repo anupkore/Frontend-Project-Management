@@ -192,5 +192,11 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"issue_list";
         return url;
     }
+
+    static getAllEmails()
+    {
+        const url = ParentConfiguration.parentURL()+"Show_Emails";
+        return url;
+    }
     
 }

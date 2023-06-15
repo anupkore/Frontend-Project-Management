@@ -7,7 +7,7 @@ export default function SideBar({p_id}) {
   const [isResponsive, setIsResponsive] = useState(false);
   const project_id = localStorage.getItem("ProjectID");
   const payload = { project_id: project_id };
-  const [pname ,setPname] = useState('');
+  const pname  = localStorage.getItem("ProjectName");
     const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
       { title: "Teams", src: "Chat",li:"/teams"},
@@ -15,12 +15,7 @@ export default function SideBar({p_id}) {
       { title: "Reports", src: "Chart", li:`/reports` },
       {title: "Workflows", src: "Chart_fill" ,li:"/workflow"}
     ];
-    
-
-  
-  
-
-  const handleResize = () => {
+    const handleResize = () => {
     const isMobile = window.innerWidth <= 768; // Set your desired responsive breakpoint here
     setIsResponsive(isMobile);
     if (isMobile && open) {
@@ -46,16 +41,16 @@ export default function SideBar({p_id}) {
     }
   };
 
-  useEffect(() => {
-    AuthenticationService.projectExplore(payload)
-      .then((response) => {
-        // console.log(response.data);
-        setPname(response.data.Project_name);
-      })  
-      .catch((error) => {
-        console.log(error.response.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   AuthenticationService.projectExplore(payload)
+  //     .then((response) => {
+  //       // console.log(response.data);
+  //       setPname(response.data.Project_name);
+  //     })  
+  //     .catch((error) => {
+  //       console.log(error.response.data);
+  //     });
+  // }, []);
 
   return (
     <>

@@ -163,4 +163,9 @@ export default class AuthenticationService
     {
         return AxiosService.allIssuesNew(AuthenticationConfiguration.allIssuesNew(),data);
     }
+
+    static getAllEmails(data)
+    {
+        return AxiosService.getAllEmails(AuthenticationConfiguration.getAllEmails(),data);
+    }
 }
