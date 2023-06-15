@@ -61,7 +61,7 @@ export const ProjectExplore = () => {
 
  
   function handleDeleteProject() {
-    payload={project_id:project_id}
+    // payload={project_id:project_id}
     // Display confirmation box
     const confirmDelete = window.confirm("Are you sure you want to delete this Project?");
     console.log("deleteing...",payload);

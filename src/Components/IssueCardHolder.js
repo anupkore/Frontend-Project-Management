@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import IssueCard from "./IssueCard";
 import { Link } from "react-router-dom";
-import { issues } from "./TEST/Issues";
+// import { issues } from "./TEST/Issues";
 import CreateIssueForm from "./CreateIssueForm";
 import FormDialog from "./Dialog";
 import { Badge } from "react-bootstrap";
+import AuthenticationService from "../Services/AuthenticationService";
 
 function IssueCardHolder(props) {
+  const [issues,setIssues] = useState([]);
+  const project_id = localStorage.getItem("ProjectID");
+  const payload = { project_id: project_id };
   const issueCards = issues.filter((issue) => issue.status === props.iss);
   const maxWidth = 'md';
+ 
   return (
     <div id="content" className="mx-auto ">
       <Link to={`/issue/${props.iss}`}>

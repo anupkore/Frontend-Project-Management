@@ -1,6 +1,6 @@
 import SideBar from "./SideBar";
 
-import { issues } from "./TEST/Issues";
+// import { issues } from "./TEST/Issues";
 import IssueCardHolder from "./IssueCardHolder";
 import { useEffect, useState } from "react";
 
@@ -10,6 +10,7 @@ import CreateIssueForm from "./CreateIssueForm";
 import FormDialog from "./Dialog";
 import { Button } from "@mui/material";
 import AuthenticationService from "../Services/AuthenticationService";
+import { HashLoader } from "react-spinners";
 
 const colors = [
   "bg-lime-100",
@@ -28,7 +29,9 @@ export default function IssueDashboard(props) {
   const { p_id } = useParams();
   const project_id = localStorage.getItem("ProjectID");
   const payload = { project_id: project_id };
-  
+console.log(payload);
+const [isLoading, setIsLoading] = useState(true);
+  const [issues,setIssues] = useState([]);
   const scrollLeft = () => {
     document.getElementById("content").scrollLeft -= 400;
   };
@@ -39,24 +42,33 @@ export default function IssueDashboard(props) {
 
   useEffect(() => {
     // Determine unique status values from the data
-    const uniqueStatusValues = [...new Set(issues.map((item) => item.status))];
-    setStatusValues(uniqueStatusValues);
-  }, [issues]);
-  const maxWidth = "md";
-  // console.log(JSON.stringify(statusValues));
-  // useEffect(() => {
-  //   AuthenticationService.projectWiseWorkflow(payload)
-  //   .then((response) => {
-  //     console.log(response.data);
-  //     // setWorkflowData(response.data);
-  //     // console.log(JSON.stringify(response.data));
-  //     // console.log("WORKFLOWDATA : " +JSON.stringify(workflowData) +"generated");
-  //   })
-  //   .catch((error)=>{
-  //     console.error(error);
-  //   })
-  // }, []);
+    AuthenticationService.allIssues(payload).then((response)=>{
+      console.log(response.data);
+      setIssues(response.data);
+      const uniqueStatusValues = [...new Set(issues.map((item) => item.Status))];
+      console.log(uniqueStatusValues);
+      setStatusValues(uniqueStatusValues);
+      setIsLoading(false);
+    }).catch((error)=>{
+      console.log(error);
+      setIsLoading(false);
+    })   
+  }, []);
+  console.log("Issues: ", issues);
+  console.log("Status: ", statusValues);
   return (
+    <>
+    {isLoading ?(
+      <div className="flex justify-center">
+          <HashLoader
+            color="#1976d2"
+            style={{ marginTop: "10%" }}
+            size={100}
+            speedMultiplier={1}
+          />
+          {/* <PacmanLoader color="#1976d2" size={50}/>   */}
+        </div>
+    ):(
     <>
       <div className="flex bg-[#ffffff]">
         <div className="max-w-2/12">
@@ -130,6 +142,8 @@ export default function IssueDashboard(props) {
           </div>
         </div>
       </div>
+    </>
+    )}
     </>
   );
 }
