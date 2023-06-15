@@ -127,14 +127,20 @@ export const ProjectExplore = () => {
               {projectData.Project_name}
             </p>
           </div>
-          <div className="mx-10">
-            <div className="grid grid-rows-4 grid-cols-3 gap-4 ">
+          <div className="mx-auto">
+            <div className="grid grid-rows-4 grid-cols-3 gap-12 ">
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Planned Start Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {projectData.planned_sd}
+                  {/* {projectData.planned_sd} */}
+
+                  {new Date(projectData.planned_sd).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit"
+                  })}
                 </dd>
               </div>
               <div>
@@ -142,7 +148,12 @@ export const ProjectExplore = () => {
                   Planned End Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {projectData.planned_ed}
+                  {/* {projectData.planned_ed} */}
+                  {new Date(projectData.planned_ed).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit"
+                  })}
                 </dd>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {/* {ProjectData.type} */}
@@ -153,7 +164,12 @@ export const ProjectExplore = () => {
                   Actual Start Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {projectData.Actual_sd}
+                  {/* {projectData.Actual_sd} */}
+                  {new Date(projectData.Actual_sd).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit"
+                  })}
                 </dd>
               </div>
               <div>
@@ -161,7 +177,12 @@ export const ProjectExplore = () => {
                   Actual End Date
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {projectData.Actual_ed}
+                  {/* {projectData.Actual_ed} */}
+                  {new Date(projectData.Actual_ed).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit"
+                  })}
                 </dd>
               </div>
               <div>
