@@ -2,7 +2,7 @@ import { useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
-function CreateDefect()
+function CreateDefect({issueId})
 {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -11,7 +11,7 @@ function CreateDefect()
   const [endDate, setEndDate] = useState("");
   const [priority, setPriority] = useState("");
   const [estimatedTime , setEstimatedTime] = useState("");
-
+  console.log(issueId);
     
     function handleInputChangeTitle(event) 
      {
@@ -62,6 +62,7 @@ function CreateDefect()
     event.preventDefault();
     var payload = 
     {
+        issue_id : issueId,
         title: title,
         description: description,
         severity: severity,

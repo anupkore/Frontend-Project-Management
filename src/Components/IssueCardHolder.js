@@ -20,7 +20,7 @@ function IssueCardHolder(props) {
       </Badge>
       </div>
       </Link>
-      <div className="w-64 h-[36rem] overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-[#f8f9fa] scrollbar-thumb-zinc-300 scrollbar">
+      <div className="w-64 h-[36rem] overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-[#f8f9fa] scrollbar-thumb-zinc-300 scrollbar">
         <div className="rounded-b-lg bg-[#f4f5f7] space-y-3 px-3 py-4 ">
           {issueCards.map((proj) => (
             <IssueCard pro={proj} key={proj.id} />
