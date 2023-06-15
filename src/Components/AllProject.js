@@ -254,10 +254,12 @@ export const AllProjectList = () => {
                     />
                   </div>
                 </div>
-                <div className="container-lg bg-blur-3xl bg-opacity-30 rounded-lg  p-4 ">
+
+
+                <div className="container-lg bg-blur-3xl bg-opacity-30 rounded-lg ">
                   <div className="w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-slate-400 scrollbar">
                     <div className="flex max-h-[28] min-w-[105em] items-center py-2">
-                      <table className="table-fixed bg-white rounded-3xl w-auto mx-auto shadow-md">
+                      <table className="table-fixed bg-white rounded-3xl w-auto shadow-md" >
                         <thead>
                           <tr>
                             <th className="px-4 py-2">Sr.No</th>
@@ -274,35 +276,53 @@ export const AllProjectList = () => {
                           </tr>
                         </thead>
                         <tbody>
-                        {sortedAndFilteredProjects.map((project, index) => (
-  <tr key={project.id} className="my-4 divide-y space-y-5">
-    <td className="px-4 py-2">{index + 1}</td>
-    <td className="px-4 py-2">{project.Project_name}</td>
-    <td className="px-4 py-2">{project.Status}</td>
-    <td className="px-4 py-2">
-      {new Date(project.planned_sd).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-      })}
-    </td>
-    <td className="px-4 py-2">
-      {new Date(project.planned_ed).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-      })}
-    </td>
-    <td className="px-4 py-2">{project.client_name}</td>
-    <td className="px-4 py-2">{project.project_lead}</td>
-    <td className="px-4 py-2">{project.risk}</td>
-    <td className="px-4 py-2">{project.mitigation}</td>
-    <td className="px-4 py-2 underline text-blue-900">
-      <Link to={`/projectexplore/${project.Project_id}`}>Explore</Link>
-    </td>
-  </tr>
-))}
-
+                          {sortedAndFilteredProjects.map((project, index) => (
+                            <tr
+                              key={project.id}
+                              className="my-4 divide-y space-y-5"
+                            >
+                              <td className="px-4 py-2">{index + 1}</td>
+                              <td className="px-4 py-2">
+                                {project.Project_name}
+                              </td>
+                              <td className="px-4 py-2">{project.Status}</td>
+                              <td className="px-4 py-2">
+                                {new Date(
+                                  project.planned_sd
+                                ).toLocaleDateString("en-US", {
+                                  year: "numeric",
+                                  month: "2-digit",
+                                  day: "2-digit",
+                                })}
+                              </td>
+                              <td className="px-4 py-2">
+                                {new Date(
+                                  project.planned_ed
+                                ).toLocaleDateString("en-US", {
+                                  year: "numeric",
+                                  month: "2-digit",
+                                  day: "2-digit",
+                                })}
+                              </td>
+                              <td className="px-4 py-2">
+                                {project.client_name}
+                              </td>
+                              <td className="px-4 py-2">
+                                {project.project_lead}
+                              </td>
+                              <td className="px-4 py-2">{project.risk}</td>
+                              <td className="px-4 py-2">
+                                {project.mitigation}
+                              </td>
+                              <td className="px-4 py-2 underline text-blue-900">
+                                <Link
+                                  to={`/projectexplore/${project.Project_id}`}
+                                >
+                                  Explore
+                                </Link>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>
@@ -324,6 +344,8 @@ export const AllProjectList = () => {
                     </div>
                   </div>
                 </div>
+
+
               </>
             )}
           </div>
