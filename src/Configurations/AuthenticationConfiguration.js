@@ -177,13 +177,13 @@ export default class AuthenticationConfiguration
 
     static createTask()
     {
-        const url = ParentConfiguration.parentURL()+"create_Task";
+        const url = ParentConfiguration.parentURL()+"create_task";
         return url;
     }
 
     static createDefect()
     {
-        const url = ParentConfiguration.parentURL()+"create_Defect";
+        const url = ParentConfiguration.parentURL()+"create_defect";
         return url;
     }
 

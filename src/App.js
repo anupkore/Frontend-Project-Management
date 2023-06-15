@@ -52,7 +52,7 @@ const App = () => {
 <Route path="/teams" element={<ProtectedRoute element={Teams} />} />
 <Route path="/dashboard" element={<ProtectedRoute element={AdminDashboard} />} />
 <Route path="/cal" element={<ProtectedRoute element={Calender} />} />
-<Route path="/projectexplore/issues/:p_id" element={<ProtectedRoute element={IssueDashboard} />} />
+{/* <Route path="/projectexplore/issues/:p_id" element={<ProtectedRoute element={IssueDashboard} />} /> */}
 <Route path="/issuedes/:issueId" element={<ProtectedRoute element={IssueDes} />} />
 <Route path="/issue/:status" element={<ProtectedRoute element={ParticularIssueDashboard} />} />
 <Route path="/profile" element={<ProtectedRoute element={Profilepage} />} />
@@ -77,7 +77,7 @@ const App = () => {
 <Route path='/updateUser/:uid' element={<UpdateUser></UpdateUser>} />
 <Route path='/createTask' element={<CreateTask></CreateTask>} />
 <Route path='/createDefect' element={<CreateDefect></CreateDefect>} />
-<Route path='/allIssues' element={<AllIssues></AllIssues>} />
+<Route path='/allIssues' element={<ProtectedRoute element={IssueDashboard} />}/>
 
       </Routes>
     </Router>

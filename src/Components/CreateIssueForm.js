@@ -16,9 +16,9 @@ export default function CreateIssueForm() {
   const [isLoading, setIsLoading] = useState(true);
   const [issueId, setIssueId] = useState();
   const [isSaved, setIsSaved] = useState(false);
-  const project_id = localStorage.getItem("ProjectID");
+  const project_id = Number(localStorage.getItem("ProjectID"));
   const payload = { project_id: project_id };
-  const maxWidth1 = "xl";
+  const maxWidth1 = "md";
   function handleInputChangeIssueName(event) {
     setIssueName(event.target.value);
   }
@@ -36,8 +36,10 @@ export default function CreateIssueForm() {
   }
 
   function handleNext(event) {
+    setIsLoading(true);
     event.preventDefault();
     var payload = {
+      project_id: project_id,
       issue_name: issueName,
       description: description,
       type: issueType,
@@ -50,6 +52,7 @@ export default function CreateIssueForm() {
       console.log(response.data);
       setIssueId(response.data.issue_id);
       setIsSaved(true);
+      setIsLoading(false);
       toast.success("Issue Added Sucessfully!! ", {
         position: "top-right",
         autoClose: 1000,
@@ -110,6 +113,7 @@ export default function CreateIssueForm() {
   // console.log("Next States:", nextStates);
 
   useEffect(() => {
+    setIsLoading(true);
     AuthenticationService.projectWiseWorkflow(payload)
       .then((response) => {
         console.log(response.data);
@@ -142,13 +146,14 @@ export default function CreateIssueForm() {
   }, [issueType, isLoading, workflowData]);
 
   return (
-    <>
-      {isLoading ? (
-        <div className="flex justify-center">
-          <SyncLoader color="#1976d2" size={10} />
-        </div>
-      ) : (
+    
         <>
+        {isLoading  && (
+      <div className="flex align-center justify-center">
+         <SyncLoader color="#1976d2" size={10}  style={{ marginTop: "10%" }} />
+      </div>
+    )}
+     <div className={`${isLoading ? "blur-sm" : ""}`}>
           <Container>
             <div className="mx-auto max-w-2xl pb-3">
               <div className="text-center">
@@ -182,6 +187,7 @@ export default function CreateIssueForm() {
                             onChange={handleInputChangeIssueName}
                             autoComplete="given-name"
                             className="block  w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6 text-lg"
+                            disabled={isSaved}
                           />
                         </div>
                       </div>
@@ -197,6 +203,7 @@ export default function CreateIssueForm() {
                           value={issueType}
                           onChange={handleInputChangeIssueType}
                           className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:shadow-outline"
+                          disabled={isSaved}
                         >
                           <option value="">Select Issue Type</option>
                           <option value="task">Task</option>
@@ -241,6 +248,7 @@ export default function CreateIssueForm() {
                           onChange={handleInputChangeDescription}
                           autoComplete="given-name"
                           className="h-72 w-full rounded-md border-0 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-black-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm text-lg"
+                          disabled={isSaved}
                         />
                       </div>
                     </div>
@@ -249,33 +257,37 @@ export default function CreateIssueForm() {
               </Col>
               <div className="mx-auto mt-3.5 flex align-items-end justify-content-end mr-10">
                 {!isSaved ? (
-                  <Button
+                  <button
                     onClick={handleNext}
                     variant="contained"
-                    className="justify-content-center flex items-center"
+                    className={`text-white font-bold py-2 px-4 rounded ${
+                      isSaved
+                        ? " cursor-not-allowed bg-blue-300"
+                        : "hover:bg-blue-700 bg-blue-500"
+                    }`}
+                    disabled={isSaved}
                   >
                     Save
-                  </Button>
+                  </button>
                 ) : issueType === "task" ? (
                   <FormDialog
                     prop={<CreateTask issueId={issueId} />}
                     style={maxWidth1}
                     buttonTitle={"Next"}
-                    variant={""}
+                    variant={"contained"}
                   ></FormDialog>
                 ) : (
                   <FormDialog
                     prop={<CreateDefect issueId={issueId} />}
                     style={maxWidth1}
                     buttonTitle={"Next"}
-                    variant={""}
+                    variant={"contained"}
                   ></FormDialog>
                 )}
               </div>
             </Row>
           </Container>
+    </div>
         </>
-      )}
-    </>
   );
 }
