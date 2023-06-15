@@ -53,7 +53,7 @@ export default class AuthenticationConfiguration
 
     static allIssues()
     {
-        const url = ParentConfiguration.parentURL()+"allIssues";
+        const url = ParentConfiguration.parentURL()+"Projectwise_Issue";
         return url;
     }
 

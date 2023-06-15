@@ -21,15 +21,17 @@ export const AllIssues = () =>
   const [myIssues, setMyIssues] = useState(false);
   const [loading, setLoading] = useState(true);
   const [flag , setFlag] = useState('false');
-  const ProjectID = localStorage.getItem("ProjectID");
+  const ProjectID = Number(localStorage.getItem("ProjectID"));
   //console.log("userID",userID);
   var payload = {project_id: ProjectID};
-
+  console.log(payload);
   useEffect(()=>{
-    AuthenticationService.projectWiseWorkflow(payload).then((response)=>{
+    AuthenticationService.allIssues(payload).then((response)=>{
       console.log(response.data);
+    }).catch((error)=>{
+      console.log(error);
     })
-  })
+  },[])
   
   // useEffect(() => {
   //   setLoading(true);

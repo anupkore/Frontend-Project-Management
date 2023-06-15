@@ -51,9 +51,9 @@ export default class AxiosService
     }
 
     //For viewing all issues in issues dashboard
-    static allIssues(url)
+    static allIssues(url,data)
     {
-        return axios.get(url);
+        return axios.post(url,data);
     }
 
     //For displyaing perticular issue details (PID , IssueID)
@@ -176,10 +176,12 @@ export default class AxiosService
         return axios.post(url,data);
     }
 
-    static getAllEmails(url)
+    static getAllEmails(url,data)
     {
-        return axios.get(url);
+        return axios.post(url,data);
     }
+
+    
 
 
 }

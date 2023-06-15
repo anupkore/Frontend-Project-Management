@@ -6,11 +6,12 @@ function AssignMember()
     const [email,setEmail] = useState('');
     const[errorEmail , setErrorEmail] = useState('');
     const[emailList , setEmailList] = useState([]);
-    const pid = localStorage.getItem("ProjectID");
+    const pid = Number(localStorage.getItem("ProjectID"));
+    const payload = {project_id:pid};
     
 
     useEffect(()=>{
-        AuthenticationService.getAllEmails().then((response)=>{
+        AuthenticationService.getAllEmails(payload).then((response)=>{
             console.log(response.data);
             setEmailList(response.data.msg);
         }).catch((error)=>{

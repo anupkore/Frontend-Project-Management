@@ -38,6 +38,7 @@ export default function CreateIssueForm() {
   function handleNext(event) {
     event.preventDefault();
     var payload = {
+      project_id:project_id,
       issue_name: issueName,
       description: description,
       type: issueType,
