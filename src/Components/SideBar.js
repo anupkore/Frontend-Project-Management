@@ -15,12 +15,7 @@ export default function SideBar({p_id}) {
       { title: "Reports", src: "Chart", li:`/reports` },
       {title: "Workflows", src: "Chart_fill" ,li:"/workflow"}
     ];
-    
-
-  
-  
-
-  const handleResize = () => {
+    const handleResize = () => {
     const isMobile = window.innerWidth <= 768; // Set your desired responsive breakpoint here
     setIsResponsive(isMobile);
     if (isMobile && open) {
