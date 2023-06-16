@@ -13,7 +13,7 @@ function AssignMember()
     useEffect(()=>{
         AuthenticationService.getAllEmails(payload).then((response)=>{
             console.log(response.data);
-            setEmailList(response.data.msg);
+            setEmailList(response.data);
         }).catch((error)=>{
             console.log(error);
         })

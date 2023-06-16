@@ -159,11 +159,23 @@ export default function Comments({ id }) {
                       />
                       {data.author_name}
                     </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      <time pubdate="" dateTime={data.date} title={data.date}>
+                    {/* <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <time pubdate="" date={data.date} title={data.date}>
                         {data.date}
                       </time>
-                    </p>
+                    </p> */}
+
+<p className="text-sm text-gray-600 dark:text-gray-400">
+  <time pubdate="" date={data.date} title={data.date}>
+    {new Date(data.date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    })}
+  </time>
+</p>
+
+                    
                   </div>
                   {/* Three-dot menu */}
                   <div className="relative inline-block text-left">
