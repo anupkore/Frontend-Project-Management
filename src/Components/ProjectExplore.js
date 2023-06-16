@@ -29,6 +29,7 @@ export const ProjectExplore = () => {
   const navigate  = useNavigate();
 
   useEffect(() => {
+    console.log(payload);
     AuthenticationService.projectExplore(payload)
       .then((response) => {
         setProjectDetails((existingData) => {
@@ -51,6 +52,7 @@ export const ProjectExplore = () => {
 
   const handleUpdateProject = (updatedData) => {
     // Make an API call to update the project with the updatedData
+    console.log(updatedData);
     AuthenticationService.updateProject(updatedData)
       .then((response) => {
         // Handle the success response

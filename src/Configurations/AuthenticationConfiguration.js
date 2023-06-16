@@ -193,10 +193,35 @@ export default class AuthenticationConfiguration
         return url;
     }
 
+    
     static getAllEmails()
     {
         const url = ParentConfiguration.parentURL()+"Show_Emails";
         return url;
     }
-    
+    static IssueByWeek()
+    {
+        const url = ParentConfiguration.parentURL()+"IssueByWeek";
+        return url;
+    }
+    static IssueByMonth()
+    {
+        const url = ParentConfiguration.parentURL()+"IssueByMonth";
+        return url;
+    }
+    static IssueByQuarter()
+    {
+        const url = ParentConfiguration.parentURL()+"IssueByQuarter";
+        return url;
+    }
+    static IssueByDaily()
+    {
+        const url = ParentConfiguration.parentURL()+"IssueByDaily";
+        return url;
+    }
+    static DetailedIssue()
+    {
+        const url = ParentConfiguration.parentURL()+"DetailedIssue";
+        return url;
+    }
 }

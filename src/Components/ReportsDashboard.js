@@ -2,20 +2,16 @@ import { useState } from "react";
 import IssueTypeBar from "./IssueTypeBar";
 import NumberOfIssuesBar from "./NumberOfIssuesBar";
 import SideBar from "./SideBar";
-import {data} from "./TEST/Data";
+import { data } from "./TEST/Data";
+import AuthenticationService from "../Services/AuthenticationService";
+import { useEffect } from "react";
 
 function ReportsDashboard(props) {
-  const [selectedOption, setSelectedOption] = useState("daily");
+  const [selectedOption, setSelectedOption] = useState("Weekly"); // Initialize with "Weekly"
 
-  const handleOptionChange = (option) => 
-  {
-   setSelectedOption(option);
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
   };
-
-  const filteredData = data.map((item) => {
-    const filteredItem = { project: item.project, Issues: item[selectedOption] };
-    return filteredItem;
-  });
 
   return (
     <>
@@ -25,10 +21,10 @@ function ReportsDashboard(props) {
         </div>
         <div className="ml-2 w-full">
           <div className="flex justify-center space-x-4">
-            <button
-              onClick={() => handleOptionChange("daily")}
+          <button
+              onClick={() => handleOptionChange("Daily")}
               className={`${
-                selectedOption === "daily"
+                selectedOption === "Daily"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-800"
               } rounded-lg py-2 px-4`}
@@ -36,9 +32,9 @@ function ReportsDashboard(props) {
               Daily
             </button>
             <button
-              onClick={() => handleOptionChange("weekly")}
+              onClick={() => handleOptionChange("Weekly")}
               className={`${
-                selectedOption === "weekly"
+                selectedOption === "Weekly"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-800"
               } rounded-lg py-2 px-4`}
@@ -46,19 +42,19 @@ function ReportsDashboard(props) {
               Weekly
             </button>
             <button
-              onClick={() => handleOptionChange("monthly")}
+              onClick={() => handleOptionChange("Monthly")}
               className={`${
-                selectedOption === "monthly"
+                selectedOption === "Monthly"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-800"
               } rounded-lg py-2 px-4`}
             >
-              monthly
+              Monthly
             </button>
             <button
-              onClick={() => handleOptionChange("quarterly")}
+              onClick={() => handleOptionChange("Quarterly")}
               className={`${
-                selectedOption === "quarterly"
+                selectedOption === "Quarterly"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-800"
               } rounded-lg py-2 px-4`}
@@ -67,11 +63,11 @@ function ReportsDashboard(props) {
             </button>
           </div>
           <div className="mt-3">
-            <IssueTypeBar selectedOption={selectedOption}/>
+            <IssueTypeBar selectedOption={selectedOption} />
           </div>
-          <div className="mb-3">
+          {/* <div className="mb-3">
             <NumberOfIssuesBar data={filteredData} />
-          </div>
+          </div> */}
         </div>
       </div>
     </>
