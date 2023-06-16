@@ -11,6 +11,7 @@ import FormDialog from "./Dialog";
 import { Button } from "@mui/material";
 import AuthenticationService from "../Services/AuthenticationService";
 import { HashLoader } from "react-spinners";
+import CustomizedDialogs from "./IssueDialog";
 
 const colors = [
   "bg-lime-100",
@@ -39,6 +40,9 @@ const [isLoading, setIsLoading] = useState(true);
     document.getElementById("content").scrollLeft += 400;
   };
   const [statusValues, setStatusValues] = useState([]);
+  // const proj_id = Number(localStorage.getItem("ProjectID"));
+  // const payload1 = { project_id: proj_id };
+  // const [workflowData , setWorkflowData] = useState([]);
 
   useEffect(() => {
     AuthenticationService.allIssues(payload)
@@ -63,8 +67,25 @@ const [isLoading, setIsLoading] = useState(true);
     }
   }, [issues]);
   
+  // useEffect(() => {
+      
+  //   if (!isLoading) {
+  //     AuthenticationService.projectWiseWorkflow(payload1)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setWorkflowData(response.data);
+  //       setIsLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       setIsLoading(false);
+  //     });
+  //   }
+  // }, [isLoading]);
+
   console.log("Issues: ", issues);
   console.log("Status: ", statusValues);
+  // console.log("Workflowata", workflowData);
   
   return (
     <>
