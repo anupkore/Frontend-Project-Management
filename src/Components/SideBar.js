@@ -4,7 +4,10 @@ import { Link, useParams } from "react-router-dom";
 export default function SideBar({p_id}) {
   const [open, setOpen] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
-  const Menus = [
+  const project_id = localStorage.getItem("ProjectID");
+  const payload = { project_id: project_id };
+  const pname  = localStorage.getItem("ProjectName");
+    const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
       { title: "Teams", src: "Chat",li:"/teams"},
       { title: "Issues Workflow", src: "User" ,li:"/allIssues"},
@@ -36,6 +39,17 @@ export default function SideBar({p_id}) {
       setOpen(!open);
     }
   };
+
+  // useEffect(() => {
+  //   AuthenticationService.projectExplore(payload)
+  //     .then((response) => {
+  //       // console.log(response.data);
+  //       setPname(response.data.Project_name);
+  //     })  
+  //     .catch((error) => {
+  //       console.log(error.response.data);
+  //     });
+  // }, []);
 
   return (
     <>

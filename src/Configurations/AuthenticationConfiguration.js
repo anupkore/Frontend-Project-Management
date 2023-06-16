@@ -53,7 +53,7 @@ export default class AuthenticationConfiguration
 
     static allIssues()
     {
-        const url = ParentConfiguration.parentURL()+"allIssues";
+        const url = ParentConfiguration.parentURL()+"Projectwise_Issue";
         return url;
     }
 
@@ -190,6 +190,12 @@ export default class AuthenticationConfiguration
     static allIssuesNew()
     {
         const url = ParentConfiguration.parentURL()+"issue_list";
+        return url;
+    }
+
+    static getAllEmails()
+    {
+        const url = ParentConfiguration.parentURL()+"Show_Emails";
         return url;
     }
     

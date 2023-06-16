@@ -46,6 +46,9 @@ export const ProjectExplore = () => {
       });
   }, []);
 
+  const ProjectName = projectData.Project_name;
+  localStorage.setItem("ProjectName",ProjectName)
+
   const handleUpdateProject = (updatedData) => {
     // Make an API call to update the project with the updatedData
     AuthenticationService.updateProject(updatedData)
