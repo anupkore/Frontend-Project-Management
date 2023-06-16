@@ -182,6 +182,7 @@ export default function Comments({ id }) {
                           d="M2 9a2 2 0 114 0 2 2 0 01-4 0zm6 0a2 2 0 114 0 2 2 0 01-4 0zm8 0a2 2 0 114 0 2 2 0 01-4 0z"
                           clipRule="evenodd"
                         />
+                        h1
                       </svg>
                     </button>
                     {data.showMenu && (

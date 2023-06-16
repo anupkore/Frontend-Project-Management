@@ -11,9 +11,20 @@ function IssueCardHolder(props) {
   const [issues,setIssues] = useState([]);
   const project_id = localStorage.getItem("ProjectID");
   const payload = { project_id: project_id };
-  const issueCards = issues.filter((issue) => issue.status === props.iss);
+  const issueCards = issues.filter((issue) => issue.Status === props.iss);
   const maxWidth = 'md';
- 
+  useEffect(() => {
+    AuthenticationService.allIssues(payload)
+      .then((response) => {
+        console.log(response.data);
+        setIssues(response.data);
+        // setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        // setIsLoading(false);
+      });
+  }, []);
   return (
     <div id="content" className="mx-auto ">
       <Link to={`/issue/${props.iss}`}>

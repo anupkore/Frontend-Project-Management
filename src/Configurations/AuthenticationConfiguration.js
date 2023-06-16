@@ -57,9 +57,9 @@ export default class AuthenticationConfiguration
         return url;
     }
 
-    static perticularIssueDetails()
+    static particularIssueDetails()
     {
-        const url = ParentConfiguration.parentURL()+"perticularIssue";
+        const url = ParentConfiguration.parentURL()+"issue_explore";
         return url ;
     }
 

@@ -41,21 +41,31 @@ const [isLoading, setIsLoading] = useState(true);
   const [statusValues, setStatusValues] = useState([]);
 
   useEffect(() => {
-    // Determine unique status values from the data
-    AuthenticationService.allIssues(payload).then((response)=>{
-      console.log(response.data);
-      setIssues(response.data);
+    AuthenticationService.allIssues(payload)
+      .then((response) => {
+        console.log(response.data);
+        setIssues(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+  }, []);
+  
+  useEffect(() => {
+    if (issues.length > 0) {
       const uniqueStatusValues = [...new Set(issues.map((item) => item.Status))];
       console.log(uniqueStatusValues);
       setStatusValues(uniqueStatusValues);
-      setIsLoading(false);
-    }).catch((error)=>{
-      console.log(error);
-      setIsLoading(false);
-    })   
-  }, []);
+    } else {
+      console.log("EMPTY!!");
+    }
+  }, [issues]);
+  
   console.log("Issues: ", issues);
   console.log("Status: ", statusValues);
+  
   return (
     <>
     {isLoading ?(

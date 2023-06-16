@@ -57,9 +57,9 @@ export default class AxiosService
     }
 
     //For displyaing perticular issue details (PID , IssueID)
-    static perticularIssueDetails(url)
+    static  particularIssueDetails(url,data)
     {
-        return axios.get(url);
+        return axios.post(url,data);
     }
 
     //For Updating The Prticular Issue (PID , Issue ID)
