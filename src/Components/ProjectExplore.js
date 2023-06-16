@@ -21,7 +21,7 @@ export const ProjectExplore = () => {
   const [projectDetails, setProjectDetails] = useState([]);
   const project_id = id1;
   localStorage.setItem("ProjectID", project_id);
-  const payload = { project_id: project_id };
+  const payload = { project_id: Number(localStorage.getItem("ProjectID"))};
   const [projectData, setProjectData] = useState([]);
   const [projectID, setProjectID] = useState();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -29,6 +29,7 @@ export const ProjectExplore = () => {
   const navigate  = useNavigate();
 
   useEffect(() => {
+    console.log(payload);
     AuthenticationService.projectExplore(payload)
       .then((response) => {
         setProjectDetails((existingData) => {
@@ -51,6 +52,7 @@ export const ProjectExplore = () => {
 
   const handleUpdateProject = (updatedData) => {
     // Make an API call to update the project with the updatedData
+    console.log(updatedData);
     AuthenticationService.updateProject(updatedData)
       .then((response) => {
         // Handle the success response
@@ -275,7 +277,7 @@ export const ProjectExplore = () => {
             <button
               className="btn btn-danger ml-3"
              
-              onClick={() => handleDeleteProject(projectData.Project_id)}
+              onClick={handleDeleteProject}
             >
               DELETE
             </button>

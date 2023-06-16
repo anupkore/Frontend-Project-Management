@@ -58,7 +58,7 @@ export const  LoginForm = ({ toggleSignup }) =>
           localStorage.setItem("UserName",response.data.user_detail[0][2]);
           localStorage.setItem("UserEmail",response.data.user_detail[0][3]);
       // Redirect the user to a protected route
-        if(response.data.user_detail[0][1] === 'project Manager')
+        if(response.data.user_detail[0][1] === "project Manager")
         {
           // window.location.href = '/tableofusers';
           

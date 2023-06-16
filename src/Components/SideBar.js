@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import AuthenticationService from "../Services/AuthenticationService";
 
 export default function SideBar({p_id}) {
   const [open, setOpen] = useState(true);
@@ -80,7 +79,7 @@ export default function SideBar({p_id}) {
                 !open && "scale-0"
               }`}
             >
-              {pname}
+              World Class
             </h1>
           </div>
           <div>

@@ -14,8 +14,8 @@ export default function Comments({ id }) {
     event.preventDefault();
     var payload = {
       id: Number(ProjectID),
-      user_id: Number(UserID),
       description: comment.current.value,
+      user_id: Number(UserID),
     };
     console.log("commentttt", payload);
     AuthenticationService.postComment(payload)

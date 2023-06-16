@@ -181,6 +181,29 @@ export default class AxiosService
         return axios.post(url,data);
     }
 
+    static IssueByWeek(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByMonth(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByQuarter(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByDaily(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static DetailedIssue(url)
+    {
+        return axios.get(url);
+    }
+   
+
+
     
 
 
