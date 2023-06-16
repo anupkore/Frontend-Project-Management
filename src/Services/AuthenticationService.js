@@ -49,9 +49,9 @@ export default class AuthenticationService
         return AxiosService.allIssues(AuthenticationConfiguration.allIssues(),data);
     }
 
-    static perticularIssueDetails()
+    static particularIssueDetails(data)
     {
-        return AxiosService.perticularIssueDetails(AuthenticationConfiguration.perticularIssueDetails());
+        return AxiosService.particularIssueDetails(AuthenticationConfiguration.particularIssueDetails(),data);
     }
 
     static updateIssues(data)

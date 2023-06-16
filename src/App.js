@@ -36,6 +36,7 @@ import CreateWorkflow from './Components/CreateWorkflow';
 import CreateTask from './Components/CreateTask';
 import CreateDefect from './Components/CreateDefect';
 import AllIssues from './Components/AllIssues';
+import IssueDescription from './Components/IssueDescription';
 
 
 const App = () => {
@@ -80,7 +81,7 @@ const App = () => {
 <Route path='/createTask' element={<CreateTask></CreateTask>} />
 <Route path='/createDefect' element={<CreateDefect></CreateDefect>} />
 <Route path='/allIssues' element={<ProtectedRoute element={IssueDashboard} />}/>
-
+<Route path='/demo' element={<IssueDescription></IssueDescription>} />
       </Routes>
     </Router>
   );
