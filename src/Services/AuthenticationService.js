@@ -210,4 +210,12 @@ export default class AuthenticationService
     {
         return AxiosService.addStatus(AuthenticationConfiguration.addStatus(),data);
     }
+    static update_status(data)
+    {
+        return AxiosService.update_status(AuthenticationConfiguration.update_status(),data);
+    }
+    static status_display(data)
+    {
+        return AxiosService.status_display(AuthenticationConfiguration.status_display(),data);
+    }
 }

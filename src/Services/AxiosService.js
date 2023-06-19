@@ -223,6 +223,14 @@ export default class AxiosService
     {
         return axios.post(url,data);
     }
+    static update_status(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static status_display(url,data)
+    {
+        return axios.post(url,data);
+    }
    
 
 

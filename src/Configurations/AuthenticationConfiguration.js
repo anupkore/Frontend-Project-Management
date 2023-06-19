@@ -254,4 +254,14 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"addstatus";
         return url;
     }
+    static update_status()
+    {
+        const url = ParentConfiguration.parentURL()+"status_update";
+        return url;
+    }
+    static status_display()
+    {
+        const url = ParentConfiguration.parentURL()+"status_display";
+        return url;
+    }
 }

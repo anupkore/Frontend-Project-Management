@@ -106,28 +106,87 @@ export const ProjectExplore = () => {
   };
 
   const [statusValue, setStatusValue] = useState("");
+  const [statusAlreadyExists, setStatusAlreadyExists] = useState(false);
 
   const handleStatusChange = (event) => {
     setStatusValue(event.target.value);
   };
+  
+  // const handleSubmit1 = () => {
+  //   const payload = {
+  //     id: Number(localStorage.getItem("ProjectID")),
+  //     status: statusValue
+  //   };
+  //   AuthenticationService.update_status(payload)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       // Handle the success response
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response.data);
+  //       // Handle the error response
+  //     });
 
+  //   AuthenticationService.addStatus(payload)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       // Handle the success response
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response.data);
+  //       // Handle the error response
+  //     });
+  // };
+  
   const handleSubmit1 = () => {
-   const payload={id:Number(localStorage.getItem("ProjectID")),status:statusValue};
-   console.log("status...",payload);
-    // Perform the submission logic here
-    AuthenticationService.addStatus(payload)
-    .then((response) => {
-      // Handle the success response
-      console.log(response.data);
-    })
-    .catch((error) => {
-      // Handle the error response
-      console.log(error.response.data);
-    });
-    console.log("Status submitted:", statusValue);
-    // Reset the textarea value if needed
-    setStatusValue("");
+    const payload = {
+      id: Number(localStorage.getItem("ProjectID")),
+      status: statusValue,
+    };
+  
+    // Check if the status already exists
+    if (statusAlreadyExists) {
+      AuthenticationService.update_status(payload)
+        .then((response) => {
+          console.log(response.data);
+          setStatusValue(response.data.status); // Update the status value
+          // Handle the success response
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+          // Handle the error response
+        });
+    } else {
+      AuthenticationService.addStatus(payload)
+        .then((response) => {
+          console.log(response.data);
+          setStatusAlreadyExists(true);
+          setStatusValue(response.data.status); // Update the status value
+          // Handle the success response
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+          // Handle the error response
+        });
+    }
   };
+  
+
+  useEffect(() => {
+    console.log("Displaying status...");
+    const payload = {
+      id: Number(localStorage.getItem("ProjectID")),
+      
+    };
+    AuthenticationService.status_display(payload)
+      .then((response) => {
+        console.log("statusData...", response.data);
+        setStatusValue(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }, []);
 
   return (
     <>
@@ -240,7 +299,7 @@ export const ProjectExplore = () => {
               </div>
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
-                  Status
+                  State
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {projectData.Status}
@@ -270,16 +329,17 @@ export const ProjectExplore = () => {
               <div>
         <dt className="text-sm font-medium leading-6 text-gray-900">Status</dt>
         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-          <textarea
-            id="status"
-            rows={3}
-            className="px-0 w-full text-sm text-black border-0 focus:ring-0"
-            placeholder="Update status..."
-            required
-            value={statusValue}
-            onChange={handleStatusChange}
-            onBlur={handleSubmit1}
-          />
+        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+        <textarea
+          id="status"
+          rows={3}
+          className="px-0 w-full text-sm text-black border-0 focus:ring-0"
+          required
+          value={statusValue}
+          onChange={handleStatusChange}
+          onBlur={handleSubmit1}
+        />
+      </dd>
         </dd>
       </div>
               {/* <div>
