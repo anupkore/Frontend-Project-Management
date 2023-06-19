@@ -15,8 +15,8 @@ export default function Comments({ id }) {
     event.preventDefault();
     var payload = {
       id: Number(ProjectID),
-      user_id: Number(UserID),
       description: comment.current.value,
+      user_id: Number(UserID),
     };
     console.log("commentttt", payload);
     AuthenticationService.postComment(payload)
@@ -114,7 +114,7 @@ export default function Comments({ id }) {
       <section className="bg-white dark:bg-gray-900 py-8 lg:py-16">
         <div className="max-w-2xl mx-auto px-4">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-lg font-bold text-black">
               Discussion ({allComment.length})
             </h2>
           </div>
@@ -126,7 +126,7 @@ export default function Comments({ id }) {
               <textarea
                 id="comment"
                 rows={6}
-                className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                className="px-0 w-full text-sm text-black border-0 focus:ring-0 focus:outline-none"
                 placeholder="Write a comment..."
                 required=""
                 ref={comment}
@@ -196,6 +196,7 @@ export default function Comments({ id }) {
                           d="M2 9a2 2 0 114 0 2 2 0 01-4 0zm6 0a2 2 0 114 0 2 2 0 01-4 0zm8 0a2 2 0 114 0 2 2 0 01-4 0z"
                           clipRule="evenodd"
                         />
+                        h1
                       </svg>
                     </button>
                     {data.showMenu && (

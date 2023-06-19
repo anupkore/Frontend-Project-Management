@@ -4,11 +4,13 @@ import { Link, useParams } from "react-router-dom";
 export default function SideBar({p_id}) {
   const [open, setOpen] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
-  const Menus = [
+  const project_id = localStorage.getItem("ProjectID");
+  const payload = { project_id: project_id };
+  const pname  = localStorage.getItem("ProjectName");
+    const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
       { title: "Teams", src: "Chat",li:"/teams"},
-      { title: "Issues", src: "Chart_fill" ,li:"/allIssues"},
-      { title: "Issues Workflow", src: "User" ,li:`/projectexplore/issues/${p_id}`},
+      { title: "Issues Workflow", src: "User" ,li:"/allIssues"},
       { title: "Reports", src: "Chart", li:`/reports` },
       {title: "Workflows", src: "Chart_fill" ,li:"/workflow"}
     ];
@@ -37,6 +39,17 @@ export default function SideBar({p_id}) {
       setOpen(!open);
     }
   };
+
+  // useEffect(() => {
+  //   AuthenticationService.projectExplore(payload)
+  //     .then((response) => {
+  //       // console.log(response.data);
+  //       setPname(response.data.Project_name);
+  //     })  
+  //     .catch((error) => {
+  //       console.log(error.response.data);
+  //     });
+  // }, []);
 
   return (
     <>

@@ -17,7 +17,7 @@ import { toast } from "react-toastify";
 export const Teams = () => {
   const { p_id } = useParams();
   // const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
-  const maxWidth = "md";
+  const maxWidth = "sm";
   const id = localStorage.getItem("ProjectID");
   const id2 = 12;
   var payload = { project_id: id }
@@ -72,6 +72,18 @@ export const Teams = () => {
   const indexOfFirstMember = indexOfLastMember - membersPerPage;
   const currentMembers = TeamData.slice(indexOfFirstMember, indexOfLastMember);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  
+//  const [userList, setUserList] = useState([]);
+//   useEffect(() => {
+//     AuthenticationService.allUsersTable()
+//       .then((response) => {
+//         setUserList(response.data);
+//         console.log("userList....", response.data);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   }, []);
   return (
     <>
     {isLoading ?(
@@ -125,9 +137,9 @@ export const Teams = () => {
                 <thead>
                   <tr>
                     <th className="px-4 py-2">Sr.No</th>
-                    <th className="px-4 py-2">Name11</th>
+                    <th className="px-4 py-2">Name</th>
                     <th className="px-4 py-2">Email</th>
-                    <th className="px-4 py-2">Contact</th>
+                    <th className="px-4 py-2">Role</th>
                   </tr>
                 </thead>
                 
@@ -138,7 +150,7 @@ export const Teams = () => {
                           <td className="px-4 py-2">{index + 1}</td>
                           <td className="px-4 py-2">{member.name}</td>
                           <td className="px-4 py-2">{member.email_id}</td>
-                          <td className="px-4 py-2">111</td>
+                          <td className="px-4 py-2">{member.role}</td>
                         </tr>
                       ))}
                         

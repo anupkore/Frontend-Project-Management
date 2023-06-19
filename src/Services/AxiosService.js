@@ -51,15 +51,15 @@ export default class AxiosService
     }
 
     //For viewing all issues in issues dashboard
-    static allIssues(url)
+    static allIssues(url,data)
     {
-        return axios.get(url);
+        return axios.post(url,data);
     }
 
     //For displyaing perticular issue details (PID , IssueID)
-    static perticularIssueDetails(url)
+    static  particularIssueDetails(url,data)
     {
-        return axios.get(url);
+        return axios.post(url,data);
     }
 
     //For Updating The Prticular Issue (PID , Issue ID)
@@ -124,7 +124,10 @@ export default class AxiosService
         console.log(data);
         return axios.post(url,data);
     }
-
+    static projectWiseWorkflow(url,data){
+        console.log(data);
+        return axios.post(url,data);
+    }
     static assignMember(url,data)
     {
         return axios.post(url,data);
@@ -172,6 +175,54 @@ export default class AxiosService
     {
         return axios.post(url,data);
     }
+
+    static getAllEmails(url,data)
+    {
+        return axios.post(url,data);
+    }    
+    static getAllProjectMember(url,data){
+        return axios.post(url,data);
+    }
+    static updateIssueState(url,data){
+        return axios.post(url,data);
+    }
+    static assignMemberToIssue(url,data){
+        return axios.post(url,data);
+    }
+    static updateTaskDescription(url,data){
+        return axios.post(url,data);
+    }
+    static updateDefectDescription(url,data){
+        return axios.post(url,data);
+    }
+    static userWiseIssues(url,data){
+        return axios.post(url,data);
+    }
+
+    static IssueByWeek(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByMonth(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByQuarter(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByDaily(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static DetailedIssue(url)
+    {
+        return axios.get(url);
+    }
+   
+
+
+    
 
 
 }

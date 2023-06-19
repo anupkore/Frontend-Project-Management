@@ -23,10 +23,34 @@ export const AllIssues = () =>
   const [myIssues, setMyIssues] = useState(false);
   const [loading, setLoading] = useState(true);
   const [flag , setFlag] = useState('false');
-  const ProjectID = localStorage.getItem("ProjectID");
+  const ProjectID = Number(localStorage.getItem("ProjectID"));
   //console.log("userID",userID);
   var payload = {project_id: ProjectID};
+  console.log(payload);
+  useEffect(()=>{
+    AuthenticationService.allIssues(payload).then((response)=>{
+      console.log(response.data);
+    }).catch((error)=>{
+      console.log(error);
+    })
+  },[])
   
+  // useEffect(() => {
+  //   setLoading(true);
+  //   AuthenticationService.allIssuesNew(payload)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setAllList(response.data);
+  //       console.log("Hi");
+  //       console.log(allList);
+  //     })
+  //     .catch((error) => {
+  //       console.log("ERROR" + error.data);
+  //     })
+  //     .finally(() => {
+  //       setLoading(false); // Set loading state to false when the request is completed
+  //     });
+  // }, []);
   useEffect(() => {
     setLoading(true);
     AuthenticationService.allIssuesNew(payload)
