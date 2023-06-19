@@ -220,7 +220,7 @@ export default class AuthenticationConfiguration
         return url;
     }
     static userWiseIssues(){
-        const url = ParentConfiguration.parentURL()+"usewise_issue";
+        const url = ParentConfiguration.parentURL()+"userwise_issue";
         return url;
     }
 
