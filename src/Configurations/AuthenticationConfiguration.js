@@ -65,13 +65,13 @@ export default class AuthenticationConfiguration
 
     static updateIssue()
     {
-        const url = ParentConfiguration.parentURL()+"updateIssue";
+        const url = ParentConfiguration.parentURL()+"update_issue";
         return url ;
     }
 
     static deleteIssue()
     {
-        const url = ParentConfiguration.parentURL()+"deleteIssue";
+        const url = ParentConfiguration.parentURL()+"delete_issue";
         return url;
     }
 
@@ -193,11 +193,13 @@ export default class AuthenticationConfiguration
         return url;
     }
 
+    
     static getAllEmails()
     {
         const url = ParentConfiguration.parentURL()+"Show_Emails";
         return url;
     }
+<<<<<<< HEAD
     static getAllProjectMember(){
         const url = ParentConfiguration.parentURL()+"Show_Emails_Teams";
         return url;
@@ -223,3 +225,31 @@ export default class AuthenticationConfiguration
         return url;
     }
 }
+=======
+    static IssueByWeek()
+    {
+        const url = ParentConfiguration.parentURL()+"IssueByWeek";
+        return url;
+    }
+    static IssueByMonth()
+    {
+        const url = ParentConfiguration.parentURL()+"IssueByMonth";
+        return url;
+    }
+    static IssueByQuarter()
+    {
+        const url = ParentConfiguration.parentURL()+"IssueByQuarter";
+        return url;
+    }
+    static IssueByDaily()
+    {
+        const url = ParentConfiguration.parentURL()+"IssueByDaily";
+        return url;
+    }
+    static DetailedIssue()
+    {
+        const url = ParentConfiguration.parentURL()+"DetailedIssue";
+        return url;
+    }
+}
+>>>>>>> 2e915c9132f1338c0fa0b0bc386523e895098936

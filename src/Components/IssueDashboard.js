@@ -40,9 +40,13 @@ const [isLoading, setIsLoading] = useState(true);
     document.getElementById("content").scrollLeft += 400;
   };
   const [statusValues, setStatusValues] = useState([]);
+<<<<<<< HEAD
   // const proj_id = Number(localStorage.getItem("ProjectID"));
   // const payload1 = { project_id: proj_id };
   // const [workflowData , setWorkflowData] = useState([]);
+=======
+  const maxWidth = 'md';
+>>>>>>> 2e915c9132f1338c0fa0b0bc386523e895098936
 
   useEffect(() => {
     AuthenticationService.allIssues(payload)
@@ -100,6 +104,35 @@ const [isLoading, setIsLoading] = useState(true);
           {/* <PacmanLoader color="#1976d2" size={50}/>   */}
         </div>
     ):(
+      issues.length === 0 ? (
+          <>
+          <div className="flex">
+          <SideBar p_id={p_id}></SideBar>
+              <div className="mx-auto ">
+                <div className="flex justify-center">
+                  <h1 className="text-5xl font-bold">
+                    Create Your First Issue
+                  </h1>
+                </div>
+                <div className="flex border-dashed container-md justify-center mt-20 w-screen h-96 border-2 rounded-md">
+                  <div className="m-auto">
+                    <FormDialog
+                      prop={<CreateIssueForm></CreateIssueForm>}
+                      style={maxWidth}
+                      icon={"./Images/plus-lg.svg"}
+                      // buttonTitle="Create Project"
+                      largebutton={"true"}
+                      variant={""}
+                      ic={"true"}
+                    />
+                  </div>
+                </div>
+              </div>
+
+          </div>
+          
+          </>
+            ) :(
     <>
       <div className="flex bg-[#ffffff]">
         <div className="max-w-2/12">
@@ -137,6 +170,7 @@ const [isLoading, setIsLoading] = useState(true);
               <div className="mx-auto py-4 text-xl font-bold">
                 Issue Workflow
               </div>
+              {/* <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} icon={"/Images/plus-lg.svg"} ic={"false"} variant={""} buttonTitle={"Create issue"}></FormDialog> */}
               <div className="">
                 <button
                   onClick={scrollRight}
@@ -174,6 +208,7 @@ const [isLoading, setIsLoading] = useState(true);
         </div>
       </div>
     </>
+            )
     )}
     </>
   );

@@ -168,6 +168,7 @@ export default class AuthenticationService
     {
         return AxiosService.getAllEmails(AuthenticationConfiguration.getAllEmails(),data);
     }
+<<<<<<< HEAD
     static getAllProjectMember(data){
         return AxiosService.getAllProjectMember(AuthenticationConfiguration.getAllProjectMember(),data);
     }
@@ -185,5 +186,27 @@ export default class AuthenticationService
     }
     static userWiseIssues(data){
         return AxiosService.userWiseIssues(AuthenticationConfiguration.userWiseIssues(),data);
+=======
+
+    static IssueByWeek(data)
+    {
+        return AxiosService.IssueByWeek(AuthenticationConfiguration.IssueByWeek(),data);
+    }
+    static IssueByMonth(data)
+    {
+        return AxiosService.IssueByMonth(AuthenticationConfiguration.IssueByMonth(),data);
+    }
+    static IssueByQuarter(data)
+    {
+        return AxiosService.IssueByQuarter(AuthenticationConfiguration.IssueByQuarter(),data);
+    }
+    static IssueByDaily(data)
+    {
+        return AxiosService.IssueByDaily(AuthenticationConfiguration.IssueByDaily(),data);
+    }
+    static DetailedIssue()
+    {
+        return AxiosService.DetailedIssue(AuthenticationConfiguration.DetailedIssue());
+>>>>>>> 2e915c9132f1338c0fa0b0bc386523e895098936
     }
 }

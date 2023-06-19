@@ -256,10 +256,12 @@ export const AllProjectList = () => {
                     />
                   </div>
                 </div>
-                <div className="container-lg bg-blur-3xl bg-opacity-30 rounded-lg  p-4 ">
+
+
+                <div className="container-lg bg-blur-3xl bg-opacity-30 rounded-lg ">
                   <div className="w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-slate-400 scrollbar">
                     <div className="flex max-h-[28] min-w-[105em] items-center py-2">
-                      <table className="table-fixed bg-white rounded-3xl w-auto mx-auto shadow-md">
+                      <table className="table-fixed bg-white rounded-3xl w-auto shadow-md" >
                         <thead>
                           <tr>
                             <th className="px-4 py-2">Sr.No</th>
@@ -344,6 +346,8 @@ export const AllProjectList = () => {
                     </div>
                   </div>
                 </div>
+
+
               </>
             )}
           </div>

@@ -198,4 +198,34 @@ export default class AxiosService
     static userWiseIssues(url,data){
         return axios.post(url,data);
     }
+<<<<<<< HEAD
+=======
+
+    static IssueByWeek(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByMonth(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByQuarter(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByDaily(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static DetailedIssue(url)
+    {
+        return axios.get(url);
+    }
+   
+
+
+    
+
+
+>>>>>>> 2e915c9132f1338c0fa0b0bc386523e895098936
 }
