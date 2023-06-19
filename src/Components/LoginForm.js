@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { Email } from "@mui/icons-material";
 import { Input } from "@mui/material";
 import { Link} from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate  } from 'react-router-dom';
 import { useState } from "react";
 import AuthenticationConfiguration from "../Configurations/AuthenticationConfiguration";
@@ -78,6 +79,7 @@ export const  LoginForm = ({ toggleSignup }) =>
       })
       .catch((error)=>{    
         console.log(error.response);
+        toast.error("Internal Server Error")
         if(error.response.data.error === "Email is invalid")
         {
           setErrorMessageEmail("Invalid Email");

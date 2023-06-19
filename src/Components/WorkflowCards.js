@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import { HashLoader } from "react-spinners";
 import CreateWorkflow from "./CreateWorkflow";
 import SideBar from "./SideBar";
+import { toast } from "react-toastify";
 export default function WorkflowCard() {
   const workflow1 = [
     ["START", "IN PROGRESS", "REVIEW", "DONE", "COMPLETED"],
@@ -113,6 +114,7 @@ export default function WorkflowCard() {
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Internal Server Error")
       });
   };
 

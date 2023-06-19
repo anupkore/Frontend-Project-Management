@@ -4,6 +4,7 @@ import AuthenticationService from "../Services/AuthenticationService";
 import Navbar from "./Navbar";
 import AddNewMember from "./AddNewMember";
 import UpdateUser from "./UpdateUser";
+import { toast } from "react-toastify";
 
 
 function TableOfUsers() {
@@ -21,6 +22,7 @@ function TableOfUsers() {
       })
       .catch((error) => {
         console.log(error.data);
+        toast.error("Internal Server Error")
       });
   }, []);
 
@@ -42,6 +44,7 @@ function TableOfUsers() {
       .catch((error) => {
         // Code to handle the error
         console.log("An error occurred while fetching user data:", error);
+        toast.error("Internal Server Error")
       });
   }
 
@@ -60,10 +63,12 @@ function TableOfUsers() {
             })
             .catch((error) => {
               console.log(error);
+              toast.error("Internal Server Error")
             });
         })
         .catch((error) => {
           console.log(`An error occurred while deleting user with ID ${user_id}:`, error);
+          toast.error("Internal Server Error")
         });
     }
   }

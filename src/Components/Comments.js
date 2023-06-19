@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Comments({ id }) {
   const comment = useRef("");
@@ -35,6 +36,7 @@ export default function Comments({ id }) {
       })
       .catch((err) => {
         console.log(err);
+        toast.error("Internal Server Error")
       });
   }
 
@@ -50,6 +52,7 @@ export default function Comments({ id }) {
       })
       .catch((error) => {
         console.log("ERROR" + error.data);
+        toast.error("Internal Server Error")
       });
   }, []);
 
@@ -86,6 +89,7 @@ export default function Comments({ id }) {
       })
       .catch((error) => {
         console.log("ERROR..." + error.data);
+        toast.error("Internal Server Error")
       });
   };
 
