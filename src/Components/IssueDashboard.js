@@ -40,13 +40,10 @@ const [isLoading, setIsLoading] = useState(true);
     document.getElementById("content").scrollLeft += 400;
   };
   const [statusValues, setStatusValues] = useState([]);
-<<<<<<< HEAD
   // const proj_id = Number(localStorage.getItem("ProjectID"));
   // const payload1 = { project_id: proj_id };
   // const [workflowData , setWorkflowData] = useState([]);
-=======
   const maxWidth = 'md';
->>>>>>> 2e915c9132f1338c0fa0b0bc386523e895098936
 
   useEffect(() => {
     AuthenticationService.allIssues(payload)
