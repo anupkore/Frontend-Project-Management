@@ -198,8 +198,6 @@ export default class AxiosService
     static userWiseIssues(url,data){
         return axios.post(url,data);
     }
-<<<<<<< HEAD
-=======
 
     static IssueByWeek(url,data)
     {
@@ -227,5 +225,4 @@ export default class AxiosService
     
 
 
->>>>>>> 2e915c9132f1338c0fa0b0bc386523e895098936
 }
