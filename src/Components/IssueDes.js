@@ -13,59 +13,29 @@ export default function IssueDes(props) {
   const { issueId } = useParams();
   const id = Number(issueId);
   const payload = { issue_id: id };
-  const project_id = Number(localStorage.getItem("ProjectID"));
-  const payload1 = { project_id: project_id };
   console.log(payload);
   // const [workflow , setWorkflow] = useState([]);
   const [currentState, setCurrentState] = useState("");
-  const [issue, setIssue] = useState();
-  const [type, setType] = useState("");
+  // const [issue, setIssue] = useState();
+  // const [type, setType] = useState("");
   const maxWidth = "md";
   const [isLoading, setIsLoading] = useState(true);
   const [workflowData, setWorkflowData] = useState([]);
   const [workflow, setWorkflow] = useState("");
 
-  const getAdjacentStates = (workflow, currentState) => {
-    const graph = {};
+    // useEffect(() => {
+    //   if (!isLoading) {
+    //     console.log("Workflow....");
 
-    // Build the graph from the workflow array
-    workflow.forEach((row) => {
-      for (let i = 1; i < row.length; i++) {
-        const prevNode = row[i - 1];
-        const currNode = row[i];
-
-        if (!graph[currNode]) {
-          graph[currNode] = { prev: [], next: [] };
-        }
-
-        if (!graph[prevNode]) {
-          graph[prevNode] = { prev: [], next: [] };
-        }
-
-        graph[currNode].prev.push(prevNode);
-        graph[prevNode].next.push(currNode);
-      }
-    });
-
-    const previousStates = graph[currentState]?.prev || [];
-    const nextStates = graph[currentState]?.next || [];
-
-    return { previousStates, nextStates };
-  };
-
-    useEffect(() => {
-      if (!isLoading) {
-        console.log("Workflow....");
-
-        if (type === "task" && workflowData[0].issue_type === "task") {
-          console.log("Task_ID is available in the issue object.");
-          // setWorkflow(workflowData[0].workflow);
-        } else {
-          console.log("Defect available in the issue object.");
-          // setWorkflow(workflowData[1].workflow);
-        }
-      }
-    }, [type, workflowData, isLoading]);
+    //     if (type === "task" && workflowData[0].issue_type === "task") {
+    //       console.log("Task_ID is available in the issue object.");
+    //       // setWorkflow(workflowData[0].workflow);
+    //     } else {
+    //       console.log("Defect available in the issue object.");
+    //       // setWorkflow(workflowData[1].workflow);
+    //     }
+    //   }
+    // }, [type, workflowData, isLoading]);
 
     // const handleWorkflowString = async(issue) => {
     //   console.log("Workflow....");
@@ -99,47 +69,47 @@ export default function IssueDes(props) {
     // console.log("Previous States:", previousStates);
     // console.log("Next States:", nextStates);
 
-    useEffect(() => {
-      setIsLoading(true);
-      // Simulating an asynchronous API call to fetch the issue details
-      const fetchIssueDetails = async () => {
-        try {
-          // Make your API request here to fetch the issue details based on the issueId
-          // For example:
-          const response = await AuthenticationService.particularIssueDetails(payload);
-          // const data = await response.json();
-          // console.log(response.data);
-          const work = response.data.issue_details[0];
-          console.log(work);
-          setIssue(work);
-          setType(work.type);
-          setIsLoading(false);
-        } catch (error) {
-          console.error("Error fetching issue details:", error);
-          setIsLoading(false);
-        }
-      };
+    // useEffect(() => {
+    //   setIsLoading(true);
+    //   // Simulating an asynchronous API call to fetch the issue details
+    //   const fetchIssueDetails = async () => {
+    //     try {
+    //       // Make your API request here to fetch the issue details based on the issueId
+    //       // For example:
+    //       const response = await AuthenticationService.particularIssueDetails(payload);
+    //       // const data = await response.json();
+    //       // console.log(response.data);
+    //       const work = response.data.issue_details[0];
+    //       console.log(work);
+    //       setIssue(work);
+    //       setType(work.type);
+    //       setIsLoading(false);
+    //     } catch (error) {
+    //       console.error("Error fetching issue details:", error);
+    //       setIsLoading(false);
+    //     }
+    //   };
 
-      fetchIssueDetails();
-    }, [issueId]);
+    //   fetchIssueDetails();
+    // }, [issueId]);
 
-    useEffect(() => {
+    // useEffect(() => {
       
-      if (!isLoading) {
-        AuthenticationService.projectWiseWorkflow(payload1)
-        .then((response) => {
-          console.log(response.data);
-          setWorkflowData(response.data);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          setIsLoading(false);
-        });
-      }
-    }, [issue,isLoading]);
-    console.log("WorkflowData", workflowData);
-    console.log("issue details", issue);
+    //   if (!isLoading) {
+    //     AuthenticationService.projectWiseWorkflow(payload1)
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       setWorkflowData(response.data);
+    //       setIsLoading(false);
+    //     })
+    //     .catch((error) => {
+    //       console.error(error);
+    //       setIsLoading(false);
+    //     });
+    //   }
+    // }, [issue,isLoading]);
+    // console.log("WorkflowData", workflowData);
+    // console.log("issue details", issue);
 
   return (
     <>

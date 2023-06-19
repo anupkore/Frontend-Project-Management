@@ -10,6 +10,7 @@ import ParticularIssueDashboard from "./ParticularIssueDashboard";
 import MyIssues from "./Myissues";
 import { HashLoader } from "react-spinners";
 import Navbar from "./Navbar";
+import IssueDashboard from "./IssueDashboard";
 
 export const AllProjectList = () => {
   const maxWidth = "lg";
@@ -39,6 +40,7 @@ export const AllProjectList = () => {
         setLoading(false); // Set loading state to false when the request is completed
       });
   }, []);
+  localStorage.removeItem("Role");
 
   const filteredProjects = allList.filter((project) => {
     if (filterStatus === "All") {

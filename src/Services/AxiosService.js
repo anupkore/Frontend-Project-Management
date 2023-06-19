@@ -179,7 +179,27 @@ export default class AxiosService
     static getAllEmails(url,data)
     {
         return axios.post(url,data);
+    }    
+    static getAllProjectMember(url,data){
+        return axios.post(url,data);
     }
+    static updateIssueState(url,data){
+        return axios.post(url,data);
+    }
+    static assignMemberToIssue(url,data){
+        return axios.post(url,data);
+    }
+    static updateTaskDescription(url,data){
+        return axios.post(url,data);
+    }
+    static updateDefectDescription(url,data){
+        return axios.post(url,data);
+    }
+    static userWiseIssues(url,data){
+        return axios.post(url,data);
+    }
+<<<<<<< HEAD
+=======
 
     static IssueByWeek(url,data)
     {
@@ -207,4 +227,5 @@ export default class AxiosService
     
 
 
+>>>>>>> 2e915c9132f1338c0fa0b0bc386523e895098936
 }

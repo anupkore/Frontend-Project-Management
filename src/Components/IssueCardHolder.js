@@ -6,6 +6,7 @@ import CreateIssueForm from "./CreateIssueForm";
 import FormDialog from "./Dialog";
 import { Badge } from "react-bootstrap";
 import AuthenticationService from "../Services/AuthenticationService";
+import CustomizedDialogs from "./IssueDialog";
 
 function IssueCardHolder(props) {
   const [issues,setIssues] = useState([]);
@@ -39,7 +40,9 @@ function IssueCardHolder(props) {
       <div className="w-64 h-[36rem] overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-[#f8f9fa] scrollbar-thumb-zinc-300 scrollbar">
         <div className="rounded-b-lg bg-[#f4f5f7] space-y-3 px-3 py-4 ">
           {issueCards.map((proj) => (
-            <IssueCard pro={proj} key={proj.id} />
+            // <CustomizedDialogs card={<IssueCard pro={proj} key={proj.id} /> } ></CustomizedDialogs>
+            <CustomizedDialogs card={proj} ></CustomizedDialogs>
+            // <IssueCard pro={proj} key={proj.id} />
           ))}
           <div className="flex justify-center">
             {/* <Link to={`/issue/${props.iss}`}>
