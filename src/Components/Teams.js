@@ -9,24 +9,93 @@ import { useState } from "react";
 import Pagination from "./Pagination";
 import AssignMember from "./AssignMember";
 import AuthenticationService from "../Services/AuthenticationService";
+import { useEffect } from "react";
+import { index } from "d3-array";
+import { HashLoader } from "react-spinners";
+
 export const Teams = () => {
   const { p_id } = useParams();
-  const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
+  // const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
   const maxWidth = "sm";
-  const id = 6;
+  const id = localStorage.getItem("ProjectID");
+  const id2 = 12;
+  var payload = { project_id: id }
   const [currentPage, setCurrentPage] = useState(1);
   const [membersPerPage, setMembersPerPage] = useState(5);
+  const [teamDetails, setTeamDetails] = useState([]);
+  // const[teamData,setTeamData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  AuthenticationService.teamDetails(id).then((response)=>{
-    console.log(response.data);
-  })
+  // console.log(id);
+  // AuthenticationService.teamDetails(payload).then((response)=>{
+  //   setTeamDetails(response.data.users)
+  //    console.log(response.data);
+  //   // console.log(response.data.users[0])
+  //   // console.log(response.data.users[0].email)
+  //   // console.log(teamDetails);
+  // })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await AuthenticationService.teamDetails(payload);
+        console.log(response.data.users);
+        const details = response.data.users;
+        setTeamDetails(details);
+        // console.log(details);
+        setIsLoading(false);
+
+      } catch (error) {
+        // Handle error if needed
+        console.error("Error fetching workflow data:", error);
+        setIsLoading(false);
+        throw error;
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(()=>{
+    if (teamDetails.length >0) {
+      console.log(teamDetails);
+    } else {
+      console.log("No Team is there!!")
+    }
+   
+  },[teamDetails])
+   console.log("Teams",teamDetails);
 
   const indexOfLastMember = currentPage * membersPerPage;
   const indexOfFirstMember = indexOfLastMember - membersPerPage;
   const currentMembers = TeamData.slice(indexOfFirstMember, indexOfLastMember);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  
+//  const [userList, setUserList] = useState([]);
+//   useEffect(() => {
+//     AuthenticationService.allUsersTable()
+//       .then((response) => {
+//         setUserList(response.data);
+//         console.log("userList....", response.data);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   }, []);
   return (
     <>
+    {isLoading ?(
+      <div className="flex justify-center">
+          <HashLoader
+            color="#1976d2"
+            style={{ marginTop: "10%" }}
+            size={100}
+            speedMultiplier={1}
+          />
+          {/* <PacmanLoader color="#1976d2" size={50}/>   */}
+        </div>
+    ):(
+      <>
       <div className="flex">
         <div className="h-screen">
           <SideBar p_id={p_id}></SideBar>
@@ -34,12 +103,12 @@ export const Teams = () => {
 
         <section
           className="bg-blur-3xl bg-opacity-30 flex-wrap h-full w-full mx-20 px-8 py-4 rounded-5 border-solid border-2"
-         
+
         >
           <div className="flex-wrap pt-4 pb-1 px-5 justify-end">
             <h1 className="text-center mb-0 flex-grow-1 mb-2">
               <span className="bg-white px-4 py-2 rounded-md shadow-md text-navy-blue align-items-center mx-auto text-center">
-                Team Members
+                Team Members {teamDetails.length}
               </span>
             </h1>
           </div>
@@ -68,40 +137,43 @@ export const Teams = () => {
                     <th className="px-4 py-2">Sr.No</th>
                     <th className="px-4 py-2">Name</th>
                     <th className="px-4 py-2">Email</th>
-                    <th className="px-4 py-2">Contact</th>
+                    <th className="px-4 py-2">Role</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {currentMembers.map((issue, index) => (
-                    <tr key={issue.id} className="my-4 divide-y space-y-5">
-                      <td className="px-4 py-2">{}</td>
-                      <td className="px-4 py-2">{}</td>
-                      <td className="px-4 py-2">{}</td>
-                      <td className="px-4 py-2">{}</td>
-                    </tr>
-                  ))}
-                </tbody>
+                
+                      <tbody>
+                        
+                      {teamDetails.map((member, index) => (
+                        <tr key={index}>
+                          <td className="px-4 py-2">{index + 1}</td>
+                          <td className="px-4 py-2">{member.name}</td>
+                          <td className="px-4 py-2">{member.email_id}</td>
+                          <td className="px-4 py-2">{member.role}</td>
+                        </tr>
+                      ))}
+                        
+                      </tbody>
+                  
+                
+
               </table>
               <div className="flex mt-3 mx-auto">
-                <div className="mr-20 my-auto">
-                  <span>
-                    {currentPage} of{" "}
-                    {Math.ceil(TeamData.length / membersPerPage)}
-                  </span>
-                </div>
+
                 <div>
-                  <Pagination
+                  {/* <Pagination
                     membersPerPage={membersPerPage}
                     totalMembers={TeamData.length}
                     paginate={paginate}
                     currentPage={currentPage}
-                  ></Pagination>
+                  ></Pagination> */}
                 </div>
               </div>
             </div>
           </section>
         </section>
       </div>
+    </>
+    )}
     </>
   );
 };

@@ -1,24 +1,20 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
-export default function SideBar(props) {
+export default function SideBar({p_id}) {
   const [open, setOpen] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
-
-
+  const project_id = localStorage.getItem("ProjectID");
+  const payload = { project_id: project_id };
+  const pname  = localStorage.getItem("ProjectName");
     const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
-      { title: "Teams", src: "Chat",li:`/projectexplore/teams/${props.p_id}`},
-      { title: "Issues Workflow", src: "User" ,li:`/projectexplore/issues/${props.p_id}`},
+      { title: "Teams", src: "Chat",li:"/teams"},
+      { title: "Issues Workflow", src: "User" ,li:"/allIssues"},
       { title: "Reports", src: "Chart", li:`/reports` },
-      { title: "Admin DashBoard", src: "Chart_fill" ,li:"/dashboard"},
+      {title: "Workflows", src: "Chart_fill" ,li:"/workflow"}
     ];
-    
-
-  
-  
-
-  const handleResize = () => {
+    const handleResize = () => {
     const isMobile = window.innerWidth <= 768; // Set your desired responsive breakpoint here
     setIsResponsive(isMobile);
     if (isMobile && open) {
@@ -78,7 +74,13 @@ export default function SideBar(props) {
           <div>
             <ul className="pt-6">
               {Menus.map((Menu, index) => (
-                <Link to={`${Menu.li}`} key={index}>
+               
+                <Link to={`${Menu.li}`} key={index} 
+                  onClick={()=>{
+                    if (Menu.li === "/allprojects" ) {
+                      localStorage.removeItem("ProjectID") 
+                    }
+                }}>
                   <li
                     className="flex mt-4 rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
                   >

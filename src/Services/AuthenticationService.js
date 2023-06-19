@@ -34,9 +34,9 @@ export default class AuthenticationService
         return AxiosService.updateProject(AuthenticationConfiguration.updateProject(),data);
     }
 
-    static deleteProject()
+    static deleteProject(data)
     {
-        return  AxiosService.deleteProject(AuthenticationConfiguration.deleteProject());
+        return  AxiosService.deleteProject(AuthenticationConfiguration.deleteProject(),data);
     }
 
     static createIssue(data)
@@ -44,14 +44,14 @@ export default class AuthenticationService
         return AxiosService.createIssue(AuthenticationConfiguration.createIssue() , data);
     }
 
-    static allIssues()
+    static allIssues(data)
     {
-        return AxiosService.allIssues(AuthenticationConfiguration.allIssues());
+        return AxiosService.allIssues(AuthenticationConfiguration.allIssues(),data);
     }
 
-    static perticularIssueDetails()
+    static particularIssueDetails(data)
     {
-        return AxiosService.perticularIssueDetails(AuthenticationConfiguration.perticularIssueDetails());
+        return AxiosService.particularIssueDetails(AuthenticationConfiguration.particularIssueDetails(),data);
     }
 
     static updateIssues(data)
@@ -68,15 +68,20 @@ export default class AuthenticationService
     {
         return AxiosService.allUsersTable(AuthenticationConfiguration.allUsers());
     }
+    
 
-    static updateUser(id)
+    static updateUser(data)
     {
-        return AxiosService.updateUsers(AuthenticationConfiguration.updateUser(),id);
+        return AxiosService.updateUsers(AuthenticationConfiguration.updateUser(),data);
+    }
+    static getUser(data)
+    {
+        return AxiosService.getUser(AuthenticationConfiguration.getUser(),data);
     }
 
-    static deleteUser(id)
+    static deleteUser(data)
     {
-        return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser(),id);
+        return AxiosService.deleteUser(AuthenticationConfiguration.deleteUser(),data);
     }
 
     static getDataForIssues()
@@ -86,6 +91,7 @@ export default class AuthenticationService
 
     static addworkflow(data)
     {
+        console.log(data);
         return AxiosService.addWorkflow(AuthenticationConfiguration.addWorkflow() , data);
 
     }
@@ -93,6 +99,19 @@ export default class AuthenticationService
     static getWorkFlow()
     {
         return AxiosService.getAllWorkflows(AuthenticationConfiguration.getAllWorkFlows());
+    }
+    static getWorkflowByName(data){
+        return AxiosService.getWorkflowByName(AuthenticationConfiguration.getWorkflowByName(),data);
+    }
+
+    static assignWorkflow(data){
+        console.log(data);
+        return AxiosService.assignWorkflow(AuthenticationConfiguration.assignWorkflow(),data);
+    }
+
+    static projectWiseWorkflow(data){
+        console.log(data);
+        return AxiosService.projectWiseWorkflow(AuthenticationConfiguration.projectWiseWorkflow(),data);
     }
 
     static assignMember(data)
@@ -108,5 +127,83 @@ export default class AuthenticationService
     static postComment(data)
     {
         return AxiosService.postComments(AuthenticationConfiguration.postComment(),data);
+    }
+
+    static deleteComment(data)
+    {
+        return AxiosService.deleteComment(AuthenticationConfiguration.deleteComment(),data);
+    }
+
+    static editComment(data)
+    {
+        return AxiosService.editComment(AuthenticationConfiguration.editComment(),data);
+    }
+
+    static allComment(data)
+    {
+        return AxiosService.allComment(AuthenticationConfiguration.allComment(),data);
+    }
+
+    static getUserDetailByID(data)
+    {
+        return AxiosService.getUserDetailByID(AuthenticationConfiguration.getUserDetailByID(),data);
+    }
+
+    static createTask(data)
+    {
+        return AxiosService.createTask(AuthenticationConfiguration.createTask(),data);
+    }
+
+    static createDefect(data)
+    {
+        return AxiosService.createDefect(AuthenticationConfiguration.createDefect(),data);
+    }
+
+    static allIssuesNew(data)
+    {
+        return AxiosService.allIssuesNew(AuthenticationConfiguration.allIssuesNew(),data);
+    }
+
+    static getAllEmails(data)
+    {
+        return AxiosService.getAllEmails(AuthenticationConfiguration.getAllEmails(),data);
+    }
+    static getAllProjectMember(data){
+        return AxiosService.getAllProjectMember(AuthenticationConfiguration.getAllProjectMember(),data);
+    }
+    static updateIssueState(data){
+        return AxiosService.updateIssueState(AuthenticationConfiguration.updateIssueState(),data);
+    }
+    static assignMemberToIssue(data){
+        return AxiosService.assignMemberToIssue(AuthenticationConfiguration.assignMemberToIssue(),data);
+    }
+    static updateTaskDescription(data){
+        return AxiosService.updateTaskDescription(AuthenticationConfiguration.updateTaskDescription(),data);
+    }
+    static updateDefectDescription(data){
+        return AxiosService.updateDefectDescription(AuthenticationConfiguration.updateDefectDescription(),data);
+    }
+    static userWiseIssues(data){
+        return AxiosService.userWiseIssues(AuthenticationConfiguration.userWiseIssues(),data);
+    }
+    static IssueByWeek(data)
+    {
+        return AxiosService.IssueByWeek(AuthenticationConfiguration.IssueByWeek(),data);
+    }
+    static IssueByMonth(data)
+    {
+        return AxiosService.IssueByMonth(AuthenticationConfiguration.IssueByMonth(),data);
+    }
+    static IssueByQuarter(data)
+    {
+        return AxiosService.IssueByQuarter(AuthenticationConfiguration.IssueByQuarter(),data);
+    }
+    static IssueByDaily(data)
+    {
+        return AxiosService.IssueByDaily(AuthenticationConfiguration.IssueByDaily(),data);
+    }
+    static DetailedIssue()
+    {
+        return AxiosService.DetailedIssue(AuthenticationConfiguration.DetailedIssue());
     }
 }

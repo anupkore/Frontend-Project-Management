@@ -1,15 +1,26 @@
 import { useRef, useState } from "react"
 import AuthenticationService from "../Services/AuthenticationService";
+import { useEffect } from "react";
+import axios from "axios";
 
-export default function AddNewMember() 
-{
-    const name = useRef('');
-    const email = useRef('');
-    const contact = useRef('');
-    const role = useRef('User');
-    const[errorName , setErrorName] = useState('');
-    const[errorEmail , setErrorEmail] = useState('');
-    const[errorContact , setErrorContact] = useState('');
+export default function AddNewMember({ userData }) {
+  const name = useRef("");
+  const Email_id = useRef("");
+  const contact = useRef("");
+  const role = useRef("User");
+  const [errorName, setErrorName] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorContact, setErrorContact] = useState("");
+  console.log("mydataaa",userData);
+
+  useEffect(() => {
+    if (userData) {
+      name.current.value = userData.name;
+      Email_id.current.value = userData.Email_id;
+      contact.current.value = userData.contact;
+      // role.current.value = userData.role;
+    }
+  }, [userData]);
 
     function validateName(name) 
     {
@@ -51,7 +62,7 @@ export default function AddNewMember()
         setErrorName('Please Enter Valid Name');
         return;
       }
-      if (!validateEmail(email.current.value)) 
+      if (!validateEmail(Email_id.current.value)) 
       {
         setErrorEmail('Please Enter Valid Email');
         return;
@@ -63,17 +74,23 @@ export default function AddNewMember()
       }
       
       var payload = 
-      {
+      {   
           name: name.current.value,
-          email_id: email.current.value,
+          email_id: Email_id.current.value,
           contact: contact.current.value,
           //role: role.current.value
       }
       console.log(payload);
-      AuthenticationService.signUp(payload).then(()=>{
-        console.log("New User Created");
+      const url="https://rohan-pm-tmerge-git-rohanbhavsar215-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/add_user"
+      axios.post(url, payload).then(()=>{
+        console.log("New User Created..........1234");
         window.location.href = '/tableofusers';
-      })
+      });
+      
+      // AuthenticationService.signUp(payload).then(()=>{
+      //   console.log("New User Created");
+      //   window.location.href = '/tableofusers';
+      // })
     }
 
 
@@ -125,7 +142,7 @@ export default function AddNewMember()
                           id="email"
                           name="email"
                           type="email"
-                          ref={email}
+                          ref={Email_id}
                           onChange={handleInputChangeEmail}
                           autoComplete="email"
                           required

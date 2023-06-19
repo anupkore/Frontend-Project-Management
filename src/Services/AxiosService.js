@@ -39,9 +39,9 @@ export default class AxiosService
     }
 
     //For Deleting a Project (PID)
-    static deleteProject(url)
+    static deleteProject(url,data)
     {
-        return axios.delete(url)
+        return axios.post(url,data)
     }
 
     //For Create Issue Form
@@ -51,15 +51,15 @@ export default class AxiosService
     }
 
     //For viewing all issues in issues dashboard
-    static allIssues(url)
+    static allIssues(url,data)
     {
-        return axios.get(url);
+        return axios.post(url,data);
     }
 
     //For displyaing perticular issue details (PID , IssueID)
-    static perticularIssueDetails(url)
+    static  particularIssueDetails(url,data)
     {
-        return axios.get(url);
+        return axios.post(url,data);
     }
 
     //For Updating The Prticular Issue (PID , Issue ID)
@@ -81,16 +81,24 @@ export default class AxiosService
     }
 
     //For Updating users (For alpha admin)
-    static updateUsers(url,id)
+    static updateUsers(url,data)
     {
-        return axios.put(url,id);
+        return axios.post(url,data);
+    }
+    static getUser(url,user_id)
+    {
+        return axios.post(url,user_id);
     }
 
     //For deleting a user (For alpha admin)
-    static deleteUser(url,id)
-    {
-        return axios.delete(url,id);
-    }
+    // static deleteUser(url,user_id)
+    // {
+    //     return axios.post(url,user_id);
+    // }
+
+    static deleteUser(url,data) {
+        return axios.post(url,data);
+      }
 
     static getDataForIssues(url)
     {
@@ -99,6 +107,7 @@ export default class AxiosService
 
     static addWorkflow(url , data)
     {
+        console.log(data);
         return axios.post(url,data);
     }
 
@@ -107,6 +116,18 @@ export default class AxiosService
         return axios.get(url);
     }
 
+    static getWorkflowByName(url,data){
+        return axios.post(url,data);
+    }
+
+    static assignWorkflow(url,data){
+        console.log(data);
+        return axios.post(url,data);
+    }
+    static projectWiseWorkflow(url,data){
+        console.log(data);
+        return axios.post(url,data);
+    }
     static assignMember(url,data)
     {
         return axios.post(url,data);
@@ -115,13 +136,93 @@ export default class AxiosService
     //For Getting List of Members Assigned in a Perticular Project (Have to pass PID)
     static teamDetails(url,data)
     {
-        return axios.get(url,data);
+        return axios.post(url,data);
     }
 
     static postComments(url,data)
     {
         return axios.post(url,data);
     }
+    static deleteComment(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static editComment(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static allComment(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static getUserDetailByID(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static createTask(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static createDefect(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static allIssuesNew(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static getAllEmails(url,data)
+    {
+        return axios.post(url,data);
+    }    
+    static getAllProjectMember(url,data){
+        return axios.post(url,data);
+    }
+    static updateIssueState(url,data){
+        return axios.post(url,data);
+    }
+    static assignMemberToIssue(url,data){
+        return axios.post(url,data);
+    }
+    static updateTaskDescription(url,data){
+        return axios.post(url,data);
+    }
+    static updateDefectDescription(url,data){
+        return axios.post(url,data);
+    }
+    static userWiseIssues(url,data){
+        return axios.post(url,data);
+    }
+
+    static IssueByWeek(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByMonth(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByQuarter(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static IssueByDaily(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static DetailedIssue(url)
+    {
+        return axios.get(url);
+    }
+   
+
+
+    
 
 
 }

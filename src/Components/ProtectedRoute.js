@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Home';
+import Navbar from './Navbar';
 
 const ProtectedRoute = ({ element: Element}) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -13,6 +14,7 @@ const ProtectedRoute = ({ element: Element}) => {
 
   return isAuthenticated ? (
     <>
+      <Navbar></Navbar>
       <Element></Element>
       {/* Display the protected content */}
     </>

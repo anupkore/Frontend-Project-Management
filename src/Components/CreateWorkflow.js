@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
 import FormDialog from "./Dialog";
 import GraphVisualization from "./GraphVisualization";
+import AuthenticationService from "../Services/AuthenticationService";
+import { toast } from "react-toastify";
 
-const InputGrid = () => {
+const CreateWorkflow = ({type}) => {
+
+  // console.log(proj);
+  console.log(type);
+  const proj_id = localStorage.getItem("ProjectID");
   const [inputValues, setInputValues] = useState([[]]);
   const [workflow, setWorkflow] = useState([]);
   const [submittedRows, setSubmittedRows] = useState([]);
   const [editRowIndex, setEditRowIndex] = useState(null);
   const [dropdownOptions, setDropdownOptions] = useState([]);
   const [isWorkflowSubmitted, setIsWorkflowSubmitted] = useState(false);
-
+  const [workflowName, setWorkflowName] = useState("");
+  const [worflowNameSubmitted, setWorflowNameSubmitted] = useState(false);
+  const [workflowData , setWorkflowData] = useState();
   useEffect(() => {
     if (workflow.length > 0) {
       const firstColumnValues = workflow.flatMap((row) => row.slice(1)); // Exclude first element of each row
@@ -39,7 +47,7 @@ const InputGrid = () => {
     }
   };
 
-    const handleSubmitRow = (rowIndex) => {
+  const handleSubmitRow = (rowIndex) => {
     const rowStates = inputValues[rowIndex].filter(
       (value) => value.trim() !== ""
     );
@@ -105,23 +113,87 @@ const InputGrid = () => {
   };
 
   const handleWorkflowSubmit = () => {
+    const workflowData1 = {
+      project_id : proj_id,
+      type : type,
+      wfn: workflowName,
+      array: inputValues,
+    };
+    setWorkflowData(workflowData1);
     setWorkflow(inputValues);
     setIsWorkflowSubmitted(true);
-    console.log("Workflow:", JSON.stringify(workflow));
   };
+ 
+   
 
+  useEffect(() => {
+    if (isWorkflowSubmitted) {
+      console.log(workflowData);
+      AuthenticationService.addworkflow(workflowData)
+        .then((response) => {
+          console.log(response.data);
+          toast.success('Workflow Added Sucessfully!!', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+          console.log("Workflow created Succesfully!!");
+        })
+        .catch((error) => {
+          console.log("ERROR" + error);
+
+          toast.error("Failed to create...");
+
+        });
+    }
+  }, [isWorkflowSubmitted]);
+  
   return (
+    
     <>
       <div>
         <div className="flex justify-center p-2 my-2 ">
           <h2 className="font-bold underline decoration-sky-400 decoration-8 text-3xl">
-            Create a Workflow
+            Workflow For : {type}
           </h2>
+          
         </div>
+        <h1>Project Id : {proj_id}</h1>
         <div className="container-lg border-2 rounded-md mx-auto p-4">
+          <div className="flex p-3 ">
+            <input
+              type="text"
+              value={workflowName}
+              onChange={(event) => setWorkflowName(event.target.value)}
+              className="border rounded py-1 px-2 mr-2"
+              placeholder="Workflow Name"
+              required
+              disabled={isWorkflowSubmitted || worflowNameSubmitted}
+            />
+            <button
+              className={`text-white font-bold py-2 px-4 rounded ${
+                isWorkflowSubmitted || worflowNameSubmitted
+                  ? " cursor-not-allowed bg-blue-300"
+                  : "hover:bg-blue-700 bg-blue-500"
+              }`}
+              onClick={() => setWorflowNameSubmitted(true)}
+              disabled={isWorkflowSubmitted || worflowNameSubmitted}
+            >
+              Submit
+            </button>
+          </div>
           <div className="flex px-3">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className={`text-white font-bold py-2 px-4 rounded ${
+                isWorkflowSubmitted || !canAddRow
+                  ? " cursor-not-allowed bg-blue-300"
+                  : "hover:bg-blue-700 bg-blue-500"
+              }`}
               onClick={addRow}
               disabled={isWorkflowSubmitted || !canAddRow}
             >
@@ -189,16 +261,24 @@ const InputGrid = () => {
                       <>
                         <div>
                           <button
-                            className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white font-bold py-1 px-2 rounded"
+                            className={`text-white font-bold py-2 px-4 rounded ${
+                              (!row.every((val) => val.trim() !== "") || !worflowNameSubmitted)
+                                ? " cursor-not-allowed bg-blue-300"
+                                : "hover:bg-blue-700 bg-blue-500"
+                            }`}
                             onClick={() => addColumn(rowIndex)}
-                            disabled={!row.every((val) => val.trim() !== "")}
+                            disabled={!row.every((val) => val.trim() !== "") || !worflowNameSubmitted}
                           >
                             Add Column
                           </button>
                         </div>
                         <div>
                           <button
-                            className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white font-bold py-1 px-2 rounded"
+                            className={`text-white font-bold py-2 px-4 rounded ${
+                              !row.every((val) => val.trim() !== "")
+                                ? " cursor-not-allowed bg-blue-300"
+                                : "hover:bg-blue-700 bg-blue-500"
+                            }`}
                             onClick={() => handleSubmitRow(rowIndex)}
                             disabled={!row.every((val) => val.trim() !== "")}
                           >
@@ -211,7 +291,11 @@ const InputGrid = () => {
                       rowIndex !== editRowIndex && (
                         <div>
                           <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+                            className={`text-white font-bold py-2 px-4 rounded ${
+                              isWorkflowSubmitted
+                                ? " cursor-not-allowed bg-blue-300"
+                                : "hover:bg-blue-700 bg-blue-500"
+                            }`}
                             onClick={() => handleEditRow(rowIndex)}
                             disabled={isWorkflowSubmitted}
                           >
@@ -247,21 +331,33 @@ const InputGrid = () => {
             </div>
             <div className="flex justify-end p-4 gap-4">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className={`text-white font-bold py-2 px-4 rounded ${
+                  isWorkflowSubmitted || submittedRows.length === 0
+                    ? " cursor-not-allowed bg-blue-300"
+                    : "hover:bg-blue-700 bg-blue-500"
+                }`}
                 onClick={handleWorkflowSubmit}
                 disabled={isWorkflowSubmitted || submittedRows.length === 0}
               >
                 Submit Workflow
               </button>
-              {submittedRows.length !==  0 && <FormDialog
-                prop={<GraphVisualization workflow={workflow}></GraphVisualization>}
-                style={"md"}
-                ic="true"
-                // buttonTitle={"Preview"}
-                icon={"./Images/eye-fill.svg"}
-                variant={""}
-              />
-              }
+              
+              {submittedRows.length !== 0 && (
+                <div className=" my-auto">
+                <FormDialog
+                  prop={
+                    <GraphVisualization
+                      workflow={workflow}
+                    ></GraphVisualization>
+                  }
+                  style={"md"}
+                  ic="true"
+                  // buttonTitle={"Preview"}
+                  icon={"./Images/eye-fill.svg"}
+                  variant={""}
+                />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -270,4 +366,4 @@ const InputGrid = () => {
   );
 };
 
-export default InputGrid;
+export default CreateWorkflow;

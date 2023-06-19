@@ -9,6 +9,7 @@ export const SignupForm = ({ toggleLogin }) => {
     localStorage.setItem("USERNAME", email.current.value);
     window.location.href= "/";
 
+
     
   }
 

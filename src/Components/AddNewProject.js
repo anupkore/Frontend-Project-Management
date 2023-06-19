@@ -6,8 +6,7 @@ import { useState } from "react";
 
 import AuthenticationService from "../Services/AuthenticationService";
 
-export default function AddNewProject() 
-{
+export default function AddNewProject() {
   const [projectName, setProjectName] = useState("");
   const [description, setDescription] = useState("");
   const [clientName, setClientName] = useState("");
@@ -16,187 +15,146 @@ export default function AddNewProject()
   const [plannedEndDate, setPlannedEndDate] = useState("");
   const [risks, setRisks] = useState("");
   const [mitigations, setMitigations] = useState("");
-  const [workflowTask, setWorkFlowTask] = useState("");
-  const [workflowDefects, setWorkFlowDefects] = useState("");
 
-  const[errorClientName , setErrorClientName] = useState("");
-  const[errorLeadName , setErrorLeadName] = useState('');
-  const[errorPlannedStartDate , setErrorPlannedStartDate] = useState('');
-  const[errorPlannedEndDate , setErrorPlannedEndDate] = useState('');
-  const[errorMessageProjectName , setErrorMessageProjectName] = useState('');
-  const[errorMessageDescription , setErrorMessageDescription] = useState('');
-  const[errorMessageRisks , setErrorMessagRisks] = useState('');
-  const[errorMessageMitigations , setErrorMessageMitigations] = useState('');
+  const [errorClientName, setErrorClientName] = useState("");
+  const [errorLeadName, setErrorLeadName] = useState("");
+  const [errorPlannedStartDate, setErrorPlannedStartDate] = useState("");
+  const [errorPlannedEndDate, setErrorPlannedEndDate] = useState("");
+  const [errorMessageProjectName, setErrorMessageProjectName] = useState("");
+  const [errorMessageDescription, setErrorMessageDescription] = useState("");
+  const [errorMessageRisks, setErrorMessagRisks] = useState("");
+  const [errorMessageMitigations, setErrorMessageMitigations] = useState("");
 
-    const taskWorkflowChange = (event) => 
-    {
-      setWorkFlowTask(event.target.value);
-    };
-    const defectWorkflowChange = (event) => 
-    {
-      setWorkFlowDefects(event.target.value);
-    };
+  function handleInputChangeProjectName(event) {
+    setProjectName(event.target.value);
+    setErrorMessageProjectName("");
+  }
 
-  function handleInputChangeProjectName(event) 
-     {
-        setProjectName(event.target.value);
-        setErrorMessageProjectName('');
+  function handleInputChangeDescription(event) {
+    setDescription(event.target.value);
+    setErrorMessageDescription("");
+  }
 
-     }
+  function handleInputChangeClientName(event) {
+    setClientName(event.target.value);
+    setErrorClientName("");
+  }
 
-     function handleInputChangeDescription(event) 
-     {
-        setDescription(event.target.value);
-        setErrorMessageDescription('');
-     }
+  function handleInputChangeLeadName(event) {
+    setLeadName(event.target.value);
+    setErrorLeadName("");
+  }
 
-     function handleInputChangeClientName(event) 
-     {
-        setClientName(event.target.value);
-        setErrorClientName('');
-     }
+  function handleInputChangePlannedStartDate(event) {
+    setPlannedStartDate(event.target.value);
+    setErrorPlannedStartDate("");
+  }
 
-     function handleInputChangeLeadName(event) 
-     {
-        setLeadName(event.target.value);
-        setErrorLeadName('');
-     }
+  function handleInputChangePlannedEndDate(event) {
+    setPlannedEndDate(event.target.value);
+    setErrorPlannedEndDate("");
+  }
 
-     function handleInputChangePlannedStartDate(event) 
-     {
-        setPlannedStartDate(event.target.value);
-        setErrorPlannedStartDate('');
-     }
+  function handleInputChangeRisks(event) {
+    setRisks(event.target.value);
+    setErrorMessagRisks("");
+  }
 
-     function handleInputChangePlannedEndDate(event) 
-     {
-        setPlannedEndDate(event.target.value);
-        setErrorPlannedEndDate('');
-     }
+  function handleInputChangeMitigations(event) {
+    setMitigations(event.target.value);
+    setErrorMessageMitigations("");
+  }
 
-     function handleInputChangeRisks(event) 
-     {
-        setRisks(event.target.value);
-        setErrorMessagRisks('');
-     }
+  function validateClientName(name) {
+    const nameRegex = /^[a-zA-Z\s'-]{2,50}$/;
+    return nameRegex.test(name);
+  }
 
-     function handleInputChangeMitigations(event) 
-     {
-        setMitigations(event.target.value);
-        setErrorMessageMitigations('');
-     }
+  // Function to validate the planned start date
+  function validatePlannedStartDate(startDate) {
+    const today = new Date();
+    const selectedDate = new Date(startDate);
 
-     function validateClientName(name) 
-     {
-      const nameRegex = /^[a-zA-Z\s'-]{2,50}$/;
-      return nameRegex.test(name);
-     }
+    // Check if the selected date is before today's date
+    return selectedDate >= today;
+  }
 
-     // Function to validate the planned start date
-      function validatePlannedStartDate(startDate) 
-      {
-        const today = new Date();
-        const selectedDate = new Date(startDate);
+  // Function to validate the planned end date
+  function validatePlannedEndDate(startDate, endDate) {
+    const startDateObj = new Date(startDate);
+    const endDateObj = new Date(endDate);
 
-        // Check if the selected date is before today's date
-        return selectedDate >= today;
-      }
+    // Check if the end date is before the start date
+    return endDateObj >= startDateObj;
+  }
 
-      // Function to validate the planned end date
-      function validatePlannedEndDate(startDate, endDate) 
-      {
-        const startDateObj = new Date(startDate);
-        const endDateObj = new Date(endDate);
-
-        // Check if the end date is before the start date
-        return endDateObj >= startDateObj;
-      }
-
-
-
-
-  function handleAddProject(event)
-  {
+  function handleAddProject(event) {
     event.preventDefault();
 
-    if (projectName.trim() === '') 
-    {
+    if (projectName.trim() === "") {
       setErrorMessageProjectName("This field is required");
       return;
     }
 
-    if (description.trim() === '') 
-    {
+    if (description.trim() === "") {
       setErrorMessageDescription("This field is required");
       return;
     }
-    
-    if (!validateClientName(clientName)) 
-    {
-      setErrorClientName('Please Enter Valid Client Name');
+
+    if (!validateClientName(clientName)) {
+      setErrorClientName("Please Enter Valid Client Name");
       return;
     }
-    if (!validateClientName(leadName)) 
-    {
-      setErrorLeadName('Please Enter Valid Lead Name');
+    if (!validateClientName(leadName)) {
+      setErrorLeadName("Please Enter Valid Lead Name");
       return;
     }
-    if (!validatePlannedStartDate(plannedStartDate)) 
-    {
-      setErrorPlannedStartDate('Please Enter valid Start Date');
-      return;
-    }
-  
-    if (!validatePlannedEndDate(plannedStartDate, plannedEndDate)) 
-    {
-      setErrorPlannedEndDate('Please Enter valid End Date');
+    if (!validatePlannedStartDate(plannedStartDate)) {
+      setErrorPlannedStartDate("Please Enter valid Start Date");
       return;
     }
 
-    if (risks.trim() === '') 
-    {
+    if (!validatePlannedEndDate(plannedStartDate, plannedEndDate)) {
+      setErrorPlannedEndDate("Please Enter valid End Date");
+      return;
+    }
+
+    if (risks.trim() === "") {
       setErrorMessagRisks("This field is required");
       return;
     }
 
-    if (mitigations.trim() === '') 
-    {
+    if (mitigations.trim() === "") {
       setErrorMessageMitigations("This field is required");
       return;
     }
-  
 
-    var payload = 
-    {
-        user_id: 2002,
-        project_name: projectName,
-        project_description: description,
-        planned_sd: plannedStartDate,
-        planned_ed: plannedEndDate,
-        client_name: clientName,
-        project_lead: leadName,
-        risk: risks,
-        mitigation: mitigations,
-        workflowTask: workflowTask,
-        workflowDefects: workflowDefects
-    }
+    var payload = {
+      user_id: localStorage.getItem("UserID"),
+      project_name: projectName,
+      project_description: description,
+      planned_sd: plannedStartDate,
+      planned_ed: plannedEndDate,
+      client_name: clientName,
+      project_lead: leadName,
+      risk: risks,
+      mitigation: mitigations,
+    };
     console.log(payload);
-    AuthenticationService.createProject(payload).then(()=>{
+    AuthenticationService.createProject(payload).then(() => {
       console.log("Hi Create Project");
-      window.location.href = '/allProjects';
-    })
+      window.location.href = "/allProjects";
+    });
   }
-  
-  
 
   return (
     <>
       <div className="flex">
-        <div className="flex justify-items-end align-items-center">
-          <img src="/Images/projectmag.png" width={600} height={550}></img>
+        <div className="flex justify-items-start align-items-center">
+          <img src="/Images/projectmag.png" width={550} height={550}></img>
         </div>
 
-        <div className="">
+        <div className="flex justify-items-end align-items-center">
           <Container>
             <Row>
               <Col lg>
@@ -211,7 +169,7 @@ export default function AddNewProject()
                     method="POST"
                     className="m-auto mt-16 max-w-l sm:mt-20"
                   >
-                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    <div className=" gap-x-8 gap-y-6 sm:grid-cols-2">
                       <div>
                         <label
                           htmlFor="first-name"
@@ -229,53 +187,108 @@ export default function AddNewProject()
                             onChange={handleInputChangeProjectName}
                             required
                             autoComplete="given-name"
-                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6 mb-2.5"
                           />
-                          <span className="text-danger">{errorMessageProjectName}</span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="last-name"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Description
-                        </label>
-                        <div className="mt-2.5">
-                          <input
-                            type="textarea"
-                            name="last-name"
-                            id="last-name"
-                            value={description}
-                            onChange={handleInputChangeDescription}
-                            autoComplete="family-name"
-                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                          />
-                          <span className="text-danger">{errorMessageDescription}</span>
+                          <span className="text-danger">
+                            {errorMessageProjectName}
+                          </span>
                         </div>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                      <div className="grid grid-cols-1 gap-x-50 gap-y-6 sm:grid-cols-2">
+                        <div className="sm:col-span-2">
+                          <label
+                            htmlFor="company"
+                            className="block text-sm font-semibold leading-6 text-gray-900"
+                          >
+                            Planned Start Date
+                          </label>
+                          <div className="mt-2.5">
+                            <input
+                              type="date"
+                              name="company"
+                              id="company"
+                              value={plannedStartDate}
+                              onChange={handleInputChangePlannedStartDate}
+                              autoComplete="organization"
+                              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                            />
+                            <span className="text-danger">
+                              {errorPlannedStartDate}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 gap-x-50 gap-y-6 sm:grid-cols-2">
+                        <div className="sm:col-span-2">
+                          <label
+                            htmlFor="company"
+                            className="block text-sm font-semibold leading-6 text-gray-900"
+                          >
+                            Planned End Date
+                          </label>
+                          <div className="mt-2.5">
+                            <input
+                              type="date"
+                              name="company"
+                              id="company"
+                              value={plannedEndDate}
+                              onChange={handleInputChangePlannedEndDate}
+                              autoComplete="organization"
+                              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                            />
+                            <span className="text-danger">
+                              {errorPlannedEndDate}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
                       <div>
                         <label
                           htmlFor="first-name"
                           className="block text-sm font-semibold leading-6 text-gray-900"
                         >
-                          Client Name
+                          Risks
                         </label>
                         <div className="mt-2.5">
                           <input
                             type="text"
                             name="first-name"
                             id="first-name"
-                            value={clientName}
-                            onChange={handleInputChangeClientName}
+                            value={risks}
+                            onChange={handleInputChangeRisks}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
-                          <span className="text-danger">{errorClientName}</span>
+                          <span className="text-danger">
+                            {errorMessageRisks}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="first-name"
+                          className="block text-sm font-semibold leading-6 text-gray-900"
+                        >
+                          Mitigations
+                        </label>
+                        <div className="mt-2.5">
+                          <input
+                            type="text"
+                            name="first-name"
+                            id="first-name"
+                            value={mitigations}
+                            onChange={handleInputChangeMitigations}
+                            autoComplete="given-name"
+                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                          />
+                          <span className="text-danger">
+                            {errorMessageMitigations}
+                          </span>
                         </div>
                       </div>
                       <div>
@@ -298,173 +311,54 @@ export default function AddNewProject()
                           <span className="text-danger">{errorLeadName}</span>
                         </div>
                       </div>
-
-                      <div className="grid grid-cols-1 gap-x-50 gap-y-6 sm:grid-cols-2">
-                        <div className="sm:col-span-2">
-                          <label
-                            htmlFor="company"
-                            className="block text-sm font-semibold leading-6 text-gray-900"
-                          >
-                            Planned Start Date
-                          </label>
-                          <div className="mt-2.5">
-                            <input
-                              type="date"
-                              name="company"
-                              id="company"
-                              value={plannedStartDate}
-                              onChange={handleInputChangePlannedStartDate}
-                              autoComplete="organization"
-                              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                            />
-                            <span className="text-danger">{errorPlannedStartDate}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-1 gap-x-50 gap-y-6 sm:grid-cols-2">
-                        <div className="sm:col-span-2">
-                          <label
-                            htmlFor="company"
-                            className="block text-sm font-semibold leading-6 text-gray-900"
-                          >
-                            Planned End Date
-                          </label>
-                          <div className="mt-2.5">
-                            <input
-                              type="date"
-                              name="company"
-                              id="company"
-                              value={plannedEndDate}
-                              onChange={handleInputChangePlannedEndDate}
-                              autoComplete="organization"
-                              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                            />
-                            <span className="text-danger">{errorPlannedEndDate}</span>
-                          </div>
-                        </div>
-                      </div>
                       <div>
                         <label
                           htmlFor="first-name"
                           className="block text-sm font-semibold leading-6 text-gray-900"
                         >
-                          Risks
+                          Client Name
                         </label>
                         <div className="mt-2.5">
                           <input
                             type="text"
                             name="first-name"
                             id="first-name"
-                            value={risks}
-                            onChange={handleInputChangeRisks}
+                            value={clientName}
+                            onChange={handleInputChangeClientName}
                             autoComplete="given-name"
                             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           />
-                          <span className="text-danger">{errorMessageRisks}</span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="first-name"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Mitigations
-                        </label>
-                        <div className="mt-2.5">
-                          <input
-                            type="text"
-                            name="first-name"
-                            id="first-name"
-                            value={mitigations}
-                            onChange={handleInputChangeMitigations}
-                            autoComplete="given-name"
-                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-                          />
-                          <span className="text-danger">{errorMessageMitigations}</span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="first-name"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Choose Workflow For Task
-                        </label>
-                        <div className="mt-2.5 flex">
-                          <select
-                            className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                            value={workflowTask}
-                            onChange={taskWorkflowChange}
-                          >
-                            <option value="">Select Task WorkFlow</option>
-                            <option  value="workflow-1">
-                              Workflow-1
-                            </option>
-                            <option  value="workflow-2">
-                              Workflow-2
-                            </option>
-                            <option  value="workflow-3">
-                              Workflow-3
-                            </option>
-                            <option  value="workflow-4">
-                              Workflow-4
-                            </option>
-                          </select>
-                          <div className=" ml-3 ">
-                            <FormDialog
-                              prop={<Workflow_1 path={workflowTask} />}
-                              style={"md"}
-                              // buttonTitle={"Preview"}
-                              icon={"./Images/eye-fill.svg"}
-                              variant={""}
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="first-name"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Choose Workflow For Defects
-                        </label>
-                        <div className="mt-2.5 flex">
-                          <select
-                            className="appearance-none w-100 bg-white border border-gray-300 hover:border-gray-500 pl-4  py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                            value={workflowDefects}
-                            onChange={defectWorkflowChange}
-                          >
-                            <option value="">Select defect WorkFlow</option>
-                            <option  value="workflow-1">
-                              Workflow-1
-                            </option>
-                            <option  value="workflow-2">
-                              Workflow-2
-                            </option>
-                            <option  value="workflow-3">
-                              Workflow-3
-                            </option>
-                            <option  value="workflow-4">
-                              Workflow-4
-                            </option>
-                          </select>
-                          <div className=" ml-3 ">
-                            <FormDialog
-                              prop={<Workflow_1 path={workflowDefects} />}
-                              style={"md"}
-                              // buttonTitle="Preview"
-                              icon={"./Images/eye-fill.svg"}
-                              variant={""}
-                            />
-                          </div>
+                          <span className="text-danger">{errorClientName}</span>
                         </div>
                       </div>
                     </div>
+
+                    <div className="col-span-full">
+                      <label
+                        htmlFor="about"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Description
+                      </label>
+                      <div className="mt-2">
+                        <textarea
+                          id="about"
+                          name="about"
+                          value={description}
+                          onChange={handleInputChangeDescription}
+                          rows={3}
+                          className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                          defaultValue={""}
+                        />
+                        <span className="text-danger">{errorMessageDescription}</span>
+                      </div>
+                    </div>
                     <div className="flex mt-5 justify-center ">
-                      <Button onClick={handleAddProject} variant="contained" className="">
+                      <Button
+                        onClick={handleAddProject}
+                        variant="contained"
+                        className=""
+                      >
                         Create
                       </Button>
                     </div>

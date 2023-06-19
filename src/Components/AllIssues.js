@@ -8,40 +8,31 @@ import { FaSortDown, FaSortUp } from "react-icons/fa";
 import { Button, ButtonGroup } from "@mui/material";
 import ParticularIssueDashboard from "./ParticularIssueDashboard";
 import MyIssues from "./Myissues";
-import { HashLoader } from "react-spinners";
+import { GridLoader ,HashLoader,PacmanLoader } from "react-spinners";
 import Navbar from "./Navbar";
-import IssueDashboard from "./IssueDashboard";
+import CreateIssueForm from "./CreateIssueForm";
 
-export const AllProjectList = () => {
+
+export const AllIssues = () => 
+{
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
   const [allList, setAllList] = useState([]);
-
   const [myIssues, setMyIssues] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [flag, setFlag] = useState("false");
-  const userID = localStorage.getItem("UserID");
-  console.log("userID", userID);
-  var payload = { user_id: userID };
-  console.log(userID);
-  useEffect(() => {
-    setLoading(true);
-    AuthenticationService.allProjects(payload)
-      .then((response) => {
-        console.log(response.data);
-        setAllList(response.data);
-        console.log("Hi");
-        console.log(allList);
-      })
-      .catch((error) => {
-        console.log("ERROR" + error.data);
-      })
-      .finally(() => {
-        setLoading(false); // Set loading state to false when the request is completed
-      });
-  }, []);
-  localStorage.removeItem("Role");
-
+  const [flag , setFlag] = useState('false');
+  const ProjectID = Number(localStorage.getItem("ProjectID"));
+  //console.log("userID",userID);
+  var payload = {project_id: ProjectID};
+  console.log(payload);
+  useEffect(()=>{
+    AuthenticationService.allIssues(payload).then((response)=>{
+      console.log(response.data);
+    }).catch((error)=>{
+      console.log(error);
+    })
+  },[])
+ 
   const filteredProjects = allList.filter((project) => {
     if (filterStatus === "All") {
       return true;
@@ -137,15 +128,30 @@ export const AllProjectList = () => {
 
   return (
     <>
+
       {loading ? (
         <div className="flex justify-center">
-          <HashLoader
-            color="#1976d2"
-            style={{ marginTop: "10%" }}
-            size={100}
-            speedMultiplier={1}
-          />
+          <HashLoader color="#1976d2" style={{marginTop:"10%"}} size={100} speedMultiplier={1} />
           {/* <PacmanLoader color="#1976d2" size={50}/>   */}
+        </div>
+      ) : allList.length !== 0 ? (
+        <div className="mx-auto ">
+
+          <div className="flex justify-center">
+            <h1 className="text-5xl font-bold">Create Your First Issue</h1>
+          </div>
+          <div className="flex border-dashed container-md justify-center mt-20 w-screen h-96 border-2 rounded-md">
+            <div className="m-auto">
+              <FormDialog
+                prop={<CreateIssueForm />}
+                style={maxWidth}
+                icon={"./Images/plus-lg.svg"}
+                // buttonTitle="Create Project"
+                variant={""}
+                ic={"true"}
+              />
+            </div>
+          </div>
         </div>
       ) : (
         <div>
@@ -174,10 +180,7 @@ export const AllProjectList = () => {
             <div className="py-4 px-5 flex flex-row">
               <div className="mx-auto">
                 <ButtonGroup variant="text" aria-label="text button group">
-                  <Button
-                    onClick={() => setMyIssues(false)}
-                    disabled={!myIssues}
-                  >
+                  <Button onClick={() => setMyIssues(false)}  disabled={!myIssues}>
                     {" "}
                     <h1
                       className="text-center flex-grow-1 items-center text-xl font-bold"
@@ -204,27 +207,6 @@ export const AllProjectList = () => {
             </div>
             {myIssues ? (
               <MyIssues></MyIssues>
-            ) : allList.length === 0 ? (
-              <div className="mx-auto ">
-                <div className="flex justify-center">
-                  <h1 className="text-5xl font-bold">
-                    Create Your First Project
-                  </h1>
-                </div>
-                <div className="flex border-dashed container-md justify-center mt-20 w-screen h-96 border-2 rounded-md">
-                  <div className="m-auto">
-                    <FormDialog
-                      prop={<AddNewProject />}
-                      style={maxWidth}
-                      icon={"./Images/plus-lg.svg"}
-                      // buttonTitle="Create Project"
-                      largebutton={"true"}
-                      variant={""}
-                      ic={"true"}
-                    />
-                  </div>
-                </div>
-              </div>
             ) : (
               <>
                 <div className="flex justify-left my-2">
@@ -247,34 +229,28 @@ export const AllProjectList = () => {
                   </div>
                   <div className="my-auto ml-auto">
                     <FormDialog
-                      prop={<AddNewProject />}
+                      prop={<CreateIssueForm />}
                       style={maxWidth}
                       icon={"./Images/plus-lg-white.svg"}
-                      buttonTitle="Create Project"
+                      buttonTitle="Create New Issue"
                       variant={"outlined"}
                       ic={"false"}
                     />
                   </div>
                 </div>
-
-
-                <div className="container-lg bg-blur-3xl bg-opacity-30 rounded-lg ">
-                  <div className="w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-slate-400 scrollbar">
-                    <div className="flex max-h-[28] min-w-[105em] items-center py-2">
-                      <table className="table-fixed bg-white rounded-3xl w-auto shadow-md" >
+                {/* <div className="container-lg bg-blur-3xl bg-opacity-30 rounded-lg  p-4 "> */}
+                <div className="flex  container-md justify-center w-screen h-96 rounded-md">
+                  {/* <div className="w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-slate-400 scrollbar"> */}
+                    <div className="flex  min-w-[105em] items-center py-2">
+                      <table className="table-fixed bg-white rounded-3xl w-auto mx-auto shadow-md">
                         <thead>
                           <tr>
                             <th className="px-4 py-2">Sr.No</th>
                             {renderNameHeader()}
-                            <th className="px-4 py-2">States</th>
-                            {renderStartDateHeader()}
-                            <th className="px-4 py-2">End Date</th>
-                            <th className="px-4 py-2">Client Name</th>
-                            <th className="px-4 py-2">Lead Name</th>
-                            <th className="px-4 py-2">Risks</th>
-                            <th className="px-4 py-2">Mitigations</th>
-                            <th className="px-4 py-2">Details</th>
-                            {/* <th className="px-4 py-2">Issues</th> */}
+                            <th className="px-4 py-2">Description</th>
+                            <th className="px-4 py-2">Type</th>
+                            <th className="px-4 py-2">Status</th>
+                            <th className="px-4 py-2">Explore</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -283,71 +259,25 @@ export const AllProjectList = () => {
                               key={project.id}
                               className="my-4 divide-y space-y-5"
                             >
-                              <td className="px-4 py-2">{index + 1}</td>
-                              <td className="px-4 py-2">
-                                {project.Project_name}
-                              </td>
-                              <td className="px-4 py-2">{project.Status}</td>
-                              <td className="px-4 py-2">
-                                {new Date(
-                                  project.planned_sd
-                                ).toLocaleDateString("en-US", {
-                                  year: "numeric",
-                                  month: "2-digit",
-                                  day: "2-digit",
-                                })}
-                              </td>
-                              <td className="px-4 py-2">
-                                {new Date(
-                                  project.planned_ed
-                                ).toLocaleDateString("en-US", {
-                                  year: "numeric",
-                                  month: "2-digit",
-                                  day: "2-digit",
-                                })}
-                              </td>
-                              <td className="px-4 py-2">
-                                {project.client_name}
-                              </td>
-                              <td className="px-4 py-2">
-                                {project.project_lead}
-                              </td>
-                              <td className="px-4 py-2">{project.risk}</td>
-                              <td className="px-4 py-2">
-                                {project.mitigation}
-                              </td>
+                              <td className="px-4 py-2">{}</td>
+                              <td className="px-4 py-2">{}</td>
+                              <td className="px-4 py-2">{}</td>
+                              <td className="px-4 py-2">{}</td>
+                              <td className="px-4 py-2">{}</td>
                               <td className="px-4 py-2 underline text-blue-900">
-                                <Link
+                                {/* <Link
                                   to={`/projectexplore/${project.Project_id}`}
                                 >
+                                  {" "}
                                   Explore
-                                </Link>
+                                </Link> */}
                               </td>
                             </tr>
                           ))}
                         </tbody>
                       </table>
                     </div>
-                  </div>
-                  <div className="flex mt-3 mx-auto justify-center">
-                    <div className="mr-20 my-auto">
-                      <span>
-                        {currentPage} of{" "}
-                        {Math.ceil(filteredProjects.length / membersPerPage)}
-                      </span>
-                    </div>
-                    <div>
-                      <Pagination
-                        membersPerPage={membersPerPage}
-                        totalMembers={filteredProjects.length}
-                        paginate={paginate}
-                        currentPage={currentPage}
-                      ></Pagination>
-                    </div>
-                  </div>
                 </div>
-
-
               </>
             )}
           </div>
@@ -356,4 +286,4 @@ export const AllProjectList = () => {
     </>
   );
 };
-export default AllProjectList;
+export default AllIssues;
