@@ -199,7 +199,6 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"Show_Emails";
         return url;
     }
-<<<<<<< HEAD
     static getAllProjectMember(){
         const url = ParentConfiguration.parentURL()+"Show_Emails_Teams";
         return url;
@@ -221,11 +220,10 @@ export default class AuthenticationConfiguration
         return url;
     }
     static userWiseIssues(){
-        const url = ParentConfiguration.parentURL()+"usewise_issue";
+        const url = ParentConfiguration.parentURL()+"userwise_issue";
         return url;
     }
-}
-=======
+
     static IssueByWeek()
     {
         const url = ParentConfiguration.parentURL()+"IssueByWeek";
@@ -252,4 +250,3 @@ export default class AuthenticationConfiguration
         return url;
     }
 }
->>>>>>> 2e915c9132f1338c0fa0b0bc386523e895098936

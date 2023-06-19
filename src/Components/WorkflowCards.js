@@ -140,6 +140,7 @@ export default function WorkflowCard() {
           {/* <h1 className="text-xl text-center font-bold ">Workflows</h1> */}
           <div className="">
             <div className="flex mx-auto gap-4 mt-8 justify-center">
+              <article style={{border:"2px solid red"}}>
               <div className="py-4">
                 <div className="flex gap-4 px-2">
                   <span className="my-auto font-semibold text-md">
@@ -163,6 +164,7 @@ export default function WorkflowCard() {
                       ))}
                     </select>
                   </div>
+
                   <div className="m-auto">
                     <FormDialog
                       prop={
@@ -178,9 +180,10 @@ export default function WorkflowCard() {
                     />
                   </div>
                 </div>
+
                 <div className="flex gap-6 py-2 mt-2 ml-24">
                   <span className="my-auto font-medium">
-                    Or Create Your Own Workflow
+                    Or Create Your Own Workflow1
                   </span>
                   <div
                     className={` font-bold ${
@@ -207,6 +210,10 @@ export default function WorkflowCard() {
                   </div>
                 </div>
               </div>
+              </article>
+            
+
+              <article>
               <div className="py-4">
                 <div className="flex gap-4 px-2">
                   <span className="my-auto font-semibold text-md">
@@ -274,6 +281,8 @@ export default function WorkflowCard() {
                   </div>
                 </div>
               </div>
+              </article>
+              
             </div>
             <div className="flex justify-center mb-3 mx-auto">
               <button
