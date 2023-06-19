@@ -14,6 +14,8 @@ export default function Profilepage()
     localStorage.removeItem("UserName");
     localStorage.removeItem("UserID");
     localStorage.removeItem("UserEmail");
+    localStorage.removeItem("ProjecttName");
+    localStorage.removeItem("ProjectID");
     window.location.href = "/" ;
   }
 return (

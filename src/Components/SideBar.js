@@ -79,7 +79,7 @@ export default function SideBar({p_id}) {
                 !open && "scale-0"
               }`}
             >
-              World Class
+              {localStorage.getItem('ProjectName')}
             </h1>
           </div>
           <div>
