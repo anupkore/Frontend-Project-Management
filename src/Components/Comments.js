@@ -165,17 +165,15 @@ export default function Comments({ id }) {
                       </time>
                     </p> */}
 
-<p className="text-sm text-gray-600 dark:text-gray-400">
-  <time pubdate="" date={data.date} title={data.date}>
-    {new Date(data.date).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    })}
-  </time>
-</p>
-
-                    
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <time pubdate="" date={data.date} title={data.date}>
+                        {new Date(data.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </time>
+                    </p>
                   </div>
                   {/* Three-dot menu */}
                   <div className="relative inline-block text-left">
@@ -199,17 +197,20 @@ export default function Comments({ id }) {
                     {data.showMenu && (
                       <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                         <ul className="py-1">
-                          <li>
+                        <li className="w-full">
                             <button
-                              className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                              className="block px-20 mx-auto py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                               onClick={() => handleEdit(data.comment_id)}
                             >
+                             
                               Edit
+                              
                             </button>
-                          </li>
+                            </li>
                           <li>
                             <button
-                              className="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-700"
+                              // className="block px-20 mx-auto py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-700"
+                              className="block px-20 mx-auto py-2 text-sm text-gray-700 dark:text-red hover:bg-red-100 dark:hover:bg-gray-800"
                               onClick={() => handleDelete(data.comment_id)}
                             >
                               Delete
@@ -220,7 +221,9 @@ export default function Comments({ id }) {
                     )}
                   </div>
                 </footer>
-                <p className="text-gray-500 dark:text-gray-400">{data.description}</p>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {data.description}
+                </p>
                 <div className="flex items-center mt-4 space-x-4"></div>
               </article>
             ))}
