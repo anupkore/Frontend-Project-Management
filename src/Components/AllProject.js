@@ -10,6 +10,7 @@ import ParticularIssueDashboard from "./ParticularIssueDashboard";
 import MyIssues from "./Myissues";
 import { HashLoader } from "react-spinners";
 import Navbar from "./Navbar";
+import IssueDashboard from "./IssueDashboard";
 
 export const AllProjectList = () => {
   const maxWidth = "lg";
@@ -39,6 +40,7 @@ export const AllProjectList = () => {
         setLoading(false); // Set loading state to false when the request is completed
       });
   }, []);
+  localStorage.removeItem("Role");
 
   const filteredProjects = allList.filter((project) => {
     if (filterStatus === "All") {
@@ -274,35 +276,53 @@ export const AllProjectList = () => {
                           </tr>
                         </thead>
                         <tbody>
-                        {sortedAndFilteredProjects.map((project, index) => (
-  <tr key={project.id} className="my-4 divide-y space-y-5">
-    <td className="px-4 py-2">{index + 1}</td>
-    <td className="px-4 py-2">{project.Project_name}</td>
-    <td className="px-4 py-2">{project.Status}</td>
-    <td className="px-4 py-2">
-      {new Date(project.planned_sd).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-      })}
-    </td>
-    <td className="px-4 py-2">
-      {new Date(project.planned_ed).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-      })}
-    </td>
-    <td className="px-4 py-2">{project.client_name}</td>
-    <td className="px-4 py-2">{project.project_lead}</td>
-    <td className="px-4 py-2">{project.risk}</td>
-    <td className="px-4 py-2">{project.mitigation}</td>
-    <td className="px-4 py-2 underline text-blue-900">
-      <Link to={`/projectexplore/${project.Project_id}`}>Explore</Link>
-    </td>
-  </tr>
-))}
-
+                          {sortedAndFilteredProjects.map((project, index) => (
+                            <tr
+                              key={project.id}
+                              className="my-4 divide-y space-y-5"
+                            >
+                              <td className="px-4 py-2">{index + 1}</td>
+                              <td className="px-4 py-2">
+                                {project.Project_name}
+                              </td>
+                              <td className="px-4 py-2">{project.Status}</td>
+                              <td className="px-4 py-2">
+                                {new Date(
+                                  project.planned_sd
+                                ).toLocaleDateString("en-US", {
+                                  year: "numeric",
+                                  month: "2-digit",
+                                  day: "2-digit",
+                                })}
+                              </td>
+                              <td className="px-4 py-2">
+                                {new Date(
+                                  project.planned_ed
+                                ).toLocaleDateString("en-US", {
+                                  year: "numeric",
+                                  month: "2-digit",
+                                  day: "2-digit",
+                                })}
+                              </td>
+                              <td className="px-4 py-2">
+                                {project.client_name}
+                              </td>
+                              <td className="px-4 py-2">
+                                {project.project_lead}
+                              </td>
+                              <td className="px-4 py-2">{project.risk}</td>
+                              <td className="px-4 py-2">
+                                {project.mitigation}
+                              </td>
+                              <td className="px-4 py-2 underline text-blue-900">
+                                <Link
+                                  to={`/projectexplore/${project.Project_id}`}
+                                >
+                                  Explore
+                                </Link>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>

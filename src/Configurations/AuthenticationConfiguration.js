@@ -198,5 +198,28 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"Show_Emails";
         return url;
     }
-    
+    static getAllProjectMember(){
+        const url = ParentConfiguration.parentURL()+"Show_Emails_Teams";
+        return url;
+    }
+    static updateIssueState(){
+        const url = ParentConfiguration.parentURL()+"update_issue";
+        return url;
+    }
+    static assignMemberToIssue(){
+        const url = ParentConfiguration.parentURL()+"AssignIssue";
+        return url;
+    }
+    static updateTaskDescription(){
+        const url = ParentConfiguration.parentURL()+"taskid_updatedesc";
+        return url;
+    }
+    static updateDefectDescription(){
+        const url = ParentConfiguration.parentURL()+"defectid_updatedesc";
+        return url;
+    }
+    static userWiseIssues(){
+        const url = ParentConfiguration.parentURL()+"usewise_issue";
+        return url;
+    }
 }

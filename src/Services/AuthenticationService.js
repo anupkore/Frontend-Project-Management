@@ -168,4 +168,22 @@ export default class AuthenticationService
     {
         return AxiosService.getAllEmails(AuthenticationConfiguration.getAllEmails(),data);
     }
+    static getAllProjectMember(data){
+        return AxiosService.getAllProjectMember(AuthenticationConfiguration.getAllProjectMember(),data);
+    }
+    static updateIssueState(data){
+        return AxiosService.updateIssueState(AuthenticationConfiguration.updateIssueState(),data);
+    }
+    static assignMemberToIssue(data){
+        return AxiosService.assignMemberToIssue(AuthenticationConfiguration.assignMemberToIssue(),data);
+    }
+    static updateTaskDescription(data){
+        return AxiosService.updateTaskDescription(AuthenticationConfiguration.updateTaskDescription(),data);
+    }
+    static updateDefectDescription(data){
+        return AxiosService.updateDefectDescription(AuthenticationConfiguration.updateDefectDescription(),data);
+    }
+    static userWiseIssues(data){
+        return AxiosService.userWiseIssues(AuthenticationConfiguration.userWiseIssues(),data);
+    }
 }

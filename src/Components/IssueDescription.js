@@ -1,73 +1,3 @@
-// export default function IssueDescription() {
-//   return (
-//     <>
-//       <div className="w-[70rem] max-h-[60rem] rounded border-2 border-black m-auto align-center">
-//         <div className="flex flex-row">
-//           <div className="border-red-400 border-2 basis-2/3">
-//             <div className="m-4 boredr-solid border">
-//               <div className="flex py-2">
-//                 <h1 className="text-slate-500 underline decoration-2 decoration-sky-400">
-//                   Project Name
-//                 </h1>
-//               </div>
-//               <div>
-//                 <h1 className="text-xl text-black font-semibold">Task Name</h1>
-//               </div>
-//             </div>
-//             <div className="overflow-y-auto scrollbar-thin scrollbar-thumb-slate-200 max-h-[22rem]">
-//               <div className="m-4 border-solid border">
-//                 <div className="flex border-2 border-solid py-2">
-//                   <h1 className="font-medium">Description</h1>
-//                 </div>
-//                 <div className="max-h-96">
-//                   <div className="flex align-center">
-//                     <textarea
-//                       type="text"
-//                       className="w-full h-24 max-h-40 border-slate-200"
-//                     ></textarea>
-//                   </div>
-//                   <div className="flex my-2 justify-start gap-2">
-//                     <button className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md">
-//                       <span className="text-white font-semibold ">Save</span>
-//                     </button>
-//                     <button className="hover:bg-slate-100 px-3 py-1 hover:rounded-sm ">
-//                       <span className="text-black font-semibold ">Cancel</span>
-//                     </button>
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="m-4 border-solid border max-h-96">
-//                 <div className="flex gap-2 py-2">
-//                   <div>
-//                     <h1 className="rounded-md bg-slate-500 px-3 py-1 text-white font-semibold">
-//                       Comments
-//                     </h1>
-//                   </div>
-//                 </div>
-//                 <div>
-//                   <div>
-//                     <textarea
-//                       type="text"
-//                       className="w-full rounded-sm border-solid border-slate-200"
-//                       placeholder="Add a new Comment"
-//                     ></textarea>
-//                   </div>
-//                   <div className="mt-2">
-//                     <button className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md">
-//                       <span className="text-white font-semibold ">Add</span>
-//                     </button>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//           <div className="h-[30rem] border-red-400 border-2 basis-1/3"></div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
 import React, { useRef, useState } from "react";
 
 import { Fragment } from "react";
@@ -87,7 +17,7 @@ export default function IssueDescription({ i_id }) {
   const [isAddVisible, setAddVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
   const [isOpen, setIsOpen] = useState(false); // State to control popover open/closed
-  const [isOpen1, setIsOpen1] = useState(false); 
+  const [isOpen1, setIsOpen1] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [workflowData, setWorkflowData] = useState([]);
   const UserID = localStorage.getItem("UserID");
@@ -97,6 +27,8 @@ export default function IssueDescription({ i_id }) {
     Priority: "",
     Estimated_time: "",
     severity: "",
+    Task_ID : 0 ,
+    defect_ID : 0 
   });
   const [type, setType] = useState("");
   const [currentState, setCurrentState] = useState("");
@@ -104,9 +36,11 @@ export default function IssueDescription({ i_id }) {
   const [workflowString, setWorkflowString] = useState("");
   const [workflow, setWorkflow] = useState([]);
   const [allComment, setAllComment] = useState([]);
-  const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [showLatestComment, setShowLatestComment] = useState(false);
-  const [assignedTo, setAssignedTo] = useState('Unassigned');
+  const [assignedTo, setAssignedTo] = useState("Unassigned");
+  const [teamData, setTeamData] = useState([]);
+  const [description, setDescription] = useState('Description');
+  const Role = localStorage.getItem("Role");
   console.log("IID", i_id);
   // const id = Number(i_id);
   const payload = { issue_id: i_id };
@@ -131,20 +65,86 @@ export default function IssueDescription({ i_id }) {
     // toggleDropdown();
   };
 
-    // Function to handle opening the popover
-    const openPopover1 = () => {
-      setIsOpen1(true);
+  // Function to handle opening the popover
+  const openPopover1 = () => {
+    setIsOpen1(true);
+  };
+
+  // Function to handle closing the popover
+  const closePopover1 = () => {
+    setIsOpen1(false);
+  };
+
+  const handleOptionSelect1 = (value) => {
+    setAssignedTo(value);
+  };
+
+  const handlePostDescription = (event) => {
+    event.preventDefault();
+
+    if(type === 'task'){
+      const payload = {
+        task_id : issue.Task_ID,
+        description : description
+      }
+      console.log(payload);
+      AuthenticationService.updateTaskDescription(payload)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }else{
+      const payload = {
+        defect_id : issue.defect_ID,
+        description : description
+      }
+      console.log(payload);
+      AuthenticationService.updateDefectDescription(payload)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    const payload = {
+      issue_id: i_id,
+      status: selectedValue,
     };
-  
-    // Function to handle closing the popover
-    const closePopover1 = () => {
-      setIsOpen1(false);
+    if (!isLoading) {
+      console.log(payload);
+      AuthenticationService.updateIssueState(payload)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [selectedValue, proj_id, i_id]);
+
+  useEffect(() => {
+    const payload4 = {
+      email_id: assignedTo[0],
+      project_id: proj_id,
+      issue_id: i_id,
     };
-  
-    const handleOptionSelect1 = (value) => {
-      setAssignedTo(value);
-      // toggleDropdown();
-    };
+    if (assignedTo.length > 0) {
+      console.log(payload4);
+      AuthenticationService.assignMemberToIssue(payload4)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [assignedTo, proj_id, i_id]);
 
   const handleDescriptionFocus = () => {
     setSaveVisible(true);
@@ -167,24 +167,29 @@ export default function IssueDescription({ i_id }) {
         const response1 = AuthenticationService.projectWiseWorkflow(payload1);
         const response2 = AuthenticationService.particularIssueDetails(payload);
         const response3 = AuthenticationService.allComment(payload2);
-        const [data1, data2, data3] = await Promise.all([
+        const response4 = AuthenticationService.getAllProjectMember(payload1);
+        const [data1, data2, data3, data4] = await Promise.all([
           response1,
           response2,
           response3,
+          response4,
         ]);
 
         console.log("data1", data1);
         console.log("data2", data2);
         console.log("data3", data3);
+        console.log("data4", data4);
         setWorkflowData(data1.data);
 
         const work = data2.data.issue_details[0];
-        console.log("Work", work);
+        // console.log("Work", work);
         setAllComment(data3.data);
         setIssue(work);
         setType(work.type);
         setCurrentState(work.status);
         setSelectedValue(work.status);
+        setDescription(work.Description);
+        setTeamData(data4.data);
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -309,16 +314,16 @@ export default function IssueDescription({ i_id }) {
     currentState
   );
   const solutions = [...previousStates, ...nextStates, currentState];
-  console.log("Solution", solutions);
-  console.log("Previous States:", previousStates);
-  console.log("Next States:", nextStates);
+  // console.log("Solution", solutions);
+  // console.log("Previous States:", previousStates);
+  // console.log("Next States:", nextStates);
 
-  console.log("Issue", issue);
-  console.log("Type", type);
-  console.log("WorkflowData", workflowData);
-  console.log("WorkflowString", workflowString);
-  console.log("Workflow", workflow);
-  console.log("Current State", currentState);
+  // console.log("Issue", issue);
+  // console.log("Type", type);
+  // console.log("WorkflowData", workflowData);
+  // console.log("WorkflowString", workflowString);
+  // console.log("Workflow", workflow);
+  // console.log("Current State", currentState);
 
   return (
     <>
@@ -358,16 +363,16 @@ export default function IssueDescription({ i_id }) {
                       className="w-full h-12 focus:h-28 max-h-40 border-none bg-transparent"
                       onFocus={handleDescriptionFocus}
                       onBlur={handleDescriptionBlur}
-                      placeholder={issue.Description}
-                      value={issue.Description}
+                      // placeholder={issue.Description}
+                      value={description}
+                      onChange={(event) => setDescription(event.target.value)}
                     >
-                      {issue.Description}
+                      {description}
                     </textarea>
                   </div>
                   <div className="flex my-2 justify-start gap-2">
-                    {isSaveVisible && (
                       <>
-                        <button className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md">
+                        <button className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md" onClick={handlePostDescription}>
                           <span className="text-white font-semibold">Save</span>
                         </button>
 
@@ -377,7 +382,6 @@ export default function IssueDescription({ i_id }) {
                           </span>
                         </button>
                       </>
-                    )}
                   </div>
                 </div>
               </div>
@@ -415,20 +419,12 @@ export default function IssueDescription({ i_id }) {
                     ></textarea>
                   </div>
                   <div className="mt-2 ml-10">
-                    {isVisible && (
-                      <button
-                        className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md"
-                        onClick={handlePostComment}
-                      >
-                        <span className="text-white font-semibold">Add</span>
-                      </button>
-                    )}
-                    {/* <button className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md" onClick={handlePostComment}>
-                        <span className="text-white font-semibold">Add</span>
-                      </button> */}
-                    {/* <Button variant={"contained"} onClick={handlePostComment}>
-Add
-                      </Button> */}
+                    <button
+                      className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md"
+                      onClick={handlePostComment}
+                    >
+                      <span className="text-white font-semibold">Add</span>
+                    </button>
                   </div>
                 </div>
                 <div className=" ml-10 mt-2">
@@ -561,7 +557,7 @@ Add
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-1"
                   >
-                    <Popover.Panel className="absolute left-1/3 flex w-64 max-w-max -translate-x-1/2 px-4">
+                    <Popover.Panel className="absolute left-1/4 flex w-64 max-w-max -translate-x-1/2 px-8">
                       <div className="w-screen flex-auto overflow-hidden rounded-md bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
                         <div className="py-4 px-2">
                           {solutions.map((item) => (
@@ -605,6 +601,7 @@ Add
                           <Popover.Button
                             onClick={isOpen1 ? closePopover1 : openPopover1}
                             className="inline-flex items-center hover:bg-slate-200 bg-slate-100 py-2 px-4 rounded-md focus:border-transparent text-sm font-semibold text-gray-900"
+                            disabled={Role === "Self"}
                           >
                             <span>{assignedTo}</span>
                             <ChevronDownIcon
@@ -623,10 +620,10 @@ Add
                             leaveFrom="opacity-100 translate-y-0"
                             leaveTo="opacity-0 translate-y-1"
                           >
-                            <Popover.Panel className="absolute left-1/3 flex w-64 max-w-max -translate-x-1/2 px-4">
+                            <Popover.Panel className="absolute left-1/2 flex w-64 max-w-max -translate-x-1/2 px-2">
                               <div className="w-screen flex-auto overflow-hidden rounded-md bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
                                 <div className="py-4 px-2">
-                                  {solutions.map((item) => (
+                                  {teamData.map((item) => (
                                     <div
                                       key={item}
                                       className="group relative flex gap-x-6 rounded-r-lg p-2 hover:bg-gray-50 hover:border-l-4 hover:border-l-[#0052CC]"
