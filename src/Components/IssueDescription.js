@@ -314,16 +314,16 @@ export default function IssueDescription({ i_id }) {
     currentState
   );
   const solutions = [...previousStates, ...nextStates, currentState];
-  // console.log("Solution", solutions);
-  // console.log("Previous States:", previousStates);
-  // console.log("Next States:", nextStates);
+  console.log("Solution", solutions);
+  console.log("Previous States:", previousStates);
+  console.log("Next States:", nextStates);
 
-  // console.log("Issue", issue);
-  // console.log("Type", type);
-  // console.log("WorkflowData", workflowData);
-  // console.log("WorkflowString", workflowString);
-  // console.log("Workflow", workflow);
-  // console.log("Current State", currentState);
+  console.log("Issue", issue);
+  console.log("Type", type);
+  console.log("WorkflowData", workflowData);
+  console.log("WorkflowString", workflowString);
+  console.log("Workflow", workflow);
+  console.log("Current State", currentState);
 
   return (
     <>
