@@ -206,4 +206,24 @@ export default class AuthenticationService
     {
         return AxiosService.DetailedIssue(AuthenticationConfiguration.DetailedIssue());
     }
+
+    static updateDefect(data)
+    {
+        return AxiosService.updateDefect(AuthenticationConfiguration.updateDefect(),data);
+    }
+
+    static deleteDefect(data)
+    {
+        return AxiosService.deleteDefect(AuthenticationConfiguration.deleteDefect(),data);
+    }
+
+    static updateTask(data)
+    {
+        return AxiosService.updateDefect(AuthenticationConfiguration.updateTask(),data);
+    }
+
+    static deleteTask(data)
+    {
+        return AxiosService.deleteDefect(AuthenticationConfiguration.deleteTask(),data);
+    }
 }

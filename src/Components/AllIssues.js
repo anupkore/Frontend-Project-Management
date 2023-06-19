@@ -6,11 +6,13 @@ import AuthenticationService from "../Services/AuthenticationService";
 import Pagination from "./Pagination";
 import { FaSortDown, FaSortUp } from "react-icons/fa";
 import { Button, ButtonGroup } from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
 import ParticularIssueDashboard from "./ParticularIssueDashboard";
 import MyIssues from "./Myissues";
 import { GridLoader ,HashLoader,PacmanLoader } from "react-spinners";
 import Navbar from "./Navbar";
 import CreateIssueForm from "./CreateIssueForm";
+
 
 
 export const AllIssues = () => 
@@ -33,6 +35,42 @@ export const AllIssues = () =>
     })
   },[])
  
+  
+  // useEffect(() => {
+  //   setLoading(true);
+  //   AuthenticationService.allIssuesNew(payload)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setAllList(response.data);
+  //       console.log("Hi");
+  //       console.log(allList);
+  //     })
+  //     .catch((error) => {
+  //       console.log("ERROR" + error.data);
+  //     })
+  //     .finally(() => {
+  //       setLoading(false); // Set loading state to false when the request is completed
+  //     });
+  // }, []);
+  useEffect(() => {
+    setLoading(true);
+    AuthenticationService.allIssuesNew(payload)
+      .then((response) => {
+        console.log(response.data);
+        setAllList(response.data);
+        console.log("Hi");
+        console.log(allList);
+      })
+      .catch((error) => {
+        console.log("ERROR" + error.data);
+        toast.error("Internal Server Error")
+      })
+      .finally(() => {
+        setLoading(false); // Set loading state to false when the request is completed
+      });
+  }, []);
+  
+
   const filteredProjects = allList.filter((project) => {
     if (filterStatus === "All") {
       return true;

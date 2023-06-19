@@ -12,6 +12,7 @@ import AuthenticationService from "../Services/AuthenticationService";
 import { useEffect } from "react";
 import { index } from "d3-array";
 import { HashLoader } from "react-spinners";
+import { toast } from "react-toastify";
 
 export const Teams = () => {
   const { p_id } = useParams();
@@ -48,6 +49,7 @@ export const Teams = () => {
       } catch (error) {
         // Handle error if needed
         console.error("Error fetching workflow data:", error);
+        toast.error("Internal Server Error")
         setIsLoading(false);
         throw error;
       }
