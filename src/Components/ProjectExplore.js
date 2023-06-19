@@ -105,6 +105,30 @@ export const ProjectExplore = () => {
     setShowModal(false);
   };
 
+  const [statusValue, setStatusValue] = useState("");
+
+  const handleStatusChange = (event) => {
+    setStatusValue(event.target.value);
+  };
+
+  const handleSubmit1 = () => {
+   const payload={id:Number(localStorage.getItem("ProjectID")),status:statusValue};
+   console.log("status...",payload);
+    // Perform the submission logic here
+    AuthenticationService.addStatus(payload)
+    .then((response) => {
+      // Handle the success response
+      console.log(response.data);
+    })
+    .catch((error) => {
+      // Handle the error response
+      console.log(error.response.data);
+    });
+    console.log("Status submitted:", statusValue);
+    // Reset the textarea value if needed
+    setStatusValue("");
+  };
+
   return (
     <>
     {isLoading ?(
@@ -133,7 +157,7 @@ export const ProjectExplore = () => {
             </p>
           </div>
           <div className="mx-auto">
-            <div className="grid grid-rows-4 grid-cols-3 gap-12 ">
+            <div className="grid grid-rows-3 grid-cols-3 gap-12 ">
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Planned Start Date
@@ -230,6 +254,9 @@ export const ProjectExplore = () => {
                   {projectData.risk}
                 </dd>
               </div>
+          </div>
+
+              <div className="grid grid-rows-1 mt-5 grid-cols-2">
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Description
@@ -237,7 +264,24 @@ export const ProjectExplore = () => {
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {projectData.description}
                 </dd>
+
+                
               </div>
+              <div>
+        <dt className="text-sm font-medium leading-6 text-gray-900">Status</dt>
+        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+          <textarea
+            id="status"
+            rows={3}
+            className="px-0 w-full text-sm text-black border-0 focus:ring-0"
+            placeholder="Update status..."
+            required
+            value={statusValue}
+            onChange={handleStatusChange}
+            onBlur={handleSubmit1}
+          />
+        </dd>
+      </div>
               {/* <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Attachments
@@ -282,6 +326,7 @@ export const ProjectExplore = () => {
               DELETE
             </button>
           </div>
+
           <div>
             <Comments id={projectData.Project_id} ></Comments>
           </div>

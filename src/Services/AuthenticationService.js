@@ -206,4 +206,8 @@ export default class AuthenticationService
     {
         return AxiosService.DetailedIssue(AuthenticationConfiguration.DetailedIssue());
     }
+    static addStatus(data)
+    {
+        return AxiosService.addStatus(AuthenticationConfiguration.addStatus(),data);
+    }
 }

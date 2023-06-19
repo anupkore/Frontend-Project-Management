@@ -249,4 +249,9 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"DetailedIssue";
         return url;
     }
+    static addStatus()
+    {
+        const url = ParentConfiguration.parentURL()+"addstatus";
+        return url;
+    }
 }

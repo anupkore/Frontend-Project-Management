@@ -219,6 +219,10 @@ export default class AxiosService
     {
         return axios.get(url);
     }
+    static addStatus(url,data)
+    {
+        return axios.post(url,data);
+    }
    
 
 
