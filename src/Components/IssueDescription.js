@@ -8,10 +8,10 @@ import { SyncLoader } from "react-spinners";
 import AuthenticationService from "../Services/AuthenticationService";
 import { useEffect } from "react";
 import getAdjacentStates from "./States";
-import { isVisible } from "@testing-library/user-event/dist/utils";
+// import { isVisible } from "@testing-library/user-event/dist/utils";
 import { toast } from "react-toastify";
 
-export default function IssueDescription({ i_id }) {
+export default function IssueDescription({ i_id ,p_id ,p_name}) {
   const comment = useRef("");
   const [isSaveVisible, setSaveVisible] = useState(false);
   const [isAddVisible, setAddVisible] = useState(false);
@@ -27,8 +27,8 @@ export default function IssueDescription({ i_id }) {
     Priority: "",
     Estimated_time: "",
     severity: "",
-    Task_ID : 0 ,
-    defect_ID : 0 
+    Task_ID: 0,
+    defect_ID: 0,
   });
   const [type, setType] = useState("");
   const [currentState, setCurrentState] = useState("");
@@ -39,8 +39,9 @@ export default function IssueDescription({ i_id }) {
   const [showLatestComment, setShowLatestComment] = useState(false);
   const [assignedTo, setAssignedTo] = useState("Unassigned");
   const [teamData, setTeamData] = useState([]);
-  const [description, setDescription] = useState('Description');
+  const [description, setDescription] = useState("Description");
   const Role = localStorage.getItem("Role");
+  const user_email = localStorage.getItem("UserEmail");
   console.log("IID", i_id);
   // const id = Number(i_id);
   const payload = { issue_id: i_id };
@@ -82,11 +83,11 @@ export default function IssueDescription({ i_id }) {
   const handlePostDescription = (event) => {
     event.preventDefault();
 
-    if(type === 'task'){
+    if (type === "task") {
       const payload = {
-        task_id : issue.Task_ID,
-        description : description
-      }
+        task_id: issue.Task_ID,
+        description: description,
+      };
       console.log(payload);
       AuthenticationService.updateTaskDescription(payload)
         .then((response) => {
@@ -95,11 +96,11 @@ export default function IssueDescription({ i_id }) {
         .catch((error) => {
           console.error(error);
         });
-    }else{
+    } else {
       const payload = {
-        defect_id : issue.defect_ID,
-        description : description
-      }
+        defect_id: issue.defect_ID,
+        description: description,
+      };
       console.log(payload);
       AuthenticationService.updateDefectDescription(payload)
         .then((response) => {
@@ -162,42 +163,84 @@ export default function IssueDescription({ i_id }) {
     setAddVisible(false);
   };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response1 = AuthenticationService.projectWiseWorkflow(payload1);
-        const response2 = AuthenticationService.particularIssueDetails(payload);
-        const response3 = AuthenticationService.allComment(payload2);
-        const response4 = AuthenticationService.getAllProjectMember(payload1);
-        const [data1, data2, data3, data4] = await Promise.all([
-          response1,
-          response2,
-          response3,
-          response4,
-        ]);
+    if (Role !== "Self") {
+      const fetchData = async () => {
+        try {
+          const response1 = AuthenticationService.projectWiseWorkflow(payload1);
+          const response2 =
+            AuthenticationService.particularIssueDetails(payload);
+          const response3 = AuthenticationService.allComment(payload2);
+          const response4 = AuthenticationService.getAllProjectMember(payload1);
+          const [data1, data2, data3, data4] = await Promise.all([
+            response1,
+            response2,
+            response3,
+            response4,
+          ]);
 
-        console.log("data1", data1);
-        console.log("data2", data2);
-        console.log("data3", data3);
-        console.log("data4", data4);
-        setWorkflowData(data1.data);
+          console.log("data1", data1);
+          console.log("data2", data2);
+          console.log("data3", data3);
+          console.log("data4", data4);
+          setWorkflowData(data1.data);
 
-        const work = data2.data.issue_details[0];
-        // console.log("Work", work);
-        setAllComment(data3.data);
-        setIssue(work);
-        setType(work.type);
-        setCurrentState(work.status);
-        setSelectedValue(work.status);
-        setDescription(work.Description);
-        setTeamData(data4.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-        setIsLoading(false);
-      }
-    };
+          const work = data2.data.issue_details[0];
+          // console.log("Work", work);
+          setAllComment(data3.data);
+          setIssue(work);
+          setType(work.type);
+          setCurrentState(work.status);
+          setSelectedValue(work.status);
+          setDescription(work.Description);
+          setTeamData(data4.data);
+          setIsLoading(false);
+        } catch (error) {
+          console.error(error);
+          setIsLoading(false);
+        }
+      };
 
-    fetchData();
+      fetchData();
+    }else{
+      const fetchData = async () => {
+        const payload3 = { project_id: p_id };
+        console.log(payload3);
+        try {
+          const response1 = AuthenticationService.projectWiseWorkflow(payload3);
+          const response2 =
+            AuthenticationService.particularIssueDetails(payload);
+          const response3 = AuthenticationService.allComment(payload2);
+          // const response4 = AuthenticationService.getAllProjectMember(payload1);
+          const [data1, data2, data3] = await Promise.all([
+            response1,
+            response2,
+            response3
+          ]);
+
+          console.log("data1", data1);
+          console.log("data2", data2);
+          console.log("data3", data3);
+          // console.log("data4", data4);
+          setWorkflowData(data1.data);
+
+          const work = data2.data.issue_details[0];
+          // console.log("Work", work);
+          setAllComment(data3.data);
+          setIssue(work);
+          setType(work.type);
+          setCurrentState(work.status);
+          setSelectedValue(work.status);
+          setDescription(work.Description);
+          // setTeamData(data4.data);
+          setIsLoading(false);
+        } catch (error) {
+          console.error(error);
+          setIsLoading(false);
+        }
+      };
+
+      fetchData();
+    }
   }, [isLoading]);
 
   useEffect(() => {
@@ -314,16 +357,16 @@ export default function IssueDescription({ i_id }) {
     currentState
   );
   const solutions = [...previousStates, ...nextStates, currentState];
-  // console.log("Solution", solutions);
-  // console.log("Previous States:", previousStates);
-  // console.log("Next States:", nextStates);
+  console.log("Solution", solutions);
+  console.log("Previous States:", previousStates);
+  console.log("Next States:", nextStates);
 
-  // console.log("Issue", issue);
-  // console.log("Type", type);
-  // console.log("WorkflowData", workflowData);
-  // console.log("WorkflowString", workflowString);
-  // console.log("Workflow", workflow);
-  // console.log("Current State", currentState);
+  console.log("Issue", issue);
+  console.log("Type", type);
+  console.log("WorkflowData", workflowData);
+  console.log("WorkflowString", workflowString);
+  console.log("Workflow", workflow);
+  console.log("Current State", currentState);
 
   return (
     <>
@@ -342,7 +385,7 @@ export default function IssueDescription({ i_id }) {
             <div className="m-4 ">
               <div className="flex py-2">
                 <h1 className="text-slate-500 underline decoration-2 decoration-sky-400">
-                  {localStorage.getItem("ProjectName")}
+                  {Role !=="Self" ? (localStorage.getItem("ProjectName")) : (p_name)}
                 </h1>
               </div>
               <div>
@@ -371,17 +414,18 @@ export default function IssueDescription({ i_id }) {
                     </textarea>
                   </div>
                   <div className="flex my-2 justify-start gap-2">
-                      <>
-                        <button className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md" onClick={handlePostDescription}>
-                          <span className="text-white font-semibold">Save</span>
-                        </button>
+                    <>
+                      <button
+                        className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md"
+                        onClick={handlePostDescription}
+                      >
+                        <span className="text-white font-semibold">Save</span>
+                      </button>
 
-                        <button className="hover:bg-slate-100 px-3 py-1 hover:rounded-sm">
-                          <span className="text-black font-semibold">
-                            Cancel
-                          </span>
-                        </button>
-                      </>
+                      <button className="hover:bg-slate-100 px-3 py-1 hover:rounded-sm">
+                        <span className="text-black font-semibold">Cancel</span>
+                      </button>
+                    </>
                   </div>
                 </div>
               </div>
@@ -603,14 +647,13 @@ export default function IssueDescription({ i_id }) {
                             className="inline-flex items-center hover:bg-slate-200 bg-slate-100 py-2 px-4 rounded-md focus:border-transparent text-sm font-semibold text-gray-900"
                             disabled={Role === "Self"}
                           >
-                            <span>{assignedTo}</span>
+                            <span>{Role !== "Self" ? (assignedTo) : (user_email)}</span>
                             <ChevronDownIcon
                               className="ml-2 h-5 w-5"
                               aria-hidden="true"
                             />
                           </Popover.Button>
-
-                          <Transition
+                          {Role !== 'Self' && <Transition
                             show={isOpen1}
                             as={Fragment}
                             enter="transition ease-out duration-200"
@@ -646,7 +689,8 @@ export default function IssueDescription({ i_id }) {
                                 </div>
                               </div>
                             </Popover.Panel>
-                          </Transition>
+                          </Transition>}
+                          
                         </Popover>
                       </div>
                       {/* <button className="px-3 py-1 my-1">

@@ -186,7 +186,6 @@ export default class AuthenticationService
     static userWiseIssues(data){
         return AxiosService.userWiseIssues(AuthenticationConfiguration.userWiseIssues(),data);
     }
-
     static IssueByWeek(data)
     {
         return AxiosService.IssueByWeek(AuthenticationConfiguration.IssueByWeek(),data);

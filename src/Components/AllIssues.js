@@ -32,25 +32,7 @@ export const AllIssues = () =>
       console.log(error);
     })
   },[])
-  
-  // useEffect(() => {
-  //   setLoading(true);
-  //   AuthenticationService.allIssuesNew(payload)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setAllList(response.data);
-  //       console.log("Hi");
-  //       console.log(allList);
-  //     })
-  //     .catch((error) => {
-  //       console.log("ERROR" + error.data);
-  //     })
-  //     .finally(() => {
-  //       setLoading(false); // Set loading state to false when the request is completed
-  //     });
-  // }, []);
-  
-
+ 
   const filteredProjects = allList.filter((project) => {
     if (filterStatus === "All") {
       return true;
@@ -295,24 +277,6 @@ export const AllIssues = () =>
                         </tbody>
                       </table>
                     </div>
-                  {/* </div> */}
-                  {/* <div className="flex mt-3 mx-auto justify-center">
-                    <div className="mr-20 my-auto">
-                      <span>
-                        {currentPage} of{" "}
-                        {Math.ceil(filteredProjects.length / membersPerPage)}
-                      </span>
-                    </div>
-                    <div>
-                      <Pagination
-                        membersPerPage={membersPerPage}
-                        totalMembers={filteredProjects.length}
-                        paginate={paginate}
-                        currentPage={currentPage}
-                      ></Pagination>
-                    </div>
-                  </div> */}
-
                 </div>
               </>
             )}
