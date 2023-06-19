@@ -40,17 +40,6 @@ export default function SideBar({p_id}) {
     }
   };
 
-  // useEffect(() => {
-  //   AuthenticationService.projectExplore(payload)
-  //     .then((response) => {
-  //       // console.log(response.data);
-  //       setPname(response.data.Project_name);
-  //     })  
-  //     .catch((error) => {
-  //       console.log(error.response.data);
-  //     });
-  // }, []);
-
   return (
     <>
       <div
