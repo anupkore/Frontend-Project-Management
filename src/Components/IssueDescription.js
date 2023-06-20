@@ -95,6 +95,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
         })
         .catch((error) => {
           console.error(error);
+          
         });
     } else {
       const payload = {

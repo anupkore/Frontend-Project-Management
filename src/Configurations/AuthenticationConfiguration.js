@@ -241,7 +241,7 @@ export default class AuthenticationConfiguration
     }
     static IssueByDaily()
     {
-        const url = ParentConfiguration.parentURL()+"IssueByDaily";
+        const url = ParentConfiguration.parentURL()+"IssueByDay";
         return url;
     }
     static DetailedIssue()

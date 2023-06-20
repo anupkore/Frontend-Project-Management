@@ -13,6 +13,8 @@ import Navbar from "./Navbar";
 import IssueDashboard from "./IssueDashboard";
 
 export const AllProjectList = () => {
+
+  
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
   const [allList, setAllList] = useState([]);
@@ -24,6 +26,8 @@ export const AllProjectList = () => {
   console.log("userID", userID);
   var payload = { user_id: userID };
   console.log(userID);
+  localStorage.removeItem("ProjectName");
+  localStorage.removeItem("ProjectID");
   useEffect(() => {
     setLoading(true);
     AuthenticationService.allProjects(payload)
