@@ -12,6 +12,9 @@ import { HashLoader } from "react-spinners";
 import { ToastContainer, toast } from 'react-toastify';
 import Navbar from "./Navbar";
 import IssueDashboard from "./IssueDashboard";
+import ErrorPage from "./ErrorPage";
+import {useLocation} from "react-router-dom";
+
 
 export const AllProjectList = () => {
 
@@ -19,7 +22,8 @@ export const AllProjectList = () => {
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
   const [allList, setAllList] = useState([]);
-
+  const location = useLocation();
+  // console.log(location.pathname);
   const [myIssues, setMyIssues] = useState(false);
   const [loading, setLoading] = useState(true);
   const [flag, setFlag] = useState("false");
@@ -29,23 +33,61 @@ export const AllProjectList = () => {
   console.log(userID);
   localStorage.removeItem("ProjectName");
   localStorage.removeItem("ProjectID");
-  useEffect(() => {
-    setLoading(true);
-    AuthenticationService.allProjects(payload)
-      .then((response) => {
-        console.log(response.data);
-        setAllList(response.data);
-        console.log("Hi");
-        console.log(allList);
-      })
-      .catch((error) => {
-        console.log("ERROR" + error.data);
-        toast.error("Internal Server Error")
-      })
-      .finally(() => {
-        setLoading(false); // Set loading state to false when the request is completed
-      });
-  }, []);
+  // const [showErrorPage, setShowErrorPage] = useState(false);
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   AuthenticationService.allProjects(payload)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setAllList(response.data);
+  //       console.log("Hi");
+  //       console.log(allList);
+  //     })
+  //     .catch((error) => {
+  //       setShowErrorPage(true);
+  //       console.log("ERROR" + error.data);
+  //       // toast.error("Internal Server Error")
+
+  //     })
+  //     .finally(() => {
+  //       setLoading(false); // Set loading state to false when the request is completed
+  //     });
+  // }, []);
+
+  const [showErrorPage, setShowErrorPage] = useState(false);
+
+useEffect(() => {
+  let timerId = null;
+
+  setLoading(true);
+
+  // Start a timer to track the loading time
+  timerId = setTimeout(() => {
+    setShowErrorPage(true);
+  }, 5000);
+
+  AuthenticationService.allProjects(payload)
+    .then((response) => {
+      console.log(response.data);
+      setAllList(response.data);
+      console.log("Hi");
+      console.log(allList);
+    })
+    .catch((error) => {
+      setShowErrorPage(true);
+      console.log("ERROR" + error.data);
+      // toast.error("Internal Server Error")
+    })
+    .finally(() => {
+      clearTimeout(timerId); // Clear the timer when the request is completed
+      setLoading(false); // Set loading state to false when the request is completed
+    });
+
+  // Clean up the timer if the component unmounts or the effect runs again
+  return () => clearTimeout(timerId);
+}, []);
+
   localStorage.removeItem("Role");
 
   const filteredProjects = allList.filter((project) => {
@@ -144,6 +186,7 @@ export const AllProjectList = () => {
   return (
     <>
       {loading ? (
+        <>
         <div className="flex justify-center">
           <HashLoader
             color="#1976d2"
@@ -151,9 +194,14 @@ export const AllProjectList = () => {
             size={100}
             speedMultiplier={1}
           />
+          {/* {toast.error("Internal Server Error")} */}
           {/* <PacmanLoader color="#1976d2" size={50}/>   */}
         </div>
+        
+        </>
       ) : (
+        showErrorPage ? <ErrorPage error={"Server Unavailabe"} location={location.pathname}></ErrorPage> :
+        (
         <div>
           <div>
             <div
@@ -358,6 +406,7 @@ export const AllProjectList = () => {
             )}
           </div>
         </div>
+        )
       )}
     </>
   );
