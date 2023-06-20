@@ -52,7 +52,7 @@ export const AllProjectList = () => {
         setMyError(error.message);
         setLoading(true);
         setIsFetching(true);
-        console.error('Error:', error); // Display the error message in the console
+        console.error('Error:', myError); // Display the error message in the console
         
   
         // Check for specific error codes in the error object
@@ -62,7 +62,7 @@ export const AllProjectList = () => {
           toast.error('Bad Request Error:.');
         } else if (error.message === 'Network Error') {
           // Handle CORS error
-          
+
           toast.error('CORS Error: Unable to make a request due to CORS restrictions.');
         } else {
           // Handle other errors

@@ -29,24 +29,85 @@ export const ProjectExplore = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate  = useNavigate();
 
+  // useEffect(() => {
+  //   console.log(payload);
+  //   AuthenticationService.projectExplore(payload)
+  //     .then((response) => {
+  //       setProjectDetails((existingData) => {
+  //         console.log(response.data);
+  //         setProjectData(response.data);
+  //         setIsLoading(false);
+  //         console.log("projectData", projectData);
+  //         // console.log(allProjectData.Project_name);
+  //         // setProjectID(allProjectData.Project_id);
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response.data);
+  //       toast.error("Internal Server Error")
+  //       setIsLoading(false);
+  //     });
+  // }, []);
+           
+  const [isFetching, setIsFetching] = useState(true);
+  const [myError, setMyError] = useState('');
+
   useEffect(() => {
-    console.log(payload);
-    AuthenticationService.projectExplore(payload)
-      .then((response) => {
-        setProjectDetails((existingData) => {
-          console.log(response.data);
-          setProjectData(response.data);
-          setIsLoading(false);
-          console.log("projectData", projectData);
-          // console.log(allProjectData.Project_name);
-          // setProjectID(allProjectData.Project_id);
-        });
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-        toast.error("Internal Server Error")
+      
+    const fetchData = async () => {
+      console.log("12345555");
+      try {
+        const response = await AuthenticationService.projectExplore(payload);
+        if (response && response.data) {
+          setProjectDetails((existingData) => {
+            console.log(response.data);
+            setProjectData(response.data);
+            setIsLoading(false);
+            console.log("projectData", projectData);
+          console.log('Status code:', response.status); // Display the status code in the console
+          // toast.error("No Internal Server Error"); 
+          })
+          // Check for specific error codes in the response
+          if (response.status !== 200) {
+            // Handle 400 error code
+            console.log('Bad Request Error12233:', response.data);
+            // toast.error("Internal Server Error");
+          }
+          // Add more conditionals for other error codes if needed
+        }
+      } catch (error) {
+        setMyError(error.message);
+        setIsFetching(true);
         setIsLoading(false);
-      });
+        console.error('Error:', myError); // Display the error message in the console
+        
+  
+        // Check for specific error codes in the error object
+        if (error.response && error.response.status !== 200) {
+          // Handle 400 error code
+          console.log('Bad Request Error:', error.response.data);
+          // toast.error('Bad Request Error:.');
+        } else if (error.message === 'Network Error') {
+          // Handle CORS error
+
+          toast.error('CORS Error: Unable to make a request due to CORS restrictions.');
+        } else {
+          // Handle other errors
+          toast.error(`Error...: ${error.message}`);
+        }
+        // Add more conditionals for other error codes if needed
+      }
+    };
+  
+     // Call the fetchData function
+    console.log("yjb....");
+    // Cleanup function to clear any existing toasts
+  return () => {
+    toast.dismiss();
+    fetchData();
+    toast.dismiss();
+  };
+  
   }, []);
 
   const ProjectName = projectData.Project_name;
@@ -63,7 +124,7 @@ export const ProjectExplore = () => {
       .catch((error) => {
         // Handle the error response
         console.log(error.response.data);
-        toast.error("Internal Server Error")
+        // toast.error("Internal Server Error")
       });
   };
 
@@ -148,34 +209,97 @@ export const ProjectExplore = () => {
           // Handle the error response
         });
     }
+    toast.dismiss();
   };
   
   
 
+  // useEffect(() => {
+  //   console.log("Displaying status...");
+  //   const payload = {
+  //     id: Number(localStorage.getItem("ProjectID")),
+  //   };
+  //   AuthenticationService.status_display(payload)
+  //     .then((response) => {
+  //       console.log("statusData...", response.data[0]);
+  //       setStatusValue((prevStatusValue) => {
+  //         if (response.data[0]) {
+  //           setStatusAlreadyExists(true);
+  //           return response.data[0];
+  //         } else {
+  //           setStatusAlreadyExists(false);
+  //           return prevStatusValue;
+  //         }
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response.data);
+  //     });
+  // }, []);
+  
   useEffect(() => {
     console.log("Displaying status...");
     const payload = {
       id: Number(localStorage.getItem("ProjectID")),
     };
-    AuthenticationService.status_display(payload)
-      .then((response) => {
-        console.log("statusData...", response.data[0]);
-        setStatusValue((prevStatusValue) => {
-          if (response.data[0]) {
-            setStatusAlreadyExists(true);
-            return response.data[0];
-          } else {
-            setStatusAlreadyExists(false);
-            return prevStatusValue;
+   
+    const fetchData = async () => {
+      console.log("12345555");
+      try {
+        const response = await  AuthenticationService.status_display(payload)
+        if (response && response.data) {
+          console.log("statusData...", response.data[0]);
+          setStatusValue((prevStatusValue) => {
+            if (response.data[0]) {
+              setStatusAlreadyExists(true);
+              return response.data[0];
+            } else {
+              setStatusAlreadyExists(false);
+              return prevStatusValue;
+            }
+          });
+          // Check for specific error codes in the response
+          if (response.status !== 200) {
+            // Handle 400 error code
+            console.log('Bad Request Error12233:', response.data);
+            // toast.error("Internal Server Error");
           }
-        });
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });
+          // Add more conditionals for other error codes if needed
+        }
+      } catch (error) {
+        setMyError(error.message);
+        setIsFetching(true);
+        setIsLoading(false);
+        console.error('Error:', myError); // Display the error message in the console
+        
+  
+        // Check for specific error codes in the error object
+        if (error.response && error.response.status !== 200) {
+          // Handle 400 error code
+          console.log('Bad Request Error:', error.response.data);
+          // toast.error('Bad Request Error:.');
+        } else if (error.message === 'Network Error') {
+          // Handle CORS error
+
+          toast.error('CORS Error: Unable to make a request due to CORS restrictions.');
+        } else {
+          // Handle other errors
+          toast.error(`Error...: ${error.message}`);
+        }
+        // Add more conditionals for other error codes if needed
+      }
+    };
+  
+     // Call the fetchData function
+    console.log("yjb....");
+    // Cleanup function to clear any existing toasts
+  return () => {
+    toast.dismiss();
+    fetchData();
+    toast.dismiss();
+  };
+  
   }, []);
-  
-  
 
   return (
     <>
