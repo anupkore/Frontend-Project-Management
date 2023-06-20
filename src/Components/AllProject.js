@@ -9,6 +9,7 @@ import { Button, ButtonGroup } from "@mui/material";
 import ParticularIssueDashboard from "./ParticularIssueDashboard";
 import MyIssues from "./Myissues";
 import { HashLoader } from "react-spinners";
+import { ToastContainer, toast } from 'react-toastify';
 import Navbar from "./Navbar";
 import IssueDashboard from "./IssueDashboard";
 
@@ -39,6 +40,7 @@ export const AllProjectList = () => {
       })
       .catch((error) => {
         console.log("ERROR" + error.data);
+        toast.error("Internal Server Error")
       })
       .finally(() => {
         setLoading(false); // Set loading state to false when the request is completed

@@ -5,7 +5,7 @@ import { SyncLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-function CreateTask({ issueId }) {
+function UpdateTask({ issueId }) {
   const [title, setTitle] = useState("");
   //const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -20,9 +20,9 @@ function CreateTask({ issueId }) {
     setTitle(event.target.value);
   }
 
-  // function handleInputChangeDescription(event) {
-  //   setDescription(event.target.value);
-  // }
+//   function handleInputChangeDescription(event) {
+//     setDescription(event.target.value);
+//   }
 
   function handleInputChangeStartDate(event) {
     setStartDate(event.target.value);
@@ -40,7 +40,7 @@ function CreateTask({ issueId }) {
     setEstimatedTime(event.target.value);
   }
 
-  function handleCreateTask(event) {
+  function handleUpdateTask(event) {
     setIsLoading(true);
     event.preventDefault();
     var payload = {
@@ -52,8 +52,8 @@ function CreateTask({ issueId }) {
       estimated_time: estimatedTime,
     };
     console.log(payload);
-    AuthenticationService.createTask(payload).then(() => {
-      toast.success("Task Added Sucessfully!! ", {
+    AuthenticationService.updateTask(payload).then(() => {
+      toast.success("Task Updated Sucessfully!! ", {
         position: "top-right",
         autoClose: 1000,
         hideProgressBar: true,
@@ -64,7 +64,7 @@ function CreateTask({ issueId }) {
         theme: "light",
       });
       setIsLoading(false);
-      window.location.href="/allIssues";
+      navigate("/allIssues");
     })
     .catch((error) => {
       console.log(error);
@@ -86,7 +86,7 @@ function CreateTask({ issueId }) {
           <div className="mx-auto max-w-2xl pb-3">
             <div className="text-center">
               <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-                Create New Task
+                Update Task
               </h1>
             </div>
           </div>
@@ -127,10 +127,8 @@ function CreateTask({ issueId }) {
                           disabled={isLoading}
                         />
                       </div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
-                    <div className="">
+
+                      <div className="">
                       <label
                         htmlFor="company"
                         className="block text-sm font-semibold leading-6 text-gray-900"
@@ -169,10 +167,10 @@ function CreateTask({ issueId }) {
                           disabled={isLoading}
                         />
                       </div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
                     
+                    
+                    </div>
+
                     <div>
                       <label
                         htmlFor="first-name"
@@ -216,7 +214,9 @@ function CreateTask({ issueId }) {
                         />
                       </div>
                     </div>
+                    </div>
                   </div>
+                 
                   {/* <div>
                       <label
                         htmlFor="last-name"
@@ -239,7 +239,7 @@ function CreateTask({ issueId }) {
                   </div> */}
                   <div className="flex mt-5 justify-center ">
                     <button
-                      onClick={handleCreateTask}
+                      onClick={handleUpdateTask}
                       variant="contained"
                       className={`text-white font-bold py-2 px-4 rounded ${
                         isLoading
@@ -248,7 +248,7 @@ function CreateTask({ issueId }) {
                       }`}
                       disabled={isLoading}
                     >
-                      Create
+                      Update
                     </button>
                   </div>
                 </form>
@@ -261,4 +261,4 @@ function CreateTask({ issueId }) {
   );
 }
 
-export default CreateTask;
+export default UpdateTask;

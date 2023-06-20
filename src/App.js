@@ -37,6 +37,8 @@ import CreateTask from './Components/CreateTask';
 import CreateDefect from './Components/CreateDefect';
 import AllIssues from './Components/AllIssues';
 import IssueDescription from './Components/IssueDescription';
+import UpdateDefect from './Components/UpdateDefect';
+import UpdateTask from './Components/UpdateTask';
 
 
 const App = () => {
@@ -82,6 +84,12 @@ const App = () => {
 <Route path='/createDefect' element={<CreateDefect></CreateDefect>} />
 <Route path='/allIssues' element={<ProtectedRoute element={IssueDashboard} />}/>
 <Route path='/demo' element={<IssueDescription></IssueDescription>} />
+
+<Route path='/updateDefect' element={<UpdateDefect></UpdateDefect>} />
+<Route path='/updateTask' element={<UpdateTask></UpdateTask>} />      
+      
+      
+      
       </Routes>
     </Router>
   );

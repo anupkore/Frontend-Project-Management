@@ -11,6 +11,7 @@ import { projects1 } from "./TEST/Projects";
 import AuthenticationService from "../Services/AuthenticationService";
 import CreateWorkflow from "./CreateWorkflow";
 import { HashLoader } from "react-spinners";
+import { toast } from "react-toastify";
 
 export const ProjectExplore = () => {
   const maxWidth = "md";
@@ -43,6 +44,7 @@ export const ProjectExplore = () => {
       })
       .catch((error) => {
         console.log(error.response.data);
+        toast.error("Internal Server Error")
         setIsLoading(false);
       });
   }, []);
@@ -61,6 +63,7 @@ export const ProjectExplore = () => {
       .catch((error) => {
         // Handle the error response
         console.log(error.response.data);
+        toast.error("Internal Server Error")
       });
   };
 
@@ -85,6 +88,7 @@ export const ProjectExplore = () => {
     .catch((error) => {
       // Handle the error response
       console.log(error.response.data);
+      toast.error("Internal Server Error")
     });
     }
   }
@@ -104,6 +108,74 @@ export const ProjectExplore = () => {
   const handleCloseUpdateForm = () => {
     setShowModal(false);
   };
+
+  const [statusValue, setStatusValue] = useState("");
+  const [statusAlreadyExists, setStatusAlreadyExists] = useState(false);
+
+  const handleStatusChange = (event) => {
+    setStatusValue(event.target.value);
+  };
+  
+  
+  const handleSubmit1 = () => {
+    const payload = {
+      id: Number(localStorage.getItem("ProjectID")),
+      status: statusValue
+    };
+    console.log(payload);
+    // Check if the status already exists
+    if (statusValue !== "" || statusAlreadyExists) {
+      AuthenticationService.update_status(payload)
+        .then((response) => {
+          console.log("upate status addddd",response.data);
+          // Handle the success response
+          setStatusValue(response.data[0]);
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+          // Handle the error response
+        });
+    } else {
+      AuthenticationService.addStatus(payload)
+        .then((response) => {
+          console.log("new status addddd",response.data);
+          setStatusAlreadyExists(true);
+          setStatusValue(response.data[0]);
+          // Handle the success response
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+          // Handle the error response
+        });
+    }
+  };
+  
+  
+
+  useEffect(() => {
+    console.log("Displaying status...");
+    const payload = {
+      id: Number(localStorage.getItem("ProjectID")),
+    };
+    AuthenticationService.status_display(payload)
+      .then((response) => {
+        console.log("statusData...", response.data[0]);
+        setStatusValue((prevStatusValue) => {
+          if (response.data[0]) {
+            setStatusAlreadyExists(true);
+            return response.data[0];
+          } else {
+            setStatusAlreadyExists(false);
+            return prevStatusValue;
+          }
+        });
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }, []);
+  
+  
 
   return (
     <>
@@ -133,7 +205,7 @@ export const ProjectExplore = () => {
             </p>
           </div>
           <div className="mx-auto">
-            <div className="grid grid-rows-4 grid-cols-3 gap-12 ">
+            <div className="grid grid-rows-3 grid-cols-3 gap-12 ">
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Planned Start Date
@@ -216,7 +288,7 @@ export const ProjectExplore = () => {
               </div>
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
-                  Status
+                  State
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {projectData.Status}
@@ -230,6 +302,9 @@ export const ProjectExplore = () => {
                   {projectData.risk}
                 </dd>
               </div>
+          </div>
+
+              <div className="grid grid-rows-1 mt-5 grid-cols-2">
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Description
@@ -237,7 +312,25 @@ export const ProjectExplore = () => {
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {projectData.description}
                 </dd>
+
+                
               </div>
+              <div>
+        <dt className="text-sm font-medium leading-6 text-gray-900">Status</dt>
+        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+        <textarea
+          id="status"
+          rows={3}
+          className="px-2 w-full text-sm text-black border-0 focus:ring-1 "
+          required
+          value={statusValue}
+          onChange={handleStatusChange}
+          onBlur={handleSubmit1}
+        />
+      </dd>
+        </dd>
+      </div>
               {/* <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">
                   Attachments
@@ -282,6 +375,7 @@ export const ProjectExplore = () => {
               DELETE
             </button>
           </div>
+
           <div>
             <Comments id={projectData.Project_id} ></Comments>
           </div>
