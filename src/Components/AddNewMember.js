@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import axios from "axios";
 
 export default function AddNewMember({ userData }) {
-  const name = useRef("");
-  const Email_id = useRef("");
-  const contact = useRef("");
+  const Name = useRef("");
+  const Email_ID = useRef("");
+  const Contact = useRef("");
   const role = useRef("User");
   const [errorName, setErrorName] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
@@ -15,9 +15,9 @@ export default function AddNewMember({ userData }) {
 
   useEffect(() => {
     if (userData) {
-      name.current.value = userData.name;
-      Email_id.current.value = userData.Email_id;
-      contact.current.value = userData.contact;
+      Name.current.value = userData.Name;
+      Email_ID.current.value = userData.Email_ID;
+      Contact.current.value = userData.Contact;
       // role.current.value = userData.role;
     }
   }, [userData]);
@@ -34,10 +34,10 @@ export default function AddNewMember({ userData }) {
       return emailRegex.test(email);
     }
 
-    function validateContact(contact) 
+    function validateContact(Contact) 
     {
-      const contactRegex = /^\d{10}$/;
-      return contactRegex.test(contact);
+      const ContactRegex = /^\d{10}$/;
+      return ContactRegex.test(Contact);
     }
 
     function handleInputChangeName()
@@ -57,17 +57,17 @@ export default function AddNewMember({ userData }) {
     {
       event.preventDefault();
 
-      if (!validateName(name.current.value)) 
+      if (!validateName(Name.current.value)) 
       {
         setErrorName('Please Enter Valid Name');
         return;
       }
-      if (!validateEmail(Email_id.current.value)) 
+      if (!validateEmail(Email_ID.current.value)) 
       {
         setErrorEmail('Please Enter Valid Email');
         return;
       }
-      if (!validateContact(contact.current.value)) 
+      if (!validateContact(Contact.current.value)) 
       {
         setErrorContact('Please Enter Valid Contact');
         return;
@@ -75,9 +75,9 @@ export default function AddNewMember({ userData }) {
       
       var payload = 
       {   
-          name: name.current.value,
-          email_id: Email_id.current.value,
-          contact: contact.current.value,
+          Name: Name.current.value,
+          Email_ID: Email_ID.current.value,
+          Contact: Contact.current.value,
           //role: role.current.value
       }
       console.log(payload);
@@ -124,10 +124,10 @@ export default function AddNewMember({ userData }) {
                       </label>
                       <div className="mt-2">
                         <input
-                          id="name"
-                          name="name"
+                          id="Name"
+                          name="Name"
                           type="text"
-                          ref={name}
+                          ref={Name}
                           onChange={handleInputChangeName}
                           autoComplete="name"
                           required
@@ -146,7 +146,7 @@ export default function AddNewMember({ userData }) {
                           id="email"
                           name="email"
                           type="email"
-                          ref={Email_id}
+                          ref={Email_ID}
                           onChange={handleInputChangeEmail}
                           autoComplete="email"
                           required
@@ -185,10 +185,10 @@ export default function AddNewMember({ userData }) {
                       </div>
                       <div className="mt-2">
                         <input
-                          id="contact"
-                          name="contact"
+                          id="Contact"
+                          name="Contact"
                           type="text"
-                          ref={contact}
+                          ref={Contact}
                           onChange={handleInputChangeContact}
                           autoComplete="current-password"
                           required

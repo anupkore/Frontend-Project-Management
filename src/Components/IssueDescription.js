@@ -49,7 +49,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
   const payload2 = { id: i_id };
   console.log(payload2);
 
-  const payload1 = { project_id: proj_id };
+  const payload1 = { Project_ID: proj_id };
   console.log(payload1);
   // Function to handle opening the popover
   const openPopover = () => {
@@ -132,8 +132,8 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
 
   useEffect(() => {
     const payload4 = {
-      email_id: assignedTo[0],
-      project_id: proj_id,
+      Email_ID: assignedTo[0],
+      Project_ID: proj_id,
       issue_id: i_id,
     };
     if (assignedTo.length > 0) {
@@ -204,7 +204,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
       fetchData();
     }else{
       const fetchData = async () => {
-        const payload3 = { project_id: p_id };
+        const payload3 = { Project_ID: p_id };
         console.log(payload3);
         try {
           const response1 = AuthenticationService.projectWiseWorkflow(payload3);
@@ -269,7 +269,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
     event.preventDefault();
     var payload = {
       id: i_id,
-      user_id: Number(UserID),
+      user_ID: Number(UserID),
       description: comment.current.value,
     };
     console.log("commentttt", payload);

@@ -15,11 +15,11 @@ export default function IssueCard(props) {
         {/* <Link to={"/issuedes/" + props.pro.Issue_Id} > */}
           <CardContent>
             <Typography gutterBottom component="div">
-              Title : {props.pro.Issue_name}
+              Title : {props.pro.issue_name}
               {/* Title : {"props.pro.Issue_name"}  */}
             </Typography>
             <Typography>
-              <p className="text-end">Type : {props.pro.Type}</p>
+              <p className="text-end">Type : {props.pro.type}</p>
               {/* <p className="text-end">Type : {"props.pro.Type"}</p> */}
             </Typography>
           </CardContent>

@@ -10,14 +10,14 @@ import CustomizedDialogs from "./IssueDialog";
 
 function IssueCardHolder(props) {
   const [issues,setIssues] = useState([]);
-  const project_id = localStorage.getItem("ProjectID");
-  const payload = { project_id: project_id };
+  const Project_ID = localStorage.getItem("ProjectID");
+  const payload = { Project_ID: Project_ID };
   const issueCards = issues.filter((issue) => issue.Status === props.iss);
   const maxWidth = 'md';
   const Role = localStorage.getItem("Role");
-  const user_id = Number(localStorage.getItem("UserID"));
-  // const project_id = 101;
-  const payload1 = { user_id: user_id};
+  const user_ID = Number(localStorage.getItem("UserID"));
+  // const Project_ID = 101;
+  const payload1 = { user_ID: user_ID};
   console.log(payload1);
   useEffect(() => {
     if(Role !== "Self"){
@@ -43,7 +43,7 @@ function IssueCardHolder(props) {
         // setIsLoading(false);
       });
       }
-  }, [user_id,project_id]);
+  }, [user_ID,Project_ID]);
   return (
     <div id="content" className="mx-auto ">
       <Link to={`/issue/${props.iss}`}>

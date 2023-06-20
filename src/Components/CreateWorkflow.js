@@ -114,7 +114,7 @@ const CreateWorkflow = ({type}) => {
 
   const handleWorkflowSubmit = () => {
     const workflowData1 = {
-      project_id : proj_id,
+      Project_ID : proj_id,
       type : type,
       wfn: workflowName,
       array: inputValues,

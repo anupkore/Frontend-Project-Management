@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 export default function UpdateProjectForm(props) {
   const { projectData } = props;
-  // const [project_id, setProject_id] = useState(projectData.project_id);
+  // const [Project_ID, setProject_ID] = useState(projectData.Project_ID);
   const [projectName, setProjectName] = useState(projectData.Project_name);
   const [status, setStatus] = useState(projectData.Status);
   const [startDate, setStartDate] = useState(projectData.planned_sd);
@@ -20,7 +20,7 @@ export default function UpdateProjectForm(props) {
   
   const { id1 } = localStorage.getItem("ProjectID");
   // function handleInputChangeProjectId(event) {
-  //   setProject_id(projectData.project_id);
+  //   setProject_ID(projectData.Project_ID);
   // }
 
   function handleInputChangeProjectName(event) {
@@ -62,10 +62,10 @@ export default function UpdateProjectForm(props) {
     event.preventDefault();
 
     // Create the updateData object
-    console.log("iddddddddd",projectData.Project_id);
-    // console.log("iddddddddd",projectData.project_id});
+    console.log("iddddddddd",projectData.Project_ID);
+    // console.log("iddddddddd",projectData.Project_ID});
     var updateData = {
-      project_id: projectData.Project_id,
+      Project_ID: projectData.Project_ID,
       project_name: projectName,
       status: status,
       planned_sd: startDate,
@@ -79,9 +79,9 @@ export default function UpdateProjectForm(props) {
 
     console.log(updateData);
     AuthenticationService.updateProject(updateData).then(() => {
-      console.log(`Project details updated...........${id1}......../projectexplore/:${projectData.Project_id}`);
-      // navigate(`/projectexplore/${projectData.Project_id}`);
-      window.location.href = `/projectexplore/${projectData.Project_id}`;
+      console.log(`Project details updated...........${id1}......../projectexplore/:${projectData.Project_ID}`);
+      // navigate(`/projectexplore/${projectData.Project_ID}`);
+      window.location.href = `/projectexplore/${projectData.Project_ID}`;
     });
   }
   return (
@@ -109,7 +109,7 @@ export default function UpdateProjectForm(props) {
                       type="di"
                       name="project-id"
                       id="project-id"
-                      value={project_id}
+                      value={Project_ID}
                       onChange={handleInputChangeProjectId}
                     />
                   </div> */}

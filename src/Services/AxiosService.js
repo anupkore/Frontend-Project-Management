@@ -85,15 +85,15 @@ export default class AxiosService
     {
         return axios.post(url,data);
     }
-    static getUser(url,user_id)
+    static getUser(url,user_ID)
     {
-        return axios.post(url,user_id);
+        return axios.post(url,user_ID);
     }
 
     //For deleting a user (For alpha admin)
-    // static deleteUser(url,user_id)
+    // static deleteUser(url,user_ID)
     // {
-    //     return axios.post(url,user_id);
+    //     return axios.post(url,user_ID);
     // }
 
     static deleteUser(url,data) {

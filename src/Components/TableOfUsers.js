@@ -30,14 +30,14 @@ function TableOfUsers() {
     // Perform the update operation using the userId parameter
     console.log(`Updating user with ID: ${userId}`);
     // Fetch the user data for the specified userId
-    const payload = {user_id: userId}
+    const payload = {user_ID: userId}
     AuthenticationService.getUser(payload)
       .then((response) => {
         const userData = response.data[0];
         console.log("getting data...",userData[0]);
         // Render the AddNewMember component with the user data
         ReactDOM.render(
-          <UpdateUser userData={userData} user_id={userId} />,
+          <UpdateUser userData={userData} user_ID={userId} />,
           document.getElementById("root")
         );
       })
@@ -48,11 +48,11 @@ function TableOfUsers() {
       });
   }
 
-  function handleDelete(user_id) {
+  function handleDelete(user_ID) {
     const confirmDelete = window.confirm("Are you sure you want to delete this user?");
-    const payload = {user_id: user_id}
+    const payload = {user_ID: user_ID}
     if (confirmDelete) {
-      console.log(`Deleting user with ID: ${user_id}`);
+      console.log(`Deleting user with ID: ${user_ID}`);
       AuthenticationService.deleteUser(payload)
         .then((result) => {
           console.log(result);
@@ -67,7 +67,7 @@ function TableOfUsers() {
             });
         })
         .catch((error) => {
-          console.log(`An error occurred while deleting user with ID ${user_id}:`, error);
+          console.log(`An error occurred while deleting user with ID ${user_ID}:`, error);
           toast.error("Internal Server Error")
         });
     }
@@ -103,15 +103,15 @@ function TableOfUsers() {
             </thead>
 
             {userList.map((event, index) => (
-              <tbody key={event.user_id} className="mt-3">
+              <tbody key={event.user_ID} className="mt-3">
                 <td className="px-4 py-2">{index + 1}</td>
-                <td className="px-4 py-2">{event.name}</td>
-                <td className="px-4 py-2">{event.Email_id}</td>
-                <td className="px-4 py-2">{event.contact}</td>
+                <td className="px-4 py-2">{event.Name}</td>
+                <td className="px-4 py-2">{event.Email_ID}</td>
+                <td className="px-4 py-2">{event.Contact}</td>
                 <td className="px-4 py-2">{event.role}</td>
                 <td>
                   <button
-                    onClick={() => handleUpdate(event.user_id)}
+                    onClick={() => handleUpdate(event.user_ID)}
                     className="btn btn-primary mx-auto"
                   >
                     Update
@@ -119,7 +119,7 @@ function TableOfUsers() {
                 </td>
                 <td>
                   <button
-                    onClick={() => handleDelete(event.user_id)}
+                    onClick={() => handleDelete(event.user_ID)}
                     className="btn btn-danger mx-auto"
                   >
                     Delete

@@ -3,7 +3,7 @@ import AuthenticationService from '../Services/AuthenticationService';
 import { useEffect, useState } from 'react';
 
 function IssueTypeBar({ selectedOption }) {
-  const payload = { project_id: Number(localStorage.getItem("ProjectID"))};
+  const payload = { Project_ID: Number(localStorage.getItem("ProjectID"))};
   const [taskData, setTaskData] = useState([]);
   const [defectData, setDefectData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);

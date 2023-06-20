@@ -28,8 +28,8 @@ const colors = [
 
 export default function IssueDashboard(props) {
   const { p_id } = useParams();
-  const project_id = localStorage.getItem("ProjectID");
-  const payload = { project_id: project_id };
+  const Project_ID = localStorage.getItem("ProjectID");
+  const payload = { Project_ID: Project_ID };
 console.log(payload);
 const [isLoading, setIsLoading] = useState(true);
   const [issues,setIssues] = useState([]);
@@ -41,7 +41,7 @@ const [isLoading, setIsLoading] = useState(true);
   };
   const [statusValues, setStatusValues] = useState([]);
   // const proj_id = Number(localStorage.getItem("ProjectID"));
-  // const payload1 = { project_id: proj_id };
+  // const payload1 = { Project_ID: proj_id };
   // const [workflowData , setWorkflowData] = useState([]);
   const maxWidth = 'md';
 

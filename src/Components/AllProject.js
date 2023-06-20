@@ -29,7 +29,7 @@ export const AllProjectList = () => {
   const [flag, setFlag] = useState("false");
   const userID = localStorage.getItem("UserID");
   console.log("userID", userID);
-  var payload = { user_id: userID };
+  var payload = { user_ID: userID };
   console.log(userID);
   localStorage.removeItem("ProjectName");
   localStorage.removeItem("ProjectID");
@@ -372,7 +372,7 @@ useEffect(() => {
                               </td>
                               <td className="px-4 py-2 underline text-blue-900">
                                 <Link
-                                  to={`/projectexplore/${project.Project_id}`}
+                                  to={`/projectexplore/${project.Project_ID}`}
                                 >
                                   Explore
                                 </Link>

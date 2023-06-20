@@ -20,9 +20,9 @@ export const ProjectExplore = () => {
   const ProjectData = projects1.find((proj) => proj.id === Number(id1));
   const [showModal, setShowModal] = useState(false);
   const [projectDetails, setProjectDetails] = useState([]);
-  const project_id = id1;
-  localStorage.setItem("ProjectID", project_id);
-  const payload = { project_id: Number(localStorage.getItem("ProjectID"))};
+  const Project_ID = id1;
+  localStorage.setItem("ProjectID", Project_ID);
+  const payload = { Project_ID: Number(localStorage.getItem("ProjectID"))};
   const [projectData, setProjectData] = useState([]);
   const [projectID, setProjectID] = useState();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -39,7 +39,7 @@ export const ProjectExplore = () => {
   //         setIsLoading(false);
   //         console.log("projectData", projectData);
   //         // console.log(allProjectData.Project_name);
-  //         // setProjectID(allProjectData.Project_id);
+  //         // setProjectID(allProjectData.Project_ID);
   //       });
   //     })
   //     .catch((error) => {
@@ -130,14 +130,14 @@ export const ProjectExplore = () => {
 
  
   function handleDeleteProject() {
-    // payload={project_id:project_id}
+    // payload={Project_ID:Project_ID}
     // Display confirmation box
     const confirmDelete = window.confirm("Are you sure you want to delete this Project?");
     console.log("deleteing...",payload);
   
     if (confirmDelete) {
       // Perform the delete operation using the userId parameter
-      console.log(`Deleting user with ID: ${project_id}`);
+      console.log(`Deleting user with ID: ${Project_ID}`);
        // Make an API call to delete the project
     AuthenticationService.deleteProject(payload)
     .then((response) => {
@@ -501,7 +501,7 @@ export const ProjectExplore = () => {
           </div>
 
           <div>
-            <Comments id={projectData.Project_id} ></Comments>
+            <Comments id={projectData.Project_ID} ></Comments>
           </div>
         </div>
       </div>

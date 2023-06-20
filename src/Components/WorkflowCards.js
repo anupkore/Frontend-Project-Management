@@ -60,7 +60,7 @@ export default function WorkflowCard() {
   // console.log(workflowData);
 
   useEffect(() => {
-    const payload = {project_id: Number(proj_id)}
+    const payload = {Project_ID: Number(proj_id)}
     console.log(payload);
     if(!isLoading && workflowData.length > 0){
     const fetchData = async () => {
@@ -139,7 +139,7 @@ export default function WorkflowCard() {
   }, [defectWf]);
 
   const handleSaveWorkflow = () => {
-    const payload = { project_id: proj_id, task: taskWf, defect: defectWf };
+    const payload = { Project_ID: proj_id, task: taskWf, defect: defectWf };
     console.log(payload);
     AuthenticationService.assignWorkflow(payload)
       .then((response) => {

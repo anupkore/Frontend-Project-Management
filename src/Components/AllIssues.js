@@ -25,7 +25,7 @@ export const AllIssues = () =>
   const [flag , setFlag] = useState('false');
   const ProjectID = Number(localStorage.getItem("ProjectID"));
   //console.log("userID",userID);
-  var payload = {project_id: ProjectID};
+  var payload = {Project_ID: ProjectID};
   console.log(payload);
   useEffect(()=>{
     AuthenticationService.allIssues(payload).then((response)=>{
@@ -304,7 +304,7 @@ export const AllIssues = () =>
                               <td className="px-4 py-2">{}</td>
                               <td className="px-4 py-2 underline text-blue-900">
                                 {/* <Link
-                                  to={`/projectexplore/${project.Project_id}`}
+                                  to={`/projectexplore/${project.Project_ID}`}
                                 >
                                   {" "}
                                   Explore
