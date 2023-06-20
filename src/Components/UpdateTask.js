@@ -127,10 +127,8 @@ function UpdateTask({ issueId }) {
                           disabled={isLoading}
                         />
                       </div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
-                    <div className="">
+
+                      <div className="">
                       <label
                         htmlFor="company"
                         className="block text-sm font-semibold leading-6 text-gray-900"
@@ -169,10 +167,10 @@ function UpdateTask({ issueId }) {
                           disabled={isLoading}
                         />
                       </div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
                     
+                    
+                    </div>
+
                     <div>
                       <label
                         htmlFor="first-name"
@@ -216,7 +214,9 @@ function UpdateTask({ issueId }) {
                         />
                       </div>
                     </div>
+                    </div>
                   </div>
+                 
                   {/* <div>
                       <label
                         htmlFor="last-name"
