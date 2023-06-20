@@ -112,45 +112,20 @@ export const ProjectExplore = () => {
     setStatusValue(event.target.value);
   };
   
-  // const handleSubmit1 = () => {
-  //   const payload = {
-  //     id: Number(localStorage.getItem("ProjectID")),
-  //     status: statusValue
-  //   };
-  //   AuthenticationService.update_status(payload)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       // Handle the success response
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response.data);
-  //       // Handle the error response
-  //     });
-
-  //   AuthenticationService.addStatus(payload)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       // Handle the success response
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response.data);
-  //       // Handle the error response
-  //     });
-  // };
   
   const handleSubmit1 = () => {
     const payload = {
       id: Number(localStorage.getItem("ProjectID")),
-      status: statusValue,
+      status: statusValue
     };
-  
+    console.log(payload);
     // Check if the status already exists
-    if (statusAlreadyExists) {
+    if (statusValue !== "" || statusAlreadyExists) {
       AuthenticationService.update_status(payload)
         .then((response) => {
-          console.log(response.data);
-          setStatusValue(response.data.status); // Update the status value
+          console.log("upate status addddd",response.data);
           // Handle the success response
+          setStatusValue(response.data[0]);
         })
         .catch((error) => {
           console.log(error.response.data);
@@ -159,9 +134,9 @@ export const ProjectExplore = () => {
     } else {
       AuthenticationService.addStatus(payload)
         .then((response) => {
-          console.log(response.data);
+          console.log("new status addddd",response.data);
           setStatusAlreadyExists(true);
-          setStatusValue(response.data.status); // Update the status value
+          setStatusValue(response.data[0]);
           // Handle the success response
         })
         .catch((error) => {
@@ -171,22 +146,32 @@ export const ProjectExplore = () => {
     }
   };
   
+  
 
   useEffect(() => {
     console.log("Displaying status...");
     const payload = {
       id: Number(localStorage.getItem("ProjectID")),
-      
     };
     AuthenticationService.status_display(payload)
       .then((response) => {
-        console.log("statusData...", response.data);
-        setStatusValue(response.data);
+        console.log("statusData...", response.data[0]);
+        setStatusValue((prevStatusValue) => {
+          if (response.data[0]) {
+            setStatusAlreadyExists(true);
+            return response.data[0];
+          } else {
+            setStatusAlreadyExists(false);
+            return prevStatusValue;
+          }
+        });
       })
       .catch((error) => {
         console.log(error.response.data);
       });
   }, []);
+  
+  
 
   return (
     <>
@@ -333,7 +318,7 @@ export const ProjectExplore = () => {
         <textarea
           id="status"
           rows={3}
-          className="px-0 w-full text-sm text-black border-0 focus:ring-0"
+          className="px-2 w-full text-sm text-black border-0 focus:ring-1 "
           required
           value={statusValue}
           onChange={handleStatusChange}
