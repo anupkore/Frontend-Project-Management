@@ -87,51 +87,6 @@ export default function UpdateIssueForm()
       })
        }
   
-
-
-       const getAdjacentStates = (workflow, currentState) => {
-        const graph = {};
-    
-        // Build the graph from the workflow array
-        workflow.forEach((row) => {
-          for (let i = 1; i < row.length; i++) {
-            const prevNode = row[i - 1];
-            const currNode = row[i];
-    
-            if (!graph[currNode]) {
-              graph[currNode] = { prev: [], next: [] };
-            }
-    
-            if (!graph[prevNode]) {
-              graph[prevNode] = { prev: [], next: [] };
-            }
-    
-            graph[currNode].prev.push(prevNode);
-            graph[prevNode].next.push(currNode);
-          }
-        });
-    
-        const previousStates = graph[currentState]?.prev || [];
-        const nextStates = graph[currentState]?.next || [];
-    
-        return { previousStates, nextStates };
-      };
-    
-      const workflowString =
-        '[["START", "IN PROGRESS", "REVIEW", "DONE"],["REVIEW", "RESOLVED", "DONE"],["DONE", "RE-OPENED", "RE-ASSIGN", "COMPLETED"]]';
-    
-      const workflow = JSON.parse(workflowString);
-    
-      console.log(workflow);
-    
-      const currentState = "DONE";
-      const { previousStates, nextStates } = getAdjacentStates(
-        workflow,
-        currentState
-      );
-      
-      const options = previousStates.concat(nextStates);
-      console.log(options);
   return (
     <>
        <Container>
@@ -219,10 +174,11 @@ export default function UpdateIssueForm()
                   </label>
                   <div className="mt-1">
                   <select  
-                      onChange={handleInputChangeStatus} className="block  w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                      {options.map((e)=>
-                      <option value={e}>{e}</option>
-                      )}
+                       className="block  w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                      
+                      <option value={'Open'}>Open</option>
+                      <option value={'In Progress'}>In progress</option>
+                      <option value={'Done'}>Done</option>
                     </select>
                   </div>
                 </div>

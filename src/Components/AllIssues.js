@@ -6,11 +6,13 @@ import AuthenticationService from "../Services/AuthenticationService";
 import Pagination from "./Pagination";
 import { FaSortDown, FaSortUp } from "react-icons/fa";
 import { Button, ButtonGroup } from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
 import ParticularIssueDashboard from "./ParticularIssueDashboard";
 import MyIssues from "./Myissues";
 import { GridLoader ,HashLoader,PacmanLoader } from "react-spinners";
 import Navbar from "./Navbar";
 import CreateIssueForm from "./CreateIssueForm";
+
 
 
 export const AllIssues = () => 
@@ -32,6 +34,7 @@ export const AllIssues = () =>
       console.log(error);
     })
   },[])
+ 
   
   // useEffect(() => {
   //   setLoading(true);
@@ -49,6 +52,23 @@ export const AllIssues = () =>
   //       setLoading(false); // Set loading state to false when the request is completed
   //     });
   // }, []);
+  useEffect(() => {
+    setLoading(true);
+    AuthenticationService.allIssuesNew(payload)
+      .then((response) => {
+        console.log(response.data);
+        setAllList(response.data);
+        console.log("Hi");
+        console.log(allList);
+      })
+      .catch((error) => {
+        console.log("ERROR" + error.data);
+        toast.error("Internal Server Error")
+      })
+      .finally(() => {
+        setLoading(false); // Set loading state to false when the request is completed
+      });
+  }, []);
   
 
   const filteredProjects = allList.filter((project) => {
@@ -295,24 +315,6 @@ export const AllIssues = () =>
                         </tbody>
                       </table>
                     </div>
-                  {/* </div> */}
-                  {/* <div className="flex mt-3 mx-auto justify-center">
-                    <div className="mr-20 my-auto">
-                      <span>
-                        {currentPage} of{" "}
-                        {Math.ceil(filteredProjects.length / membersPerPage)}
-                      </span>
-                    </div>
-                    <div>
-                      <Pagination
-                        membersPerPage={membersPerPage}
-                        totalMembers={filteredProjects.length}
-                        paginate={paginate}
-                        currentPage={currentPage}
-                      ></Pagination>
-                    </div>
-                  </div> */}
-
                 </div>
               </>
             )}

@@ -58,33 +58,6 @@ export default function UpdateProjectForm(props) {
   function handleInputChangeDescription(event) {
     setDescription(event.target.value);
   }
-
-  // function handleUpdateProject(event) {
-  //   event.preventDefault();
-  //   console.log("iddddddddd",projectData.Project_id);
-  //   // console.log("iddddddddd",projectData.project_id});
-  //   var updateData = {
-  //     project_id: projectData.Project_id,
-  //     project_name: projectName,
-  //     status: status,
-  //     planned_sd: startDate,
-  //     planned_ed: endDate,
-  //     actual_sd: actualStartDate,
-  //     actual_ed: actualEndDate,
-  //     project_lead: projectLead,
-  //     client_name: clientName,
-  //     project_description: project_description,
-  //   };
-
-  //   console.log(updateData);
-
-  //   AuthenticationService.updateProject(updateData).then(() => {
-  //     console.log(`Project details updated...........${id1}......../projectexplore/:${projectData.Project_id}`);
-  //     // navigate(`/projectexplore/:${projectData.Project_id}`);
-  //     window.location.href =`/projectexplore/${projectData.Project_id}`;
-  //     // navigate(`/allProjects`);
-  //   });
-  // }
   function handleUpdateProject(event) {
     event.preventDefault();
 

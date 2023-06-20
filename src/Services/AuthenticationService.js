@@ -206,6 +206,7 @@ export default class AuthenticationService
     {
         return AxiosService.DetailedIssue(AuthenticationConfiguration.DetailedIssue());
     }
+// <<<<<<< HEAD
     static addStatus(data)
     {
         return AxiosService.addStatus(AuthenticationConfiguration.addStatus(),data);
@@ -217,5 +218,27 @@ export default class AuthenticationService
     static status_display(data)
     {
         return AxiosService.status_display(AuthenticationConfiguration.status_display(),data);
+// =======
+    }
+
+    static updateDefect(data)
+    {
+        return AxiosService.updateDefect(AuthenticationConfiguration.updateDefect(),data);
+    }
+
+    static deleteDefect(data)
+    {
+        return AxiosService.deleteDefect(AuthenticationConfiguration.deleteDefect(),data);
+    }
+
+    static updateTask(data)
+    {
+        return AxiosService.updateDefect(AuthenticationConfiguration.updateTask(),data);
+    }
+
+    static deleteTask(data)
+    {
+        return AxiosService.deleteDefect(AuthenticationConfiguration.deleteTask(),data);
+// >>>>>>> ac425c014f2670b49dc681d816ef9756c760900b
     }
 }

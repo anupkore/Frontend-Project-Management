@@ -11,6 +11,7 @@ import { projects1 } from "./TEST/Projects";
 import AuthenticationService from "../Services/AuthenticationService";
 import CreateWorkflow from "./CreateWorkflow";
 import { HashLoader } from "react-spinners";
+import { toast } from "react-toastify";
 
 export const ProjectExplore = () => {
   const maxWidth = "md";
@@ -43,6 +44,7 @@ export const ProjectExplore = () => {
       })
       .catch((error) => {
         console.log(error.response.data);
+        toast.error("Internal Server Error")
         setIsLoading(false);
       });
   }, []);
@@ -61,6 +63,7 @@ export const ProjectExplore = () => {
       .catch((error) => {
         // Handle the error response
         console.log(error.response.data);
+        toast.error("Internal Server Error")
       });
   };
 
@@ -85,6 +88,7 @@ export const ProjectExplore = () => {
     .catch((error) => {
       // Handle the error response
       console.log(error.response.data);
+      toast.error("Internal Server Error")
     });
     }
   }

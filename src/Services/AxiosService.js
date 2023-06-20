@@ -232,9 +232,25 @@ export default class AxiosService
         return axios.post(url,data);
     }
    
+    static updateDefect(url,data)
+    {
+        return axios.post(url,data);
+    }
 
+    static deleteDefect(url,data)
+    {
+        return axios.post(url,data);
+    }
 
-    
+    static updateTask(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static deleteTask(url,data)
+    {
+        return axios.post(url,data);
+    }
 
 
 }

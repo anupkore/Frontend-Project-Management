@@ -241,12 +241,36 @@ export default class AuthenticationConfiguration
     }
     static IssueByDaily()
     {
-        const url = ParentConfiguration.parentURL()+"IssueByDaily";
+        const url = ParentConfiguration.parentURL()+"IssueByDay";
         return url;
     }
     static DetailedIssue()
     {
         const url = ParentConfiguration.parentURL()+"DetailedIssue";
+        return url;
+    }
+
+    static updateDefect()
+    {
+        const url = ParentConfiguration.parentURL()+"UpdateDefect";
+        return url;
+    }
+
+    static deleteDefect()
+    {
+        const url = ParentConfiguration.parentURL()+"DeleteDefect";
+        return url;
+    }
+
+    static updateTask()
+    {
+        const url = ParentConfiguration.parentURL()+"UpdateTask";
+        return url;
+    }
+
+    static deleteTask()
+    {
+        const url = ParentConfiguration.parentURL()+"DeleteTask";
         return url;
     }
     static addStatus()
@@ -264,4 +288,6 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"status_display";
         return url;
     }
+
+
 }
