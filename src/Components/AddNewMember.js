@@ -81,16 +81,16 @@ export default function AddNewMember({ userData }) {
           //role: role.current.value
       }
       console.log(payload);
-      const url="https://rohan-pm-tmerge-git-rohanbhavsar215-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/add_user"
-      axios.post(url, payload).then(()=>{
-        console.log("New User Created..........1234");
-        window.location.href = '/tableofusers';
-      });
-      
-      // AuthenticationService.signUp(payload).then(()=>{
-      //   console.log("New User Created");
+      // const url="https://rohan-pm-tmerge-git-rohanbhavsar215-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/add_user"
+      // axios.post(url, payload).then(()=>{
+      //   console.log("New User Created..........1234");
       //   window.location.href = '/tableofusers';
-      // })
+      // });
+      
+      AuthenticationService.signUp(payload).then(()=>{
+        console.log("New User Created");
+        window.location.href = '/tableofusers';
+      })
     }
 
 

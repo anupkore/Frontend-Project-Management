@@ -25,23 +25,64 @@ export const AllProjectList = () => {
   console.log("userID", userID);
   var payload = { user_id: userID };
   console.log(userID);
+  const [isFetching, setIsFetching] = useState(true);
+  const [myError, setMyError] = useState('');
   useEffect(() => {
     setLoading(true);
-    AuthenticationService.allProjects(payload)
-      .then((response) => {
-        console.log(response.data);
-        setAllList(response.data);
-        console.log("Hi");
-        console.log(allList);
-      })
-      .catch((error) => {
-        console.log("ERROR" + error.data);
-        toast.error("Internal Server Error")
-      })
-      .finally(() => {
-        setLoading(false); // Set loading state to false when the request is completed
-      });
+  
+    const fetchData = async () => {
+      console.log("12345555");
+      try {
+        const response = await AuthenticationService.allProjects(payload);
+        if (response && response.data) {
+          setAllList(response.data);
+          setLoading(false);
+          console.log('Status code:', response.status); // Display the status code in the console
+          // toast.error("No Internal Server Error"); 
+  
+          // Check for specific error codes in the response
+          if (response.status !== 200) {
+            // Handle 400 error code
+            console.log('Bad Request Error12233:', response.data);
+            toast.error("Internal Server Error");
+          }
+          // Add more conditionals for other error codes if needed
+        }
+      } catch (error) {
+        setMyError(error.message);
+        setLoading(true);
+        setIsFetching(true);
+        console.error('Error:', error); // Display the error message in the console
+        
+  
+        // Check for specific error codes in the error object
+        if (error.response && error.response.status !== 200) {
+          // Handle 400 error code
+          console.log('Bad Request Error:', error.response.data);
+          toast.error('Bad Request Error:.');
+        } else if (error.message === 'Network Error') {
+          // Handle CORS error
+          
+          toast.error('CORS Error: Unable to make a request due to CORS restrictions.');
+        } else {
+          // Handle other errors
+          toast.error(`Error...: ${error.message}`);
+        }
+        // Add more conditionals for other error codes if needed
+      }
+    };
+  
+     // Call the fetchData function
+    console.log("yjb....");
+    // Cleanup function to clear any existing toasts
+  return () => {
+    toast.dismiss();
+    fetchData();
+    toast.dismiss();
+  };
+  
   }, []);
+  
   localStorage.removeItem("Role");
 
   const filteredProjects = allList.filter((project) => {
@@ -140,6 +181,7 @@ export const AllProjectList = () => {
   return (
     <>
       {loading ? (
+        <>
         <div className="flex justify-center">
           <HashLoader
             color="#1976d2"
@@ -147,8 +189,11 @@ export const AllProjectList = () => {
             size={100}
             speedMultiplier={1}
           />
+          {/* {toast.error("Internal Server Error")} */}
           {/* <PacmanLoader color="#1976d2" size={50}/>   */}
         </div>
+        
+        </>
       ) : (
         <div>
           <div>
