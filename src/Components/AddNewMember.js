@@ -85,11 +85,15 @@ export default function AddNewMember({ userData }) {
       // axios.post(url, payload).then(()=>{
       //   console.log("New User Created..........1234");
       //   window.location.href = '/tableofusers';
-      // });
+      // }).catch((error)=>{
+      //   console.log(error.response);
+      // })
       
       AuthenticationService.signUp(payload).then(()=>{
         console.log("New User Created");
         window.location.href = '/tableofusers';
+      }).catch((error)=>{
+        console.log(error.response);
       })
     }
 

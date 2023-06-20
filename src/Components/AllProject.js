@@ -12,12 +12,18 @@ import { HashLoader } from "react-spinners";
 import { ToastContainer, toast } from 'react-toastify';
 import Navbar from "./Navbar";
 import IssueDashboard from "./IssueDashboard";
+import ErrorPage from "./ErrorPage";
+import {useLocation} from "react-router-dom";
+
 
 export const AllProjectList = () => {
+
+  
   const maxWidth = "lg";
   const [filterStatus, setFilterStatus] = useState("All");
   const [allList, setAllList] = useState([]);
-
+  const location = useLocation();
+  // console.log(location.pathname);
   const [myIssues, setMyIssues] = useState(false);
   const [loading, setLoading] = useState(true);
   const [flag, setFlag] = useState("false");
@@ -25,64 +31,63 @@ export const AllProjectList = () => {
   console.log("userID", userID);
   var payload = { user_id: userID };
   console.log(userID);
-  const [isFetching, setIsFetching] = useState(true);
-  const [myError, setMyError] = useState('');
-  useEffect(() => {
-    setLoading(true);
-  
-    const fetchData = async () => {
-      console.log("12345555");
-      try {
-        const response = await AuthenticationService.allProjects(payload);
-        if (response && response.data) {
-          setAllList(response.data);
-          setLoading(false);
-          console.log('Status code:', response.status); // Display the status code in the console
-          // toast.error("No Internal Server Error"); 
-  
-          // Check for specific error codes in the response
-          if (response.status !== 200) {
-            // Handle 400 error code
-            console.log('Bad Request Error12233:', response.data);
-            toast.error("Internal Server Error");
-          }
-          // Add more conditionals for other error codes if needed
-        }
-      } catch (error) {
-        setMyError(error.message);
-        setLoading(true);
-        setIsFetching(true);
-        console.error('Error:', myError); // Display the error message in the console
-        
-  
-        // Check for specific error codes in the error object
-        if (error.response && error.response.status !== 200) {
-          // Handle 400 error code
-          console.log('Bad Request Error:', error.response.data);
-          toast.error('Bad Request Error:.');
-        } else if (error.message === 'Network Error') {
-          // Handle CORS error
+  localStorage.removeItem("ProjectName");
+  localStorage.removeItem("ProjectID");
+  // const [showErrorPage, setShowErrorPage] = useState(false);
 
-          toast.error('CORS Error: Unable to make a request due to CORS restrictions.');
-        } else {
-          // Handle other errors
-          toast.error(`Error...: ${error.message}`);
-        }
-        // Add more conditionals for other error codes if needed
-      }
-    };
-  
-     // Call the fetchData function
-    console.log("yjb....");
-    // Cleanup function to clear any existing toasts
-  return () => {
-    toast.dismiss();
-    fetchData();
-    toast.dismiss();
-  };
-  
-  }, []);
-  
+  // useEffect(() => {
+  //   setLoading(true);
+  //   AuthenticationService.allProjects(payload)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setAllList(response.data);
+  //       console.log("Hi");
+  //       console.log(allList);
+  //     })
+  //     .catch((error) => {
+  //       setShowErrorPage(true);
+  //       console.log("ERROR" + error.data);
+  //       // toast.error("Internal Server Error")
+
+  //     })
+  //     .finally(() => {
+  //       setLoading(false); // Set loading state to false when the request is completed
+  //     });
+  // }, []);
+
+  const [showErrorPage, setShowErrorPage] = useState(false);
+
+useEffect(() => {
+  let timerId = null;
+
+  setLoading(true);
+
+  // Start a timer to track the loading time
+  timerId = setTimeout(() => {
+    setShowErrorPage(true);
+  }, 5000);
+
+  AuthenticationService.allProjects(payload)
+    .then((response) => {
+      console.log(response.data);
+      setAllList(response.data);
+      console.log("Hi");
+      console.log(allList);
+    })
+    .catch((error) => {
+      setShowErrorPage(true);
+      console.log("ERROR" + error.data);
+      // toast.error("Internal Server Error")
+    })
+    .finally(() => {
+      clearTimeout(timerId); // Clear the timer when the request is completed
+      setLoading(false); // Set loading state to false when the request is completed
+    });
+
+  // Clean up the timer if the component unmounts or the effect runs again
+  return () => clearTimeout(timerId);
+}, []);
+
   localStorage.removeItem("Role");
 
   const filteredProjects = allList.filter((project) => {
@@ -195,6 +200,8 @@ export const AllProjectList = () => {
         
         </>
       ) : (
+        showErrorPage ? <ErrorPage error={"Server Unavailabe"} location={location.pathname}></ErrorPage> :
+        (
         <div>
           <div>
             <div
@@ -399,6 +406,7 @@ export const AllProjectList = () => {
             )}
           </div>
         </div>
+        )
       )}
     </>
   );

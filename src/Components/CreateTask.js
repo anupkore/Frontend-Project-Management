@@ -64,7 +64,7 @@ function CreateTask({ issueId }) {
         theme: "light",
       });
       setIsLoading(false);
-      navigate("/allIssues");
+      window.location.href="/allIssues";
     })
     .catch((error) => {
       console.log(error);
