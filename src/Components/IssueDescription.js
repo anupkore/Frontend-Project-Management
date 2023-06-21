@@ -12,6 +12,7 @@ import getAdjacentStates from "./States";
 import { toast } from "react-toastify";
 
 export default function IssueDescription({ i_id ,p_id ,p_name}) {
+  console.log(i_id,p_id,p_name);
   const comment = useRef("");
   const [isSaveVisible, setSaveVisible] = useState(false);
   const [isAddVisible, setAddVisible] = useState(false);
@@ -22,14 +23,30 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
   const [workflowData, setWorkflowData] = useState([]);
   const UserID = localStorage.getItem("UserID");
   const [issue, setIssue] = useState({
-    Title: "",
-    Description: "",
-    Priority: "",
-    Estimated_time: "",
+    component: "",
+    component_description: "",
+    defect_ed: "",
+    defect_id: 0,
+    defect_sd: "",
+    description: "",
+    estimated_time: "",
+    file_attachment: null,
+    issue_id: 0,
+    issue_name: "",
+    os: "",
+    priority: "",
+    product: "",
     severity: "",
-    Task_ID: 0,
-    defect_ID: 0,
+    status: "",
+    summary: "",
+    title: "",
+    type: "",
+    version: "",
+    task_id: 0,
+    task_sd: "",
+    task_ed: "",
   });
+  
   const [type, setType] = useState("");
   const [currentState, setCurrentState] = useState("");
   const proj_id = Number(localStorage.getItem("ProjectID"));
@@ -37,7 +54,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
   const [workflow, setWorkflow] = useState([]);
   const [allComment, setAllComment] = useState([]);
   const [showLatestComment, setShowLatestComment] = useState(false);
-  const [assignedTo, setAssignedTo] = useState("Unassigned");
+  const [assignedTo, setAssignedTo] = useState("");
   const [teamData, setTeamData] = useState([]);
   const [description, setDescription] = useState("Description");
   const Role = localStorage.getItem("Role");
@@ -85,7 +102,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
 
     if (type === "task") {
       const payload = {
-        task_id: issue.Task_ID,
+        task_id: issue.task_id,
         description: description,
       };
       console.log(payload);
@@ -99,7 +116,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
         });
     } else {
       const payload = {
-        defect_id: issue.defect_ID,
+        defect_id: issue.defect_id,
         description: description,
       };
       console.log(payload);
@@ -186,13 +203,13 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
           setWorkflowData(data1.data);
 
           const work = data2.data.issue_details[0];
-          // console.log("Work", work);
+          console.log("Work", work);
           setAllComment(data3.data);
           setIssue(work);
           setType(work.type);
           setCurrentState(work.status);
           setSelectedValue(work.status);
-          setDescription(work.Description);
+          setDescription(work.description);
           setTeamData(data4.data);
           setIsLoading(false);
         } catch (error) {
@@ -231,7 +248,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
           setType(work.type);
           setCurrentState(work.status);
           setSelectedValue(work.status);
-          setDescription(work.Description);
+          setDescription(work.description);
           // setTeamData(data4.data);
           setIsLoading(false);
         } catch (error) {
@@ -245,7 +262,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
   }, [isLoading]);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && workflowData.length > 0) {
       console.log("Workflow....");
 
       if (type === "task" && workflowData[0].issue_type === "task") {
@@ -358,16 +375,16 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
     currentState
   );
   const solutions = [...previousStates, ...nextStates, currentState];
-  console.log("Solution", solutions);
-  console.log("Previous States:", previousStates);
-  console.log("Next States:", nextStates);
+  // console.log("Solution", solutions);
+  // console.log("Previous States:", previousStates);
+  // console.log("Next States:", nextStates);
 
   console.log("Issue", issue);
-  console.log("Type", type);
-  console.log("WorkflowData", workflowData);
-  console.log("WorkflowString", workflowString);
-  console.log("Workflow", workflow);
-  console.log("Current State", currentState);
+  // console.log("Type", type);
+  // console.log("WorkflowData", workflowData);
+  // console.log("WorkflowString", workflowString);
+  // console.log("Workflow", workflow);
+  // console.log("Current State", currentState);
 
   return (
     <>
@@ -391,7 +408,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
               </div>
               <div>
                 <h1 className="text-xl text-black font-semibold">
-                  {issue.Title}
+                  {issue.title}
                 </h1>
               </div>
             </div>
@@ -631,11 +648,11 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
                   </Transition>
                 </Popover>
               </div>
-              <div className="border-2 border-slate-200 h-72 w-full mt-4 border-solid">
+              <div className="border-2 border-slate-200 h-full w-full mt-4 border-solid">
                 <div className="flex">
                   <h1 className="p-2 font-medium">Issue Details</h1>
                 </div>
-                <div className="ml-2 grid grid-rows-4 grid-flow-col  mt-3">
+                <div className="ml-2 grid grid-rows-5 grid-flow-col  mt-3">
                   <div className="flex flex-row">
                     <dt className="text-sm font-medium text-gray-900 basis-1/2">
                       Assignee
@@ -701,22 +718,30 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
                   </div>
                   <div className="flex flex-row">
                     <dt className="text-sm font-medium text-gray-900 basis-1/2">
+                      Type
+                    </dt>
+                    <dd className="basis-1/2">{issue.type}</dd>
+                  </div>
+                  <div className="flex flex-row">
+                    <dt className="text-sm font-medium text-gray-900 basis-1/2">
                       Priority
                     </dt>
-                    <dd className="basis-1/2">{issue.Priority}</dd>
+                    <dd className="basis-1/2">{issue.priority}</dd>
                   </div>
                   <div className="flex flex-row">
                     <dt className="text-sm font-medium text-gray-900 basis-1/2">
                       Expected Time
                     </dt>
-                    <dd className="basis-1/2">{issue.Estimated_time}</dd>
+                    <dd className="basis-1/2">{issue.estimated_time}</dd>
                   </div>
-                  <div className="flex flex-row">
-                    <dt className="text-sm font-medium text-gray-900 basis-1/2">
-                      Severity
-                    </dt>
-                    <dd className="basis-1/2">{issue.severity}</dd>
-                  </div>
+                  {issue.severity !== "" &&
+                    <div className="flex flex-row">
+                      <dt className="text-sm font-medium text-gray-900 basis-1/2">
+                        Severity
+                      </dt>
+                      <dd className="basis-1/2">{issue.severity}</dd>
+                    </div>
+                  }
                 </div>
               </div>
             </div>

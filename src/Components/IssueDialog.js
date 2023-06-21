@@ -56,7 +56,7 @@ BootstrapDialogTitle.propTypes = {
 
 export default function CustomizedDialogs({card}) {
   const [open, setOpen] = React.useState(false);
-console.log("Card",card.Issue_Id);
+console.log("Card",card);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -101,7 +101,7 @@ console.log("Card",card.Issue_Id);
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} >
         </BootstrapDialogTitle>
         <DialogContent>
-            <IssueDescription i_id={card.Issue_Id}  p_id={card.Project_ID} p_name={card.Project_Name}></IssueDescription>     
+            <IssueDescription i_id={card.issue_id}  p_id={card.Project_ID} p_name={card.Project_Name}></IssueDescription>     
         </DialogContent>
       </BootstrapDialog>
     </div>
