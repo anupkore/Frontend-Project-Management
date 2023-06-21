@@ -11,8 +11,8 @@ import getAdjacentStates from "./States";
 // import { isVisible } from "@testing-library/user-event/dist/utils";
 import { toast } from "react-toastify";
 
-export default function IssueDescription({ i_id ,p_id ,p_name}) {
-  console.log(i_id,p_id,p_name);
+export default function IssueDescription({ i_id, p_id, p_name }) {
+  console.log(i_id, p_id, p_name);
   const comment = useRef("");
   const [isSaveVisible, setSaveVisible] = useState(false);
   const [isAddVisible, setAddVisible] = useState(false);
@@ -46,7 +46,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
     task_sd: "",
     task_ed: "",
   });
-  
+
   const [type, setType] = useState("");
   const [currentState, setCurrentState] = useState("");
   const proj_id = Number(localStorage.getItem("ProjectID"));
@@ -99,35 +99,18 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
 
   const handlePostDescription = (event) => {
     event.preventDefault();
-
-    if (type === "task") {
       const payload = {
-        task_id: issue.task_id,
+        issue_id: issue.issue_id,
         description: description,
       };
       console.log(payload);
-      AuthenticationService.updateTaskDescription(payload)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-          
-        });
-    } else {
-      const payload = {
-        defect_id: issue.defect_id,
-        description: description,
-      };
-      console.log(payload);
-      AuthenticationService.updateDefectDescription(payload)
+      AuthenticationService.updateIssueDescription(payload)
         .then((response) => {
           console.log(response.data);
         })
         .catch((error) => {
           console.error(error);
         });
-    }
   };
 
   useEffect(() => {
@@ -219,7 +202,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
       };
 
       fetchData();
-    }else{
+    } else {
       const fetchData = async () => {
         const payload3 = { Project_ID: p_id };
         console.log(payload3);
@@ -232,7 +215,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
           const [data1, data2, data3] = await Promise.all([
             response1,
             response2,
-            response3
+            response3,
           ]);
 
           console.log("data1", data1);
@@ -344,7 +327,9 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
 
   const handleDelete = (comment_id) => {
     console.log("Delete");
-    AuthenticationService.deleteComment({ comment_id })
+    const payload = { ID : comment_id }
+    console.log(payload);
+    AuthenticationService.deleteComment(payload)
       .then((response) => {
         console.log(response.data);
         setAllComment((prevComments) => {
@@ -368,6 +353,11 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
       .catch((error) => {
         console.log("ERROR..." + error.data);
       });
+  };
+  
+  const handleUpdateIssue = () => {
+
+    console.log("Handle Update Issue");
   };
 
   const { previousStates, nextStates } = getAdjacentStates(
@@ -403,7 +393,9 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
             <div className="m-4 ">
               <div className="flex py-2">
                 <h1 className="text-slate-500 underline decoration-2 decoration-sky-400">
-                  {Role !=="Self" ? (localStorage.getItem("ProjectName")) : (p_name)}
+                  {Role !== "Self"
+                    ? localStorage.getItem("ProjectName")
+                    : p_name}
                 </h1>
               </div>
               <div>
@@ -665,50 +657,53 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
                             className="inline-flex items-center hover:bg-slate-200 bg-slate-100 py-2 px-4 rounded-md focus:border-transparent text-sm font-semibold text-gray-900"
                             disabled={Role === "Self"}
                           >
-                            <span>{Role !== "Self" ? (assignedTo) : (user_email)}</span>
+                            <span>
+                              {Role !== "Self" ? assignedTo : user_email}
+                            </span>
                             <ChevronDownIcon
                               className="ml-2 h-5 w-5"
                               aria-hidden="true"
                             />
                           </Popover.Button>
-                          {Role !== 'Self' && <Transition
-                            show={isOpen1}
-                            as={Fragment}
-                            enter="transition ease-out duration-200"
-                            enterFrom="opacity-0 translate-y-1"
-                            enterTo="opacity-100 translate-y-0"
-                            leave="transition ease-in duration-150"
-                            leaveFrom="opacity-100 translate-y-0"
-                            leaveTo="opacity-0 translate-y-1"
-                          >
-                            <Popover.Panel className="absolute left-1/2 flex w-64 max-w-max -translate-x-1/2 px-2">
-                              <div className="w-screen flex-auto overflow-hidden rounded-md bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
-                                <div className="py-4 px-2">
-                                  {teamData.map((item) => (
-                                    <div
-                                      key={item}
-                                      className="group relative flex gap-x-6 rounded-r-lg p-2 hover:bg-gray-50 hover:border-l-4 hover:border-l-[#0052CC]"
-                                      //   style={{
-                                      //     boxShadow: 'inset 2px 0px 0px #0052CC',
-                                      //   }}
-                                      onClick={() => {
-                                        handleOptionSelect1(item);
-                                        closePopover1();
-                                      }}
-                                    >
-                                      <div>
-                                        <h1 className="font-semibold text-gray-900">
-                                          {item}
-                                          <span className="absolute inset-0" />
-                                        </h1>
+                          {Role !== "Self" && (
+                            <Transition
+                              show={isOpen1}
+                              as={Fragment}
+                              enter="transition ease-out duration-200"
+                              enterFrom="opacity-0 translate-y-1"
+                              enterTo="opacity-100 translate-y-0"
+                              leave="transition ease-in duration-150"
+                              leaveFrom="opacity-100 translate-y-0"
+                              leaveTo="opacity-0 translate-y-1"
+                            >
+                              <Popover.Panel className="absolute left-1/2 flex w-64 max-w-max -translate-x-1/2 px-2">
+                                <div className="w-screen flex-auto overflow-hidden rounded-md bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                                  <div className="py-4 px-2">
+                                    {teamData.map((item) => (
+                                      <div
+                                        key={item}
+                                        className="group relative flex gap-x-6 rounded-r-lg p-2 hover:bg-gray-50 hover:border-l-4 hover:border-l-[#0052CC]"
+                                        //   style={{
+                                        //     boxShadow: 'inset 2px 0px 0px #0052CC',
+                                        //   }}
+                                        onClick={() => {
+                                          handleOptionSelect1(item);
+                                          closePopover1();
+                                        }}
+                                      >
+                                        <div>
+                                          <h1 className="font-semibold text-gray-900">
+                                            {item}
+                                            <span className="absolute inset-0" />
+                                          </h1>
+                                        </div>
                                       </div>
-                                    </div>
-                                  ))}
+                                    ))}
+                                  </div>
                                 </div>
-                              </div>
-                            </Popover.Panel>
-                          </Transition>}
-                          
+                              </Popover.Panel>
+                            </Transition>
+                          )}
                         </Popover>
                       </div>
                       {/* <button className="px-3 py-1 my-1">
@@ -734,15 +729,52 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
                     </dt>
                     <dd className="basis-1/2">{issue.estimated_time}</dd>
                   </div>
-                  {issue.severity !== "" &&
+                  {issue.type === "defect" && (
                     <div className="flex flex-row">
                       <dt className="text-sm font-medium text-gray-900 basis-1/2">
                         Severity
                       </dt>
                       <dd className="basis-1/2">{issue.severity}</dd>
                     </div>
-                  }
+                  )}
                 </div>
+              </div>
+              <div className="flex">
+                <div className="flex mt-2">
+                  <h6 className="text-[#6B778C] text-xs">
+                    Created{" "}
+                    {new Date(issue.defect_sd).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      weekday: "short",
+                    })}
+                  </h6>
+                </div>
+                <div className="flex ml-auto mt-2 items-center space-x-1">
+                <button className="flex space-x-1  items-center hover:underline decoration-[#6B778C] decoration-2" onClick={handleUpdateIssue}>
+                  <div className="flex">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="#6B778C"
+                      className="bi bi-gear-wide"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z" />
+                    </svg>
+                  </div>
+                  <div className="flex">
+                   
+                    <span className="text-[#6B778C] text-sm my-auto text-center font-semibold">
+                      Configure
+                    </span>
+                    
+                  </div>
+                  </button>
+                </div>
+                
               </div>
             </div>
           </div>

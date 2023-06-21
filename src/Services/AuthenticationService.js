@@ -177,11 +177,8 @@ export default class AuthenticationService
     static assignMemberToIssue(data){
         return AxiosService.assignMemberToIssue(AuthenticationConfiguration.assignMemberToIssue(),data);
     }
-    static updateTaskDescription(data){
-        return AxiosService.updateTaskDescription(AuthenticationConfiguration.updateTaskDescription(),data);
-    }
-    static updateDefectDescription(data){
-        return AxiosService.updateDefectDescription(AuthenticationConfiguration.updateDefectDescription(),data);
+    static updateIssueDescription(data){
+        return AxiosService.updateIssueDescription(AuthenticationConfiguration.updateIssueDescription(),data);
     }
     static userWiseIssues(data){
         return AxiosService.userWiseIssues(AuthenticationConfiguration.userWiseIssues(),data);

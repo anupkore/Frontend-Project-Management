@@ -65,7 +65,12 @@ export default class AuthenticationConfiguration
 
     static updateIssue()
     {
-        const url = ParentConfiguration.parentURL()+"update_issue";
+        const url = ParentConfiguration.parentURL()+"update_issue_status";
+        return url ;
+    }
+    static updateDec()
+    {
+        const url = ParentConfiguration.parentURL()+"update_issue_desc";
         return url ;
     }
 

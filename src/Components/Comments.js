@@ -53,7 +53,7 @@ export default function Comments({ id }) {
       })
       .catch((error) => {
         console.log("ERROR" + error.data);
-        toast.error("Internal Server Error")
+        // toast.error("Internal Server Error")
       });
   }, []);
 
