@@ -189,10 +189,7 @@ export default class AxiosService
     static assignMemberToIssue(url,data){
         return axios.post(url,data);
     }
-    static updateTaskDescription(url,data){
-        return axios.post(url,data);
-    }
-    static updateDefectDescription(url,data){
+    static updateIssueDescription(url,data){
         return axios.post(url,data);
     }
     static userWiseIssues(url,data){

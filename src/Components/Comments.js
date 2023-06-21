@@ -14,7 +14,7 @@ export default function Comments({ id }) {
   function handlePost(event) {
     event.preventDefault();
     var payload = {
-      id: Number(ProjectID),
+      ID: Number(ProjectID),
       description: comment.current.value,
       user_ID: Number(UserID),
     };
@@ -33,6 +33,7 @@ export default function Comments({ id }) {
 
         setAllComment((prevComments) => [newComment, ...prevComments]);
         setShowLatestComment(true);
+        comment.current.value="";
       })
       .catch((err) => {
         console.log(err);
@@ -42,7 +43,7 @@ export default function Comments({ id }) {
 
   useEffect(() => {
     var payload = {
-      id: Number(ProjectID),
+      ID: Number(ProjectID),
     };
 
     AuthenticationService.allComment(payload)
@@ -52,7 +53,7 @@ export default function Comments({ id }) {
       })
       .catch((error) => {
         console.log("ERROR" + error.data);
-        toast.error("Internal Server Error")
+        // toast.error("Internal Server Error")
       });
   }, []);
 

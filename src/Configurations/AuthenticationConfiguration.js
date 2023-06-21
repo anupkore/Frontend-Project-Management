@@ -204,19 +204,15 @@ export default class AuthenticationConfiguration
         return url;
     }
     static updateIssueState(){
-        const url = ParentConfiguration.parentURL()+"update_issue";
+        const url = ParentConfiguration.parentURL()+"update_issue_status";
         return url;
     }
     static assignMemberToIssue(){
         const url = ParentConfiguration.parentURL()+"AssignIssue";
         return url;
     }
-    static updateTaskDescription(){
-        const url = ParentConfiguration.parentURL()+"taskid_updatedesc";
-        return url;
-    }
-    static updateDefectDescription(){
-        const url = ParentConfiguration.parentURL()+"defectid_updatedesc";
+    static updateIssueDescription(){
+        const url = ParentConfiguration.parentURL()+"update_issue_desc";
         return url;
     }
     static userWiseIssues(){
