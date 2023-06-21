@@ -209,7 +209,7 @@ export default class AuthenticationConfiguration
         return url;
     }
     static updateIssueState(){
-        const url = ParentConfiguration.parentURL()+"update_issue";
+        const url = ParentConfiguration.parentURL()+"update_issue_status";
         return url;
     }
     static assignMemberToIssue(){
