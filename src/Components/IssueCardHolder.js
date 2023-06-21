@@ -11,8 +11,8 @@ import CustomizedDialogs from "./IssueDialog";
 function IssueCardHolder(props) {
   const [issues,setIssues] = useState([]);
   const Project_ID = localStorage.getItem("ProjectID");
-  const payload = { Project_ID: Project_ID };
-  const issueCards = issues.filter((issue) => issue.Status === props.iss);
+  const payload = { Project_ID: Number(Project_ID) };
+  const issueCards = issues.filter((issue) => issue.status === props.iss);
   const maxWidth = 'md';
   const Role = localStorage.getItem("Role");
   const user_ID = Number(localStorage.getItem("UserID"));

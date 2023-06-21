@@ -60,7 +60,7 @@ const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     if (issues.length > 0) {
-      const uniqueStatusValues = [...new Set(issues.map((item) => item.Status))];
+      const uniqueStatusValues = [...new Set(issues.map((item) => item.status))];
       console.log(uniqueStatusValues);
       setStatusValues(uniqueStatusValues);
     } else {

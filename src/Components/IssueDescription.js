@@ -22,13 +22,12 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
   const [workflowData, setWorkflowData] = useState([]);
   const UserID = localStorage.getItem("UserID");
   const [issue, setIssue] = useState({
-    Title: "",
-    Description: "",
-    Priority: "",
-    Estimated_time: "",
+    title: "",
+    priority: "",
+    estimated_time: "",
     severity: "",
-    Task_ID: 0,
-    defect_ID: 0,
+    task_id: 0,
+    defect_id: 0,
   });
   const [type, setType] = useState("");
   const [currentState, setCurrentState] = useState("");
@@ -368,6 +367,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
   console.log("WorkflowString", workflowString);
   console.log("Workflow", workflow);
   console.log("Current State", currentState);
+  console.log("Team Data", teamData);
 
   return (
     <>
