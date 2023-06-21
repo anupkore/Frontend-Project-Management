@@ -63,7 +63,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
   // const id = Number(i_id);
   const payload = { issue_id: i_id };
   console.log(payload);
-  const payload2 = { id: i_id };
+  const payload2 = { ID: i_id };
   console.log(payload2);
 
   const payload1 = { Project_ID: proj_id };
@@ -285,7 +285,7 @@ export default function IssueDescription({ i_id ,p_id ,p_name}) {
     console.log("object created");
     event.preventDefault();
     var payload = {
-      id: i_id,
+      ID: i_id,
       user_ID: Number(UserID),
       description: comment.current.value,
     };

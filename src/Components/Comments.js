@@ -14,7 +14,7 @@ export default function Comments({ id }) {
   function handlePost(event) {
     event.preventDefault();
     var payload = {
-      id: Number(ProjectID),
+      ID: Number(ProjectID),
       description: comment.current.value,
       user_ID: Number(UserID),
     };
@@ -33,6 +33,7 @@ export default function Comments({ id }) {
 
         setAllComment((prevComments) => [newComment, ...prevComments]);
         setShowLatestComment(true);
+        comment.current.value="";
       })
       .catch((err) => {
         console.log(err);
@@ -42,7 +43,7 @@ export default function Comments({ id }) {
 
   useEffect(() => {
     var payload = {
-      id: Number(ProjectID),
+      ID: Number(ProjectID),
     };
 
     AuthenticationService.allComment(payload)
@@ -75,13 +76,15 @@ export default function Comments({ id }) {
     console.log("Edit comment:", id);
   };
 
-  const handleDelete = (comment_id) => {
-    AuthenticationService.deleteComment({ comment_id })
+  const handleDelete = (comment_ID) => {
+    console.log("cid",comment_ID);
+    // const payload={};
+    AuthenticationService.deleteComment({ comment_ID })
       .then((response) => {
         console.log(response.data);
         setAllComment((prevComments) => {
           const updatedComments = prevComments.filter(
-            (comment) => comment.comment_id !== comment_id
+            (comment) => comment.comment_ID !== comment_ID
           );
           return updatedComments;
         });
@@ -205,7 +208,7 @@ export default function Comments({ id }) {
                         <li className="w-full">
                             <button
                               className="block px-20 mx-auto py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
-                              onClick={() => handleEdit(data.comment_id)}
+                              onClick={() => handleEdit(data.comment_ID)}
                             >
                              
                               Edit
@@ -216,7 +219,7 @@ export default function Comments({ id }) {
                             <button
                               // className="block px-20 mx-auto py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-700"
                               className="block px-20 mx-auto py-2 text-sm text-gray-700 dark:text-red hover:bg-red-100 dark:hover:bg-gray-800"
-                              onClick={() => handleDelete(data.comment_id)}
+                              onClick={() => handleDelete(data.comment_ID)}
                             >
                               Delete
                             </button>
