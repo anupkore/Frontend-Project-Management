@@ -11,7 +11,7 @@ import CustomizedDialogs from "./IssueDialog";
 function IssueCardHolder(props) {
   const [issues,setIssues] = useState([]);
   const Project_ID = localStorage.getItem("ProjectID");
-  const payload = { Project_ID: Number(Project_ID) };
+  const payload = { Project_ID: Project_ID };
   const issueCards = issues.filter((issue) => issue.status === props.iss);
   const maxWidth = 'md';
   const Role = localStorage.getItem("Role");
@@ -46,7 +46,7 @@ function IssueCardHolder(props) {
   }, [user_ID,Project_ID]);
   return (
     <div id="content" className="mx-auto ">
-      <Link to={`/issue/${props.iss}`}>
+      {/* <Link to={`/issue/${props.iss}`}> */}
       <div className="flex bg-light sticky justify-center space-x-2 py-3 ">
         <span className="text-dark my-auto underline decoration-sky-500 decoration-[6px]">{props.iss}</span>
         {/* <span className="badge bg-dark">{issueCards.length}</span> */}
@@ -54,7 +54,7 @@ function IssueCardHolder(props) {
         {issueCards.length}
       </Badge>
       </div>
-      </Link>
+      {/* </Link> */}
       <div className="w-64 h-[36rem] overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-[#f8f9fa] scrollbar-thumb-zinc-300 scrollbar">
         <div className="rounded-b-lg bg-[#f4f5f7] space-y-3 px-3 py-4 ">
           {issueCards.map((proj) => (

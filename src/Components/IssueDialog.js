@@ -101,7 +101,7 @@ console.log("Card",card);
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} >
         </BootstrapDialogTitle>
         <DialogContent>
-            <IssueDescription i_id={card.issue_id}  p_id={card.Project_ID} p_name={"card.Project_Name"}></IssueDescription>     
+            <IssueDescription i_id={card.issue_id}  p_id={card.Project_ID} p_name={card.Project_Name}></IssueDescription>     
         </DialogContent>
       </BootstrapDialog>
     </div>

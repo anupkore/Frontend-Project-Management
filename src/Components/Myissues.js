@@ -44,7 +44,7 @@ export default function MyIssues() {
   useEffect(() => {
     if (issues.length > 0) {
       const uniqueStatusValues = [
-        ...new Set(issues.map((item) => item.Status)),
+        ...new Set(issues.map((item) => item.status)),
       ];
       console.log(uniqueStatusValues);
       setStatusValues(uniqueStatusValues);
