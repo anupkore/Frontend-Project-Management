@@ -56,7 +56,7 @@ BootstrapDialogTitle.propTypes = {
 
 export default function CustomizedDialogs({card}) {
   const [open, setOpen] = React.useState(false);
-console.log("Card",card);
+console.log("Card...issuedialog",card);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -65,31 +65,11 @@ console.log("Card",card);
   };
   const maxWidth = "xl";
   const proj_id = Number(localStorage.getItem("ProjectID"));
-//   const payload1 = { Project_ID: proj_id };
-//   const [workflowData , setWorkflowData] = useState([]);
-//   const [isLoading, setIsLoading] = useState(true);
-
-//   useEffect(() => {
-      
-//     if (!isLoading) {
-//       AuthenticationService.projectWiseWorkflow(payload1)
-//       .then((response) => {
-//         console.log(response.data);
-//         setWorkflowData(response.data);
-//         setIsLoading(false);
-//       })
-//       .catch((error) => {
-//         console.error(error);
-//         setIsLoading(false);
-//       });
-//     }
-//   }, [isLoading]);
-//   console.log("Workflowata",workflowData);
 
   return (
     <div>
       <Button  onClick={handleClickOpen}>
-            <IssueCard pro={card}></IssueCard>
+            <IssueCard card={card}></IssueCard>
             {/* {card} */}
       </Button>
       <BootstrapDialog
@@ -101,7 +81,8 @@ console.log("Card",card);
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} >
         </BootstrapDialogTitle>
         <DialogContent>
-            <IssueDescription i_id={card.issue_id}  p_id={card.Project_ID} p_name={card.Project_Name}></IssueDescription>     
+            {/* <IssueDescription i_id={3000}  p_id={localStorage.getItem("ProjectID")} p_name={localStorage.getItem("ProjectName")}></IssueDescription>      */}
+            <IssueDescription />     
         </DialogContent>
       </BootstrapDialog>
     </div>

@@ -39,12 +39,16 @@ import AllIssues from './Components/AllIssues';
 import IssueDescription from './Components/IssueDescription';
 import UpdateDefect from './Components/UpdateDefect';
 import UpdateTask from './Components/UpdateTask';
+import TaskDetail from './Components/TaskDetail';
+import { IssueProvider } from './Components/IssueContext';
+// import { IssueProvider } from "./Iss";
 
 
 const App = () => {
   return (
     <Router>
           <ToastContainer/>
+          <IssueProvider>
       <Routes>
  
         <Route path="/" element={<Home />} />
@@ -83,6 +87,10 @@ const App = () => {
 <Route path='/createTask' element={<CreateTask></CreateTask>} />
 <Route path='/createDefect' element={<CreateDefect></CreateDefect>} />
 <Route path='/allIssues' element={<ProtectedRoute element={IssueDashboard} />}/>
+
+          <Route path="/task/:issue_id" element={<ProtectedRoute element={IssueDescription} />} />
+
+<Route path='/allIssues/:issue_id' element={<ProtectedRoute element={TaskDetail} />}/>
 {/* <Route path='/demo' element={<IssueDescription></IssueDescription>} /> */}
 
 <Route path='/updateDefect' element={<UpdateDefect></UpdateDefect>} />
@@ -91,6 +99,7 @@ const App = () => {
       
       
       </Routes>
+      </IssueProvider>
     </Router>
   );
 };

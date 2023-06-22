@@ -43,7 +43,7 @@ export const  LoginForm = ({ toggleSignup }) =>
       var payload = 
       {
           Email_ID: email.current.value,
-          password: password.current.value
+          password:password.current.value
       }
       console.log("data.....1",payload);
 

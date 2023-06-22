@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
@@ -10,9 +10,31 @@ import { useEffect } from "react";
 import getAdjacentStates from "./States";
 // import { isVisible } from "@testing-library/user-event/dist/utils";
 import { toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
+import { IssueContext } from "./IssueContext";
 
-export default function IssueDescription({ i_id, p_id, p_name }) {
-  console.log(i_id, p_id, p_name);
+export default function IssueDescription() {
+  // const location = useLocation();
+  // console.log("Location state:", location.state);
+  // const card = location.state?.card;
+  // console.log("Card1111:", card);
+  // console.log("helloooooo1222222");
+  // console.log(card);
+
+
+
+  const { card } = useContext(IssueContext);
+  console.log("123555s5dd54",card);
+
+  // if (!card) {
+  //   return <p>No card information available.</p>;
+  // }
+
+
+
+  const p_id=localStorage.getItem("ProjectID");
+  const p_name=localStorage.getItem("ProjectName");
+  // const i_id=card.issue_id;
   const comment = useRef("");
   const [isSaveVisible, setSaveVisible] = useState(false);
   const [isAddVisible, setAddVisible] = useState(false);
@@ -59,11 +81,11 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
   const [description, setDescription] = useState("Description");
   const Role = localStorage.getItem("Role");
   const user_email = localStorage.getItem("UserEmail");
-  console.log("IID", i_id);
+  console.log("IID", card.issue_id);
   // const id = Number(i_id);
-  const payload = { issue_id: i_id };
+  const payload = { issue_id: card.issue_id };
   console.log(payload);
-  const payload2 = { ID: i_id };
+  const payload2 = { ID: card.issue_id };
   console.log(payload2);
 
   const payload1 = { Project_ID: proj_id };
@@ -115,7 +137,7 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
 
   useEffect(() => {
     const payload = {
-      issue_id: i_id,
+      issue_id: card.issue_id,
       status: selectedValue,
     };
     if (!isLoading) {
@@ -128,13 +150,13 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
           console.error(error);
         });
     }
-  }, [selectedValue, proj_id, i_id]);
+  }, [selectedValue, proj_id, card.issue_id]);
 
   useEffect(() => {
     const payload4 = {
       Email_ID: assignedTo[0],
       Project_ID: proj_id,
-      issue_id: i_id,
+      issue_id: card.issue_id,
     };
     if (assignedTo.length > 0) {
       console.log(payload4);
@@ -146,7 +168,7 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
           console.error(error);
         });
     }
-  }, [assignedTo, proj_id, i_id]);
+  }, [assignedTo, proj_id, card.issue_id]);
 
   const handleDescriptionFocus = () => {
     setSaveVisible(true);
@@ -268,7 +290,7 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
     console.log("object created");
     event.preventDefault();
     var payload = {
-      ID: i_id,
+      ID: card.issue_id,
       user_ID: Number(UserID),
       description: comment.current.value,
     };
@@ -517,51 +539,7 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
                               </time>
                             </p>
                           </div>
-                          {/* Three-dot menu */}
-                          {/* <div className="relative inline-block text-left">
-                          <button
-                            className="focus:outline-none"
-                            onClick={() => handleMenuToggle(index)}
-                          >
-                            <svg
-                              className="w-5 h-5 text-gray-500 dark:text-gray-400 cursor-pointer"
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M2 9a2 2 0 114 0 2 2 0 01-4 0zm6 0a2 2 0 114 0 2 2 0 01-4 0zm8 0a2 2 0 114 0 2 2 0 01-4 0z"
-                                clipRule="evenodd"
-                              />
-                              h1
-                            </svg>
-                          </button>
-                          {data.showMenu && (
-                            <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                              <ul className="py-1">
-                                <li>
-                                  <button
-                                    className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
-                                    onClick={() => handleEdit(data.comment_id)}
-                                  >
-                                    Edit
-                                  </button>
-                                </li>
-                                <li>
-                                  <button
-                                    className="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-700"
-                                    onClick={() =>
-                                      handleDelete(data.comment_id)
-                                    }
-                                  >
-                                    Delete
-                                  </button>
-                                </li>
-                              </ul>
-                            </div>
-                          )}
-                        </div> */}
+                         
                         </footer>
                         <p className="text-gray-500 dark:text-gray-400">
                           {data.description}
@@ -569,13 +547,14 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
                         <div className="flex items-center space-x-4">
                           <button
                             className="text-[#6B778C] hover:underline hover:text-blue-400"
-                            onClick={() => handleEdit(data.comment_id)}
+                            onClick={() => handleEdit(data[index].comment_ID)}
                           >
                             Edit
                           </button>
                           <button
                             className="text-[#6B778C] hover:underline hover:text-blue-400"
-                            onClick={() => handleDelete(data.comment_id)}
+                            
+                            onClick={() => handleDelete(data[index].comment_ID)}
                           >
                             Delete
                           </button>
