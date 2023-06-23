@@ -55,6 +55,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function CustomizedDialogs({card}) {
+  console.log("dialog ggggg");
   const [open, setOpen] = React.useState(false);
 console.log("Card...issuedialog",card);
   const handleClickOpen = () => {
@@ -64,7 +65,6 @@ console.log("Card...issuedialog",card);
     setOpen(false);
   };
   const maxWidth = "xl";
-  const proj_id = Number(localStorage.getItem("ProjectID"));
 
   return (
     <div>

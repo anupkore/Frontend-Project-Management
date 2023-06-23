@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthenticationService from "../Services/AuthenticationService";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -6,8 +6,9 @@ import { SyncLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 
 
-function UpdateDefect({ issueId }) 
+function UpdateDefect() 
 {
+  const issueId = localStorage.getItem('IID');
   const [title, setTitle] = useState("");
   const [product , setProduct] = useState("");
   const [component , setComponent] = useState("");
@@ -16,11 +17,14 @@ function UpdateDefect({ issueId })
   const [severity, setSeverity] = useState("");
   const [os , setOS] = useState("");
   const [summary , setSummary] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState(Date(""));
+  console.log(startDate);
+  const [endDate, setEndDate] = useState(Date(""));
+  console.log(endDate);
   const [priority, setPriority] = useState("");
   const [estimatedTime, setEstimatedTime] = useState("");
-
+  const [defect_id, setDefect_id] = useState();
+  const [file_attachment, setFileAttachment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   console.log(issueId);
@@ -86,6 +90,33 @@ function UpdateDefect({ issueId })
     setComponentDescription(event.target.value);
   }
 
+  useEffect(() => {
+    const payload = {issue_id : issueId}
+    AuthenticationService.particularIssueDetails(payload)
+      .then((response) =>{
+        console.log(response.data);
+        const issue = response.data.issue_details[0];
+        console.log("Issue", issue);
+        setDefect_id(issue.defect_id);
+        setTitle(issue.title);
+        setComponent(issue.component);
+        setComponentDescription(issue.component_description);
+        setEndDate(issue.defect_ed);
+        setStartDate(issue.defect_sd);
+        setOS(issue.os);
+        setPriority(issue.priority);
+        setProduct(issue.product);
+        setSeverity(issue.severity);
+        setSummary(issue.summary);
+        setVersion(issue.version);
+        setFileAttachment(issue.file_attachment);
+        setEstimatedTime(issue.estimated_time);
+      })
+      .catch((error) =>{
+        console.error(error);
+        toast.error("Internal Server Error");
+      })
+  }, [])
   
   
   
@@ -94,6 +125,7 @@ function UpdateDefect({ issueId })
     setIsLoading(true);
     event.preventDefault();
     var payload = {
+      defect_id : defect_id,
       issue_id: issueId,
       title: title,
       product: product,
@@ -107,12 +139,13 @@ function UpdateDefect({ issueId })
       defect_ed: endDate,
       priority: priority,
       estimated_time: estimatedTime,
-    };
+      file_attachment: file_attachment
+    }
     console.log(payload);
     AuthenticationService.updateDefect(payload)
       .then(() => {
         console.log("Hi Update Defect");
-        toast.success("Defect Added Sucessfully!! ", {
+        toast.success("Defect Updated Sucessfully!! ", {
           position: "top-right",
           autoClose: 1000,
           hideProgressBar: true,
@@ -171,7 +204,7 @@ function UpdateDefect({ issueId })
                                   onChange={handleInputChangeTitle}
                                   required
                                   autoComplete="given-name"
-                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                                  className="block w-full rounded-md border-none px-3.5 py-2 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                                   disabled={isLoading}
                                 />
                               </div>
@@ -188,7 +221,7 @@ function UpdateDefect({ issueId })
                                   value={priority}
                                   onChange={handleInputChangePriority}
                                   autoComplete="family-name"
-                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 border-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                                   disabled={isLoading}
                                 >
                                   <option value="">Select Priority</option>
@@ -218,7 +251,7 @@ function UpdateDefect({ issueId })
                                   onChange={handleInputChangeProduct}
                                   required
                                   autoComplete="given-name"
-                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 border-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                                   disabled={isLoading}
                                 />
                               </div>
@@ -239,7 +272,7 @@ function UpdateDefect({ issueId })
                                   onChange={handleInputChangeVersion}
                                   required
                                   autoComplete="given-name"
-                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 border-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                                   disabled={isLoading}
                                 />
                               </div>
@@ -260,7 +293,7 @@ function UpdateDefect({ issueId })
                                     value={severity}
                                     onChange={handleInputChangeSeverity}
                                     autoComplete="family-name"
-                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 border-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                                     disabled={isLoading}
                                   >
                                     <option value="">Select Severity</option>
@@ -282,7 +315,7 @@ function UpdateDefect({ issueId })
                                   value={os}
                                   onChange={handleInputChangeOS}
                                   autoComplete="family-name"
-                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 border-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                                   disabled={isLoading}
                                 >
                                   <option value="">Select Operating System</option>
@@ -313,7 +346,7 @@ function UpdateDefect({ issueId })
                               value={startDate}
                               onChange={handleInputChangeStartDate}
                               autoComplete="organization"
-                              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 border-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                               disabled={isLoading}
                             />
                           </div>
@@ -335,7 +368,7 @@ function UpdateDefect({ issueId })
                               value={endDate}
                               onChange={handleInputChangeEndDate}
                               autoComplete="organization"
-                              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 border-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                               disabled={isLoading}
                             />
                           </div>
@@ -359,7 +392,7 @@ function UpdateDefect({ issueId })
                                   onChange={handleInputChangeEstimatedTime}
                                   required
                                   autoComplete="given-name"
-                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 border-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                                   disabled={isLoading}
                                 />
                         </div>
@@ -379,7 +412,7 @@ function UpdateDefect({ issueId })
                             value={component}
                             onChange={handleInputChangeComponent}
                             autoComplete="given-name"
-                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 border-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                             disabled={isLoading}
                           />
                         </div>
@@ -402,7 +435,7 @@ function UpdateDefect({ issueId })
                                     value={summary}
                                     onChange={handleInputChangeSummary}
                                     autoComplete="given-name"
-                                    className="h-40 w-full rounded-md border-0 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-black-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm text-lg"
+                                    className="h-40 w-full rounded-md border-0 text-gray-900 border-none placeholder:text-black-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm text-lg"
                                     disabled={isLoading}
                                   />
                               </div>
@@ -424,7 +457,7 @@ function UpdateDefect({ issueId })
                           value={componentDescription}
                           onChange={handleInputChangeComonentDescription}
                           autoComplete="given-name"
-                          className="h-40 w-full rounded-md border-0 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-black-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm text-lg"
+                          className="h-40 w-full rounded-md border-0 text-gray-900 border-none placeholder:text-black-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm text-lg"
                           disabled={isLoading}
                         />
                       </div>

@@ -59,9 +59,9 @@ export default class AuthenticationService
         return AxiosService.updateIssue(AuthenticationConfiguration.updateIssue(), data);
     }
 
-    static deleteIssue()
+    static deleteIssue(data)
     {
-        return AxiosService.deleteIssue(AuthenticationConfiguration.deleteIssue());
+        return AxiosService.deleteIssue(AuthenticationConfiguration.deleteIssue(),data);
     }
 
     static allUsersTable()
@@ -237,5 +237,11 @@ export default class AuthenticationService
     {
         return AxiosService.deleteDefect(AuthenticationConfiguration.deleteTask(),data);
 // >>>>>>> ac425c014f2670b49dc681d816ef9756c760900b
+    }
+    static issueWiseUser(data){
+        return AxiosService.issueWiseUser(AuthenticationConfiguration.issueWiseUser(),data);
+    }
+    static projectIssueStates(data){
+        return AxiosService.projectIssueStates(AuthenticationConfiguration.projectIssueStates(),data);
     }
 }

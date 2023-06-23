@@ -11,6 +11,10 @@ export default function IssueCard({ card }) {
     setIssueCard(card);
   };
 
+export default function IssueCard(props) {
+  console.log("card",props);
+
+
   return (
     <Link to={`/task/${card.issue_id}`} onClick={handleClick}>
       {/* Card content */}

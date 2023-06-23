@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
@@ -10,31 +10,11 @@ import { useEffect } from "react";
 import getAdjacentStates from "./States";
 // import { isVisible } from "@testing-library/user-event/dist/utils";
 import { toast } from "react-toastify";
-import { useLocation } from "react-router-dom";
-import { IssueContext } from "./IssueContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
-export default function IssueDescription() {
-  // const location = useLocation();
-  // console.log("Location state:", location.state);
-  // const card = location.state?.card;
-  // console.log("Card1111:", card);
-  // console.log("helloooooo1222222");
-  // console.log(card);
-
-
-
-  const { card } = useContext(IssueContext);
-  console.log("123555s5dd54",card);
-
-  // if (!card) {
-  //   return <p>No card information available.</p>;
-  // }
-
-
-
-  const p_id=localStorage.getItem("ProjectID");
-  const p_name=localStorage.getItem("ProjectName");
-  // const i_id=card.issue_id;
+export default function IssueDescription({ i_id, p_id, p_name }) {
+  console.log("isueeeee");
+  console.log(i_id, p_id, p_name);
   const comment = useRef("");
   const [isSaveVisible, setSaveVisible] = useState(false);
   const [isAddVisible, setAddVisible] = useState(false);
@@ -68,7 +48,7 @@ export default function IssueDescription() {
     task_sd: "",
     task_ed: "",
   });
-
+  const navigate = useNavigate();
   const [type, setType] = useState("");
   const [currentState, setCurrentState] = useState("");
   const proj_id = Number(localStorage.getItem("ProjectID"));
@@ -81,15 +61,20 @@ export default function IssueDescription() {
   const [description, setDescription] = useState("Description");
   const Role = localStorage.getItem("Role");
   const user_email = localStorage.getItem("UserEmail");
-  console.log("IID", card.issue_id);
+  console.log("IID", i_id);
   // const id = Number(i_id);
-  const payload = { issue_id: card.issue_id };
+  const payload = { issue_id: i_id };
   console.log(payload);
-  const payload2 = { ID: card.issue_id };
+  const payload2 = { ID: i_id };
   console.log(payload2);
-
+  const demo = 1;
   const payload1 = { Project_ID: proj_id };
   console.log(payload1);
+  const payload4 = {
+    Email_ID: assignedTo,
+    Project_ID: proj_id,
+    issue_id: i_id,
+  };
   // Function to handle opening the popover
   const openPopover = () => {
     setIsOpen(true);
@@ -137,7 +122,7 @@ export default function IssueDescription() {
 
   useEffect(() => {
     const payload = {
-      issue_id: card.issue_id,
+      issue_id: i_id,
       status: selectedValue,
     };
     if (!isLoading) {
@@ -150,15 +135,10 @@ export default function IssueDescription() {
           console.error(error);
         });
     }
-  }, [selectedValue, proj_id, card.issue_id]);
-
+  }, [selectedValue]);
   useEffect(() => {
-    const payload4 = {
-      Email_ID: assignedTo[0],
-      Project_ID: proj_id,
-      issue_id: card.issue_id,
-    };
-    if (assignedTo.length > 0) {
+    
+    if (payload4.Email_ID && assignedTo !== "Unassigned" && assignedTo !== "") {
       console.log(payload4);
       AuthenticationService.assignMemberToIssue(payload4)
         .then((response) => {
@@ -168,7 +148,7 @@ export default function IssueDescription() {
           console.error(error);
         });
     }
-  }, [assignedTo, proj_id, card.issue_id]);
+  }, [assignedTo]);
 
   const handleDescriptionFocus = () => {
     setSaveVisible(true);
@@ -185,87 +165,299 @@ export default function IssueDescription() {
   const handleCommentBlur = () => {
     setAddVisible(false);
   };
+  
+  // useEffect(() => {
+  //     if (Role !== "Self") {
+  //       const fetchData = async () => {
+  //         try {
+  //           const response1 = AuthenticationService.projectWiseWorkflow(payload1);
+  //           const response2 =
+  //             AuthenticationService.particularIssueDetails(payload);
+  //           const response3 = AuthenticationService.allComment(payload2);
+  //           const response4 = AuthenticationService.getAllProjectMember(payload1);
+  //           const response5 = AuthenticationService.issueWiseUser(payload)
+  //           const [data1, data2, data3, data4 , data5] = await Promise.all([
+  //             response1,
+  //             response2,
+  //             response3,
+  //             response4,
+  //             response5
+  //           ]);
+
+  //           console.log("data1", data1);
+  //           console.log("data2", data2);
+  //           console.log("data3", data3);
+  //           console.log("data4", data4);
+  //           console.log("data5",data5);
+  //           setWorkflowData(data1.data);
+  //           setAssignedTo(data5.data.email_id)
+  //           const work = data2.data.issue_details[0];
+  //           console.log("Work", work);
+  //           setAllComment(data3.data);
+  //           setIssue(work);
+  //           setType(work.type);
+  //           setCurrentState(work.status);
+  //           setSelectedValue(work.status);
+  //           setDescription(work.description);
+  //           setTeamData(data4.data);
+  //           setIsLoading(false);
+  //         } catch (error) {
+  //           console.error(error);
+  //           setIsLoading(false);
+  //         }
+  //       };
+
+  //       fetchData();
+  //     } else {
+  //       const fetchData = async () => {
+  //         const payload3 = { Project_ID: p_id };
+  //         console.log(payload3);
+  //         try {
+  //           const response1 = AuthenticationService.projectWiseWorkflow(payload3);
+  //           const response2 =
+  //             AuthenticationService.particularIssueDetails(payload);
+  //           const response3 = AuthenticationService.allComment(payload2);
+  //           const response5 = AuthenticationService.issueWiseUser(payload)
+  //           // const response4 = AuthenticationService.getAllProjectMember(payload1);
+  //           const [data1, data2, data3,data5] = await Promise.all([
+  //             response1,
+  //             response2,
+  //             response3,
+  //             response5
+  //           ]);
+
+  //           console.log("data1", data1);
+  //           console.log("data2", data2);
+  //           console.log("data3", data3);
+  //           console.log("data5", data5);
+  //           setWorkflowData(data1.data);
+
+  //           const work = data2.data.issue_details[0];
+  //           // console.log("Work", work);
+  //           setAllComment(data3.data);
+  //           setIssue(work);
+  //           setType(work.type);
+  //           setCurrentState(work.status);
+  //           setSelectedValue(work.status);
+  //           setDescription(work.description);
+  //           // setTeamData(data4.data);
+  //           setIsLoading(false);
+  //         } catch (error) {
+  //           console.error(error);
+  //           setIsLoading(false);
+  //         }
+  //       };
+
+  //       fetchData();
+  //     }
+
+  // },[]);
+
+  // useEffect(() => {
+  //   if (Role !== "Self") {
+  //     const fetchData = async () => {
+  //       try {
+  //         const response1 = await AuthenticationService.projectWiseWorkflow(payload1);
+  //         const data1 = response1.data;
+  //         console.log("data1", data1);
+  //         setWorkflowData(data1);
+  
+  //         const response2 = await AuthenticationService.particularIssueDetails(payload);
+  //         const data2 = response2.data;
+  //         console.log("data2", data2);
+  //         const work = data2.issue_details[0];
+  //         setIssue(work);
+  //         setType(work.type);
+  //         setCurrentState(work.status);
+  //         setSelectedValue(work.status);
+  //         setDescription(work.description);
+  
+  //         const response3 = await AuthenticationService.allComment(payload2);
+  //         const data3 = response3.data;
+  //         console.log("data3", data3);
+  //         setAllComment(data3);
+  
+  //         const response4 = await AuthenticationService.getAllProjectMember(payload1);
+  //         const data4 = response4.data;
+  //         console.log("data4", data4);
+  //         setTeamData(data4);
+  
+  //         const response5 = await AuthenticationService.issueWiseUser(payload);
+  //         const data5 = response5.data;
+  //         console.log("data5", data5);
+  //         setAssignedTo(data5);
+  
+  //         setIsLoading(false);
+  //       } catch (error) {
+  //         console.error(error);
+  //         setIsLoading(false);
+  //       }
+  //     };
+  
+  //     fetchData();
+  //   } else {
+  //     const fetchData = async () => {
+  //       const payload3 = { Project_ID: p_id };
+  //       console.log(payload3);
+  //       try {
+  //         const response1 = await AuthenticationService.projectWiseWorkflow(payload3);
+  //         const data1 = response1.data;
+  //         console.log("data1", data1);
+  //         setWorkflowData(data1);
+  
+  //         const response2 = await AuthenticationService.particularIssueDetails(payload);
+  //         const data2 = response2.data;
+  //         console.log("data2", data2);
+  //         const work = data2.issue_details[0];
+  //         setIssue(work);
+  //         setType(work.type);
+  //         setCurrentState(work.status);
+  //         setSelectedValue(work.status);
+  //         setDescription(work.description);
+  
+  //         const response3 = await AuthenticationService.allComment(payload2);
+  //         const data3 = response3.data;
+  //         console.log("data3", data3);
+  //         setAllComment(data3);
+  
+  //         const response5 = await AuthenticationService.issueWiseUser(payload);
+  //         const data5 = response5.data;
+  //         console.log("data5", data5);
+  //         setAssignedTo(data5.email_id);
+  
+  //         setIsLoading(false);
+  //       } catch (error) {
+  //         console.error(error);
+  //         setIsLoading(false);
+  //       }
+  //     };
+  
+  //     fetchData();
+  //   }
+  // }, []);
+  
+
   useEffect(() => {
+    let isMounted = true;
+  
     if (Role !== "Self") {
       const fetchData = async () => {
         try {
-          const response1 = AuthenticationService.projectWiseWorkflow(payload1);
-          const response2 =
-            AuthenticationService.particularIssueDetails(payload);
-          const response3 = AuthenticationService.allComment(payload2);
-          const response4 = AuthenticationService.getAllProjectMember(payload1);
-          const [data1, data2, data3, data4] = await Promise.all([
-            response1,
-            response2,
-            response3,
-            response4,
-          ]);
-
+          const response1 = await AuthenticationService.projectWiseWorkflow(payload1);
+          const data1 = response1.data;
           console.log("data1", data1);
+  
+          if (isMounted) {
+            setWorkflowData(data1);
+          }
+  
+          const response2 = await AuthenticationService.particularIssueDetails(payload);
+          const data2 = response2.data;
           console.log("data2", data2);
+          const work = data2.issue_details[0];
+  
+          if (isMounted) {
+            setIssue(work);
+            setType(work.type);
+            setCurrentState(work.status);
+            setSelectedValue(work.status);
+            setDescription(work.description);
+          }
+  
+          const response3 = await AuthenticationService.allComment(payload2);
+          const data3 = response3.data;
           console.log("data3", data3);
+  
+          if (isMounted) {
+            setAllComment(data3);
+          }
+  
+          const response4 = await AuthenticationService.getAllProjectMember(payload1);
+          const data4 = response4.data;
           console.log("data4", data4);
-          setWorkflowData(data1.data);
-
-          const work = data2.data.issue_details[0];
-          console.log("Work", work);
-          setAllComment(data3.data);
-          setIssue(work);
-          setType(work.type);
-          setCurrentState(work.status);
-          setSelectedValue(work.status);
-          setDescription(work.description);
-          setTeamData(data4.data);
-          setIsLoading(false);
+  
+          if (isMounted) {
+            setTeamData(data4);
+          }
+  
+          const response5 = await AuthenticationService.issueWiseUser(payload);
+          const data5 = response5.data;
+          console.log("data5", data5);
+  
+          if (isMounted) {
+            setAssignedTo(data5);
+            setIsLoading(false);
+          }
         } catch (error) {
           console.error(error);
-          setIsLoading(false);
+  
+          if (isMounted) {
+            setIsLoading(false);
+          }
         }
       };
-
+  
       fetchData();
     } else {
       const fetchData = async () => {
         const payload3 = { Project_ID: p_id };
         console.log(payload3);
+  
         try {
-          const response1 = AuthenticationService.projectWiseWorkflow(payload3);
-          const response2 =
-            AuthenticationService.particularIssueDetails(payload);
-          const response3 = AuthenticationService.allComment(payload2);
-          // const response4 = AuthenticationService.getAllProjectMember(payload1);
-          const [data1, data2, data3] = await Promise.all([
-            response1,
-            response2,
-            response3,
-          ]);
-
+          const response1 = await AuthenticationService.projectWiseWorkflow(payload3);
+          const data1 = response1.data;
           console.log("data1", data1);
+  
+          if (isMounted) {
+            setWorkflowData(data1);
+          }
+  
+          const response2 = await AuthenticationService.particularIssueDetails(payload);
+          const data2 = response2.data;
           console.log("data2", data2);
+          const work = data2.issue_details[0];
+  
+          if (isMounted) {
+            setIssue(work);
+            setType(work.type);
+            setCurrentState(work.status);
+            setSelectedValue(work.status);
+            setDescription(work.description);
+          }
+  
+          const response3 = await AuthenticationService.allComment(payload2);
+          const data3 = response3.data;
           console.log("data3", data3);
-          // console.log("data4", data4);
-          setWorkflowData(data1.data);
-
-          const work = data2.data.issue_details[0];
-          // console.log("Work", work);
-          setAllComment(data3.data);
-          setIssue(work);
-          setType(work.type);
-          setCurrentState(work.status);
-          setSelectedValue(work.status);
-          setDescription(work.description);
-          // setTeamData(data4.data);
-          setIsLoading(false);
+  
+          if (isMounted) {
+            setAllComment(data3);
+          }
+  
+          const response5 = await AuthenticationService.issueWiseUser(payload);
+          const data5 = response5.data;
+          console.log("data5", data5);
+  
+          if (isMounted) {
+            setAssignedTo(data5.email_id);
+            setIsLoading(false);
+          }
         } catch (error) {
           console.error(error);
-          setIsLoading(false);
+  
+          if (isMounted) {
+            setIsLoading(false);
+          }
         }
       };
-
+  
       fetchData();
     }
-  }, [isLoading]);
-
+  
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+  
   useEffect(() => {
     if (!isLoading && workflowData.length > 0) {
       console.log("Workflow....");
@@ -290,7 +482,7 @@ export default function IssueDescription() {
     console.log("object created");
     event.preventDefault();
     var payload = {
-      ID: card.issue_id,
+      ID: i_id,
       user_ID: Number(UserID),
       description: comment.current.value,
     };
@@ -378,10 +570,41 @@ export default function IssueDescription() {
   };
   
   const handleUpdateIssue = () => {
-
+    localStorage.setItem("IID",i_id);
+    if(type === "task"){
+      navigate('/updateTask')
+    }else{
+      navigate('/updateDefect')
+    }
     console.log("Handle Update Issue");
   };
-
+  const handleDeleteIssue = () => {
+    const issueDelete = window.confirm("ARe u sure you want to delete ?");
+    console.log(issueDelete);
+    if(issueDelete){
+      AuthenticationService.deleteIssue(payload)
+      .then((response) => {
+        console.log(response.data);
+        // navigate("/allIssues");
+        window.location.reload();
+        toast.success("Issue Deleted Sucessfully!! ", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+  }
+    console.log("Handle Delete Issue");
+  };
   const { previousStates, nextStates } = getAdjacentStates(
     workflow,
     currentState
@@ -539,7 +762,51 @@ export default function IssueDescription() {
                               </time>
                             </p>
                           </div>
-                         
+                          {/* Three-dot menu */}
+                          {/* <div className="relative inline-block text-left">
+                          <button
+                            className="focus:outline-none"
+                            onClick={() => handleMenuToggle(index)}
+                          >
+                            <svg
+                              className="w-5 h-5 text-gray-500 dark:text-gray-400 cursor-pointer"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M2 9a2 2 0 114 0 2 2 0 01-4 0zm6 0a2 2 0 114 0 2 2 0 01-4 0zm8 0a2 2 0 114 0 2 2 0 01-4 0z"
+                                clipRule="evenodd"
+                              />
+                              h1
+                            </svg>
+                          </button>
+                          {data.showMenu && (
+                            <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                              <ul className="py-1">
+                                <li>
+                                  <button
+                                    className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                    onClick={() => handleEdit(data.comment_id)}
+                                  >
+                                    Edit
+                                  </button>
+                                </li>
+                                <li>
+                                  <button
+                                    className="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-700"
+                                    onClick={() =>
+                                      handleDelete(data.comment_id)
+                                    }
+                                  >
+                                    Delete
+                                  </button>
+                                </li>
+                              </ul>
+                            </div>
+                          )}
+                        </div> */}
                         </footer>
                         <p className="text-gray-500 dark:text-gray-400">
                           {data.description}
@@ -547,14 +814,13 @@ export default function IssueDescription() {
                         <div className="flex items-center space-x-4">
                           <button
                             className="text-[#6B778C] hover:underline hover:text-blue-400"
-                            onClick={() => handleEdit(data[index].comment_ID)}
+                            onClick={() => handleEdit(data.comment_id)}
                           >
                             Edit
                           </button>
                           <button
                             className="text-[#6B778C] hover:underline hover:text-blue-400"
-                            
-                            onClick={() => handleDelete(data[index].comment_ID)}
+                            onClick={() => handleDelete(data.comment_id)}
                           >
                             Delete
                           </button>
@@ -754,6 +1020,31 @@ export default function IssueDescription() {
                   </button>
                 </div>
                 
+              </div>
+              <div className="flex mt-4">
+                <div className="flex mx-auto mt-2 items-center space-x-1">
+                  <button
+                    className="flex space-x-1  hover:text-white items-center rounded-md hover:bg-slate-100 px-32 py-2 decoration-2"
+                    onClick={handleDeleteIssue}
+                  >
+                    <div className="flex">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        className="bi bi-trash3-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                      </svg>
+                    </div>
+                    <div className="flex">
+                      <span className="text-[#6B778C] text-sm my-auto text-center font-semibold">
+                        Delete Issue
+                      </span>
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
