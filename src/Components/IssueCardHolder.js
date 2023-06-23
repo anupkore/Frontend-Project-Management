@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import IssueCard from "./IssueCard";
 import { Link } from "react-router-dom";
+// import { issues } from "./TEST/Issues";
 import CreateIssueForm from "./CreateIssueForm";
 import FormDialog from "./Dialog";
 import { Badge } from "react-bootstrap";
 import AuthenticationService from "../Services/AuthenticationService";
-import TaskDetail from "./TaskDetail";
+import CustomizedDialogs from "./IssueDialog";
 
 function IssueCardHolder({iss,issues}) {
   console.log("card holderrrr");
@@ -54,9 +55,10 @@ function IssueCardHolder({iss,issues}) {
         <span className="text-dark my-auto underline decoration-sky-500 decoration-[6px]">{iss}</span>
         {/* <span className="badge bg-dark">{issueCards.length}</span> */}
         <Badge pill bg="secondary">
-          {issueCards.length}
-        </Badge>
+        {issueCards.length}
+      </Badge>
       </div>
+      {/* </Link> */}
       <div className="w-64 h-[36rem] overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-[#f8f9fa] scrollbar-thumb-zinc-300 scrollbar">
         <div className="rounded-b-lg bg-[#f4f5f7] space-y-3 px-3 py-4 ">
           {issueCards.map((proj) => (
@@ -67,18 +69,21 @@ function IssueCardHolder({iss,issues}) {
             // </Link>
           ))}
           <div className="flex justify-center">
-            <FormDialog
-              prop={<CreateIssueForm></CreateIssueForm>}
-              style={maxWidth}
-              icon={"/Images/plus-lg.svg"}
-              ic={"false"}
-              variant={""}
-              buttonTitle={"Create issue"}
-            ></FormDialog>
+            {/* <Link to={`/issue/${props.iss}`}>
+              <h1 className="font-semibold">See More</h1>
+            </Link> */}
+            <FormDialog prop={<CreateIssueForm></CreateIssueForm>} style={maxWidth} icon={"/Images/plus-lg.svg"} ic={"false"} variant={""} buttonTitle={"Create issue"}></FormDialog>
           </div>
         </div>
       </div>
     </div>
+    // <>
+    //   <div id="content" className="mx-auto rounded-4 bg-lime-100">
+    //     <div className="w-64 h-[42rem] max-h-md px-2 pb-2">
+
+    //     </div>
+    //   </div>
+    // </>
   );
 }
 
