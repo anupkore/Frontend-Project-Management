@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import FormDialog from "./Dialog";
 import CreateTask from "./CreateTask";
 import CreateDefect from "./CreateDefect";
+import { Link } from "react-router-dom";
 
 export default function CreateIssueForm() {
   const [issueName, setIssueName] = useState("");
@@ -146,14 +147,31 @@ export default function CreateIssueForm() {
   }, [issueType, isLoading, workflowData]);
 
   return (
-    
+    <>
+      {isLoading && (
+        <div className="flex align-center justify-center">
+          <SyncLoader color="#1976d2" size={10} style={{ marginTop: "10%" }} />
+        </div>
+      )}
+      {status === "" ? (
         <>
-        {isLoading  && (
-      <div className="flex align-center justify-center">
-         <SyncLoader color="#1976d2" size={10}  style={{ marginTop: "10%" }} />
-      </div>
-    )}
-     <div className={`${isLoading ? "blur-sm" : ""}`}>
+        <div className="h-40 w-full ">
+          <div className="flex justify-center items-center p-4">
+            <h1 className="text-3xl text-bold">Firstly Set Or Create Workflow for task and defects</h1>
+          </div>
+          <div className="flex justify-center items-center p-4">
+            <Link to={"/workflow"} className="hover:text-black">
+              <div className="px-30 py-2 rounded-md  bg-slate-100 hover:bg-slate-200">
+              <h1 className="text-2xl text-semibold px-4">
+              Click Here to Create Workflow
+              </h1>
+              </div>
+            </Link>
+          </div>
+        </div>
+        </>
+      ) : (
+        <div className={`${isLoading ? "blur-sm" : ""}`}>
           <Container>
             <div className="mx-auto max-w-2xl pb-3">
               <div className="text-center">
@@ -164,7 +182,11 @@ export default function CreateIssueForm() {
             </div>
             <Row>
               <Col className="">
-                <img src="/Images/project-management.png" className="max-w-[90%] m-auto pt-14" alt="Issue Form" />
+                <img
+                  src="/Images/project-management.png"
+                  className="max-w-[90%] m-auto pt-14"
+                  alt="Issue Form"
+                />
               </Col>
               <Col sm>
                 <div className="mx-auto">
@@ -287,7 +309,8 @@ export default function CreateIssueForm() {
               </div>
             </Row>
           </Container>
-    </div>
-        </>
+        </div>
+      )}
+    </>
   );
 }
