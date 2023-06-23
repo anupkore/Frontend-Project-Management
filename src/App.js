@@ -83,8 +83,6 @@ const App = () => {
 <Route path='/createTask' element={<CreateTask></CreateTask>} />
 <Route path='/createDefect' element={<CreateDefect></CreateDefect>} />
 <Route path='/allIssues' element={<ProtectedRoute element={IssueDashboard} />}/>
-{/* <Route path='/demo' element={<IssueDescription></IssueDescription>} /> */}
-
 <Route path='/updateDefect' element={<UpdateDefect></UpdateDefect>} />
 <Route path='/updateTask' element={<UpdateTask></UpdateTask>} />      
       

@@ -55,6 +55,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function CustomizedDialogs({card}) {
+  console.log("dialog ggggg");
   const [open, setOpen] = React.useState(false);
 console.log("Card",card);
   const handleClickOpen = () => {
@@ -64,27 +65,6 @@ console.log("Card",card);
     setOpen(false);
   };
   const maxWidth = "xl";
-  const proj_id = Number(localStorage.getItem("ProjectID"));
-//   const payload1 = { Project_ID: proj_id };
-//   const [workflowData , setWorkflowData] = useState([]);
-//   const [isLoading, setIsLoading] = useState(true);
-
-//   useEffect(() => {
-      
-//     if (!isLoading) {
-//       AuthenticationService.projectWiseWorkflow(payload1)
-//       .then((response) => {
-//         console.log(response.data);
-//         setWorkflowData(response.data);
-//         setIsLoading(false);
-//       })
-//       .catch((error) => {
-//         console.error(error);
-//         setIsLoading(false);
-//       });
-//     }
-//   }, [isLoading]);
-//   console.log("Workflowata",workflowData);
 
   return (
     <div>

@@ -4,14 +4,17 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { SyncLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-function UpdateTask({ issueId }) {
+function UpdateTask() {
   const [title, setTitle] = useState("");
-  //const [description, setDescription] = useState("");
+  const issueId = localStorage.getItem('IID');
+  const [task_id,setTask_id] = useState();
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [priority, setPriority] = useState("");
   const [estimatedTime, setEstimatedTime] = useState("");
+  const [file_attachment, setFileAttachment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   console.log(issueId);
@@ -19,10 +22,6 @@ function UpdateTask({ issueId }) {
   function handleInputChangeTitle(event) {
     setTitle(event.target.value);
   }
-
-//   function handleInputChangeDescription(event) {
-//     setDescription(event.target.value);
-//   }
 
   function handleInputChangeStartDate(event) {
     setStartDate(event.target.value);
@@ -40,15 +39,38 @@ function UpdateTask({ issueId }) {
     setEstimatedTime(event.target.value);
   }
 
+  useEffect(() => {
+    const payload = {issue_id : issueId}
+    AuthenticationService.particularIssueDetails(payload)
+      .then((response) =>{
+        console.log(response.data);
+        const issue = response.data.issue_details[0];
+        console.log("Issue", issue);
+        setTask_id(issue.task_id);
+        setTitle(issue.title);
+        setStartDate(issue.task_sd);
+        setEndDate(issue.task_ed);
+        setPriority(issue.priority);
+        setFileAttachment(issue.file_attachment);
+        setEstimatedTime(issue.estimated_time);
+      })
+      .catch((error) =>{
+        console.error(error);
+        toast.error("Internal Server Error");
+      })
+  }, [])
+
   function handleUpdateTask(event) {
     setIsLoading(true);
     event.preventDefault();
     var payload = {
       issue_id: issueId,
       title: title,
+      task_id: task_id,
       task_sd: startDate,
       task_ed: endDate,
       priority: priority,
+      file_attachment: file_attachment,
       estimated_time: estimatedTime,
     };
     console.log(payload);

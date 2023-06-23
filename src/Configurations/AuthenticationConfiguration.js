@@ -248,7 +248,7 @@ export default class AuthenticationConfiguration
 
     static updateDefect()
     {
-        const url = ParentConfiguration.parentURL()+"UpdateDefect";
+        const url = ParentConfiguration.parentURL()+"update_defect";
         return url;
     }
 
@@ -260,7 +260,7 @@ export default class AuthenticationConfiguration
 
     static updateTask()
     {
-        const url = ParentConfiguration.parentURL()+"UpdateTask";
+        const url = ParentConfiguration.parentURL()+"update_task";
         return url;
     }
 
@@ -285,5 +285,13 @@ export default class AuthenticationConfiguration
         return url;
     }
 
-
+    static issueWiseUser(){
+        const url = ParentConfiguration.parentURL()+"issuewise_user";
+        return url;   
+    }
+    static projectIssueStates(){
+        const url = ParentConfiguration.parentURL()+"projectidwise_issuestate";
+        return url; 
+    }
 }
+
