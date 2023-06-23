@@ -57,7 +57,7 @@ BootstrapDialogTitle.propTypes = {
 export default function CustomizedDialogs({card}) {
   console.log("dialog ggggg");
   const [open, setOpen] = React.useState(false);
-console.log("Card...issuedialog",card);
+console.log("Card",card);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -69,7 +69,7 @@ console.log("Card...issuedialog",card);
   return (
     <div>
       <Button  onClick={handleClickOpen}>
-            <IssueCard card={card}></IssueCard>
+            <IssueCard pro={card}></IssueCard>
             {/* {card} */}
       </Button>
       <BootstrapDialog
@@ -81,8 +81,7 @@ console.log("Card...issuedialog",card);
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} >
         </BootstrapDialogTitle>
         <DialogContent>
-            {/* <IssueDescription i_id={3000}  p_id={localStorage.getItem("ProjectID")} p_name={localStorage.getItem("ProjectName")}></IssueDescription>      */}
-            <IssueDescription />     
+            <IssueDescription i_id={card.issue_id}  p_id={card.Project_ID} p_name={card.Project_Name}></IssueDescription>     
         </DialogContent>
       </BootstrapDialog>
     </div>
