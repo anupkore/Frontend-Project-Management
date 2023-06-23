@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import getAdjacentStates from "./States";
 // import { isVisible } from "@testing-library/user-event/dist/utils";
 import { toast } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 export default function IssueDescription({ i_id, p_id, p_name }) {
   console.log("isueeeee");
@@ -636,13 +636,29 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
         <div className="flex flex-row">
           <div className=" basis-2/3">
             <div className="m-4 ">
-              <div className="flex py-2">
-                <h1 className="text-slate-500 underline decoration-2 decoration-sky-400">
-                  {Role !== "Self"
-                    ? localStorage.getItem("ProjectName")
-                    : p_name}
-                </h1>
-              </div>
+              {p_id ? (
+                <Link to={`/projectexplore/${Number(p_id)}`}>
+                <div className="flex py-2">
+                  <h1 className="text-slate-500 underline decoration-2 decoration-sky-400">
+                    {Role !== "Self"
+                      ? localStorage.getItem("ProjectName")
+                      : p_name}
+                  </h1>
+                </div>
+                </Link>
+              ) :
+              (
+                <Link to={`/projectexplore/${proj_id}`}>
+                <div className="flex py-2">
+                  <h1 className="text-slate-500 underline decoration-2 decoration-sky-400">
+                    {Role !== "Self"
+                      ? localStorage.getItem("ProjectName")
+                      : p_name}
+                  </h1>
+                </div>
+                </Link>
+              )}
+              
               <div>
                 <h1 className="text-xl text-black font-semibold">
                   {issue.title}
