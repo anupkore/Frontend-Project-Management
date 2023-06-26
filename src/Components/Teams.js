@@ -18,7 +18,7 @@ export const Teams = () => {
   const { p_id } = useParams();
   // const Project_ID = TeamData.find((proj) => proj.id === Number(p_id));
   const maxWidth = "sm";
-  const id = localStorage.getItem("ProjectID");
+  const id = Number(localStorage.getItem("ProjectID"));
   const id2 = 12;
   var payload = { Project_ID: id }
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,19 +54,18 @@ export const Teams = () => {
         throw error;
       }
     };
-
     fetchData();
   }, []);
 
-  useEffect(()=>{
-    if (teamDetails.length >0) {
-      console.log(teamDetails);
-    } else {
-      console.log("No Team is there!!")
-    }
+  // useEffect(()=>{
+  //   if (teamDetails.length >0) {
+  //     console.log(teamDetails);
+  //   } else {
+  //     console.log("No Team is there!!")
+  //   }
    
-  },[teamDetails])
-   console.log("Teams",teamDetails);
+  // },[teamDetails])
+  //  console.log("Teams",teamDetails);
 
   const indexOfLastMember = currentPage * membersPerPage;
   const indexOfFirstMember = indexOfLastMember - membersPerPage;

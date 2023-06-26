@@ -60,7 +60,7 @@ export const ProjectExplore = () => {
         const response = await AuthenticationService.projectExplore(payload);
         if (response && response.data) {
           setProjectDetails((existingData) => {
-            console.log(response.data);
+            console.log("projectdata",response.data);
             setProjectData(response.data);
             setIsLoading(false);
             console.log("projectData", projectData);
