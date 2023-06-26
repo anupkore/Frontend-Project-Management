@@ -835,6 +835,7 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
               </div>
               <div className="flex">
                 <div className="flex mt-2">
+                  {issue.defect_sd ? 
                   <h6 className="text-[#6B778C] text-xs">
                     Created{" "}
                     {new Date(issue.defect_sd).toLocaleDateString("en-US", {
@@ -843,7 +844,17 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
                       day: "2-digit",
                       weekday: "short",
                     })}
+                  </h6>  :
+                  <h6 className="text-[#6B778C] text-xs">
+                    Created{" "}
+                    {new Date(issue.task_sd).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      weekday: "short",
+                    })}
                   </h6>
+}
                 </div>
                 <div className="flex ml-auto mt-2 items-center space-x-1">
                 <button className="flex space-x-1  items-center hover:underline decoration-[#6B778C] decoration-2" onClick={handleUpdateIssue}>

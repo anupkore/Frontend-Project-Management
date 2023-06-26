@@ -9,7 +9,7 @@ export default function SideBar({p_id}) {
     const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
       { title: "Teams", src: "Chat",li:"/teams"},
-      { title: "Issues Workflow", src: "User" ,li:"/allIssues"},
+      { title: "Issues", src: "User" ,li:"/allIssues"},
       { title: "Reports", src: "Chart", li:`/reports` },
       {title: "Workflows", src: "Chart_fill" ,li:"/workflow"}
     ];
@@ -45,7 +45,7 @@ export default function SideBar({p_id}) {
       <div
         className={`${
           open ? "w-60" : "w-8"
-        } bg-dark-purple h-full p-5  pt-8 relative duration-300 rounded-r-md`}
+        } bg-dark-purple h-screen p-5  pt-8 relative duration-300 rounded-r-md`}
       >
         <div className="h-full">
           <button onClick={toggleSidebar}>
