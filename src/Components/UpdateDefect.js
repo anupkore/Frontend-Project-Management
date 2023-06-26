@@ -114,7 +114,7 @@ function UpdateDefect()
       })
       .catch((error) =>{
         console.error(error);
-        toast.error("Internal Server Error");
+        //toast.error("Internal Server Error");
       })
   }, [])
   
