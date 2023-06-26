@@ -67,7 +67,7 @@ export default function UpdateProjectForm(props) {
     var updateData = {
       Project_ID: projectData.Project_ID,
       project_name: projectName,
-      status: status,
+      Status: status,
       planned_sd: startDate,
       planned_ed: endDate,
       actual_sd: actualStartDate,
