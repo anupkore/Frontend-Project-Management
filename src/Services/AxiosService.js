@@ -115,6 +115,10 @@ export default class AxiosService
     {
         return axios.get(url);
     }
+    static deleteWorkFlow(url,data)
+    {
+        return axios.post(url,data);
+    }
 
     static getWorkflowByName(url,data){
         return axios.post(url,data);

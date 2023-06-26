@@ -120,6 +120,11 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"GetWorkflow";
         return url;
     }
+    static deleteWorkFlow()
+    {
+        const url = ParentConfiguration.parentURL()+"DeleteWorkFlow";
+        return url;
+    }
     static getWorkflowByName(){
         const url = ParentConfiguration.parentURL()+"GetWorkflowByName";
         return url;
