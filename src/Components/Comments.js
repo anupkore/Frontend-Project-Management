@@ -10,7 +10,12 @@ export default function Comments({ id }) {
   const [allComment, setAllComment] = useState([]);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [showLatestComment, setShowLatestComment] = useState(false);
-
+  // const showMenu = useState(false);
+  const [latestComment , setLatestComment] = useState({
+    author_name : "",
+    comment_ID : 0,
+    description: ""
+});
   function handlePost(event) {
     event.preventDefault();
     var payload = {
@@ -25,13 +30,13 @@ export default function Comments({ id }) {
         console.log("addeddddd");
 
         const newComment = {
-          comment_id: response.data.comment_id,
+          comment_ID: response.data.comment_ID,
           author_name: response.data.author_name,
           description: payload.description,
           date: new Date().toISOString(),
         };
-
-        setAllComment((prevComments) => [newComment, ...prevComments]);
+        setLatestComment(newComment);
+        setAllComment((prevComments) => [newComment,...prevComments]);
         setShowLatestComment(true);
         comment.current.value="";
       })
@@ -49,13 +54,13 @@ export default function Comments({ id }) {
     AuthenticationService.allComment(payload)
       .then((response) => {
         console.log(response.data);
-        setAllComment(response.data.reverse());
+        setAllComment(response.data.reverse()); 
       })
       .catch((error) => {
         console.log("ERROR" + error.data);
         // toast.error("Internal Server Error")
       });
-  }, []);
+  }, [latestComment]);
 
   const handleMenuToggle = (index) => {
     setAllComment((prevState) =>
@@ -100,16 +105,18 @@ export default function Comments({ id }) {
     <>
       {showDeletePopup && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+          <div className="bg-gray-900 p-6 rounded-lg shadow-lg">
             <p className="text-lg text-gray-900 dark:text-white">
               Comment deleted successfully.
             </p>
+            <div className="flex justify-center mx-auto">
             <button
-              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg"
+              className="mt-4 px-4 py-2 mx-auto bg-blue-600 text-white rounded-lg"
               onClick={() => setShowDeletePopup(false)}
             >
               Close
             </button>
+            </div>
           </div>
         </div>
       )}
@@ -146,7 +153,8 @@ export default function Comments({ id }) {
           {showLatestComment && allComment.length > 0 && (
             <div className="mb-6">
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Latest Comment: {allComment[0].description}
+                Latest Comment: {allComment[0].description} {allComment[0].comment_ID}
+                {/* Latest Comment: {latestComment.description} {latestComment.comment_ID} */}
               </p>
             </div>
           )}
@@ -187,6 +195,7 @@ export default function Comments({ id }) {
                     <button
                       className="focus:outline-none"
                       onClick={() => handleMenuToggle(index)}
+
                     >
                       <svg
                         className="w-5 h-5 text-gray-500 dark:text-gray-400 cursor-pointer"
