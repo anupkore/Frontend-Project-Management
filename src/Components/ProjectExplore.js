@@ -185,7 +185,7 @@ export const ProjectExplore = () => {
     };
     console.log(payload);
     // Check if the status already exists
-    if (statusValue !== "" || statusAlreadyExists) {
+    if (statusValue === "" || statusAlreadyExists) {
       AuthenticationService.update_status(payload)
         .then((response) => {
           console.log("upate status addddd",response.data);
@@ -310,11 +310,11 @@ export const ProjectExplore = () => {
         </div>
     ):(
     <>
-      <div className="flex">
-        <div className="">
+      <div className="flex text-align-center ">
+        <div className="w-1/6">
           <SideBar p_id={id1}></SideBar>
         </div>
-        <div className="mx-auto">
+        <div className="w-4/6 mx-auto justify-center items-center">
           <div className={`sm:px-0 mt-2`}>
             <h3 className="text-base mx-auto font-bold text-center leading-7 text-gray-900 mb-3">
               Project Details
@@ -323,7 +323,7 @@ export const ProjectExplore = () => {
               {projectData.Project_name}
             </p>
           </div>
-          <div className="mx-auto">
+          <div className="">
             <div className="grid grid-rows-3 grid-cols-3 gap-12 ">
               <div>
                 <dt className="text-sm font-medium leading-6 text-gray-900">

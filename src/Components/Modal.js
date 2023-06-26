@@ -41,11 +41,11 @@ export default function Modal() {
                     </div>
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                       <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                        Deactivate account
+                        Delete
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          Are you sure you want to deactivate your account? All of your data will be permanently
+                          Are you sure you want to delete your Workflow? All of your data will be permanently
                           removed. This action cannot be undone.
                         </p>
                       </div>
@@ -65,7 +65,7 @@ export default function Modal() {
                     className="mt-3 ml-2 inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-red-500 sm:mt-0 sm:w-auto"
                     onClick={() => setOpen(false)}
                   >
-                   Deactivate
+                   Delete
                   </button>
                   <button
                     type="button"

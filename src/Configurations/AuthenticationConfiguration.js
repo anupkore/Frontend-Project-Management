@@ -65,7 +65,12 @@ export default class AuthenticationConfiguration
 
     static updateIssue()
     {
-        const url = ParentConfiguration.parentURL()+"update_issue";
+        const url = ParentConfiguration.parentURL()+"update_issue_status";
+        return url ;
+    }
+    static updateDec()
+    {
+        const url = ParentConfiguration.parentURL()+"update_issue_desc";
         return url ;
     }
 
@@ -113,6 +118,11 @@ export default class AuthenticationConfiguration
     static getAllWorkFlows()
     {
         const url = ParentConfiguration.parentURL()+"GetWorkflow";
+        return url;
+    }
+    static deleteWorkFlow()
+    {
+        const url = ParentConfiguration.parentURL()+"DeleteWorkFlow";
         return url;
     }
     static getWorkflowByName(){
@@ -211,8 +221,12 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"AssignIssue";
         return url;
     }
-    static updateIssueDescription(){
-        const url = ParentConfiguration.parentURL()+"update_issue_desc";
+    static updateTaskDescription(){
+        const url = ParentConfiguration.parentURL()+"taskid_updatedesc";
+        return url;
+    }
+    static updateDefectDescription(){
+        const url = ParentConfiguration.parentURL()+"defectid_updatedesc";
         return url;
     }
     static userWiseIssues(){

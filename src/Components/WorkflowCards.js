@@ -333,9 +333,9 @@ export default function WorkflowCard() {
                           workflow={workflow}
                         ></GraphVisualization>
                       </figure>
-                      <div className="card-body h-32">
-                        <h2 className="card-title">{m.array_name}</h2>
-                        <div className="bg-gray-100 rounded-md px-4 py-3 sm:flex space-x-20  sm:flex-row sm:px-6">
+                      <div className="card-body h-36">
+                        {/* <h2 className="card-title">{m.array_name}</h2> */}
+                        <div className="bg-gray-100 rounded-md px-4 py-2 my-12 sm:flex space-x-20  sm:flex-row sm:px-6">
                           <FormDialog
                             prop={
                               <GraphVisualization
@@ -348,13 +348,13 @@ export default function WorkflowCard() {
                             icon={"./Images/eye-fill-white.svg"}
                             variant={"contained"}
                           />
-                          <button
-                            className="inline-flex w-full justify-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-md ring-1 ring-inset ring-gray-300 hover:bg-red-600 sm:mt-0 sm:w-auto"
-                            type="submit"
-                            onClick={toggleModal}
+                          <p
+                            className="inline-flex w-full justify-center rounded-md my-auto  text-sm font-semibold text-black  sm:mt-0 sm:w-auto"
+                            // type="submit"
+                            // onClick={toggleModal}
                           >
-                            Delete
-                          </button>
+                            {m.array_name}
+                          </p>
                         </div>
                       </div>
                     </div>

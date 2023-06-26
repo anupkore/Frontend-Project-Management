@@ -100,6 +100,10 @@ export default class AuthenticationService
     {
         return AxiosService.getAllWorkflows(AuthenticationConfiguration.getAllWorkFlows());
     }
+    static deleteWorkFlow(data)
+    {
+        return AxiosService.deleteWorkFlow(AuthenticationConfiguration.deleteWorkFlow(),data);
+    }
     static getWorkflowByName(data){
         return AxiosService.getWorkflowByName(AuthenticationConfiguration.getWorkflowByName(),data);
     }
