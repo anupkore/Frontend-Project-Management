@@ -48,8 +48,8 @@ function UpdateTask() {
         console.log("Issue", issue);
         setTask_id(issue.task_id);
         setTitle(issue.title);
-        setStartDate(issue.task_sd);
-        setEndDate(issue.task_ed);
+        setStartDate(new Date(issue.task_sd).toISOString().split('T')[0]);
+        setEndDate(new Date(issue.task_ed).toISOString().split('T')[0]);
         setPriority(issue.priority);
         setFileAttachment(issue.file_attachment);
         setEstimatedTime(issue.estimated_time);
