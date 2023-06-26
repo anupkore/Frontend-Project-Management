@@ -16,11 +16,11 @@ import { toast } from "react-toastify";
 
 export const Teams = () => {
   const { p_id } = useParams();
-  // const Project_Id = TeamData.find((proj) => proj.id === Number(p_id));
+  // const Project_ID = TeamData.find((proj) => proj.id === Number(p_id));
   const maxWidth = "sm";
   const id = localStorage.getItem("ProjectID");
   const id2 = 12;
-  var payload = { project_id: id }
+  var payload = { Project_ID: id }
   const [currentPage, setCurrentPage] = useState(1);
   const [membersPerPage, setMembersPerPage] = useState(5);
   const [teamDetails, setTeamDetails] = useState([]);
@@ -149,7 +149,7 @@ export const Teams = () => {
                         <tr key={index}>
                           <td className="px-4 py-2">{index + 1}</td>
                           <td className="px-4 py-2">{member.name}</td>
-                          <td className="px-4 py-2">{member.email_id}</td>
+                          <td className="px-4 py-2">{member.Email_ID}</td>
                           <td className="px-4 py-2">{member.role}</td>
                         </tr>
                       ))}

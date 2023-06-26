@@ -204,23 +204,19 @@ export default class AuthenticationConfiguration
         return url;
     }
     static updateIssueState(){
-        const url = ParentConfiguration.parentURL()+"update_issue";
+        const url = ParentConfiguration.parentURL()+"update_issue_status";
         return url;
     }
     static assignMemberToIssue(){
         const url = ParentConfiguration.parentURL()+"AssignIssue";
         return url;
     }
-    static updateTaskDescription(){
-        const url = ParentConfiguration.parentURL()+"taskid_updatedesc";
-        return url;
-    }
-    static updateDefectDescription(){
-        const url = ParentConfiguration.parentURL()+"defectid_updatedesc";
+    static updateIssueDescription(){
+        const url = ParentConfiguration.parentURL()+"update_issue_desc";
         return url;
     }
     static userWiseIssues(){
-        const url = ParentConfiguration.parentURL()+"usewise_issue";
+        const url = ParentConfiguration.parentURL()+"userwise_issue";
         return url;
     }
 
@@ -241,7 +237,7 @@ export default class AuthenticationConfiguration
     }
     static IssueByDaily()
     {
-        const url = ParentConfiguration.parentURL()+"IssueByDaily";
+        const url = ParentConfiguration.parentURL()+"IssueByDay";
         return url;
     }
     static DetailedIssue()
@@ -249,4 +245,45 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"DetailedIssue";
         return url;
     }
+
+    static updateDefect()
+    {
+        const url = ParentConfiguration.parentURL()+"UpdateDefect";
+        return url;
+    }
+
+    static deleteDefect()
+    {
+        const url = ParentConfiguration.parentURL()+"DeleteDefect";
+        return url;
+    }
+
+    static updateTask()
+    {
+        const url = ParentConfiguration.parentURL()+"UpdateTask";
+        return url;
+    }
+
+    static deleteTask()
+    {
+        const url = ParentConfiguration.parentURL()+"DeleteTask";
+        return url;
+    }
+    static addStatus()
+    {
+        const url = ParentConfiguration.parentURL()+"addstatus";
+        return url;
+    }
+    static update_status()
+    {
+        const url = ParentConfiguration.parentURL()+"status_update";
+        return url;
+    }
+    static status_display()
+    {
+        const url = ParentConfiguration.parentURL()+"status_display";
+        return url;
+    }
+
+
 }

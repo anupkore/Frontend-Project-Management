@@ -11,9 +11,9 @@ import { HashLoader } from "react-spinners";
 
 export default function MyIssues() {
   localStorage.setItem("Role", "Self");
-  const user_id = Number(localStorage.getItem("UserID"));
-  // const project_id = 101;
-  const payload = { user_id: user_id};
+  const user_ID = Number(localStorage.getItem("UserID"));
+  // const Project_ID = 101;
+  const payload = { user_ID: user_ID};
   console.log(payload);
   const [isLoading, setIsLoading] = useState(true);
   const [issues, setIssues] = useState([]);
@@ -25,7 +25,7 @@ export default function MyIssues() {
   };
   const [statusValues, setStatusValues] = useState([]);
   // const proj_id = Number(localStorage.getItem("ProjectID"));
-  // const payload1 = { project_id: proj_id };
+  // const payload1 = { Project_ID: proj_id };
   // const [workflowData , setWorkflowData] = useState([]);
 
   useEffect(() => {
@@ -39,12 +39,12 @@ export default function MyIssues() {
         console.log(error);
         setIsLoading(false);
       });
-  }, [user_id]);
+  }, [user_ID]);
 
   useEffect(() => {
     if (issues.length > 0) {
       const uniqueStatusValues = [
-        ...new Set(issues.map((item) => item.Status)),
+        ...new Set(issues.map((item) => item.status)),
       ];
       console.log(uniqueStatusValues);
       setStatusValues(uniqueStatusValues);

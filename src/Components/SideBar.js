@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 export default function SideBar({p_id}) {
   const [open, setOpen] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
-  const project_id = localStorage.getItem("ProjectID");
-  const payload = { project_id: project_id };
-  const pname  = localStorage.getItem("ProjectName");
+
+
     const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
       { title: "Teams", src: "Chat",li:"/teams"},
@@ -31,7 +30,7 @@ export default function SideBar({p_id}) {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  });
 
 
   const toggleSidebar = () => {
@@ -39,17 +38,6 @@ export default function SideBar({p_id}) {
       setOpen(!open);
     }
   };
-
-  // useEffect(() => {
-  //   AuthenticationService.projectExplore(payload)
-  //     .then((response) => {
-  //       // console.log(response.data);
-  //       setPname(response.data.Project_name);
-  //     })  
-  //     .catch((error) => {
-  //       console.log(error.response.data);
-  //     });
-  // }, []);
 
   return (
     <>
@@ -79,7 +67,7 @@ export default function SideBar({p_id}) {
                 !open && "scale-0"
               }`}
             >
-              World Class
+              {localStorage.getItem('ProjectName')}
             </h1>
           </div>
           <div>
@@ -95,7 +83,7 @@ export default function SideBar({p_id}) {
                   <li
                     className="flex mt-4 rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
                   >
-                    <img src={`/Images/${Menu.src}.png`} className="" />
+                    <img src={`/Images/${Menu.src}.png`} className="" alt={`${Menu.src}`}/>
                     <span
                       className={`${!open && "hidden"} origin-left duration-200`}
                     >

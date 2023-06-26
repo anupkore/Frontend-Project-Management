@@ -130,7 +130,7 @@ export default function AddNewProject() {
     }
 
     var payload = {
-      user_id: localStorage.getItem("UserID"),
+      user_ID: localStorage.getItem("UserID"),
       project_name: projectName,
       project_description: description,
       planned_sd: plannedStartDate,

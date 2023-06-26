@@ -16,8 +16,8 @@ export default function CreateIssueForm() {
   const [isLoading, setIsLoading] = useState(true);
   const [issueId, setIssueId] = useState();
   const [isSaved, setIsSaved] = useState(false);
-  const project_id = Number(localStorage.getItem("ProjectID"));
-  const payload = { project_id: project_id };
+  const Project_ID = Number(localStorage.getItem("ProjectID"));
+  const payload = { Project_ID: Project_ID };
   const maxWidth1 = "md";
   function handleInputChangeIssueName(event) {
     setIssueName(event.target.value);
@@ -39,7 +39,7 @@ export default function CreateIssueForm() {
     setIsLoading(true);
     event.preventDefault();
     var payload = {
-      project_id: project_id,
+      Project_ID: Project_ID,
       issue_name: issueName,
       description: description,
       type: issueType,
@@ -207,7 +207,7 @@ export default function CreateIssueForm() {
                         >
                           <option value="">Select Issue Type</option>
                           <option value="task">Task</option>
-                          <option value="defects">Defects</option>
+                          <option value="defect">Defects</option>
                         </select>
                       </div>
                     </div>

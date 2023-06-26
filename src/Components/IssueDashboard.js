@@ -11,25 +11,11 @@ import FormDialog from "./Dialog";
 import { Button } from "@mui/material";
 import AuthenticationService from "../Services/AuthenticationService";
 import { HashLoader } from "react-spinners";
-import CustomizedDialogs from "./IssueDialog";
-
-const colors = [
-  "bg-lime-100",
-  "bg-red-100",
-  "bg-orange-100",
-  "bg-sky-100",
-  "bg-green-100",
-  "bg-teal-100",
-  "bg-violet-100",
-  "bg-fuchsia-100",
-  "bg-pink-100",
-  "bg-purple-100",
-];
 
 export default function IssueDashboard(props) {
   const { p_id } = useParams();
-  const project_id = localStorage.getItem("ProjectID");
-  const payload = { project_id: project_id };
+  const Project_ID = localStorage.getItem("ProjectID");
+  const payload = { Project_ID: Project_ID };
 console.log(payload);
 const [isLoading, setIsLoading] = useState(true);
   const [issues,setIssues] = useState([]);
@@ -41,7 +27,7 @@ const [isLoading, setIsLoading] = useState(true);
   };
   const [statusValues, setStatusValues] = useState([]);
   // const proj_id = Number(localStorage.getItem("ProjectID"));
-  // const payload1 = { project_id: proj_id };
+  // const payload1 = { Project_ID: proj_id };
   // const [workflowData , setWorkflowData] = useState([]);
   const maxWidth = 'md';
 
@@ -60,7 +46,7 @@ const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     if (issues.length > 0) {
-      const uniqueStatusValues = [...new Set(issues.map((item) => item.Status))];
+      const uniqueStatusValues = [...new Set(issues.map((item) => item.status))];
       console.log(uniqueStatusValues);
       setStatusValues(uniqueStatusValues);
     } else {
@@ -158,7 +144,7 @@ const [isLoading, setIsLoading] = useState(true);
                     viewBox="0 0 16 16"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
                     />
                   </svg>

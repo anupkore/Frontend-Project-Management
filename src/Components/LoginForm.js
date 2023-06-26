@@ -79,7 +79,7 @@ export const  LoginForm = ({ toggleSignup }) =>
       })
       .catch((error)=>{    
         console.log(error.response);
-        toast.error("Internal Server Error")
+        //toast.error("Internal Server Error")
         if(error.response.data.error === "Email is invalid")
         {
           setErrorMessageEmail("Invalid Email");

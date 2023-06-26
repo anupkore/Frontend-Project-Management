@@ -6,7 +6,7 @@ import { SyncLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 
 
-function CreateDefect({ issueId }) 
+function UpdateDefect({ issueId }) 
 {
   const [title, setTitle] = useState("");
   const [product , setProduct] = useState("");
@@ -90,7 +90,7 @@ function CreateDefect({ issueId })
   
   
   
-  function handleCreateDefect(event) {
+  function handleUpdateDefect(event) {
     setIsLoading(true);
     event.preventDefault();
     var payload = {
@@ -109,9 +109,9 @@ function CreateDefect({ issueId })
       estimated_time: estimatedTime,
     };
     console.log(payload);
-    AuthenticationService.createDefect(payload)
+    AuthenticationService.updateDefect(payload)
       .then(() => {
-        console.log("Hi Create Defect");
+        console.log("Hi Update Defect");
         toast.success("Defect Added Sucessfully!! ", {
           position: "top-right",
           autoClose: 1000,
@@ -145,7 +145,7 @@ function CreateDefect({ issueId })
             <div className="mx-auto max-w-2xl pb-3">
               <div className="text-center">
                 <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-                  Create New Defect
+                  Update Defect
                 </h1>
               </div>
             </div>
@@ -437,7 +437,7 @@ function CreateDefect({ issueId })
               </Col>
               <div className="flex mt-2 justify-center ">
                 <button
-                  onClick={handleCreateDefect}
+                  onClick={handleUpdateDefect}
                   variant="contained"
                   className={`text-white font-bold py-2 px-4 rounded ${
                     isLoading
@@ -446,7 +446,7 @@ function CreateDefect({ issueId })
                   }`}
                   disabled={isLoading}
                 >
-                  Create
+                  Update
                 </button>
               </div>
             </Row>
@@ -457,4 +457,4 @@ function CreateDefect({ issueId })
   );
 }
 
-export default CreateDefect;
+export default UpdateDefect;

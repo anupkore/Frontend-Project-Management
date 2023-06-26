@@ -56,7 +56,7 @@ BootstrapDialogTitle.propTypes = {
 
 export default function CustomizedDialogs({card}) {
   const [open, setOpen] = React.useState(false);
-console.log("Card",card.Issue_Id);
+console.log("Card",card);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -65,7 +65,7 @@ console.log("Card",card.Issue_Id);
   };
   const maxWidth = "xl";
   const proj_id = Number(localStorage.getItem("ProjectID"));
-//   const payload1 = { project_id: proj_id };
+//   const payload1 = { Project_ID: proj_id };
 //   const [workflowData , setWorkflowData] = useState([]);
 //   const [isLoading, setIsLoading] = useState(true);
 
@@ -101,7 +101,7 @@ console.log("Card",card.Issue_Id);
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} >
         </BootstrapDialogTitle>
         <DialogContent>
-            <IssueDescription i_id={card.Issue_Id}></IssueDescription>     
+            <IssueDescription i_id={card.issue_id}  p_id={card.Project_ID} p_name={card.Project_Name}></IssueDescription>     
         </DialogContent>
       </BootstrapDialog>
     </div>

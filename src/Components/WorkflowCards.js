@@ -29,6 +29,7 @@ export default function WorkflowCard() {
   // const [workflow ,setWorkflow] = useState([]);
   const [taskWf, setTaskWf] = useState("");
   const [defectWf, setDefectWf] = useState("");
+  const [present , setPresent] = useState(false);
   const payload1 = { wfn: taskWf };
   const payload2 = { wfn: defectWf };
   console.log(payload1);
@@ -45,7 +46,6 @@ export default function WorkflowCard() {
         setIsLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
@@ -58,6 +58,40 @@ export default function WorkflowCard() {
   }, [workflowData]);
 
   // console.log(workflowData);
+
+  useEffect(() => {
+    const payload = {Project_ID: Number(proj_id)}
+    console.log(payload);
+    if(!isLoading && workflowData.length > 0){
+    const fetchData = async () => {
+      try {
+        const response = await AuthenticationService.projectWiseWorkflow(payload);
+        console.log("PROJECTWISE WORKFLOW",response.data);
+        // setPresent(true); 
+        if(response.data.length >0 ){
+          setPresent(true);
+        }
+        if(response.data[0].issue_type === "task"){
+          setTaskWf(response.data[0].workflow_name);
+        }else{
+          setDefectWf(response.data[1].workflow_name);
+        }
+        if(response.data[0].issue_type === "defect"){
+          setTaskWf(response.data[0].workflow_name);
+        }else{
+          setDefectWf(response.data[1].workflow_name);
+        }
+        setIsLoading(false);
+      }catch (error) {
+        // Handle error if needed
+        console.error("Error fetching workflow data:", error);
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }
+  }, [proj_id,present,isLoading]);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,7 +139,7 @@ export default function WorkflowCard() {
   }, [defectWf]);
 
   const handleSaveWorkflow = () => {
-    const payload = { project_id: proj_id, task: taskWf, defect: defectWf };
+    const payload = { Project_ID: proj_id, task: taskWf, defect: defectWf };
     console.log(payload);
     AuthenticationService.assignWorkflow(payload)
       .then((response) => {
@@ -114,12 +148,13 @@ export default function WorkflowCard() {
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Internal Server Error")
+        // setIsSaved(true);
       });
   };
 
   console.log("TASK", taskArray);
   console.log("DEFECT", defectArray);
+
 
   return (
     <>
@@ -155,7 +190,7 @@ export default function WorkflowCard() {
                       id="Workflow"
                       value={taskWf}
                       onChange={(event) => setTaskWf(event.target.value)}
-                      disabled={isSaved}
+                      disabled={isSaved || present}
                     >
                       <option>Select Your Workflow</option>
                       {workflowData.map((name) => (
@@ -180,18 +215,14 @@ export default function WorkflowCard() {
                     />
                   </div>
                 </div>
+                {!(isSaved || present) &&
                 <div className="flex gap-6 py-2 mt-2 ml-24">
                   <span className="my-auto font-medium">
                     Or Create Your Own Workflow
                   </span>
                   <div
-                    className={` font-bold ${
-                      isSaved
-                        ? " cursor-not-allowed bg-blue-300"
-                        : ""
-                    }`}
                     type="submit"
-                    disabled={isSaved}
+                    disabled={isSaved || present}
                   >
                     <FormDialog
                       prop={
@@ -205,9 +236,10 @@ export default function WorkflowCard() {
                       ic={"false"}
                       icon={"/Images/plus-lg.svg"}
                       variant={""}
+                      disabled = {isSaved || present}
                     ></FormDialog>
                   </div>
-                </div>
+                </div>}
               </div>
               <div className="py-4">
                 <div className="flex gap-4 px-2">
@@ -222,7 +254,7 @@ export default function WorkflowCard() {
                       id="Workflow"
                       value={defectWf}
                       onChange={(event) => setDefectWf(event.target.value)}
-                      disabled={isSaved}
+                      disabled={isSaved || present}
                     >
                       <option>Select Your Workflow</option>
                       {workflowData.map((name) => (
@@ -247,19 +279,15 @@ export default function WorkflowCard() {
                     />
                   </div>
                 </div>
+                {!(isSaved || present) &&
                 <div className="flex py-2 mt-2 ml-24">
                   <span className="my-auto font-medium">
                     Or Create Your Own Workflow
                   </span>
                   <div
-                    className={` font-bold ${
-                      isSaved
-                        ? " cursor-not-allowed bg-blue-300"
-                        : ""
-                    }`}
                     type="submit"
-                    disabled={isSaved}
-                  >
+                    disabled={isSaved || present}
+                  > 
                     <FormDialog
                       prop={
                         <CreateWorkflow
@@ -272,25 +300,27 @@ export default function WorkflowCard() {
                       ic={"false"}
                       icon={"/Images/plus-lg.svg"}
                       variant={""}
+                      disabled = {isSaved || present}
                     ></FormDialog>
                   </div>
                 </div>
+}
               </div>
             </div>
-            <div className="flex justify-center mb-3 mx-auto">
+            {!(isSaved || present) && <div className="flex justify-center mb-3 mx-auto">
               <button
                 className={`text-white font-bold py-2 px-4 rounded ${
-                  isSaved
+                  isSaved || present
                     ? " cursor-not-allowed bg-blue-300"
                     : "hover:bg-blue-700 bg-blue-500"
                 }`}
                 type="submit"
                 onClick={handleSaveWorkflow}
-                disabled={isSaved}
+                disabled={isSaved || present}
               >
                 Save Workflows
               </button>
-            </div>
+            </div>}
             <div>
               <h1 className="text-xl pb-5 text-center font-bold ">Workflows</h1>
               <div className="flex flex-wrap mx-auto basis-10/12 justify-center gap-6">

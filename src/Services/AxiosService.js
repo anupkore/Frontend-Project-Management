@@ -85,15 +85,15 @@ export default class AxiosService
     {
         return axios.post(url,data);
     }
-    static getUser(url,user_id)
+    static getUser(url,user_ID)
     {
-        return axios.post(url,user_id);
+        return axios.post(url,user_ID);
     }
 
     //For deleting a user (For alpha admin)
-    // static deleteUser(url,user_id)
+    // static deleteUser(url,user_ID)
     // {
-    //     return axios.post(url,user_id);
+    //     return axios.post(url,user_ID);
     // }
 
     static deleteUser(url,data) {
@@ -189,10 +189,7 @@ export default class AxiosService
     static assignMemberToIssue(url,data){
         return axios.post(url,data);
     }
-    static updateTaskDescription(url,data){
-        return axios.post(url,data);
-    }
-    static updateDefectDescription(url,data){
+    static updateIssueDescription(url,data){
         return axios.post(url,data);
     }
     static userWiseIssues(url,data){
@@ -219,10 +216,38 @@ export default class AxiosService
     {
         return axios.get(url);
     }
+    static addStatus(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static update_status(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static status_display(url,data)
+    {
+        return axios.post(url,data);
+    }
    
+    static updateDefect(url,data)
+    {
+        return axios.post(url,data);
+    }
 
+    static deleteDefect(url,data)
+    {
+        return axios.post(url,data);
+    }
 
-    
+    static updateTask(url,data)
+    {
+        return axios.post(url,data);
+    }
+
+    static deleteTask(url,data)
+    {
+        return axios.post(url,data);
+    }
 
 
 }

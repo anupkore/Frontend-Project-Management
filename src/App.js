@@ -37,6 +37,11 @@ import CreateTask from './Components/CreateTask';
 import CreateDefect from './Components/CreateDefect';
 import AllIssues from './Components/AllIssues';
 import IssueDescription from './Components/IssueDescription';
+import UpdateDefect from './Components/UpdateDefect';
+import UpdateTask from './Components/UpdateTask';
+
+
+import { Project } from './Components/Project';
 
 
 const App = () => {
@@ -59,7 +64,7 @@ const App = () => {
 <Route path="/issue/:status" element={<ProtectedRoute element={ParticularIssueDashboard} />} />
 <Route path="/profile" element={<ProtectedRoute element={Profilepage} />} />
 <Route path="/addNewProject" element={<ProtectedRoute element={AddNewProject} />} />
-
+<Route path='/project' element={<Project/>}/>
 
 <Route path="*" element={<ProtectedRoute element={ErrorPage} />} />
 <Route path="/addWorkflow" element={<ProtectedRoute element={CreateWorkflow} />} />
@@ -81,7 +86,13 @@ const App = () => {
 <Route path='/createTask' element={<CreateTask></CreateTask>} />
 <Route path='/createDefect' element={<CreateDefect></CreateDefect>} />
 <Route path='/allIssues' element={<ProtectedRoute element={IssueDashboard} />}/>
-<Route path='/demo' element={<IssueDescription></IssueDescription>} />
+{/* <Route path='/demo' element={<IssueDescription></IssueDescription>} /> */}
+
+<Route path='/updateDefect' element={<UpdateDefect></UpdateDefect>} />
+<Route path='/updateTask' element={<UpdateTask></UpdateTask>} />      
+      
+      
+      
       </Routes>
     </Router>
   );

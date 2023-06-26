@@ -2,22 +2,22 @@ import { useRef, useState } from "react"
 import AuthenticationService from "../Services/AuthenticationService";
 import { useEffect } from "react";
 
-export default function UpdateUser({ userData,user_id }) {
+export default function UpdateUser({ userData,user_ID }) {
   const name = useRef("");
-  const Email_id = useRef("");
-  const contact = useRef("");
+  const Email_ID = useRef("");
+  const Contact = useRef("");
   const role = useRef("User");
   const [errorName, setErrorName] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorContact, setErrorContact] = useState("");
   console.log("mydataaa",userData);
-  console.log("idddd",user_id);
+  console.log("idddd",user_ID);
 
   useEffect(() => {
     if (userData) {
       name.current.value = userData.name;
-      Email_id.current.value = userData.Email_id;
-      contact.current.value = userData.contact;
+      Email_ID.current.value = userData.Email_ID;
+      Contact.current.value = userData.Contact;
       // role.current.value = userData.role;
     }
   }, [userData]);
@@ -34,10 +34,10 @@ export default function UpdateUser({ userData,user_id }) {
       return emailRegex.test(email);
     }
 
-    function validateContact(contact) 
+    function validateContact(Contact) 
     {
-      const contactRegex = /^\d{10}$/;
-      return contactRegex.test(contact);
+      const ContactRegex = /^\d{10}$/;
+      return ContactRegex.test(Contact);
     }
 
     function handleInputChangeName()
@@ -62,22 +62,22 @@ export default function UpdateUser({ userData,user_id }) {
         setErrorName('Please Enter Valid Name');
         return;
       }
-      if (!validateEmail(Email_id.current.value)) 
+      if (!validateEmail(Email_ID.current.value)) 
       {
         setErrorEmail('Please Enter Valid Email');
         return;
       }
-      if (!validateContact(contact.current.value)) 
+      if (!validateContact(Contact.current.value)) 
       {
         setErrorContact('Please Enter Valid Contact');
         return;
       }
       
       var payload = 
-      {   user_id:user_id,
+      {   user_ID:user_ID,
           name: name.current.value,
-          email_id: Email_id.current.value,
-          contact: contact.current.value,
+          Email_ID: Email_ID.current.value,
+          Contact: Contact.current.value,
           //role: role.current.value
       }
       console.log("payload",payload);
@@ -136,7 +136,7 @@ export default function UpdateUser({ userData,user_id }) {
                           id="email"
                           name="email"
                           type="email"
-                          ref={Email_id}
+                          ref={Email_ID}
                           onChange={handleInputChangeEmail}
                           autoComplete="email"
                           required
@@ -175,10 +175,10 @@ export default function UpdateUser({ userData,user_id }) {
                       </div>
                       <div className="mt-2">
                         <input
-                          id="contact"
-                          name="contact"
+                          id="Contact"
+                          name="Contact"
                           type="text"
-                          ref={contact}
+                          ref={Contact}
                           onChange={handleInputChangeContact}
                           autoComplete="current-password"
                           required

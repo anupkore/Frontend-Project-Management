@@ -8,10 +8,11 @@ import { SyncLoader } from "react-spinners";
 import AuthenticationService from "../Services/AuthenticationService";
 import { useEffect } from "react";
 import getAdjacentStates from "./States";
-import { isVisible } from "@testing-library/user-event/dist/utils";
+// import { isVisible } from "@testing-library/user-event/dist/utils";
 import { toast } from "react-toastify";
 
-export default function IssueDescription({ i_id }) {
+export default function IssueDescription({ i_id, p_id, p_name }) {
+  console.log(i_id, p_id, p_name);
   const comment = useRef("");
   const [isSaveVisible, setSaveVisible] = useState(false);
   const [isAddVisible, setAddVisible] = useState(false);
@@ -22,14 +23,30 @@ export default function IssueDescription({ i_id }) {
   const [workflowData, setWorkflowData] = useState([]);
   const UserID = localStorage.getItem("UserID");
   const [issue, setIssue] = useState({
-    Title: "",
-    Description: "",
-    Priority: "",
-    Estimated_time: "",
+    component: "",
+    component_description: "",
+    defect_ed: "",
+    defect_id: 0,
+    defect_sd: "",
+    description: "",
+    estimated_time: "",
+    file_attachment: null,
+    issue_id: 0,
+    issue_name: "",
+    os: "",
+    priority: "",
+    product: "",
     severity: "",
-    Task_ID : 0 ,
-    defect_ID : 0 
+    status: "",
+    summary: "",
+    title: "",
+    type: "",
+    version: "",
+    task_id: 0,
+    task_sd: "",
+    task_ed: "",
   });
+
   const [type, setType] = useState("");
   const [currentState, setCurrentState] = useState("");
   const proj_id = Number(localStorage.getItem("ProjectID"));
@@ -37,18 +54,19 @@ export default function IssueDescription({ i_id }) {
   const [workflow, setWorkflow] = useState([]);
   const [allComment, setAllComment] = useState([]);
   const [showLatestComment, setShowLatestComment] = useState(false);
-  const [assignedTo, setAssignedTo] = useState("Unassigned");
+  const [assignedTo, setAssignedTo] = useState("");
   const [teamData, setTeamData] = useState([]);
-  const [description, setDescription] = useState('Description');
+  const [description, setDescription] = useState("Description");
   const Role = localStorage.getItem("Role");
+  const user_email = localStorage.getItem("UserEmail");
   console.log("IID", i_id);
   // const id = Number(i_id);
   const payload = { issue_id: i_id };
   console.log(payload);
-  const payload2 = { id: i_id };
+  const payload2 = { ID: i_id };
   console.log(payload2);
 
-  const payload1 = { project_id: proj_id };
+  const payload1 = { Project_ID: proj_id };
   console.log(payload1);
   // Function to handle opening the popover
   const openPopover = () => {
@@ -81,34 +99,18 @@ export default function IssueDescription({ i_id }) {
 
   const handlePostDescription = (event) => {
     event.preventDefault();
-
-    if(type === 'task'){
       const payload = {
-        task_id : issue.Task_ID,
-        description : description
-      }
+        issue_id: issue.issue_id,
+        description: description,
+      };
       console.log(payload);
-      AuthenticationService.updateTaskDescription(payload)
+      AuthenticationService.updateIssueDescription(payload)
         .then((response) => {
           console.log(response.data);
         })
         .catch((error) => {
           console.error(error);
         });
-    }else{
-      const payload = {
-        defect_id : issue.defect_ID,
-        description : description
-      }
-      console.log(payload);
-      AuthenticationService.updateDefectDescription(payload)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
   };
 
   useEffect(() => {
@@ -130,8 +132,8 @@ export default function IssueDescription({ i_id }) {
 
   useEffect(() => {
     const payload4 = {
-      email_id: assignedTo[0],
-      project_id: proj_id,
+      Email_ID: assignedTo[0],
+      Project_ID: proj_id,
       issue_id: i_id,
     };
     if (assignedTo.length > 0) {
@@ -162,46 +164,88 @@ export default function IssueDescription({ i_id }) {
     setAddVisible(false);
   };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response1 = AuthenticationService.projectWiseWorkflow(payload1);
-        const response2 = AuthenticationService.particularIssueDetails(payload);
-        const response3 = AuthenticationService.allComment(payload2);
-        const response4 = AuthenticationService.getAllProjectMember(payload1);
-        const [data1, data2, data3, data4] = await Promise.all([
-          response1,
-          response2,
-          response3,
-          response4,
-        ]);
+    if (Role !== "Self") {
+      const fetchData = async () => {
+        try {
+          const response1 = AuthenticationService.projectWiseWorkflow(payload1);
+          const response2 =
+            AuthenticationService.particularIssueDetails(payload);
+          const response3 = AuthenticationService.allComment(payload2);
+          const response4 = AuthenticationService.getAllProjectMember(payload1);
+          const [data1, data2, data3, data4] = await Promise.all([
+            response1,
+            response2,
+            response3,
+            response4,
+          ]);
 
-        console.log("data1", data1);
-        console.log("data2", data2);
-        console.log("data3", data3);
-        console.log("data4", data4);
-        setWorkflowData(data1.data);
+          console.log("data1", data1);
+          console.log("data2", data2);
+          console.log("data3", data3);
+          console.log("data4", data4);
+          setWorkflowData(data1.data);
 
-        const work = data2.data.issue_details[0];
-        // console.log("Work", work);
-        setAllComment(data3.data);
-        setIssue(work);
-        setType(work.type);
-        setCurrentState(work.status);
-        setSelectedValue(work.status);
-        setDescription(work.Description);
-        setTeamData(data4.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-        setIsLoading(false);
-      }
-    };
+          const work = data2.data.issue_details[0];
+          console.log("Work", work);
+          setAllComment(data3.data);
+          setIssue(work);
+          setType(work.type);
+          setCurrentState(work.status);
+          setSelectedValue(work.status);
+          setDescription(work.description);
+          setTeamData(data4.data);
+          setIsLoading(false);
+        } catch (error) {
+          console.error(error);
+          setIsLoading(false);
+        }
+      };
 
-    fetchData();
+      fetchData();
+    } else {
+      const fetchData = async () => {
+        const payload3 = { Project_ID: p_id };
+        console.log(payload3);
+        try {
+          const response1 = AuthenticationService.projectWiseWorkflow(payload3);
+          const response2 =
+            AuthenticationService.particularIssueDetails(payload);
+          const response3 = AuthenticationService.allComment(payload2);
+          // const response4 = AuthenticationService.getAllProjectMember(payload1);
+          const [data1, data2, data3] = await Promise.all([
+            response1,
+            response2,
+            response3,
+          ]);
+
+          console.log("data1", data1);
+          console.log("data2", data2);
+          console.log("data3", data3);
+          // console.log("data4", data4);
+          setWorkflowData(data1.data);
+
+          const work = data2.data.issue_details[0];
+          // console.log("Work", work);
+          setAllComment(data3.data);
+          setIssue(work);
+          setType(work.type);
+          setCurrentState(work.status);
+          setSelectedValue(work.status);
+          setDescription(work.description);
+          // setTeamData(data4.data);
+          setIsLoading(false);
+        } catch (error) {
+          console.error(error);
+          setIsLoading(false);
+        }
+      };
+
+      fetchData();
+    }
   }, [isLoading]);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && workflowData.length > 0) {
       console.log("Workflow....");
 
       if (type === "task" && workflowData[0].issue_type === "task") {
@@ -224,8 +268,8 @@ export default function IssueDescription({ i_id }) {
     console.log("object created");
     event.preventDefault();
     var payload = {
-      id: i_id,
-      user_id: Number(UserID),
+      ID: i_id,
+      user_ID: Number(UserID),
       description: comment.current.value,
     };
     console.log("commentttt", payload);
@@ -283,7 +327,9 @@ export default function IssueDescription({ i_id }) {
 
   const handleDelete = (comment_id) => {
     console.log("Delete");
-    AuthenticationService.deleteComment({ comment_id })
+    const payload = { ID : comment_id }
+    console.log(payload);
+    AuthenticationService.deleteComment(payload)
       .then((response) => {
         console.log(response.data);
         setAllComment((prevComments) => {
@@ -308,6 +354,11 @@ export default function IssueDescription({ i_id }) {
         console.log("ERROR..." + error.data);
       });
   };
+  
+  const handleUpdateIssue = () => {
+
+    console.log("Handle Update Issue");
+  };
 
   const { previousStates, nextStates } = getAdjacentStates(
     workflow,
@@ -318,7 +369,7 @@ export default function IssueDescription({ i_id }) {
   // console.log("Previous States:", previousStates);
   // console.log("Next States:", nextStates);
 
-  // console.log("Issue", issue);
+  console.log("Issue", issue);
   // console.log("Type", type);
   // console.log("WorkflowData", workflowData);
   // console.log("WorkflowString", workflowString);
@@ -342,12 +393,14 @@ export default function IssueDescription({ i_id }) {
             <div className="m-4 ">
               <div className="flex py-2">
                 <h1 className="text-slate-500 underline decoration-2 decoration-sky-400">
-                  {localStorage.getItem("ProjectName")}
+                  {Role !== "Self"
+                    ? localStorage.getItem("ProjectName")
+                    : p_name}
                 </h1>
               </div>
               <div>
                 <h1 className="text-xl text-black font-semibold">
-                  {issue.Title}
+                  {issue.title}
                 </h1>
               </div>
             </div>
@@ -371,17 +424,18 @@ export default function IssueDescription({ i_id }) {
                     </textarea>
                   </div>
                   <div className="flex my-2 justify-start gap-2">
-                      <>
-                        <button className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md" onClick={handlePostDescription}>
-                          <span className="text-white font-semibold">Save</span>
-                        </button>
+                    <>
+                      <button
+                        className="bg-blue-700 px-3 py-1 hover:bg-blue-600 rounded-sm shadow-md"
+                        onClick={handlePostDescription}
+                      >
+                        <span className="text-white font-semibold">Save</span>
+                      </button>
 
-                        <button className="hover:bg-slate-100 px-3 py-1 hover:rounded-sm">
-                          <span className="text-black font-semibold">
-                            Cancel
-                          </span>
-                        </button>
-                      </>
+                      <button className="hover:bg-slate-100 px-3 py-1 hover:rounded-sm">
+                        <span className="text-black font-semibold">Cancel</span>
+                      </button>
+                    </>
                   </div>
                 </div>
               </div>
@@ -586,11 +640,11 @@ export default function IssueDescription({ i_id }) {
                   </Transition>
                 </Popover>
               </div>
-              <div className="border-2 border-slate-200 h-72 w-full mt-4 border-solid">
+              <div className="border-2 border-slate-200 h-full w-full mt-4 border-solid">
                 <div className="flex">
                   <h1 className="p-2 font-medium">Issue Details</h1>
                 </div>
-                <div className="ml-2 grid grid-rows-4 grid-flow-col  mt-3">
+                <div className="ml-2 grid grid-rows-5 grid-flow-col  mt-3">
                   <div className="flex flex-row">
                     <dt className="text-sm font-medium text-gray-900 basis-1/2">
                       Assignee
@@ -603,50 +657,53 @@ export default function IssueDescription({ i_id }) {
                             className="inline-flex items-center hover:bg-slate-200 bg-slate-100 py-2 px-4 rounded-md focus:border-transparent text-sm font-semibold text-gray-900"
                             disabled={Role === "Self"}
                           >
-                            <span>{assignedTo}</span>
+                            <span>
+                              {Role !== "Self" ? assignedTo : user_email}
+                            </span>
                             <ChevronDownIcon
                               className="ml-2 h-5 w-5"
                               aria-hidden="true"
                             />
                           </Popover.Button>
-
-                          <Transition
-                            show={isOpen1}
-                            as={Fragment}
-                            enter="transition ease-out duration-200"
-                            enterFrom="opacity-0 translate-y-1"
-                            enterTo="opacity-100 translate-y-0"
-                            leave="transition ease-in duration-150"
-                            leaveFrom="opacity-100 translate-y-0"
-                            leaveTo="opacity-0 translate-y-1"
-                          >
-                            <Popover.Panel className="absolute left-1/2 flex w-64 max-w-max -translate-x-1/2 px-2">
-                              <div className="w-screen flex-auto overflow-hidden rounded-md bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
-                                <div className="py-4 px-2">
-                                  {teamData.map((item) => (
-                                    <div
-                                      key={item}
-                                      className="group relative flex gap-x-6 rounded-r-lg p-2 hover:bg-gray-50 hover:border-l-4 hover:border-l-[#0052CC]"
-                                      //   style={{
-                                      //     boxShadow: 'inset 2px 0px 0px #0052CC',
-                                      //   }}
-                                      onClick={() => {
-                                        handleOptionSelect1(item);
-                                        closePopover1();
-                                      }}
-                                    >
-                                      <div>
-                                        <h1 className="font-semibold text-gray-900">
-                                          {item}
-                                          <span className="absolute inset-0" />
-                                        </h1>
+                          {Role !== "Self" && (
+                            <Transition
+                              show={isOpen1}
+                              as={Fragment}
+                              enter="transition ease-out duration-200"
+                              enterFrom="opacity-0 translate-y-1"
+                              enterTo="opacity-100 translate-y-0"
+                              leave="transition ease-in duration-150"
+                              leaveFrom="opacity-100 translate-y-0"
+                              leaveTo="opacity-0 translate-y-1"
+                            >
+                              <Popover.Panel className="absolute left-1/2 flex w-64 max-w-max -translate-x-1/2 px-2">
+                                <div className="w-screen flex-auto overflow-hidden rounded-md bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                                  <div className="py-4 px-2">
+                                    {teamData.map((item) => (
+                                      <div
+                                        key={item}
+                                        className="group relative flex gap-x-6 rounded-r-lg p-2 hover:bg-gray-50 hover:border-l-4 hover:border-l-[#0052CC]"
+                                        //   style={{
+                                        //     boxShadow: 'inset 2px 0px 0px #0052CC',
+                                        //   }}
+                                        onClick={() => {
+                                          handleOptionSelect1(item);
+                                          closePopover1();
+                                        }}
+                                      >
+                                        <div>
+                                          <h1 className="font-semibold text-gray-900">
+                                            {item}
+                                            <span className="absolute inset-0" />
+                                          </h1>
+                                        </div>
                                       </div>
-                                    </div>
-                                  ))}
+                                    ))}
+                                  </div>
                                 </div>
-                              </div>
-                            </Popover.Panel>
-                          </Transition>
+                              </Popover.Panel>
+                            </Transition>
+                          )}
                         </Popover>
                       </div>
                       {/* <button className="px-3 py-1 my-1">
@@ -656,23 +713,68 @@ export default function IssueDescription({ i_id }) {
                   </div>
                   <div className="flex flex-row">
                     <dt className="text-sm font-medium text-gray-900 basis-1/2">
+                      Type
+                    </dt>
+                    <dd className="basis-1/2">{issue.type}</dd>
+                  </div>
+                  <div className="flex flex-row">
+                    <dt className="text-sm font-medium text-gray-900 basis-1/2">
                       Priority
                     </dt>
-                    <dd className="basis-1/2">{issue.Priority}</dd>
+                    <dd className="basis-1/2">{issue.priority}</dd>
                   </div>
                   <div className="flex flex-row">
                     <dt className="text-sm font-medium text-gray-900 basis-1/2">
                       Expected Time
                     </dt>
-                    <dd className="basis-1/2">{issue.Estimated_time}</dd>
+                    <dd className="basis-1/2">{issue.estimated_time}</dd>
                   </div>
-                  <div className="flex flex-row">
-                    <dt className="text-sm font-medium text-gray-900 basis-1/2">
-                      Severity
-                    </dt>
-                    <dd className="basis-1/2">{issue.severity}</dd>
-                  </div>
+                  {issue.type === "defect" && (
+                    <div className="flex flex-row">
+                      <dt className="text-sm font-medium text-gray-900 basis-1/2">
+                        Severity
+                      </dt>
+                      <dd className="basis-1/2">{issue.severity}</dd>
+                    </div>
+                  )}
                 </div>
+              </div>
+              <div className="flex">
+                <div className="flex mt-2">
+                  <h6 className="text-[#6B778C] text-xs">
+                    Created{" "}
+                    {new Date(issue.defect_sd).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      weekday: "short",
+                    })}
+                  </h6>
+                </div>
+                <div className="flex ml-auto mt-2 items-center space-x-1">
+                <button className="flex space-x-1  items-center hover:underline decoration-[#6B778C] decoration-2" onClick={handleUpdateIssue}>
+                  <div className="flex">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="#6B778C"
+                      className="bi bi-gear-wide"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z" />
+                    </svg>
+                  </div>
+                  <div className="flex">
+                   
+                    <span className="text-[#6B778C] text-sm my-auto text-center font-semibold">
+                      Configure
+                    </span>
+                    
+                  </div>
+                  </button>
+                </div>
+                
               </div>
             </div>
           </div>
