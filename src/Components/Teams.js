@@ -54,19 +54,18 @@ export const Teams = () => {
         throw error;
       }
     };
-
     fetchData();
   }, []);
 
-  useEffect(()=>{
-    if (teamDetails.length >0) {
-      console.log(teamDetails);
-    } else {
-      console.log("No Team is there!!")
-    }
+  // useEffect(()=>{
+  //   if (teamDetails.length >0) {
+  //     console.log(teamDetails);
+  //   } else {
+  //     console.log("No Team is there!!")
+  //   }
    
-  },[teamDetails])
-   console.log("Teams",teamDetails);
+  // },[teamDetails])
+  //  console.log("Teams",teamDetails);
 
   const indexOfLastMember = currentPage * membersPerPage;
   const indexOfFirstMember = indexOfLastMember - membersPerPage;
