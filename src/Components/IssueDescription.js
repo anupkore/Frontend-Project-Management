@@ -166,177 +166,7 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
     setAddVisible(false);
   };
   
-  // useEffect(() => {
-  //     if (Role !== "Self") {
-  //       const fetchData = async () => {
-  //         try {
-  //           const response1 = AuthenticationService.projectWiseWorkflow(payload1);
-  //           const response2 =
-  //             AuthenticationService.particularIssueDetails(payload);
-  //           const response3 = AuthenticationService.allComment(payload2);
-  //           const response4 = AuthenticationService.getAllProjectMember(payload1);
-  //           const response5 = AuthenticationService.issueWiseUser(payload)
-  //           const [data1, data2, data3, data4 , data5] = await Promise.all([
-  //             response1,
-  //             response2,
-  //             response3,
-  //             response4,
-  //             response5
-  //           ]);
-
-  //           console.log("data1", data1);
-  //           console.log("data2", data2);
-  //           console.log("data3", data3);
-  //           console.log("data4", data4);
-  //           console.log("data5",data5);
-  //           setWorkflowData(data1.data);
-  //           setAssignedTo(data5.data.email_id)
-  //           const work = data2.data.issue_details[0];
-  //           console.log("Work", work);
-  //           setAllComment(data3.data);
-  //           setIssue(work);
-  //           setType(work.type);
-  //           setCurrentState(work.status);
-  //           setSelectedValue(work.status);
-  //           setDescription(work.description);
-  //           setTeamData(data4.data);
-  //           setIsLoading(false);
-  //         } catch (error) {
-  //           console.error(error);
-  //           setIsLoading(false);
-  //         }
-  //       };
-
-  //       fetchData();
-  //     } else {
-  //       const fetchData = async () => {
-  //         const payload3 = { Project_ID: p_id };
-  //         console.log(payload3);
-  //         try {
-  //           const response1 = AuthenticationService.projectWiseWorkflow(payload3);
-  //           const response2 =
-  //             AuthenticationService.particularIssueDetails(payload);
-  //           const response3 = AuthenticationService.allComment(payload2);
-  //           const response5 = AuthenticationService.issueWiseUser(payload)
-  //           // const response4 = AuthenticationService.getAllProjectMember(payload1);
-  //           const [data1, data2, data3,data5] = await Promise.all([
-  //             response1,
-  //             response2,
-  //             response3,
-  //             response5
-  //           ]);
-
-  //           console.log("data1", data1);
-  //           console.log("data2", data2);
-  //           console.log("data3", data3);
-  //           console.log("data5", data5);
-  //           setWorkflowData(data1.data);
-
-  //           const work = data2.data.issue_details[0];
-  //           // console.log("Work", work);
-  //           setAllComment(data3.data);
-  //           setIssue(work);
-  //           setType(work.type);
-  //           setCurrentState(work.status);
-  //           setSelectedValue(work.status);
-  //           setDescription(work.description);
-  //           // setTeamData(data4.data);
-  //           setIsLoading(false);
-  //         } catch (error) {
-  //           console.error(error);
-  //           setIsLoading(false);
-  //         }
-  //       };
-
-  //       fetchData();
-  //     }
-
-  // },[]);
-
-  // useEffect(() => {
-  //   if (Role !== "Self") {
-  //     const fetchData = async () => {
-  //       try {
-  //         const response1 = await AuthenticationService.projectWiseWorkflow(payload1);
-  //         const data1 = response1.data;
-  //         console.log("data1", data1);
-  //         setWorkflowData(data1);
   
-  //         const response2 = await AuthenticationService.particularIssueDetails(payload);
-  //         const data2 = response2.data;
-  //         console.log("data2", data2);
-  //         const work = data2.issue_details[0];
-  //         setIssue(work);
-  //         setType(work.type);
-  //         setCurrentState(work.status);
-  //         setSelectedValue(work.status);
-  //         setDescription(work.description);
-  
-  //         const response3 = await AuthenticationService.allComment(payload2);
-  //         const data3 = response3.data;
-  //         console.log("data3", data3);
-  //         setAllComment(data3);
-  
-  //         const response4 = await AuthenticationService.getAllProjectMember(payload1);
-  //         const data4 = response4.data;
-  //         console.log("data4", data4);
-  //         setTeamData(data4);
-  
-  //         const response5 = await AuthenticationService.issueWiseUser(payload);
-  //         const data5 = response5.data;
-  //         console.log("data5", data5);
-  //         setAssignedTo(data5);
-  
-  //         setIsLoading(false);
-  //       } catch (error) {
-  //         console.error(error);
-  //         setIsLoading(false);
-  //       }
-  //     };
-  
-  //     fetchData();
-  //   } else {
-  //     const fetchData = async () => {
-  //       const payload3 = { Project_ID: p_id };
-  //       console.log(payload3);
-  //       try {
-  //         const response1 = await AuthenticationService.projectWiseWorkflow(payload3);
-  //         const data1 = response1.data;
-  //         console.log("data1", data1);
-  //         setWorkflowData(data1);
-  
-  //         const response2 = await AuthenticationService.particularIssueDetails(payload);
-  //         const data2 = response2.data;
-  //         console.log("data2", data2);
-  //         const work = data2.issue_details[0];
-  //         setIssue(work);
-  //         setType(work.type);
-  //         setCurrentState(work.status);
-  //         setSelectedValue(work.status);
-  //         setDescription(work.description);
-  
-  //         const response3 = await AuthenticationService.allComment(payload2);
-  //         const data3 = response3.data;
-  //         console.log("data3", data3);
-  //         setAllComment(data3);
-  
-  //         const response5 = await AuthenticationService.issueWiseUser(payload);
-  //         const data5 = response5.data;
-  //         console.log("data5", data5);
-  //         setAssignedTo(data5.email_id);
-  
-  //         setIsLoading(false);
-  //       } catch (error) {
-  //         console.error(error);
-  //         setIsLoading(false);
-  //       }
-  //     };
-  
-  //     fetchData();
-  //   }
-  // }, []);
-  
-
   useEffect(() => {
     let isMounted = true;
   
@@ -367,10 +197,12 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
           const response3 = await AuthenticationService.allComment(payload2);
           const data3 = response3.data;
           console.log("data3", data3);
+          console.log("data3.......", data3[0].comment_ID);
   
           if (isMounted) {
             setAllComment(data3);
           }
+          console.log("aaaaaaaaaa",allComment);
   
           const response4 = await AuthenticationService.getAllProjectMember(payload1);
           const data4 = response4.data;
@@ -457,6 +289,7 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
       isMounted = false;
     };
   }, []);
+  console.log("1233333",allComment);
   
   useEffect(() => {
     if (!isLoading && workflowData.length > 0) {
@@ -540,8 +373,8 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
   };
 
   const handleDelete = (comment_id) => {
-    console.log("Delete");
-    const payload = { ID : comment_id }
+    console.log("Deleted.....",comment_id);
+    const payload = { comment_ID : comment_id }
     console.log(payload);
     AuthenticationService.deleteComment(payload)
       .then((response) => {
@@ -836,7 +669,7 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
                           </button>
                           <button
                             className="text-[#6B778C] hover:underline hover:text-blue-400"
-                            onClick={() => handleDelete(data.comment_id)}
+                            onClick={() =>handleDelete(data.comment_ID)}
                           >
                             Delete
                           </button>
