@@ -4,7 +4,7 @@ import { Link} from "react-router-dom";
 export default function SideBar({p_id}) {
   const [open, setOpen] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
-
+  const proj_id = Number(localStorage.getItem("ProjectID"));
 
     const Menus = [
       { title: "Projects", src: "Chart_fill" ,li:"/allprojects"},
@@ -14,23 +14,24 @@ export default function SideBar({p_id}) {
       {title: "Workflows", src: "Chart_fill" ,li:"/workflow"}
     ];
     const handleResize = () => {
-    const isMobile = window.innerWidth <= 768; // Set your desired responsive breakpoint here
-    setIsResponsive(isMobile);
-    if (isMobile && open) {
-      setOpen(false);
-    }
-    else{
-      setOpen(true);
+      const isMobile = window.innerWidth <= 764; // Set your desired responsive breakpoint here
+      setIsResponsive(isMobile);
+      if (isMobile && open) {
+        setOpen(false);
+      }
+      else{
+        setOpen(true);
     }
   };
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
+    // return () => {
+    //   window.removeEventListener("resize", handleResize);
+    // };
+    // handleResize();
+  },[isResponsive]);
 
 
   const toggleSidebar = () => {
@@ -47,13 +48,15 @@ export default function SideBar({p_id}) {
         } bg-dark-purple h-full p-5  pt-8 relative duration-300 rounded-r-md`}
       >
         <div className="h-full">
+          <button onClick={toggleSidebar}>
           <img
             src="/Images/arrow-right-circle-fill.svg"
             alt=""
             className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
               border-2 rounded-full  ${open && "rotate-180"}`}
-            onClick={toggleSidebar}
+            // onClick={toggleSidebar}
           />
+          </button>
           <div className="flex gap-x-4 items-center">
             <img
               src="../"
@@ -67,7 +70,8 @@ export default function SideBar({p_id}) {
                 !open && "scale-0"
               }`}
             >
-              {localStorage.getItem('ProjectName')}
+              
+              <Link to={`/projectexplore/${proj_id}`} className="hover:text-white">{localStorage.getItem('ProjectName')}</Link>
             </h1>
           </div>
           <div>

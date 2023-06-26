@@ -16,7 +16,7 @@ export default function IssueDashboard(props) {
   const { p_id } = useParams();
   const Project_ID = localStorage.getItem("ProjectID");
   const payload = { Project_ID: Project_ID };
-console.log(payload);
+  console.log(payload);
 const [isLoading, setIsLoading] = useState(true);
   const [issues,setIssues] = useState([]);
   const scrollLeft = () => {
@@ -26,33 +26,57 @@ const [isLoading, setIsLoading] = useState(true);
     document.getElementById("content").scrollLeft += 400;
   };
   const [statusValues, setStatusValues] = useState([]);
+  const demo = 1;
   // const proj_id = Number(localStorage.getItem("ProjectID"));
   // const payload1 = { Project_ID: proj_id };
   // const [workflowData , setWorkflowData] = useState([]);
   const maxWidth = 'md';
 
-  useEffect(() => {
-    AuthenticationService.allIssues(payload)
-      .then((response) => {
-        console.log(response.data);
-        setIssues(response.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   AuthenticationService.projectIssueStates(payload)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setStatusValues(response.data);
+  //       setIsLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       setIsLoading(false);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // },[demo]);
   
   useEffect(() => {
-    if (issues.length > 0) {
-      const uniqueStatusValues = [...new Set(issues.map((item) => item.status))];
-      console.log(uniqueStatusValues);
-      setStatusValues(uniqueStatusValues);
-    } else {
-      console.log("EMPTY!!");
-    }
-  }, [issues]);
+      AuthenticationService.allIssues(payload)
+        .then((response) => {
+          console.log(response.data);
+          setIssues(response.data);
+const issuesData = response.data;
+          const uniqueStatusValues = [...new Set(issuesData.map((item) => item.status))];
+          console.log(uniqueStatusValues);
+          setStatusValues(uniqueStatusValues);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    },[demo]);
+
+  // useEffect(() => {
+  //   if (issues.length > 0) {
+  //     const uniqueStatusValues = [...new Set(issues.map((item) => item.status))];
+  //     console.log(uniqueStatusValues);
+  //     setStatusValues(uniqueStatusValues);
+  //   } else {
+  //     console.log("EMPTY!!");
+  //   }
+  // }, [issues]);
   
   // useEffect(() => {
       
@@ -182,7 +206,7 @@ const [isLoading, setIsLoading] = useState(true);
               >
                 {statusValues.map((status) => (
                   <div className="mx-3 ">
-                    <IssueCardHolder iss={status} />
+                    <IssueCardHolder iss={status} issues={issues}/>
                   </div>
                 ))}
               </div>

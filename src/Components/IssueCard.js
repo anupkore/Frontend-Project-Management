@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 import CustomizedDialogs from "./IssueDialog";
 
 export default function IssueCard(props) {
+  console.log("card",props);
+
+
   return (
     <>
 

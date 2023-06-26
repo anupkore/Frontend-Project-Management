@@ -22,7 +22,7 @@ function TableOfUsers() {
       })
       .catch((error) => {
         console.log(error.data);
-        toast.error("Internal Server Error")
+        // toast.error("Internal Server Error")
       });
   }, []);
 

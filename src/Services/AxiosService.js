@@ -69,9 +69,9 @@ export default class AxiosService
     }
 
     //For deleting an issue (Issue ID)
-    static deleteIssue(url)
+    static deleteIssue(url,data)
     {
-        return axios.delete(url)
+        return axios.post(url,data);
     }
 
     //For Getting List of All Users Added By The Alpha Admin (For Admin Dashboard)
@@ -248,6 +248,10 @@ export default class AxiosService
     {
         return axios.post(url,data);
     }
-
-
+    static issueWiseUser(url,data){
+        return axios.post(url,data);
+    }
+    static projectIssueStates(url,data){
+        return axios.post(url,data);
+    }
 }

@@ -33,6 +33,10 @@ export default function MyIssues() {
       .then((response) => {
         console.log(response.data);
         setIssues(response.data);
+        const issuesData = response.data;
+          const uniqueStatusValues = [...new Set(issuesData.map((item) => item.status))];
+          console.log(uniqueStatusValues);
+          setStatusValues(uniqueStatusValues);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -41,17 +45,17 @@ export default function MyIssues() {
       });
   }, [user_ID]);
 
-  useEffect(() => {
-    if (issues.length > 0) {
-      const uniqueStatusValues = [
-        ...new Set(issues.map((item) => item.status)),
-      ];
-      console.log(uniqueStatusValues);
-      setStatusValues(uniqueStatusValues);
-    } else {
-      console.log("EMPTY!!");
-    }
-  }, [issues]);
+  // useEffect(() => {
+  //   if (issues.length > 0) {
+  //     const uniqueStatusValues = [
+  //       ...new Set(issues.map((item) => item.status)),
+  //     ];
+  //     console.log(uniqueStatusValues);
+  //     setStatusValues(uniqueStatusValues);
+  //   } else {
+  //     console.log("EMPTY!!");
+  //   }
+  // }, [issues]);
 
   console.log("Issues: ", issues);
   console.log("Status: ", statusValues);
@@ -123,7 +127,7 @@ export default function MyIssues() {
             >
               {statusValues.map((status) => (
                 <div className="mx-3 ">
-                  <IssueCardHolder iss={status} />
+                  <IssueCardHolder iss={status} issues={issues} />
                 </div>
               ))}
             </div>

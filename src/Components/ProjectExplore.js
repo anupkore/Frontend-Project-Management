@@ -60,7 +60,7 @@ export const ProjectExplore = () => {
         const response = await AuthenticationService.projectExplore(payload);
         if (response && response.data) {
           setProjectDetails((existingData) => {
-            console.log(response.data);
+            console.log("projectdata",response.data);
             setProjectData(response.data);
             setIsLoading(false);
             console.log("projectData", projectData);
@@ -244,7 +244,6 @@ export const ProjectExplore = () => {
     };
    
     const fetchData = async () => {
-      console.log("12345555");
       try {
         const response = await  AuthenticationService.status_display(payload)
         if (response && response.data) {
@@ -278,10 +277,6 @@ export const ProjectExplore = () => {
           // Handle 400 error code
           console.log('Bad Request Error:', error.response.data);
           // toast.error('Bad Request Error:.');
-        } else if (error.message === 'Network Error') {
-          // Handle CORS error
-
-          toast.error('CORS Error: Unable to make a request due to CORS restrictions.');
         } else {
           // Handle other errors
           toast.error(`Error...: ${error.message}`);

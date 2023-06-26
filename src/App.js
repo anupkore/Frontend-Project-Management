@@ -39,6 +39,7 @@ import AllIssues from './Components/AllIssues';
 import IssueDescription from './Components/IssueDescription';
 import UpdateDefect from './Components/UpdateDefect';
 import UpdateTask from './Components/UpdateTask';
+import UploadForm from './Components/UploadForm';
 
 
 import { Project } from './Components/Project';
@@ -86,11 +87,9 @@ const App = () => {
 <Route path='/createTask' element={<CreateTask></CreateTask>} />
 <Route path='/createDefect' element={<CreateDefect></CreateDefect>} />
 <Route path='/allIssues' element={<ProtectedRoute element={IssueDashboard} />}/>
-{/* <Route path='/demo' element={<IssueDescription></IssueDescription>} /> */}
-
 <Route path='/updateDefect' element={<UpdateDefect></UpdateDefect>} />
 <Route path='/updateTask' element={<UpdateTask></UpdateTask>} />      
-      
+<Route path='/file' element={<UploadForm></UploadForm>} ></Route>
       
       
       </Routes>
