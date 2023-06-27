@@ -65,7 +65,7 @@ const App = () => {
 <Route path="/issue/:status" element={<ProtectedRoute element={ParticularIssueDashboard} />} />
 <Route path="/profile" element={<ProtectedRoute element={Profilepage} />} />
 <Route path="/addNewProject" element={<ProtectedRoute element={AddNewProject} />} />
-<Route path='/project' element={<Project/>}/>
+
 
 <Route path="*" element={<ProtectedRoute element={ErrorPage} />} />
 <Route path="/addWorkflow" element={<ProtectedRoute element={CreateWorkflow} />} />
