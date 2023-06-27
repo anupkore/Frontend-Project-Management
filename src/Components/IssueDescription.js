@@ -173,14 +173,6 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
     if (Role !== "Self") {
       const fetchData = async () => {
         try {
-          const response1 = await AuthenticationService.projectWiseWorkflow(payload1);
-          const data1 = response1.data;
-          console.log("data1", data1);
-  
-          if (isMounted) {
-            setWorkflowData(data1);
-          }
-  
           const response2 = await AuthenticationService.particularIssueDetails(payload);
           const data2 = response2.data;
           console.log("data2", data2);
@@ -193,16 +185,16 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
             setSelectedValue(work.status);
             setDescription(work.description);
           }
-  
-          const response3 = await AuthenticationService.allComment(payload2);
-          const data3 = response3.data;
-          console.log("data3", data3);
-          console.log("data3.......", data3[0].comment_ID);
+          
+          const response1 = await AuthenticationService.projectWiseWorkflow(payload1);
+          const data1 = response1.data;
+          console.log("data1", data1);
   
           if (isMounted) {
-            setAllComment(data3);
+            setWorkflowData(data1);
           }
-          console.log("aaaaaaaaaa",allComment);
+  
+          
   
           const response4 = await AuthenticationService.getAllProjectMember(payload1);
           const data4 = response4.data;
@@ -220,6 +212,16 @@ export default function IssueDescription({ i_id, p_id, p_name }) {
             setAssignedTo(data5);
             setIsLoading(false);
           }
+
+          const response3 = await AuthenticationService.allComment(payload2);
+          const data3 = response3.data;
+          console.log("data3", data3);
+          console.log("data3.......", data3[0].comment_ID);
+  
+          if (isMounted) {
+            setAllComment(data3);
+          }
+          console.log("Comment",allComment);
         } catch (error) {
           console.error(error);
   

@@ -24,9 +24,12 @@ export const ProjectExplore = () => {
   localStorage.setItem("ProjectID", Project_ID);
   const payload = { Project_ID: Number(localStorage.getItem("ProjectID"))};
   const [projectData, setProjectData] = useState([]);
-  const [projectID, setProjectID] = useState();
+  // const [projectID, setProjectID] = useState();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const payload1 = {
+        id: Number(localStorage.getItem("ProjectID")),
+      };
   const navigate  = useNavigate();
 
   // useEffect(() => {
@@ -52,63 +55,10 @@ export const ProjectExplore = () => {
   const [isFetching, setIsFetching] = useState(true);
   const [myError, setMyError] = useState('');
 
-  useEffect(() => {
-      
-    const fetchData = async () => {
-      console.log("12345555");
-      try {
-        const response = await AuthenticationService.projectExplore(payload);
-        if (response && response.data) {
-          setProjectDetails((existingData) => {
-            console.log("projectdata",response.data);
-            setProjectData(response.data);
-            setIsLoading(false);
-            console.log("projectData", projectData);
-          console.log('Status code:', response.status); // Display the status code in the console
-          // toast.error("No Internal Server Error"); 
-          })
-          // Check for specific error codes in the response
-          if (response.status !== 200) {
-            // Handle 400 error code
-            console.log('Bad Request Error12233:', response.data);
-            // toast.error("Internal Server Error");
-          }
-          // Add more conditionals for other error codes if needed
-        }
-      } catch (error) {
-        setMyError(error.message);
-        setIsFetching(true);
-        setIsLoading(false);
-        console.error('Error:', myError); // Display the error message in the console
-        
-  
-        // Check for specific error codes in the error object
-        if (error.response && error.response.status !== 200) {
-          // Handle 400 error code
-          console.log('Bad Request Error:', error.response.data);
-          // toast.error('Bad Request Error:.');
-        } else if (error.message === 'Network Error') {
-          // Handle CORS error
-
-          toast.error('CORS Error: Unable to make a request due to CORS restrictions.');
-        } else {
-          // Handle other errors
-          toast.error(`Error...: ${error.message}`);
-        }
-        // Add more conditionals for other error codes if needed
-      }
-    };
-  
-     // Call the fetchData function
-    console.log("yjb....");
-    // Cleanup function to clear any existing toasts
-  return () => {
-    toast.dismiss();
-    fetchData();
-    toast.dismiss();
-  };
-  
-  }, []);
+  // useEffect(() => {
+  //   AuthenticationService.projectExplore(payload);
+  //   const response = await  AuthenticationService.status_display(payload);
+  // }, []);
 
   const ProjectName = projectData.Project_name;
   localStorage.setItem("ProjectName",ProjectName)
@@ -212,90 +162,88 @@ export const ProjectExplore = () => {
     toast.dismiss();
   };
   
-  
-
   // useEffect(() => {
   //   console.log("Displaying status...");
   //   const payload = {
   //     id: Number(localStorage.getItem("ProjectID")),
   //   };
-  //   AuthenticationService.status_display(payload)
-  //     .then((response) => {
-  //       console.log("statusData...", response.data[0]);
-  //       setStatusValue((prevStatusValue) => {
-  //         if (response.data[0]) {
-  //           setStatusAlreadyExists(true);
-  //           return response.data[0];
-  //         } else {
-  //           setStatusAlreadyExists(false);
-  //           return prevStatusValue;
-  //         }
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response.data);
-  //     });
-  // }, []);
-  
-  useEffect(() => {
-    console.log("Displaying status...");
-    const payload = {
-      id: Number(localStorage.getItem("ProjectID")),
-    };
    
-    const fetchData = async () => {
-      try {
-        const response = await  AuthenticationService.status_display(payload)
-        if (response && response.data) {
-          console.log("statusData...", response.data[0]);
-          setStatusValue((prevStatusValue) => {
-            if (response.data[0]) {
-              setStatusAlreadyExists(true);
-              return response.data[0];
-            } else {
-              setStatusAlreadyExists(false);
-              return prevStatusValue;
-            }
-          });
-          // Check for specific error codes in the response
-          if (response.status !== 200) {
-            // Handle 400 error code
-            console.log('Bad Request Error12233:', response.data);
-            // toast.error("Internal Server Error");
-          }
-          // Add more conditionals for other error codes if needed
-        }
-      } catch (error) {
-        setMyError(error.message);
-        setIsFetching(true);
-        setIsLoading(false);
-        console.error('Error:', myError); // Display the error message in the console
+  //   const fetchData = async () => {
+  //     try {
+        
+  //       if (response && response.data) {
+  //         console.log("statusData...", response.data[0]);
+  //         setStatusValue((prevStatusValue) => {
+  //           if (response.data[0]) {
+  //             setStatusAlreadyExists(true);
+  //             return response.data[0];
+  //           } else {
+  //             setStatusAlreadyExists(false);
+  //             return prevStatusValue;
+  //           }
+  //         });
+  //         // Check for specific error codes in the response
+  //         if (response.status !== 200) {
+  //           // Handle 400 error code
+  //           console.log('Bad Request Error12233:', response.data);
+  //           // toast.error("Internal Server Error");
+  //         }
+  //         // Add more conditionals for other error codes if needed
+  //       }
+  //     } catch (error) {
+  //       setMyError(error.message);
+  //       setIsFetching(true);
+  //       setIsLoading(false);
+  //       console.error('Error:', myError); // Display the error message in the console
         
   
-        // Check for specific error codes in the error object
-        if (error.response && error.response.status !== 200) {
-          // Handle 400 error code
-          console.log('Bad Request Error:', error.response.data);
-          // toast.error('Bad Request Error:.');
-        } else {
-          // Handle other errors
-          toast.error(`Error...: ${error.message}`);
-        }
-        // Add more conditionals for other error codes if needed
+  //       // Check for specific error codes in the error object
+  //       if (error.response && error.response.status !== 200) {
+  //         // Handle 400 error code
+  //         console.log('Bad Request Error:', error.response.data);
+  //         // toast.error('Bad Request Error:.');
+  //       } else {
+  //         // Handle other errors
+  //         toast.error(`Error...: ${error.message}`);
+  //       }
+  //       // Add more conditionals for other error codes if needed
+  //     }
+  //   };
+  
+  //    // Call the fetchData function
+  //   console.log("yjb....");
+  //   // Cleanup function to clear any existing toasts
+  // return () => {
+  //   toast.dismiss();
+  //   fetchData();
+  //   toast.dismiss();
+  // };
+  
+  // }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response1 = AuthenticationService.projectExplore(payload);
+        const response2 = AuthenticationService.status_display(payload1);
+        const [data1, data2] = await Promise.all([
+          response1,
+          response2
+        ]);
+
+        console.log("data1", data1);
+        console.log("data2", data2);
+        setProjectData(data1.data);
+        setStatusValue(data1.status);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
       }
     };
-  
-     // Call the fetchData function
-    console.log("yjb....");
-    // Cleanup function to clear any existing toasts
-  return () => {
-    toast.dismiss();
-    fetchData();
-    toast.dismiss();
-  };
-  
-  }, []);
 
+    fetchData();
+  }, [isLoading]);
   return (
     <>
     {isLoading ?(
