@@ -42,8 +42,8 @@ export const  LoginForm = ({ toggleSignup }) =>
       event.preventDefault();
       var payload = 
       {
-          email_id: email.current.value,
-          password: password.current.value
+          Email_ID: email.current.value,
+          password:password.current.value
       }
       console.log("data.....1",payload);
 

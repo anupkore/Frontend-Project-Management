@@ -42,7 +42,7 @@ import UpdateTask from './Components/UpdateTask';
 import UploadForm from './Components/UploadForm';
 
 
-import { Project } from './Components/Project';
+
 
 
 const App = () => {

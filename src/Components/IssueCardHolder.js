@@ -77,13 +77,7 @@ function IssueCardHolder({iss,issues}) {
         </div>
       </div>
     </div>
-    // <>
-    //   <div id="content" className="mx-auto rounded-4 bg-lime-100">
-    //     <div className="w-64 h-[42rem] max-h-md px-2 pb-2">
-
-    //     </div>
-    //   </div>
-    // </>
+  
   );
 }
 

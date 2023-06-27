@@ -17,10 +17,10 @@ function UpdateDefect()
   const [severity, setSeverity] = useState("");
   const [os , setOS] = useState("");
   const [summary , setSummary] = useState("");
-  const [startDate, setStartDate] = useState(Date(""));
-  console.log(startDate);
-  const [endDate, setEndDate] = useState(Date(""));
-  console.log(endDate);
+  const [startDate, setStartDate] = useState("");
+  const [finalStartDate,setFinalStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [finalEndDate,setFinalEndDate] = useState("");
   const [priority, setPriority] = useState("");
   const [estimatedTime, setEstimatedTime] = useState("");
   const [defect_id, setDefect_id] = useState();
@@ -101,8 +101,8 @@ function UpdateDefect()
         setTitle(issue.title);
         setComponent(issue.component);
         setComponentDescription(issue.component_description);
-        setEndDate(issue.defect_ed);
-        setStartDate(issue.defect_sd);
+        setEndDate(new Date(issue.defect_ed).toISOString().split('T')[0]);
+        setStartDate(new Date(issue.defect_sd).toISOString().split('T')[0]);
         setOS(issue.os);
         setPriority(issue.priority);
         setProduct(issue.product);
@@ -114,7 +114,7 @@ function UpdateDefect()
       })
       .catch((error) =>{
         console.error(error);
-        toast.error("Internal Server Error");
+        //toast.error("Internal Server Error");
       })
   }, [])
   
@@ -164,6 +164,10 @@ function UpdateDefect()
       });
   }
 
+console.log(startDate);
+
+
+
   return (
   
 
@@ -174,18 +178,28 @@ function UpdateDefect()
       </div>
     )}
           <div className={`${isLoading ? "blur-xl" : ""}`}>
-          <Container fluid="sm" >
-            <div className="mx-auto max-w-2xl pb-3">
+          <Container>
+            <div className="mx-auto max-w-2xl pb-3 mt-2">
               <div className="text-center">
-                <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-                  Update Defect
-                </h1>
+                <h2 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
+                  Defect Details
+                </h2>
               </div>
             </div>
+            
+            <div>
             <Row>
-              
-              <Col sm>
-                <div className="pt-5">
+            <Col sm>
+              <img
+                src="/Images/projectmag.png"
+                className="my-auto max-w-[80%]"
+                alt="Task Form"
+
+                // style={{maxHeight:90}}
+              ></img>
+            </Col>
+              <Col>
+                <div className="pt-5 m-4">
                   <form action="#" method="POST" className="m-auto mt-16 max-w-l sm:mt-20">
                     
                     <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
@@ -435,7 +449,7 @@ function UpdateDefect()
                                     value={summary}
                                     onChange={handleInputChangeSummary}
                                     autoComplete="given-name"
-                                    className="h-40 w-full rounded-md border-0 text-gray-900 border-none placeholder:text-black-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm text-lg"
+                                    className="h-20 w-full rounded-md border-0 text-gray-900 border-none placeholder:text-black-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm text-lg"
                                     disabled={isLoading}
                                   />
                               </div>
@@ -457,7 +471,7 @@ function UpdateDefect()
                           value={componentDescription}
                           onChange={handleInputChangeComonentDescription}
                           autoComplete="given-name"
-                          className="h-40 w-full rounded-md border-0 text-gray-900 border-none placeholder:text-black-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm text-lg"
+                          className="h-20 w-full rounded-md border-0 text-gray-900 border-none placeholder:text-black-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm text-lg"
                           disabled={isLoading}
                         />
                       </div>
@@ -479,10 +493,11 @@ function UpdateDefect()
                   }`}
                   disabled={isLoading}
                 >
-                  Update
+                  Save Changes
                 </button>
               </div>
             </Row>
+            </div>
           </Container>
           </div>
         </>
