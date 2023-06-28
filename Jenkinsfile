@@ -1,27 +1,38 @@
 pipeline {
   agent {
-    docker {
-      image 'registry.access.redhat.com/ubi8/nodejs-16:1'
-      args '-v /var/run/docker.sock:/var/run/docker.sock'
+    node {
+      label 'docker'
     }
   }
   stages {
     stage('Build') {
       steps {
-        // Perform build steps here
-        sh 'docker build -t myapp .'
+        script {
+          docker.image('registry.access.redhat.com/ubi8/nodejs-16:1').inside {
+            // Perform build steps here
+            sh 'docker build -t myapp .'
+          }
+        }
       }
     }
     stage('Test') {
       steps {
-        // Perform test steps here
-        sh 'docker run myapp npm test'
+        script {
+          docker.image('myapp').inside {
+            // Perform test steps here
+            sh 'npm test'
+          }
+        }
       }
     }
     stage('Deploy') {
       steps {
-        // Perform deployment steps here
-        sh 'docker push yjb28/project-management-app:v.1'
+        script {
+          docker.image('registry.access.redhat.com/ubi8/nodejs-16:1').inside {
+            // Perform deployment steps here
+            sh 'docker push yjb28/project-management-app:v.1'
+          }
+        }
       }
     }
   }
