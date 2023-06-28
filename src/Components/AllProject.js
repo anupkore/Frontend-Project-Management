@@ -362,8 +362,7 @@ useEffect(() => {
                                 })}
                               </td>
                               <td className="px-4 py-2">
-                                {/* {project.status} */}
-                                Hi
+                               {project.status}
                               </td>
                               <td className="px-4 py-2">
                                 {project.client_name}

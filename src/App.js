@@ -40,6 +40,7 @@ import IssueDescription from './Components/IssueDescription';
 import UpdateDefect from './Components/UpdateDefect';
 import UpdateTask from './Components/UpdateTask';
 import UploadForm from './Components/UploadForm';
+import DemoProjectExplore from './Components/DemoProjectExplore';
 
 
 const App = () => {
@@ -87,6 +88,7 @@ const App = () => {
 <Route path='/updateDefect' element={<UpdateDefect></UpdateDefect>} />
 <Route path='/updateTask' element={<UpdateTask></UpdateTask>} />      
 <Route path='/file' element={<UploadForm></UploadForm>} ></Route>
+<Route path='/test' element={<DemoProjectExplore></DemoProjectExplore>} />
       
       
       </Routes>
