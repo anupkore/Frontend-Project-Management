@@ -342,7 +342,7 @@ useEffect(() => {
                               <td className="px-4 py-2">
                                 {project.Project_name}
                               </td>
-                              <td className="px-4 py-2">{project.Status}</td>
+                              <td className="px-4 py-2">{project.state}</td>
                               <td className="px-4 py-2">
                                 {new Date(
                                   project.planned_sd
