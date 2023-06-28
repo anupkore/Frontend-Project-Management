@@ -307,5 +307,11 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"projectidwise_issuestate";
         return url; 
     }
+
+    static removeMember()
+    {
+        const url = ParentConfiguration.parentURL()+"removeMember";
+        return url;
+    }
 }
 

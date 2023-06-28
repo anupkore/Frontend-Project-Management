@@ -248,4 +248,9 @@ export default class AuthenticationService
     static projectIssueStates(data){
         return AxiosService.projectIssueStates(AuthenticationConfiguration.projectIssueStates(),data);
     }
+
+    static removeMember(data)
+    {
+        return AxiosService.removeMember(AuthenticationConfiguration.removeMember(),data);
+    }
 }
