@@ -16,25 +16,14 @@ import { toast } from "react-toastify";
 
 export const Teams = () => {
   const { p_id } = useParams();
-  // const Project_ID = TeamData.find((proj) => proj.id === Number(p_id));
   const maxWidth = "sm";
   const id = Number(localStorage.getItem("ProjectID"));
-  const id2 = 12;
   var payload = { Project_ID: id }
   const [currentPage, setCurrentPage] = useState(1);
   const [membersPerPage, setMembersPerPage] = useState(5);
   const [teamDetails, setTeamDetails] = useState([]);
-  // const[teamData,setTeamData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // console.log(id);
-  // AuthenticationService.teamDetails(payload).then((response)=>{
-  //   setTeamDetails(response.data.users)
-  //    console.log(response.data);
-  //   // console.log(response.data.users[0])
-  //   // console.log(response.data.users[0].email)
-  //   // console.log(teamDetails);
-  // })
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,6 +45,18 @@ export const Teams = () => {
     };
     fetchData();
   }, []);
+
+  function handleRemove(userID)
+  {
+    var payload2 = {project_ID : id , user_ID : userID }
+
+    AuthenticationService.removeMember(payload2).then((response)=>{
+      console.log(response.data);
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
 
   // useEffect(()=>{
   //   if (teamDetails.length >0) {
@@ -139,6 +140,7 @@ export const Teams = () => {
                     <th className="px-4 py-2">Name</th>
                     <th className="px-4 py-2">Email</th>
                     <th className="px-4 py-2">Role</th>
+                    <th className="px-4 py-2">Remove</th>
                   </tr>
                 </thead>
                 
@@ -150,6 +152,7 @@ export const Teams = () => {
                           <td className="px-4 py-2">{member.name}</td>
                           <td className="px-4 py-2">{member.Email_ID}</td>
                           <td className="px-4 py-2">{member.role}</td>
+                          <td className="px-4 py-2"> <button onClick={()=>{handleRemove(member.userID)}} className="btn btn-danger">Remove</button> </td>
                         </tr>
                       ))}
                         

@@ -323,6 +323,7 @@ useEffect(() => {
                             <th className="px-4 py-2">States</th>
                             {renderStartDateHeader()}
                             <th className="px-4 py-2">End Date</th>
+                            <th className="px-4 py-2">Status</th>
                             <th className="px-4 py-2">Client Name</th>
                             <th className="px-4 py-2">Lead Name</th>
                             <th className="px-4 py-2">Risks</th>
@@ -341,7 +342,7 @@ useEffect(() => {
                               <td className="px-4 py-2">
                                 {project.Project_name}
                               </td>
-                              <td className="px-4 py-2">{project.Status}</td>
+                              <td className="px-4 py-2">{project.state}</td>
                               <td className="px-4 py-2">
                                 {new Date(
                                   project.planned_sd
@@ -359,6 +360,9 @@ useEffect(() => {
                                   month: "2-digit",
                                   day: "2-digit",
                                 })}
+                              </td>
+                              <td className="px-4 py-2">
+                               {project.status}
                               </td>
                               <td className="px-4 py-2">
                                 {project.client_name}

@@ -9,10 +9,10 @@ export default function UpdateProjectForm(props) {
   // const [Project_ID, setProject_ID] = useState(projectData.Project_ID);
   const [projectName, setProjectName] = useState(projectData.Project_name);
   const [status, setStatus] = useState(projectData.Status);
-  const [startDate, setStartDate] = useState(projectData.planned_sd);
-  const [endDate, setEndDate] = useState(projectData.planned_ed);
-  const [actualStartDate, setActualStartDate] = useState(projectData.Actual_sd);
-  const [actualEndDate, setActualEndDate] = useState(projectData.Actual_ed);
+  const [startDate, setStartDate] = useState(new Date(projectData.planned_sd).toISOString().split('T')[0]);
+  const [endDate, setEndDate] = useState(new Date(projectData.planned_ed).toISOString().split('T')[0]);
+  const [actualStartDate, setActualStartDate] = useState(new Date(projectData.Actual_sd).toISOString().split('T')[0]);
+  const [actualEndDate, setActualEndDate] = useState(new Date(projectData.Actual_ed).toISOString().split('T')[0]);
   const [projectLead, setProjectLead] = useState(projectData.project_lead);
   const [clientName, setClientName] = useState(projectData.client_name);
   const [project_description, setDescription] = useState(projectData.description);

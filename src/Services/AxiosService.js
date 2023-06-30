@@ -258,4 +258,10 @@ export default class AxiosService
     static projectIssueStates(url,data){
         return axios.post(url,data);
     }
+
+    static removeMember(url,data)
+    {
+        return axios.post(url,data);
+    }
+
 }
