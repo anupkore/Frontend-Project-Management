@@ -135,7 +135,7 @@ export const ProjectExplore = () => {
     };
     console.log(payload);
     // Check if the status already exists
-    if (statusValue === "" || statusAlreadyExists) {
+    if (statusValue !== "" || statusValue === "200" || statusAlreadyExists) {
       AuthenticationService.update_status(payload)
         .then((response) => {
           console.log("upate status addddd",response.data);
