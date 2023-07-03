@@ -81,7 +81,7 @@ export default function UpdateProjectForm(props) {
     AuthenticationService.updateProject(updateData).then(() => {
       console.log(`Project details updated...........${id1}......../projectexplore/:${projectData.Project_ID}`);
       // navigate(`/projectexplore/${projectData.Project_ID}`);
-      window.location.href = `/projectexplore/${projectData.Project_ID}`;
+      window.location.href = `/test/${projectData.Project_ID}`;
     });
   }
   return (

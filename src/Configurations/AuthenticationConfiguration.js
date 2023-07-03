@@ -313,5 +313,20 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"removeMember";
         return url;
     }
+    static EmailSubmit()
+    {
+        const url = ParentConfiguration.parentURL()+"forgot-password";
+        return url;
+    }
+    static OtpSubmit()
+    {
+        const url = ParentConfiguration.parentURL()+"reset-password";
+        return url;
+    }
+    static PasswordReset()
+    {
+        const url = ParentConfiguration.parentURL()+"set-password";
+        return url;
+    }
 }
 

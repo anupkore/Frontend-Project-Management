@@ -263,5 +263,17 @@ export default class AxiosService
     {
         return axios.post(url,data);
     }
+    static EmailSubmit(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static OtpSubmit(url,data)
+    {
+        return axios.post(url,data);
+    }
+    static PasswordReset(url,data)
+    {
+        return axios.post(url,data);
+    }
 
 }

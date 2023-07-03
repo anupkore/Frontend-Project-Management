@@ -8,6 +8,8 @@ import {
 import { useState } from "react";
 import { LoginForm } from "./LoginForm";
 import { SignupForm } from "./SignupForm";
+import ForgotPasswordForm  from "./ForgotPasswordForm"; // Import the new component
+
 
 const features = [
   {
@@ -50,10 +52,18 @@ const navigation = [
 ];
 
 export default function Example() {
+ 
   const [showLogin, setShowLogin] = useState(true);
+  const [showForgotPassword, setShowForgotPassword] = useState(false); // Add state to track "Forgot password" form
 
   const toggleForm = () => {
     setShowLogin(!showLogin);
+    setShowForgotPassword(false); // Hide "Forgot password" form when toggling back to login/signup form
+  };
+
+  const toggleForgotPasswordForm = () => {
+    setShowForgotPassword(true);
+    setShowLogin(false); // Hide login/signup form when showing "Forgot password" form
   };
   return (
     <>
@@ -83,11 +93,13 @@ export default function Example() {
                 departments.
               </p>
             </div>
-            {showLogin ? (
-              <LoginForm toggleSignup={toggleForm} />
-            ) : (
-              <SignupForm toggleLogin={toggleForm} />
-            )}
+
+             {/* Your existing code */}
+      {showLogin && <LoginForm toggleSignup={toggleForm} toggleForgotPasswordForm={toggleForgotPasswordForm} />}
+      {showForgotPassword && <ForgotPasswordForm />}
+      {/* {!showLogin && !showForgotPassword && <SignupForm toggleLogin={toggleForm} />} */}
+      {/* Your existing code */}
+
           </div>
 
           <div

@@ -287,22 +287,67 @@ function DemoProjectExplore()
                                 <div className="mt-3 m-2">
                                     <div className="flex">
                                         <h3 className="m-3 font-bold">Planned Start Date</h3>
-                                        <h3 className="m-3">29/06/2023</h3>
+                                        <h3 className="m-3">
+                                        {new Date(projectData.planned_sd).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "2-digit",
+                                            day: "2-digit"
+                                            })
+                                        }
+                                        </h3>
                                     </div>
                                     <div className="flex">
                                         <h3 className="m-3 font-bold">Planned End Date</h3>
-                                        <h3 className="mt-3 ml-5">30/06/2023</h3>
+                                        <h3 className="mt-3 ml-5">
+                                        {new Date(projectData.planned_ed).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "2-digit",
+                                            day: "2-digit"
+                                            })
+                                        }
+                                        </h3>
                                     </div>
                                     <div className="flex">
                                         <h3 className="m-3 font-bold">Actual Start Date</h3>
-                                        <h3 className="mt-3 ml-7">01/07/2023</h3>
+                                        <h3 className="mt-3 ml-7">
+                                        {new Date(projectData.Actual_sd).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "2-digit",
+                                            day: "2-digit"
+                                            })
+                                        }
+                                        </h3>
                                     </div>
                                     <div className="flex">
                                         <h3 className="m-3 font-bold">Actual End Date</h3>
-                                        <h3 className="mt-3 ml-8">07/07/2023</h3>
+                                        <h3 className="mt-3 ml-8">
+                                        {new Date(projectData.Actual_ed).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "2-digit",
+                                            day: "2-digit"
+                                            })
+                                        }
+                                        </h3>
                                     </div>
                                     
                                 
+                                </div>
+                                <div className="py-2 max-w-2xl mx-auto px-4">
+                                    <dt className="flex justify-between items-center mb-4">Status</dt>
+                                    
+                                    <dd className="py-2 px-4 mb-2 mt-3 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                                        <textarea
+                                        id="status"
+                                        rows={4}
+                                        className="px-0 w-full text-sm text-black border-0 focus:ring-0 focus:outline-none w-72"
+                                        placeholder="Write a comment..."
+                                        required=""
+                                        value={statusValue}
+                                        onChange={handleStatusChange}
+                                        onBlur={handleSubmit1}
+                                        />
+                                    </dd>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -368,28 +413,11 @@ function DemoProjectExplore()
                         </div>
 
                         
-                        <div className="flex m-0">
+                        <div className="m-0">
                                 <div>
                                     <Comments id={projectData.Project_ID}></Comments>
                                 </div>
 
-                                <div className="py-16 max-w-2xl mx-auto px-4">
-                                    <dt className="flex justify-between items-center mb-6">Status</dt>
-                                    
-                                    <dd className="py-2 px-4 mb-4 mt-3 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                                        <textarea
-                                        id="status"
-                                        rows={4}
-                                        className="px-0 w-full text-sm text-black border-0 focus:ring-0 focus:outline-none w-72"
-                                        placeholder="Write a comment..."
-                                        required=""
-                                        value={statusValue}
-                                        onChange={handleStatusChange}
-                                        onBlur={handleSubmit1}
-                                        />
-                                    </dd>
-                                    
-                                </div>
                         </div>
                 </div>
             </div>
