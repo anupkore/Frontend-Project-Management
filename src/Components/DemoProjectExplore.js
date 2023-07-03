@@ -356,7 +356,7 @@ function DemoProjectExplore()
                     
                     
                         <div className="flex justify-content-start w-2/3 h-1/2">
-                                <div className="border shadow-md w-full ">
+                                <div className="border shadow-md w-full mr-3 ">
                                     <div className="mt-3">
                                         <h2 className="text-center m-4 font-bold">Project Title : {projectData.Project_name}</h2>
                                     </div>
