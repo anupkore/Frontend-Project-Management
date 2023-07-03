@@ -69,7 +69,7 @@ const App = () => {
 <Route path="/addWorkflow" element={<ProtectedRoute element={CreateWorkflow} />} />
 <Route path="/updateprojectform" element={<ProtectedRoute element={UpdateProjectForm} />} />
 <Route path="/addNewMember" element={<ProtectedRoute element={AddNewMember} />} />
-<Route path="/forgotPassword" element={<ProtectedRoute element={ForgotPassword} />} />
+<Route path="/forgotPassword" element={<ForgotPassword></ForgotPassword>} />
 <Route path="/changePassword" element={<ProtectedRoute element={ChangePassword} />} />
 <Route path="/updateissueform" element={<ProtectedRoute element={UpdateIssueForm} />} />
 <Route path="/createissueform" element={<ProtectedRoute element={CreateIssueForm} />} />
@@ -88,7 +88,7 @@ const App = () => {
 <Route path='/updateDefect' element={<UpdateDefect></UpdateDefect>} />
 <Route path='/updateTask' element={<UpdateTask></UpdateTask>} />      
 <Route path='/file' element={<UploadForm></UploadForm>} ></Route>
-<Route path='/test' element={<DemoProjectExplore></DemoProjectExplore>} />
+<Route path='/test/:id1' element={<ProtectedRoute element={DemoProjectExplore} />} />
       
       
       </Routes>

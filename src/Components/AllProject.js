@@ -376,7 +376,7 @@ useEffect(() => {
                               </td>
                               <td className="px-4 py-2 underline text-blue-900">
                                 <Link
-                                  to={`/projectexplore/${project.Project_ID}`}
+                                  to={`/test/${project.Project_ID}`}
                                 >
                                   Explore
                                 </Link>
