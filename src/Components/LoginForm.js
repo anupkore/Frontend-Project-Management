@@ -12,7 +12,7 @@ import axios from "axios";
 import AuthenticationService from "../Services/AuthenticationService";
 
 
-export const  LoginForm = ({ toggleSignup }) => 
+export const  LoginForm = ({ toggleSignup, toggleForgotPasswordForm }) => 
 {
 
     const email = useRef("");
@@ -130,10 +130,10 @@ export const  LoginForm = ({ toggleSignup }) =>
                  Password
                </label>
                <div className="text-sm">
-                 <a href="/forgotPassword" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                   Forgot password?
-                 </a>
-               </div>
+        <Link to={"#"}  onClick={toggleForgotPasswordForm} className="font-semibold text-indigo-600 hover:text-indigo-500">
+          Forgot password?
+        </Link>
+      </div>
              </div>
              <div className="mt-2">
                <input

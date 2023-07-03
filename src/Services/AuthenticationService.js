@@ -253,4 +253,16 @@ export default class AuthenticationService
     {
         return AxiosService.removeMember(AuthenticationConfiguration.removeMember(),data);
     }
+    static EmailSubmit(data)
+    {
+        return AxiosService.EmailSubmit(AuthenticationConfiguration.EmailSubmit(),data);
+    }
+    static OtpSubmit(data)
+    {
+        return AxiosService.OtpSubmit(AuthenticationConfiguration.OtpSubmit(),data);
+    }
+    static PasswordReset(data)
+    {
+        return AxiosService.PasswordReset(AuthenticationConfiguration.PasswordReset(),data);
+    }
 }

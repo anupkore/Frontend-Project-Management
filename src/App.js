@@ -14,7 +14,7 @@ import AddNewMember from './Components/AddNewMember';
 import ParticularIssueDashboard from './Components/ParticularIssueDashboard';
 import { Teams } from './Components/Teams';
 import UpdateProjectForm from './Components/UpdateProjectForm';
-import ForgotPassword from './Components/ForgotPassword';
+import ForgotPasswordForm from './Components/ForgotPasswordForm';
 import ChangePassword from './Components/ChangePassword';
 import UpdateIssueForm from './Components/UpdateIssueForm';
 import CreateIssueForm from './Components/CreateIssueForm';
@@ -69,7 +69,7 @@ const App = () => {
 <Route path="/addWorkflow" element={<ProtectedRoute element={CreateWorkflow} />} />
 <Route path="/updateprojectform" element={<ProtectedRoute element={UpdateProjectForm} />} />
 <Route path="/addNewMember" element={<ProtectedRoute element={AddNewMember} />} />
-<Route path="/forgotPassword" element={<ProtectedRoute element={ForgotPassword} />} />
+{/* <Route path="/forgotPassword" element={<ProtectedRoute element={ForgotPasswordForm} />} /> */}
 <Route path="/changePassword" element={<ProtectedRoute element={ChangePassword} />} />
 <Route path="/updateissueform" element={<ProtectedRoute element={UpdateIssueForm} />} />
 <Route path="/createissueform" element={<ProtectedRoute element={CreateIssueForm} />} />
