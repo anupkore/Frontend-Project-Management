@@ -11,6 +11,7 @@ export default function AddNewMember({ userData }) {
   const [errorName, setErrorName] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorContact, setErrorContact] = useState("");
+  const [errorAlreadyExist , setErrorAlreadyExist] = useState("");
   console.log("mydataaa",userData);
 
   useEffect(() => {
@@ -43,14 +44,17 @@ export default function AddNewMember({ userData }) {
     function handleInputChangeName()
     {
       setErrorName('');
+      setErrorAlreadyExist('');
     }
     function handleInputChangeEmail()
     {
       setErrorEmail('');
+      setErrorAlreadyExist('');
     }
     function handleInputChangeContact()
     {
       setErrorContact('');
+      setErrorAlreadyExist('');
     }
 
     function handleSignUp(event)
@@ -93,7 +97,11 @@ export default function AddNewMember({ userData }) {
         console.log("New User Created");
         window.location.href = '/tableofusers';
       }).catch((error)=>{
-        console.log(error.response);
+        console.log(error.response.data.error);
+        if(error.response.data.error === "email already exists.")
+        {
+          setErrorAlreadyExist("Email Already Exist");
+        }
       })
     }
 
@@ -114,6 +122,9 @@ export default function AddNewMember({ userData }) {
                 <h2 className="mt-10 text-center my-auto text-2xl font-bold leading-9 tracking-tight text-gray-900">
                   Add  New Member
                 </h2>
+                <div className="text-center mx-auto">
+                  <span className="text-danger">{errorAlreadyExist}</span>
+                </div>
               </div>
   
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

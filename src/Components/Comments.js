@@ -166,13 +166,13 @@ export default function Comments({ id }) {
               >
                 <footer className="flex justify-between items-center mb-2">
                   <div className="flex items-center">
-                    <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                    <p className="inline-flex items-center mr-3 text-sm font-bold">
                       <img
                         className="mr-2 w-6 h-6 rounded-full"
                         src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
                         alt="Michael Gough"
                       />
-                      {data.author_name}
+                     {data.author_name}
                     </p>
                     {/* <p className="text-sm text-gray-600 dark:text-gray-400">
                       <time pubdate="" date={data.date} title={data.date}>
@@ -238,7 +238,7 @@ export default function Comments({ id }) {
                     )}
                   </div>
                 </footer>
-                <p className="text-gray-500 dark:text-gray-400">
+                <p className="">
                   {data.description}
                 </p>
                 <div className="flex items-center mt-4 space-x-4"></div>
