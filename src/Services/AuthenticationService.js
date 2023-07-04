@@ -265,4 +265,8 @@ export default class AuthenticationService
     {
         return AxiosService.PasswordReset(AuthenticationConfiguration.PasswordReset(),data);
     }
+    static IssueReport(data)
+    {
+        return AxiosService.IssueReport(AuthenticationConfiguration.IssueReport(),data);
+    }
 }

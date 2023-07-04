@@ -105,8 +105,8 @@ export default function Comments({ id }) {
     <>
       {showDeletePopup && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="bg-gray-900 p-6 rounded-lg shadow-lg">
-            <p className="text-lg text-gray-900 dark:text-white">
+          <div className="bg-gray-900 p-6 rounded-lg shadow-lg text-white">
+            <p className="text-lg text-white-900 dark:text-black text-white">
               Comment deleted successfully.
             </p>
             <div className="flex justify-center mx-auto">

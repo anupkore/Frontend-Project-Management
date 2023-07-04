@@ -45,7 +45,7 @@ export default function SideBar({p_id}) {
       <div
         className={`${
           open ? "w-60" : "w-8"
-        } bg-dark-purple p-5  pt-8 relative duration-300 rounded-r-md`}
+        } bg-dark-purple p-5 h-full pt-8 relative duration-300 rounded-r-md`}
       >
         <div className="h-full">
           <button onClick={toggleSidebar}>

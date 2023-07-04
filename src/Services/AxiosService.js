@@ -275,5 +275,9 @@ export default class AxiosService
     {
         return axios.post(url,data);
     }
+    static IssueReport(url,data)
+    {
+        return axios.post(url,data);
+    }
 
 }

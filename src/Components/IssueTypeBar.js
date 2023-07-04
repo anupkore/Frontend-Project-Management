@@ -6,7 +6,10 @@ function IssueTypeBar({ selectedOption }) {
   const payload = { Project_ID: Number(localStorage.getItem("ProjectID"))};
   const [taskData, setTaskData] = useState([]);
   const [defectData, setDefectData] = useState([]);
+  const [activeData, setActiveData] = useState([]);
+  const [inActiveData, setInActiveData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const [filteredActiveData, setFilteredActiveData] = useState([]);
 
   useEffect(() => {
     console.log(payload);
@@ -60,6 +63,22 @@ function IssueTypeBar({ selectedOption }) {
           console.log('ERROR', error.data);
         });
     }
+
+    AuthenticationService.IssueReport(payload)
+        .then((response) => {
+          console.log('IssueReport1111111...', response.data);
+          setActiveData(response.data.Completed);
+          setInActiveData(response.data.InCompleted);
+          console.log("55555",activeData,inActiveData);
+          // console.log('weekly : task and defect', taskData, 'and', defectData);
+          setFilteredActiveData([{ Issue: 'Data', Completed: response.data.Completed, InCompleted: response.data.InCompleted }]);
+          console.log("888",filteredActiveData);
+        })
+        .catch((error) => {
+          console.log('ERROR', error.data);
+        });
+
+
   }, [selectedOption]);
 
   const renderCustomizedLabel = (props) => {
@@ -91,7 +110,17 @@ function IssueTypeBar({ selectedOption }) {
     return [0, maxValue + buffer];
   };
 
+  const calculateActiveYAxisDomain = () => {
+    const maxValue = Math.max(
+      ...filteredActiveData.map((data) => Math.max(data.Completed, data.InCompleted))
+    );
+    const buffer = 2; // Adjust the buffer value as needed
+
+    return [0, maxValue + buffer];
+  };
+
   return (
+    <>
     <div className="w-full max-w-3xl min-h-[25rem] mx-auto shadow mt-5">
       <h2 className="text-center text-dark mb-3">Issue Types VS Count</h2>
       <div className="flex align-items-center justify-content-center mt-5">
@@ -108,10 +137,38 @@ function IssueTypeBar({ selectedOption }) {
             <Bar dataKey="defect" fill="orange">
               <LabelList dataKey="defect" position="top" content={renderCustomizedLabel} />
             </Bar>
-          </BarChart>
+                    </BarChart>
         </ResponsiveContainer>
       </div>
     </div>
+
+{/* <h1>Heloo</h1> */}
+
+    <div className="w-full max-w-3xl min-h-[25rem] mx-auto shadow mt-5">
+      <h2 className="text-center text-dark mb-3">Active Vs In-Active Issues</h2>
+      <div className="flex align-items-center justify-content-center mt-5">
+        <ResponsiveContainer width="70%" height={300}>
+          <BarChart data={filteredActiveData}>
+            <XAxis dataKey="Issue" />
+            <YAxis domain={calculateActiveYAxisDomain()}>
+              <Label value="Count" angle={-90} position="insideLeft" />
+            </YAxis>
+            <Legend />
+            <Bar dataKey="Completed" fill="indigo">
+              <LabelList dataKey="Completed" position="top" content={renderCustomizedLabel} />
+            </Bar>
+            <Bar dataKey="InCompleted" fill="orange">
+              <LabelList dataKey="InCompleted" position="top" content={renderCustomizedLabel} />
+            </Bar>
+            </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+
+    </>
+
+
+
   );
 }
 

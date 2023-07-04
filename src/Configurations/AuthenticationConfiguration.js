@@ -328,5 +328,10 @@ export default class AuthenticationConfiguration
         const url = ParentConfiguration.parentURL()+"set-password";
         return url;
     }
+    static IssueReport()
+    {
+        const url = ParentConfiguration.parentURL()+"issue_report";
+        return url;
+    }
 }
 
