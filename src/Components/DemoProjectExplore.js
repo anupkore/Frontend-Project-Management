@@ -124,7 +124,7 @@ function DemoProjectExplore()
   };
 
   const [statusValue, setStatusValue] = useState("");
-  const [statusAlreadyExists, setStatusAlreadyExists] = useState(false);
+  const [statusAlreadyExists, setStatusAlreadyExists] = useState(true);
 
   const handleStatusChange = (event) => {
     setStatusValue(event.target.value);
@@ -138,7 +138,7 @@ function DemoProjectExplore()
     };
     console.log(payload);
     // Check if the status already exists
-    if (statusValue === "" || statusAlreadyExists) {
+    if (statusValue === "" || statusValue === "200" || statusAlreadyExists) {
       AuthenticationService.update_status(payload)
         .then((response) => {
           console.log("upate status addddd",response.data);
@@ -235,9 +235,9 @@ function DemoProjectExplore()
         ]);
 
         console.log("data1", data1);
-        console.log("data2", data2);
+        console.log("data22222", data2.data[0]);
         setProjectData(data1.data);
-        setStatusValue(data1.status);
+        setStatusValue(data2.data[0]);
         setIsLoading(false);
       } catch (error) {
         console.error(error);

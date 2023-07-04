@@ -135,7 +135,7 @@ export const ProjectExplore = () => {
     };
     console.log(payload);
     // Check if the status already exists
-    if (statusValue !== "" || statusValue === "200" || statusAlreadyExists) {
+    if (statusValue === "" || statusValue === "200" || statusAlreadyExists) {
       AuthenticationService.update_status(payload)
         .then((response) => {
           console.log("upate status addddd",response.data);
@@ -232,9 +232,9 @@ export const ProjectExplore = () => {
         ]);
 
         console.log("data1", data1);
-        console.log("data2", data2);
+        console.log("data2222",response2);
         setProjectData(data1.data);
-        setStatusValue(data1.status);
+        setStatusValue(response2.status);
         setIsLoading(false);
       } catch (error) {
         console.error(error);
