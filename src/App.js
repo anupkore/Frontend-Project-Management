@@ -69,7 +69,7 @@ const App = () => {
 <Route path="/addWorkflow" element={<ProtectedRoute element={CreateWorkflow} />} />
 <Route path="/updateprojectform" element={<ProtectedRoute element={UpdateProjectForm} />} />
 <Route path="/addNewMember" element={<ProtectedRoute element={AddNewMember} />} />
-<Route path="/forgotPassword" element={<ForgotPasswordForm></ForgotPasswordForm>} />
+<Route path="/forgotPassword" element={<ProtectedRoute element={ForgotPasswordForm} />} />
 <Route path="/changePassword" element={<ProtectedRoute element={ChangePassword} />} />
 <Route path="/updateissueform" element={<ProtectedRoute element={UpdateIssueForm} />} />
 <Route path="/createissueform" element={<ProtectedRoute element={CreateIssueForm} />} />
@@ -80,14 +80,14 @@ const App = () => {
 <Route path="/reports" element={<ProtectedRoute element={ReportsDashboard} />} />
 <Route path="/urlTest" element={<ProtectedRoute element={URLTesting} />} />
 <Route path="/tableofusers" element={<ProtectedRoute element={TableOfUsers} />} />
-<Route path='/workflow' element={<WorkflowCard />} />
-<Route path='/updateUser/:uid' element={<UpdateUser></UpdateUser>} />
-<Route path='/createTask' element={<CreateTask></CreateTask>} />
-<Route path='/createDefect' element={<CreateDefect></CreateDefect>} />
+<Route path='/workflow' element={<ProtectedRoute element={WorkflowCard}/>} />
+<Route path='/updateUser/:uid' element={<ProtectedRoute element={UpdateUser}/>} />
+<Route path='/createTask' element={<ProtectedRoute element={CreateTask} />} />
+<Route path='/createDefect' element={<ProtectedRoute element={CreateDefect}/>} />
 <Route path='/allIssues' element={<ProtectedRoute element={IssueDashboard} />}/>
-<Route path='/updateDefect' element={<UpdateDefect></UpdateDefect>} />
-<Route path='/updateTask' element={<UpdateTask></UpdateTask>} />      
-<Route path='/file' element={<UploadForm></UploadForm>} ></Route>
+<Route path='/updateDefect' element={<ProtectedRoute element={UpdateDefect}/>} />
+<Route path='/updateTask' element={<ProtectedRoute element={UpdateTask}/>} />      
+<Route path='/file' element={<ProtectedRoute element={UploadForm}/>} ></Route>
 <Route path='/test/:id1' element={<ProtectedRoute element={DemoProjectExplore} />} />
       
       
