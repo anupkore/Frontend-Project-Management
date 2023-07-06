@@ -2,9 +2,11 @@
                                                                                   
 OpenThis URL:
     Front-End:   https://frontend-project-management-yjb-yjb28-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
-    Back-end:    https://pmt-poc-project-rohanbhavsar215-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
 
-Follow This steps:
+
+    Back-end API:   https://pmt-merge-simranpatil936-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
+
+Follow These steps:
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -22,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
 
-### `npm test`
+### `npm test
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
@@ -46,7 +48,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 ### Deployment
-We Depoy with help of Openshift:
+We Deploy with help of Openshift:
   https://frontend-project-management-yjb-yjb28-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/
   
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
