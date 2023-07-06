@@ -48,42 +48,28 @@ export const Teams = () => {
 
   function handleRemove(userID)
   {
-    var payload2 = {project_ID : id , user_ID : userID }
+    var payload2 = {user_ID : userID }
+    console.log(payload2);
 
     AuthenticationService.removeMember(payload2).then((response)=>{
       console.log(response.data);
+      // Remove the member from the teamDetails state
+      setTeamDetails((prevTeamDetails) =>
+        prevTeamDetails.filter((member) => member.user_ID !== userID)
+      );
     })
     .catch((error)=>{
       console.log(error);
     })
   }
 
-  // useEffect(()=>{
-  //   if (teamDetails.length >0) {
-  //     console.log(teamDetails);
-  //   } else {
-  //     console.log("No Team is there!!")
-  //   }
-   
-  // },[teamDetails])
-  //  console.log("Teams",teamDetails);
 
   const indexOfLastMember = currentPage * membersPerPage;
   const indexOfFirstMember = indexOfLastMember - membersPerPage;
   const currentMembers = TeamData.slice(indexOfFirstMember, indexOfLastMember);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   
-//  const [userList, setUserList] = useState([]);
-//   useEffect(() => {
-//     AuthenticationService.allUsersTable()
-//       .then((response) => {
-//         setUserList(response.data);
-//         console.log("userList....", response.data);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   }, []);
+
   return (
     <>
     {isLoading ?(
@@ -152,7 +138,7 @@ export const Teams = () => {
                           <td className="px-4 py-2">{member.name}</td>
                           <td className="px-4 py-2">{member.Email_ID}</td>
                           <td className="px-4 py-2">{member.role}</td>
-                          <td className="px-4 py-2"> <button onClick={()=>{handleRemove(member.userID)}} className="btn btn-danger">Remove</button> </td>
+                          <td className="px-4 py-2"> <button onClick={()=>{handleRemove(member.user_ID)}} className="btn btn-danger">Remove</button> </td>
                         </tr>
                       ))}
                         
