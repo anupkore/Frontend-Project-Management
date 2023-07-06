@@ -68,32 +68,7 @@ const issuesData = response.data;
         });
     },[demo]);
 
-  // useEffect(() => {
-  //   if (issues.length > 0) {
-  //     const uniqueStatusValues = [...new Set(issues.map((item) => item.status))];
-  //     console.log(uniqueStatusValues);
-  //     setStatusValues(uniqueStatusValues);
-  //   } else {
-  //     console.log("EMPTY!!");
-  //   }
-  // }, [issues]);
-  
-  // useEffect(() => {
-      
-  //   if (!isLoading) {
-  //     AuthenticationService.projectWiseWorkflow(payload1)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setWorkflowData(response.data);
-  //       setIsLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //       setIsLoading(false);
-  //     });
-  //   }
-  // }, [isLoading]);
-
+ 
   console.log("Issues: ", issues);
   console.log("Status: ", statusValues);
   // console.log("Workflowata", workflowData);
@@ -114,7 +89,9 @@ const issuesData = response.data;
       issues.length === 0 ? (
           <>
           <div className="flex">
+          <div className="h-screen">
           <SideBar p_id={p_id}></SideBar>
+        </div>
               <div className="mx-auto ">
                 <div className="flex justify-center">
                   <h1 className="text-5xl font-bold">
@@ -142,7 +119,7 @@ const issuesData = response.data;
             ) :(
     <>
       <div className="flex bg-[#ffffff]">
-        <div className="max-w-2/12">
+      <div className="h-screen">
           <SideBar p_id={p_id}></SideBar>
         </div>
         <div className="w-9/12 mx-auto ">
