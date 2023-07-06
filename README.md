@@ -2,10 +2,9 @@
                                                                                   
 OpenThis URL:
 
-    Front-End:   https://frontend-project-management-yjb-yjb28-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
-    
-    
-    Back-end API:   https://pmt-merge-simranpatil936-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
+Front-End:  https://frontend-project-management-yjb-yjb28-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
+
+Back-end API:   https://pmt-merge-simranpatil936-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
     
 
 Follow These steps:
