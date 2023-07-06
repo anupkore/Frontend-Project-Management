@@ -1,9 +1,9 @@
-                   Project-Management-Application
+                                                         Project-Management-Application
                                                                                   
 OpenThis URL:
+
     Front-End:   https://frontend-project-management-yjb-yjb28-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
-
-
+    
     Back-end API:   https://pmt-merge-simranpatil936-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
 
 Follow These steps:
@@ -21,6 +21,8 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+On Server: 
+https://frontend-project-management-yjb-yjb28-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
 
 
 
@@ -48,8 +50,9 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 ### Deployment
-We Deploy with help of Openshift:
-  https://frontend-project-management-yjb-yjb28-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/
+We Deploy with the help of Openshift:
+
+  https://frontend-project-management-yjb-yjb28-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
   
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
