@@ -48,15 +48,15 @@ export const Teams = () => {
 
   function handleRemove(userID)
   {
-    var payload2 = {user_ID : userID }
+    var payload2 = {user_ID : userID , Project_ID: id }
     console.log(payload2);
 
     AuthenticationService.removeMember(payload2).then((response)=>{
       console.log(response.data);
       // Remove the member from the teamDetails state
-      setTeamDetails((prevTeamDetails) =>
-        prevTeamDetails.filter((member) => member.user_ID !== userID)
-      );
+      // setTeamDetails((prevTeamDetails) =>
+      //   prevTeamDetails.filter((member) => member.user_ID !== userID)
+      // );
     })
     .catch((error)=>{
       console.log(error);

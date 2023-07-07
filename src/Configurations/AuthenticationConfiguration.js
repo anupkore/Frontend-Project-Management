@@ -310,7 +310,7 @@ export default class AuthenticationConfiguration
 
     static removeMember()
     {
-        const url = ParentConfiguration.parentURL()+"delete_user";
+        const url = ParentConfiguration.parentURL()+"unassign_user";
         return url;
     }
     static EmailSubmit()
