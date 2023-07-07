@@ -13,6 +13,8 @@ function CreateTask({ issueId }) {
   const [priority, setPriority] = useState("");
   const [estimatedTime, setEstimatedTime] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [errorPlannedStartDate, setErrorPlannedStartDate] = useState("");
+  const [errorPlannedEndDate, setErrorPlannedEndDate] = useState("");
   const navigate = useNavigate();
   console.log(issueId);
 
@@ -26,10 +28,12 @@ function CreateTask({ issueId }) {
 
   function handleInputChangeStartDate(event) {
     setStartDate(event.target.value);
+    setErrorPlannedStartDate("");
   }
 
   function handleInputChangeEndDate(event) {
     setEndDate(event.target.value);
+    setErrorPlannedEndDate("");
   }
 
   function handleInputChangePriority(event) {
@@ -40,9 +44,40 @@ function CreateTask({ issueId }) {
     setEstimatedTime(event.target.value);
   }
 
-  function handleCreateTask(event) {
+  function validatePlannedStartDate(startDate) {
+    const today = new Date();
+    const selectedDate = new Date(startDate);
+
+    // Check if the selected date is before today's date
+    return selectedDate >= today;
+  }
+
+  // Function to validate the planned end date
+  function validatePlannedEndDate(startDate, endDate) {
+    const startDateObj = new Date(startDate);
+    const endDateObj = new Date(endDate);
+
+    // Check if the end date is before the start date
+    return endDateObj >= startDateObj;
+  }
+
+  function handleCreateTask(event) 
+  {
     setIsLoading(true);
     event.preventDefault();
+
+    if (!validatePlannedStartDate(startDate)) {
+      setErrorPlannedStartDate("Please Enter valid Start Date");
+      setIsLoading(false);
+      return;
+    }
+
+    if (!validatePlannedEndDate(startDate, endDate)) {
+      setErrorPlannedEndDate("Please Enter valid End Date");
+      setIsLoading(false);
+      return;
+    }
+
     var payload = {
       issue_id: issueId,
       title: title,
@@ -149,6 +184,9 @@ function CreateTask({ issueId }) {
                           className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           disabled={isLoading}
                         />
+                        <span className="text-danger">
+                            {errorPlannedStartDate}
+                        </span>
                       </div>
                     </div>
                     <div className="">
@@ -169,6 +207,9 @@ function CreateTask({ issueId }) {
                           className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-md ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
                           disabled={isLoading}
                         />
+                        <span className="text-danger">
+                            {errorPlannedEndDate}
+                        </span>
                       </div>
                     </div>
                   </div>
