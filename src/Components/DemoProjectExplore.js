@@ -144,6 +144,16 @@ function DemoProjectExplore()
           console.log("upate status addddd",response.data);
           // Handle the success response
           setStatusValue(response.data[0]);
+          toast.success("Status Updated Sucessfully!! ", {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         })
         .catch((error) => {
           console.log(error.response.data);
@@ -344,10 +354,12 @@ function DemoProjectExplore()
                                         required=""
                                         value={statusValue}
                                         onChange={handleStatusChange}
-                                        onBlur={handleSubmit1}
+                                        //onBlur={handleSubmit1}
                                         />
                                     </dd>
-                                    
+                                    <div className="d-flex justify-content-center">
+                                      <button className="btn btn-primary" onClick={handleSubmit1}>Save</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -398,7 +410,7 @@ function DemoProjectExplore()
                                         <FormDialog
                                             prop={<UpdateProjectForm onSubmit={handleUpdateProject}  projectData={projectData}/>}
                                             style={maxWidth}
-                                            buttonTitle={"Update"}
+                                            buttonTitle={"Edit"}
                                             ic={"false"}
                                         >                   
                                         </FormDialog>

@@ -182,6 +182,14 @@ useEffect(() => {
   };
   // console.log(sortedAndFilteredProjects.length);
   // console.log(allList.length);
+  const truncateContent = (content, wordLimit) => 
+  {
+    const words = content.split(' ');
+    if (words.length <= wordLimit) {
+      return content;
+    }
+    return words.slice(0, wordLimit).join(' ') + '...';
+  };
 
   return (
     <>
@@ -362,7 +370,7 @@ useEffect(() => {
                                 })}
                               </td>
                               <td className="px-4 py-2">
-                               {project.status}
+                               {truncateContent(project.status , 3)}
                               </td>
                               <td className="px-4 py-2">
                                 {project.client_name}
