@@ -328,15 +328,18 @@ useEffect(() => {
                           <tr>
                             <th className="px-4 py-2">Sr.No</th>
                             {renderNameHeader()}
+                            <th className="px-4 py-2">Lead Name</th>
+                            <th className="px-4 py-2">Client Name</th>
+                            <th className="px-4 py-2">Status</th>
                             <th className="px-4 py-2">States</th>
                             {renderStartDateHeader()}
                             <th className="px-4 py-2">End Date</th>
-                            <th className="px-4 py-2">Status</th>
-                            <th className="px-4 py-2">Client Name</th>
-                            <th className="px-4 py-2">Lead Name</th>
                             <th className="px-4 py-2">Risks</th>
                             <th className="px-4 py-2">Mitigations</th>
                             <th className="px-4 py-2">Details</th>
+                            
+                            
+
                             {/* <th className="px-4 py-2">Issues</th> */}
                           </tr>
                         </thead>
@@ -349,6 +352,15 @@ useEffect(() => {
                               <td className="px-4 py-2">{index + 1}</td>
                               <td className="px-4 py-2">
                                 {project.Project_name}
+                              </td>
+                              <td className="px-4 py-2">
+                                {project.project_lead}
+                              </td>
+                              <td className="px-4 py-2">
+                                {project.client_name}
+                              </td>
+                              <td className="px-4 py-2">
+                               {truncateContent(project.status , 3)}
                               </td>
                               <td className="px-4 py-2">{project.state}</td>
                               <td className="px-4 py-2">
@@ -369,15 +381,9 @@ useEffect(() => {
                                   day: "2-digit",
                                 })}
                               </td>
-                              <td className="px-4 py-2">
-                               {truncateContent(project.status , 3)}
-                              </td>
-                              <td className="px-4 py-2">
-                                {project.client_name}
-                              </td>
-                              <td className="px-4 py-2">
-                                {project.project_lead}
-                              </td>
+                              
+                             
+                              
                               <td className="px-4 py-2">{project.risk}</td>
                               <td className="px-4 py-2">
                                 {project.mitigation}
